@@ -14,6 +14,7 @@ public class ULinker(string name, byte[] data) : FArchive(data)
   public FName Name = FName.ResolveNameAndCorrectCasing(name);
   public Dictionary<string, int> NameMap = new(StringComparer.OrdinalIgnoreCase);
   public string[]? Names;
+  public static Dictionary<string, Dictionary<string, UStruct>> allStructuresByOuter = new();
   public Dictionary<string, Dictionary<string, UStruct>> structuresByOuter = new();
 
   public override void Serialise(ref FName name)
@@ -36,10 +37,16 @@ public class ULinker(string name, byte[] data) : FArchive(data)
     if (export.ClassIndex == 0)
     {
       if (export.ObjectName == EName.None) return null;
-      if (allClasses.ContainsKey(export.ObjectName.Resolved)) throw new PackageCorruptException("duplicate class");
+      UClass theClass;
+      if (!classes.TryGetValue(export.ObjectName.Resolved, out theClass)) theClass = new(this, export, linkerIndex);
+      else
+      {
+        theClass.Linker = this;
+        theClass.Export = export;
+        theClass.LinkerIndex = linkerIndex;
+      }
 
       Seek(export.SerialOffset);
-      UClass theClass = new(this, export, linkerIndex);
       theClass.Serialise(this);
       classes[export.ObjectName.Resolved] = theClass;
       allClasses[export.ObjectName.Resolved] = theClass;
@@ -76,8 +83,12 @@ public class ULinker(string name, byte[] data) : FArchive(data)
       if (export.OuterIndex < 0) outerName = Imports[-export.OuterIndex - 1].ObjectName;
       else outerName = Exports[export.OuterIndex - 1].ObjectName;
 
-      if (!structuresByOuter.ContainsKey(outerName.Resolved))
-        structuresByOuter[outerName.Resolved] = new Dictionary<string, UStruct>();
+      if (!allStructuresByOuter.ContainsKey(outerName.Resolved))
+      {
+        Dictionary<string, UStruct> dict = new Dictionary<string, UStruct>();
+        allStructuresByOuter[outerName.Resolved] = dict;
+        structuresByOuter[outerName.Resolved] = dict;
+      }
 
       var byOuter = structuresByOuter[outerName.Resolved];
       if (byOuter.ContainsKey(export.ObjectName.Resolved))
@@ -157,7 +168,7 @@ public class ULinker(string name, byte[] data) : FArchive(data)
       if (!allClasses.ContainsKey(className)) return false;
 
       UClass uClass = allClasses[className];
-      className = uClass.Linker.GetObjectName(uClass.SuperFieldIndex).Resolved;
+      className = uClass.SuperFieldName.Resolved;
     }
   }
 }
@@ -536,51 +547,82 @@ public class Bootstrap(string basePath)
         var asm = Assembly.GetExecutingAssembly();
 
         List<Type> patchedClasses = new();
-        string patchNamespace = "ue3.Patch." + linker.Name;
+        string patchNamespace = "ue3.Patch." + linker.Name.Resolved;
         foreach (var type in asm.GetTypes())
-          if (type.Namespace == patchNamespace)
+          if (type.Namespace == patchNamespace && (type.Name[0] == 'A' || type.Name[0] == 'U'))
             patchedClasses.Add(type);
 
         foreach (var patch in patchedClasses)
         {
-          var className = FName.ResolveNameAndCorrectCasing(patch.Name);
+          string classNameString = patch.Name.Substring(1);
+          var className = FName.ResolveNameAndCorrectCasing(classNameString);
 
           UClass patchedClass;
-          if (linker.classes.ContainsKey(patch.Name))
+          if (linker.classes.ContainsKey(classNameString))
           {
-            patchedClass = linker.classes[patch.Name];
+            patchedClass = linker.classes[classNameString];
           }
           else
           {
             FObjectExport fakeExport = new();
             fakeExport.ObjectName = className;
             patchedClass = new UClass(linker, fakeExport, -1);
-
-            linker.classes[patch.Name] = patchedClass;
           }
 
-          if (patch.BaseType != null)
-            patchedClass.SuperFieldName = FName.ResolveNameAndCorrectCasing(patch.BaseType.Name);
+          linker.classes[classNameString] = patchedClass;
+          ULinker.allClasses[classNameString] = patchedClass;
+
+          if (patch.BaseType.Name != "Object")
+            patchedClass.SuperFieldName = FName.ResolveNameAndCorrectCasing(patch.BaseType.Name.Substring(1));
           patchedClass.hasNativeSerialiser = Attribute.GetCustomAttribute(patch, typeof(NativeAttribute)) != null;
+
+
+          if (!ULinker.allStructuresByOuter.ContainsKey(classNameString))
+          {
+            Dictionary<string, UStruct> dict = new Dictionary<string, UStruct>();
+            ULinker.allStructuresByOuter[classNameString] = dict;
+            linker.structuresByOuter[classNameString] = dict;
+          }
+
+          Dictionary<string, UStruct> byOuter = linker.structuresByOuter[classNameString];
+          foreach (Type nested in patch.GetNestedTypes())
+          {
+            string structNameString = nested.Name.Substring(1);
+            var structName = FName.ResolveNameAndCorrectCasing(structNameString);
+
+            UStruct patchedStruct;
+            if (byOuter.ContainsKey(structNameString))
+            {
+              patchedStruct = byOuter[structNameString];
+            }
+            else
+            {
+              FObjectExport fakeExport = new();
+              fakeExport.ObjectName = structName;
+              patchedStruct = new UStruct(linker, fakeExport, -1);
+            }
+
+            byOuter[structNameString] = patchedStruct;
+          }
 
           foreach (var field in patch.GetFields(BindingFlags.Instance | BindingFlags.Public))
           {
             var propertyName = FName.ResolveNameAndCorrectCasing(field.Name);
 
-            UProperty patchedProperty;
-            if (patchedClass.PropertyMap.ContainsKey(field.Name))
-            {
-              patchedProperty = patchedClass.PropertyMap[field.Name];
-            }
-            else
-            {
-              FObjectExport fakeExport = new();
-              fakeExport.ObjectName = propertyName;
-              // create correct type
-              patchedProperty = new UProperty(linker, fakeExport, -1);
-              patchedClass.PropertyMap[field.Name] = patchedProperty;
-              patchedClass.Properties.Add(propertyName);
-            }
+            // UProperty patchedProperty;
+            // if (patchedClass.PropertyMap.ContainsKey(field.Name))
+            // {
+            //   patchedProperty = patchedClass.PropertyMap[field.Name];
+            // }
+            // else
+            // {
+            //   FObjectExport fakeExport = new();
+            //   fakeExport.ObjectName = propertyName;
+            //   // create correct type
+            //   patchedProperty = new UProperty(linker, fakeExport, -1);
+            //   patchedClass.PropertyMap[field.Name] = patchedProperty;
+            //   patchedClass.Properties.Add(propertyName);
+            // }
           }
 
           // iterate properties
@@ -614,30 +656,24 @@ public class Bootstrap(string basePath)
 
           char prefix = linker.DerivesFromActor(uClass.Name.Resolved) ? 'A' : 'U';
           char superPrefix = uClass.Name == EName.Actor ? 'U' : prefix;
-          string superClass = uClass.SuperFieldIndex == 0 ? "" : " : " + superPrefix + linker.GetObjectName(uClass.SuperFieldIndex).Resolved;
+          string superClass = uClass.SuperFieldName == EName.None ? "" : " : " + superPrefix + uClass.SuperFieldName.Resolved;
           stream.Write("public class {0}{1}{2}\n{{\n", prefix, uClass.Name.Resolved, superClass);
 
-          if (linker.structuresByOuter.ContainsKey(uClass.Name.Resolved))
-          {
-            Dictionary<string, UStruct> byOuter = linker.structuresByOuter[uClass.Name.Resolved];
-
-            foreach (var structPair in byOuter)
-            {
-              UStruct uStruct = structPair.Value;
-
-              string superStruct = uStruct.SuperFieldIndex == 0 ? "" : " : F" + linker.GetObjectName(uStruct.SuperFieldIndex).Resolved;
-              stream.Write("  public class F{0}{1}\n", uStruct.Name.Resolved, superStruct);
-              stream.Write("  {\n");
-              stream.Write("  }\n\n");
-            }
-          }
-
+          WriteStructInners(linker, uClass.Name.Resolved, stream);
           foreach (FName propertyName in uClass.Properties)
           {
             UProperty property = uClass.PropertyMap[propertyName.Resolved];
             string typename = FormatPropertyType(property, uClass.Name.Resolved);
+            string propertyNameString = EscapeName(property.Name.Resolved);
 
-            stream.Write("  public {0} {1};\n", typename, property.Name.Resolved);
+            if (property.ArrayDim == 1)
+            {
+              stream.Write("  public {0} {1};\n", typename, propertyNameString);
+            }
+            else
+            {
+              stream.Write("  public {0}[] {1} = new {0}[{2}];\n", typename, propertyNameString, property.ArrayDim);
+            }
           }
 
           stream.Write("}\n\n");
@@ -724,5 +760,50 @@ public class Bootstrap(string basePath)
     }
 
     throw new PackageCorruptException("unknown property type");
+  }
+
+  private static string EscapeName(string name)
+  {
+    if (name == "ref") return "Ref";
+    return name;
+  }
+
+  private void WriteStructInners(ULinker linker, string outerName, StreamWriter stream, int indentLevel = 2)
+  {
+    string indent = new string(' ', indentLevel);
+
+    if (linker.structuresByOuter.ContainsKey(outerName))
+    {
+      Dictionary<string, UStruct> byOuter = linker.structuresByOuter[outerName];
+
+      foreach (var structPair in byOuter)
+      {
+        UStruct uStruct = structPair.Value;
+
+        string superStruct = uStruct.SuperFieldName == EName.None ? "" : " : F" + uStruct.SuperFieldName.Resolved;
+        stream.Write(indent + "public class F{0}{1}\n", uStruct.Name.Resolved, superStruct);
+        stream.Write(indent + "{\n");
+
+        WriteStructInners(linker, uStruct.Name.Resolved, stream, indentLevel + 2);
+
+        foreach (FName propertyName in uStruct.Properties)
+        {
+          UProperty property = uStruct.PropertyMap[propertyName.Resolved];
+          string typename = FormatPropertyType(property, uStruct.Name.Resolved);
+          string propertyNameString = EscapeName(property.Name.Resolved);
+
+          if (property.ArrayDim == 1)
+          {
+            stream.Write(indent + "  public {0} {1};\n", typename, propertyNameString);
+          }
+          else
+          {
+            stream.Write(indent + "  public {0}[] {1} = new {0}[{2}];\n", typename, propertyNameString, property.ArrayDim);
+          }
+        }
+
+        stream.Write(indent + "}\n\n");
+      }
+    }
   }
 }
