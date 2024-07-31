@@ -1,4 +1,4 @@
-﻿namespace ue3;
+﻿namespace ue3bootstrap;
 
 public class OutOfBoundsException : Exception
 {
@@ -13,12 +13,4 @@ public class PackageCorruptException : Exception
   public PackageCorruptException(string what) : base(what)
   {
   }
-}
-
-public struct FScriptDelegate
-{
-}
-
-public struct FScriptInterface
-{
 }

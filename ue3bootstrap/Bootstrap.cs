@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
-using ue3.Patch;
+using ue3bootstrap.Patch;
 
-namespace ue3;
+namespace ue3bootstrap;
 
 public class ULinker(string name, byte[] data) : FArchive(data)
 {
@@ -259,7 +259,7 @@ public class UField(ULinker linker, FObjectExport export, int linkerIndex) : UOb
 
 public class UProperty(ULinker linker, FObjectExport export, int linkerIndex) : UField(linker, export, linkerIndex)
 {
-  public int ArrayDim;
+  public int ArrayDim = 1;
   public int ArraySizeEnumIndex;
   public FName Category;
   public EPropertyFlags PropertyFlags;
@@ -355,6 +355,9 @@ public class UMapProperty(ULinker linker, FObjectExport export, int linkerIndex)
   public int KeyIndex;
   public int MappedIndex;
 
+  public UProperty Key;
+  public UProperty Mapped;
+
   public override void Serialise(ULinker linker)
   {
     base.Serialise(linker);
@@ -379,24 +382,46 @@ public class UStructProperty(ULinker linker, FObjectExport export, int linkerInd
 {
   public int StructIndex;
 
+  public FName StructName;
+  public FName StructOuter;
+
   public override void Serialise(ULinker linker)
   {
     base.Serialise(linker);
 
     linker.Serialise(ref StructIndex);
+
+    StructName = linker.GetObjectName(StructIndex);
+    StructOuter = linker.GetOuterName(StructIndex);
   }
 }
 
 public class UObjectProperty(ULinker linker, FObjectExport export, int linkerIndex) : UProperty(linker, export, linkerIndex)
 {
   public int PropertyClassIndex;
+  public FName PropertyClassName;
 
   public override void Serialise(ULinker linker)
   {
     base.Serialise(linker);
 
     linker.Serialise(ref PropertyClassIndex);
+
+    PropertyClassName = linker.GetObjectName(PropertyClassIndex);
   }
+}
+
+// native properties are not used for script serialisation, they're only here to be injected to the codegen via patches
+public class UNativeProperty(ULinker linker, FObjectExport export, int linkerIndex) : UProperty(linker, export, linkerIndex)
+{
+}
+
+public class UWordNativeProperty(ULinker linker, FObjectExport export, int linkerIndex) : UNativeProperty(linker, export, linkerIndex)
+{
+}
+
+public class UDwordNativeProperty(ULinker linker, FObjectExport export, int linkerIndex) : UNativeProperty(linker, export, linkerIndex)
+{
 }
 
 public class UStruct(ULinker linker, FObjectExport export, int linkerIndex) : UField(linker, export, linkerIndex)
@@ -547,7 +572,7 @@ public class Bootstrap(string basePath)
         var asm = Assembly.GetExecutingAssembly();
 
         List<Type> patchedClasses = new();
-        string patchNamespace = "ue3.Patch." + linker.Name.Resolved;
+        string patchNamespace = "ue3bootstrap.Patch." + linker.Name.Resolved;
         foreach (var type in asm.GetTypes())
           if (type.Namespace == patchNamespace && (type.Name[0] == 'A' || type.Name[0] == 'U'))
             patchedClasses.Add(type);
@@ -605,41 +630,36 @@ public class Bootstrap(string basePath)
             byOuter[structNameString] = patchedStruct;
           }
 
-          foreach (var field in patch.GetFields(BindingFlags.Instance | BindingFlags.Public))
+
+          object instance = Activator.CreateInstance(patch);
+          foreach (var field in patch.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
           {
             var propertyName = FName.ResolveNameAndCorrectCasing(field.Name);
+            UProperty patchedProperty = CreatePropertyFromReflection(linker, instance, patch, field.FieldType, field.Name);
 
-            // UProperty patchedProperty;
-            // if (patchedClass.PropertyMap.ContainsKey(field.Name))
-            // {
-            //   patchedProperty = patchedClass.PropertyMap[field.Name];
-            // }
-            // else
-            // {
-            //   FObjectExport fakeExport = new();
-            //   fakeExport.ObjectName = propertyName;
-            //   // create correct type
-            //   patchedProperty = new UProperty(linker, fakeExport, -1);
-            //   patchedClass.PropertyMap[field.Name] = patchedProperty;
-            //   patchedClass.Properties.Add(propertyName);
-            // }
+            if (patchedClass.PropertyMap.ContainsKey(field.Name))
+            {
+              patchedClass.PropertyMap[field.Name] = patchedProperty;
+            }
+            else
+            {
+              patchedClass.PropertyMap[field.Name] = patchedProperty;
+              patchedClass.Properties.Add(propertyName);
+            }
           }
-
-          // iterate properties
-          // iterate contained structs
         }
       }
 
 
       /* codegen */
       {
-        var file = File.OpenWrite(Path.Join(to, linker.Name.Resolved + ".cs"));
+        var file = File.Create(Path.Join(to, linker.Name.Resolved + ".cs"));
         var stream = new StreamWriter(file);
 
         stream.Write("/*===========================================================================\n" +
                      " *  This file was automatically generated. DO NOT modify!\n" +
                      "===========================================================================*/\n");
-        stream.Write("namespace ue3.Gen;\n\n");
+        stream.Write("namespace ue3;\n\n");
 
         foreach (var pair in linker.enums)
         {
@@ -685,78 +705,163 @@ public class Bootstrap(string basePath)
     }
   }
 
+
+  private UProperty CreatePropertyFromReflection(ULinker linker, object instance, Type containingType, Type type, string name)
+  {
+    FObjectExport fakeExport = new();
+    fakeExport.ObjectName = FName.ResolveNameAndCorrectCasing(name);
+
+    switch (Type.GetTypeCode(type))
+    {
+      case TypeCode.Byte:
+        return new UByteProperty(linker, fakeExport, -1);
+      
+      case TypeCode.UInt16:
+        return new UWordNativeProperty(linker, fakeExport, -1);
+
+      case TypeCode.Int32:
+        return new UIntProperty(linker, fakeExport, -1);
+      
+      case TypeCode.UInt32:
+        return new UDwordNativeProperty(linker, fakeExport, -1);
+
+      case TypeCode.UInt64:
+      {
+        UStructProperty property = new UStructProperty(linker, fakeExport, -1);
+        property.StructName = FName.ResolveNameAndCorrectCasing("QWord");
+        return property;
+      }
+
+      case TypeCode.Single:
+        return new UFloatProperty(linker, fakeExport, -1);
+
+      case TypeCode.Double:
+      {
+        UStructProperty property = new UStructProperty(linker, fakeExport, -1);
+        property.StructName = FName.ResolveNameAndCorrectCasing("Double");
+        return property;
+      }
+    }
+
+    if (type == typeof(FName)) return new UNameProperty(linker, fakeExport, -1);
+    if (type == typeof(string)) return new UStrProperty(linker, fakeExport, -1);
+    if (type == typeof(bool)) return new UBoolProperty(linker, fakeExport, -1);
+    if (type == typeof(char)) return new UByteProperty(linker, fakeExport, -1);
+
+    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+    {
+      Type itemType = type.GetGenericArguments()[0];
+
+      UArrayProperty property = new UArrayProperty(linker, fakeExport, -1);
+      property.Inner = CreatePropertyFromReflection(linker, instance, containingType, itemType, name);
+      return property;
+    }
+
+    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+    {
+      Type keyType = type.GetGenericArguments()[0];
+      Type mappedType = type.GetGenericArguments()[1];
+
+      UMapProperty property = new UMapProperty(linker, fakeExport, -1);
+      property.Key = CreatePropertyFromReflection(linker, instance, containingType, keyType, name);
+      property.Mapped = CreatePropertyFromReflection(linker, instance, containingType, mappedType, name);
+      return property;
+    }
+
+    if (type == typeof(Patch.Core.UObject) || type.IsSubclassOf(typeof(Patch.Core.UObject)))
+    {
+      UObjectProperty property = new UObjectProperty(linker, fakeExport, -1);
+      property.PropertyClassName = FName.ResolveNameAndCorrectCasing(type.Name.Substring(1));
+      return property;
+    }
+
+    if (type.IsArray)
+    {
+      UProperty inner = CreatePropertyFromReflection(linker, instance, containingType, type.GetElementType(), name);
+      FieldInfo? fieldInfo = containingType.GetField(name);
+      object array = fieldInfo.GetValue(instance);
+      inner.ArrayDim = (array as Array).Length;
+
+      return inner;
+    }
+
+    if (type.IsClass)
+    {
+      UStructProperty property = new UStructProperty(linker, fakeExport, -1);
+      property.StructName = FName.ResolveNameAndCorrectCasing(type.Name.Substring(1));
+      property.StructOuter = FName.ResolveNameAndCorrectCasing(type.DeclaringType.Name.Substring(1));
+      return property;
+    }
+
+    throw new NotImplementedException();
+  }
+
   private string FormatPropertyType(UProperty property, string className)
   {
-    FName fieldClassName = property.Linker.GetObjectName(property.Export.ClassIndex);
-
-    if (fieldClassName == EName.ArrayProperty)
+    if (property is UArrayProperty)
     {
       UArrayProperty arrayProperty = property as UArrayProperty;
       string inner = FormatPropertyType(arrayProperty.Inner, className);
       return String.Format("List<{0}>", inner);
     }
 
-    if (fieldClassName == EName.BoolProperty) return "bool";
-    if (fieldClassName == EName.ByteProperty)
+    if (property is UBoolProperty) return "bool";
+    if (property is UByteProperty)
     {
       UByteProperty byteProperty = property as UByteProperty;
       if (byteProperty.InnerIndex == 0) return "byte";
       return property.Linker.GetObjectName(byteProperty.InnerIndex).Resolved;
     }
 
-    if (fieldClassName == EName.DelegateProperty) return "FScriptDelegate";
-    if (fieldClassName == EName.FloatProperty) return "float";
-    if (fieldClassName == EName.InterfaceProperty) return "FScriptInterface";
-    if (fieldClassName == EName.IntProperty) return "int";
-    if (fieldClassName == EName.MapProperty)
+    if (property is UDelegateProperty) return "FScriptDelegate";
+    if (property is UFloatProperty) return "float";
+    if (property is UInterfaceProperty) return "FScriptInterface";
+    if (property is UIntProperty) return "int";
+    if (property is UMapProperty)
     {
       UMapProperty mapProperty = property as UMapProperty;
 
       string key = "byte";
-      if (mapProperty.KeyIndex != 0)
-      {
-        Debug.Assert(mapProperty.KeyIndex > 0);
-        FObjectExport export = property.Linker.Exports[mapProperty.KeyIndex - 1];
-        UProperty keyProperty = property.Linker.SerialiseProperty(export, mapProperty.KeyIndex - 1);
-        key = FormatPropertyType(keyProperty, className);
-      }
+      if (mapProperty.Key != null)
+        key = FormatPropertyType(mapProperty.Key, className);
 
       string mapped = "byte";
-      if (mapProperty.MappedIndex != 0)
-      {
-        Debug.Assert(mapProperty.MappedIndex > 0);
-        FObjectExport export = property.Linker.Exports[mapProperty.MappedIndex - 1];
-        UProperty mappedProperty = property.Linker.SerialiseProperty(export, mapProperty.MappedIndex - 1);
-        mapped = FormatPropertyType(mappedProperty, className);
-      }
+      if (mapProperty.Mapped != null)
+        mapped = FormatPropertyType(mapProperty.Mapped, className);
 
       return String.Format("Dictionary<{0}, {1}>", key, mapped);
     }
 
-    if (fieldClassName == EName.NameProperty) return "FName";
-    if (fieldClassName == EName.StrProperty) return "string";
-    if (fieldClassName == EName.StructProperty)
+    if (property is UNameProperty) return "FName";
+    if (property is UStrProperty) return "string";
+    if (property is UStructProperty)
     {
       UStructProperty structProperty = property as UStructProperty;
-      string name = property.Linker.GetObjectName(structProperty.StructIndex).Resolved;
+      string name = structProperty.StructName.Resolved;
       if (name == "QWord") return "ulong";
       if (name == "Double") return "double";
 
 
-      string outer = property.Linker.GetOuterName(structProperty.StructIndex).Resolved;
+      string outer = structProperty.StructOuter.Resolved;
       if (property.Linker.DerivesFrom(className, outer)) return "F" + name;
 
       char outerPrefix = property.Linker.DerivesFromActor(outer) ? 'A' : 'U';
       return String.Format("{0}{1}.F{2}", outerPrefix, outer, name);
     }
 
-    if (fieldClassName == EName.ObjectProperty || fieldClassName == EName.ClassProperty || fieldClassName == "ComponentProperty")
+    if (property is UObjectProperty)
     {
       UObjectProperty objectProperty = property as UObjectProperty;
 
-      string objectName = property.Linker.GetObjectName(objectProperty.PropertyClassIndex).Resolved;
+      string objectName = objectProperty.PropertyClassName.Resolved;
       char prefix = property.Linker.DerivesFromActor(objectName) ? 'A' : 'U';
       return prefix + objectName;
+    }
+
+    if (property is UNativeProperty)
+    {
+      if (property is UWordNativeProperty) return "ushort";
+      if (property is UDwordNativeProperty) return "uint";
     }
 
     throw new PackageCorruptException("unknown property type");

@@ -1,4 +1,4 @@
-﻿namespace ue3;
+﻿namespace ue3bootstrap;
 
 public class Loader(string basePath)
 {

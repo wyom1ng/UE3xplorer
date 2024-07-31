@@ -1,6 +1,4 @@
-﻿using ue3.Patch.Core;
-
-namespace ue3.Patch.Engine;
+﻿namespace ue3bootstrap.Patch.Engine;
 
 public class UEngineTypes : Core.UObject
 {
@@ -47,7 +45,7 @@ public class AActor : Core.UObject
   }
 }
 
-public class UActorComponent : UComponent
+public class UActorComponent : Core.UComponent
 {
 }
 
@@ -413,9 +411,13 @@ public class UPendingLevel : ULevelBase
 {
 }
 
-public class UFaceFXAnimSet;
+public class UFaceFXAnimSet : Core.UObject
+{
+}
 
-public class USaveGameSummary;
+public class USaveGameSummary : Core.UObject
+{
+}
 
 [Native]
 public class UWorld : Core.UObject

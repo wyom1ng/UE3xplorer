@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace ue3;
+namespace ue3bootstrap;
 
 public interface ISerialisable
 {

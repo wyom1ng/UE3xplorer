@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3package", "ue3package\ue3package.csproj", "{9DEA4051-4C6F-4CB1-B6CE-1AD69A27EBCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3bootstrap", "ue3bootstrap\ue3bootstrap.csproj", "{9DEA4051-4C6F-4CB1-B6CE-1AD69A27EBCA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3", "ue3\ue3.csproj", "{C4B0A278-8434-4982-B899-471DD071BB7C}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace ue3.Patch;
+﻿namespace ue3bootstrap.Patch;
 
 [AttributeUsage(AttributeTargets.Class |
                 AttributeTargets.Struct)

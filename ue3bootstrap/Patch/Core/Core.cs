@@ -1,16 +1,10 @@
-﻿using ue3.Patch.Engine;
+﻿using ue3bootstrap.Patch.Engine;
 
-namespace ue3.Patch.Core;
+namespace ue3bootstrap.Patch.Core;
 
 [Native]
 public class UObject
 {
-  public UObject HashNext;
-  public UObject HashOuterNext;
-  public ULinker Linker;
-  public int LinkerIndex;
-  public FStateFrame StateFrame;
-
   [Native]
   public class FQWord
   {
@@ -215,6 +209,13 @@ public class UObject
   {
     public UMaterial Material;
   }
+  
+  public UObject HashNext;
+  public UObject HashOuterNext;
+  public ULinker Linker;
+  public int LinkerIndex;
+  public FStateFrame StateFrame;
+
 }
 
 public class UComponent : UObject
