@@ -1,148 +1,147 @@
-﻿namespace ue3;
+﻿using System.Text;
+
+namespace ue3;
 
 public interface ISerialisable
 {
-    public void Serialise(FArchive archive);
+  public void Serialise(FArchive archive);
 }
 
 public class FArchive(byte[] data)
 {
-    private byte[] underlying = data;
-    private int offset;
+  private int offset;
+  private readonly byte[] underlying = data;
 
-    public void Seek(int position)
+  public void Seek(int position)
+  {
+    if (position > underlying.Length) throw new OutOfBoundsException();
+    offset = position;
+  }
+
+  public void Skip(int n)
+  {
+    if (offset + n > underlying.Length) throw new OutOfBoundsException();
+    offset += n;
+  }
+
+  public int Tell()
+  {
+    return offset;
+  }
+
+  public virtual void Serialise(ref byte value)
+  {
+    if (offset + sizeof(byte) > underlying.Length) throw new OutOfBoundsException();
+
+    value = underlying[offset];
+    offset += sizeof(byte);
+  }
+
+  public virtual void Serialise(ref ushort value)
+  {
+    if (offset + sizeof(ushort) > underlying.Length) throw new OutOfBoundsException();
+
+    value = BitConverter.ToUInt16(underlying, offset);
+    offset += sizeof(ushort);
+  }
+
+  public virtual void Serialise(ref int value)
+  {
+    if (offset + sizeof(int) > underlying.Length) throw new OutOfBoundsException();
+
+    value = BitConverter.ToInt32(underlying, offset);
+    offset += sizeof(int);
+  }
+
+  public virtual void Serialise(ref uint value)
+  {
+    if (offset + sizeof(uint) > underlying.Length) throw new OutOfBoundsException();
+
+    value = BitConverter.ToUInt32(underlying, offset);
+    offset += sizeof(uint);
+  }
+
+  public virtual void Serialise(ref ulong value)
+  {
+    if (offset + sizeof(ulong) > underlying.Length) throw new OutOfBoundsException();
+
+    value = BitConverter.ToUInt64(underlying, offset);
+    offset += sizeof(ulong);
+  }
+
+  public virtual void Serialise(ref string value)
+  {
+    int indicatedLength = 0;
+    Serialise(ref indicatedLength);
+    if (indicatedLength == 0) throw new PackageCorruptException();
+
+    if (indicatedLength < 0) // utf16
     {
-        if (position > underlying.Length) throw new OutOfBoundsException();
-        offset = position;
+      int nCharacters = -indicatedLength;
+      int dataLength = nCharacters * 2;
+
+
+      value = Encoding.Unicode.GetString(underlying, offset, dataLength - 2);
+      offset += dataLength;
+
+      return;
     }
 
-    public void Skip(int n)
-    {
-        if (offset + n > underlying.Length) throw new OutOfBoundsException();
-        offset += n;
-    }
+    value = Encoding.ASCII.GetString(underlying, offset, indicatedLength - 1);
+    offset += indicatedLength;
+  }
 
-    public int Tell()
-    {
-        return offset;
-    }
+  public virtual void Serialise<T>(ref T value) where T : ISerialisable
+  {
+    value.Serialise(this);
+  }
 
-    public virtual void Serialise(ref byte value)
-    {
-        if (offset + sizeof(byte) > underlying.Length) throw new OutOfBoundsException();
+  public virtual void Serialise(ref string[] values)
+  {
+    int length = 0;
+    Serialise(ref length);
 
-        value = underlying[offset];
-        offset += sizeof(byte);
-    }
+    values = new string[length];
 
-    public virtual void Serialise(ref ushort value)
-    {
-        if (offset + sizeof(ushort) > underlying.Length) throw new OutOfBoundsException();
+    for (int i = 0; i < length; ++i)
+      Serialise(ref values[i]);
+  }
 
-        value = BitConverter.ToUInt16(underlying, offset);
-        offset += sizeof(ushort);
-    }
+  public virtual void Serialise(ref int[] values)
+  {
+    int length = 0;
+    Serialise(ref length);
 
-    public virtual void Serialise(ref int value)
-    {
-        if (offset + sizeof(int) > underlying.Length) throw new OutOfBoundsException();
+    values = new int[length];
 
-        value = BitConverter.ToInt32(underlying, offset);
-        offset += sizeof(int);
-    }
+    for (int i = 0; i < length; ++i)
+      Serialise(ref values[i]);
+  }
 
-    public virtual void Serialise(ref uint value)
-    {
-        if (offset + sizeof(uint) > underlying.Length) throw new OutOfBoundsException();
+  public virtual void Serialise<T>(ref T[] values) where T : ISerialisable
+  {
+    int length = 0;
+    Serialise(ref length);
 
-        value = BitConverter.ToUInt32(underlying, offset);
-        offset += sizeof(uint);
-    }
+    values = new T[length];
 
-    public virtual void Serialise(ref ulong value)
-    {
-        if (offset + sizeof(ulong) > underlying.Length) throw new OutOfBoundsException();
+    foreach (var value in values) value.Serialise(this);
+  }
 
-        value = BitConverter.ToUInt64(underlying, offset);
-        offset += sizeof(ulong);
-    }
+  public virtual void Serialise(ref FName[] values)
+  {
+    int length = 0;
+    Serialise(ref length);
 
-    public virtual void Serialise(ref string value)
-    {
-        int indicatedLength = 0;
-        Serialise(ref indicatedLength);
-        if (indicatedLength == 0) throw new PackageCorruptException();
+    values = new FName[length];
 
-        if (indicatedLength < 0) // utf16
-        {
-            int nCharacters = -indicatedLength;
-            int dataLength = nCharacters * 2;
+    for (int i = 0; i < length; ++i)
+      Serialise(ref values[i]);
+  }
 
-
-            value = System.Text.Encoding.Unicode.GetString(underlying, offset, dataLength - 2);
-            offset += dataLength;
-
-            return;
-        }
-
-        value = System.Text.Encoding.ASCII.GetString(underlying, offset, indicatedLength - 1);
-        offset += indicatedLength;
-    }
-
-    public virtual void Serialise<T>(ref T value) where T : ISerialisable
-    {
-        value.Serialise(this);
-    }
-
-    public virtual void Serialise(ref string[] values)
-    {
-        int length = 0;
-        Serialise(ref length);
-
-        values = new string[length];
-
-        for (int i = 0; i < length; ++i)
-            Serialise(ref values[i]);
-    }
-
-    public virtual void Serialise(ref int[] values)
-    {
-        int length = 0;
-        Serialise(ref length);
-
-        values = new int[length];
-
-        for (int i = 0; i < length; ++i)
-            Serialise(ref values[i]);
-    }
-
-    public virtual void Serialise<T>(ref T[] values) where T : ISerialisable
-    {
-        int length = 0;
-        Serialise(ref length);
-
-        values = new T[length];
-
-        foreach (var value in values)
-        {
-            value.Serialise(this);
-        }
-    }
-
-    public virtual void Serialise(ref FName[] values)
-    {
-        int length = 0;
-        Serialise(ref length);
-
-        values = new FName[length];
-
-        for (int i = 0; i < length; ++i)
-            Serialise(ref values[i]);
-    }
-
-    public virtual void Serialise(ref FName name)
-    {
-        Serialise(ref name.PackageIndex);
-        Serialise(ref name.Number);
-    }
+  public virtual void Serialise(ref FName name)
+  {
+    Serialise(ref name.PackageIndex);
+    Serialise(ref name.Number);
+  }
 }

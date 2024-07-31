@@ -2,5 +2,5 @@
 
 public class Loader(string basePath)
 {
-    public string BasePath = basePath;
+  public string BasePath = basePath;
 }

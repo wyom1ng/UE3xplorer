@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ue3\ue3.csproj" />
+        <ProjectReference Include="..\ue3\ue3.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -1,16 +1,24 @@
 ﻿namespace ue3;
 
-public class OutOfBoundsException : System.Exception
+public class OutOfBoundsException : Exception
 {
 }
 
-public class PackageCorruptException : System.Exception
+public class PackageCorruptException : Exception
 {
-    public PackageCorruptException()
-    {
-    }
+  public PackageCorruptException()
+  {
+  }
 
-    public PackageCorruptException(string what) : base(what)
-    {
-    }
+  public PackageCorruptException(string what) : base(what)
+  {
+  }
+}
+
+public struct FScriptDelegate
+{
+}
+
+public struct FScriptInterface
+{
 }
