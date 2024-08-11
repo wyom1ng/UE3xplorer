@@ -1,106 +1,107 @@
-﻿using ue3bootstrap.Patch.Engine;
+﻿using System.Runtime.InteropServices;
+using ue3bootstrap.Patch.Engine;
 
 namespace ue3bootstrap.Patch.Core;
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UObject
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FQWord
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FPointer
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FColor
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FLinearColor
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FPackedNormal
   {
     public uint Packed;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FDouble
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FVector2D
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FVector2DHalf
   {
     public ushort X;
     public ushort Y;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FVector
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FVector4
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FTwoVectors
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FRotator
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FPlane
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FQuat
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FMatrix
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FBox
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FSphere
   {
     public FVector Center;
     public float W;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FBoxSphereBounds
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FQuantizedSHVector
   {
     public ushort MaxCoefficient;
@@ -108,7 +109,7 @@ public class UObject
     public char[] V = new char[9];
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FQuantizedSHVectorRGB
   {
     public FQuantizedSHVector B;
@@ -116,21 +117,23 @@ public class UObject
     public FQuantizedSHVector R;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FUntypedBulkData_Mirror
   {
     public List<char> BulkData;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FWordBulkData : FUntypedBulkData_Mirror
   {
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FIntBulkData : FUntypedBulkData_Mirror
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FURL
   {
     public string Host;
@@ -142,19 +145,19 @@ public class UObject
     public int Valid;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FGuid
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FGuidPair
   {
     public FGuid Guid;
     public uint RefId;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FPushedState
   {
     public UStruct Node;
@@ -162,6 +165,7 @@ public class UObject
     public UState State;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FStateFrame
   {
     public ushort LatentAction;
@@ -173,7 +177,7 @@ public class UObject
     public List<FPushedState> StateStack;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FTextureLookup
   {
     public int TexCoordIndex;
@@ -183,8 +187,8 @@ public class UObject
   }
 
   // these two really belong to UMaterialInterface, but I put them here, so we can always make the assumption that every struct used by a class is contained within its hierarchy
-  // since FMaterial is used under UMaterialInterface, but also under ATerrain, this is the only common class they derive both from
-  [Native]
+  // since FMaterial is used under UMaterialInterface, but also under ATerrain, this is the only common class they derive both from[Native, StructLayout(LayoutKind.Sequential)]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FMaterial
   {
     public bool bUsesDynamicParameter;
@@ -205,26 +209,27 @@ public class UObject
     public uint UsingTransforms;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialResource : FMaterial
   {
     public UMaterial Material;
   }
-  
+
   public UObject HashNext;
   public UObject HashOuterNext;
   public ULinker Linker;
   public int LinkerIndex;
   public FStateFrame StateFrame;
-
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UComponent : UObject
 {
   public FName TemplateName;
   public UClass TemplateOwnerClass;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UTextBuffer : UObject
 {
   public int Pos;
@@ -232,19 +237,19 @@ public class UTextBuffer : UObject
   public int Top;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UMetaData : UObject
 {
   public Dictionary<UObject, Dictionary<FName, string>> ObjectMetaDataMap;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UObjectRedirector : UObject
 {
   public UObject DestinationObject;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UPackage : UObject
 {
   public bool bHasBeenFullyLoaded;
@@ -264,7 +269,7 @@ public class UPackage : UObject
 
   public uint PackageFlags;
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FLevelGuids
   {
     public List<FGuid> Guids;
@@ -272,7 +277,7 @@ public class UPackage : UObject
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class ULinker : UObject
 {
   public string Basepath;
@@ -289,7 +294,7 @@ public class ULinker : UObject
   public int PrecachedBufferSize;
   public FPackageFileSummary Summary;
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FCompressedChunk
   {
     public int CompressedOffset;
@@ -298,6 +303,7 @@ public class ULinker : UObject
     public int UncompressedSize;
   }
 
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FGenerationInfo
   {
     public int ExportCount;
@@ -305,9 +311,13 @@ public class ULinker : UObject
     public int NetObjectCount;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FPackageFileSummary
   {
+    public string PackageName;
+    public string PackagePath;
+    public ulong FileSize;
+
     public List<string> AdditionalPackagesToCook;
     public List<FCompressedChunk> CompressedChunks;
     public uint CompressionFlags;
@@ -318,6 +328,7 @@ public class ULinker : UObject
     public int ExportGuidsCount;
     public int ExportOffset;
     public ushort FileVersion;
+    public uint FileVersionRaw;
     public ushort FileVersionLicensee;
     public string FolderName;
     public List<FGenerationInfo> Generations;
@@ -335,7 +346,7 @@ public class ULinker : UObject
     public int TotalHeaderSize;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FObjectImport
   {
     public FName ClassName;
@@ -348,7 +359,7 @@ public class ULinker : UObject
     public UObject XObject;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FObjectExport
   {
     public int _iHashNext;
@@ -371,26 +382,26 @@ public class ULinker : UObject
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UField : UObject
 {
   public UField Next;
   public UField SuperField;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UConst : UField
 {
   public string Value;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UEnum : UField
 {
   public List<FName> Names;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UProperty : UField
 {
   public int ArrayDim;
@@ -400,7 +411,7 @@ public class UProperty : UField
   public ushort RepOffset;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UStruct : UField
 {
   public UField Children;
@@ -417,7 +428,7 @@ public class UStruct : UField
   public UTextBuffer ScriptText;
   public int TextPos;
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FPropertyTag
   {
     public int ArrayIndex;
@@ -431,7 +442,7 @@ public class UStruct : UField
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UFunction : UStruct
 {
   public FName FriendlyName;
@@ -441,14 +452,14 @@ public class UFunction : UStruct
   public ushort ReplicationOffset;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UScriptStruct : UStruct
 {
   public List<char> StructDefaults;
   public uint StructFlags;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UState : UStruct
 {
   public Dictionary<FName, UFunction> FuncMap;
@@ -457,7 +468,7 @@ public class UState : UStruct
   public uint StateFlags;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UClass : UState
 {
   public List<FName> AutoCollapseCategories;
@@ -475,7 +486,7 @@ public class UClass : UState
   public List<FName> HideCategories;
   public List<FImplementedInterface> Interfaces;
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FImplementedInterface
   {
     public UClass Class;
@@ -483,77 +494,83 @@ public class UClass : UState
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UArrayProperty : UProperty
 {
   public UProperty Inner;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UBoolProperty : UProperty
 {
   public uint BitMask;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UByteProperty : UProperty
 {
   public UEnum Enum;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UDelegateProperty : UProperty
 {
   public UFunction Function;
   public UFunction SourceDelegate;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UFloatProperty : UProperty
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UInterfaceProperty : UProperty
 {
   public UClass InterfaceClass;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UIntProperty : UProperty
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UMapProperty : UProperty
 {
   public UProperty Key;
   public UProperty Value;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UNameProperty : UProperty
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UStrProperty : UProperty
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UStructProperty : UProperty
 {
   public UScriptStruct Struct;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UObjectProperty : UProperty
 {
   public UClass PropertyClass;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UClassProperty : UObjectProperty
 {
   public UClass MetaClass;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UComponentProperty : UObjectProperty
 {
 }

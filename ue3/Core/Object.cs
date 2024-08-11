@@ -38,7 +38,15 @@ public partial class UObject
   {
     public void Serialise(FArchive archive)
     {
-      throw new NotImplementedException();
+      archive.Serialise(ref A);
+      archive.Serialise(ref B);
+      archive.Serialise(ref C);
+      archive.Serialise(ref D);
+    }
+
+    public new string ToString()
+    {
+      return String.Format("{0:x8}-{0:x8}-{0:x8}-{0:x8}", A, B, C, D);
     }
   }
 
@@ -238,4 +246,7 @@ public partial class UObject
   {
     throw new NotImplementedException();
   }
+
+  public static List<UObject> GObjObjects = new();
+  public static Dictionary<string, ULinkerLoad> GObjLoaders = new();
 }

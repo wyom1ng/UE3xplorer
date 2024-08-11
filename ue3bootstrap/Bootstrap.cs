@@ -601,7 +601,6 @@ public class Bootstrap(string basePath)
             patchedClass.SuperFieldName = FName.ResolveNameAndCorrectCasing(patch.BaseType.Name.Substring(1));
           patchedClass.IsNative = Attribute.GetCustomAttribute(patch, typeof(NativeAttribute), false) != null;
 
-
           if (!ULinker.allStructuresByOuter.ContainsKey(classNameString))
           {
             Dictionary<string, UStruct> dict = new Dictionary<string, UStruct>();
@@ -634,26 +633,26 @@ public class Bootstrap(string basePath)
               patchedStruct.SuperFieldName = FName.ResolveNameAndCorrectCasing(nested.BaseType.Name.Substring(1));
 
             object structInstance = Activator.CreateInstance(nested);
-            foreach (var field in nested.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
+            foreach (var field in nested.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly).OrderBy(field => field.MetadataToken))
             {
               var propertyName = FName.ResolveNameAndCorrectCasing(field.Name);
               UProperty patchedProperty = CreatePropertyFromReflection(linker, structInstance, nested, field.FieldType, field.Name);
 
-              if (patchedClass.PropertyMap.ContainsKey(field.Name))
+              if (patchedStruct.PropertyMap.ContainsKey(field.Name))
               {
-                patchedClass.PropertyMap[field.Name] = patchedProperty;
+                patchedStruct.PropertyMap[field.Name] = patchedProperty;
               }
               else
               {
-                patchedClass.PropertyMap[field.Name] = patchedProperty;
-                patchedClass.Properties.Add(propertyName);
+                patchedStruct.PropertyMap[field.Name] = patchedProperty;
+                patchedStruct.Properties.Add(propertyName);
               }
             }
           }
 
 
           object instance = Activator.CreateInstance(patch);
-          foreach (var field in patch.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
+          foreach (var field in patch.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly).OrderBy(field => field.MetadataToken))
           {
             var propertyName = FName.ResolveNameAndCorrectCasing(field.Name);
             UProperty patchedProperty = CreatePropertyFromReflection(linker, instance, patch, field.FieldType, field.Name);

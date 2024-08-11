@@ -285,7 +285,7 @@ public partial class UObject : ISerialisable
     public int SavedElementCount;
     public int SavedBulkDataOffsetInFile;
     public int SavedBulkDataSizeOnDisk;
-    public UObject.FPointer BulkData;
+    public List<byte> BulkData;
     public int LockStatus;
     public UObject.FPointer AttachedAr;
     public int bShouldFreeOnEmpty;
@@ -462,22 +462,33 @@ public partial class UObject : ISerialisable
 
   public partial class FPackedNormal : ISerialisable
   {
+    public uint Packed;
   }
 
   public partial class FVector2DHalf : ISerialisable
   {
+    public ushort X;
+    public ushort Y;
   }
 
   public partial class FSphere : ISerialisable
   {
+    public UObject.FVector Center;
+    public float W;
   }
 
   public partial class FQuantizedSHVector : ISerialisable
   {
+    public ushort MaxCoefficient;
+    public ushort MinCoefficient;
+    public byte[] V = new byte[9];
   }
 
   public partial class FQuantizedSHVectorRGB : ISerialisable
   {
+    public UObject.FQuantizedSHVector B;
+    public UObject.FQuantizedSHVector G;
+    public UObject.FQuantizedSHVector R;
   }
 
   public partial class FWordBulkData : FUntypedBulkData_Mirror
@@ -490,30 +501,69 @@ public partial class UObject : ISerialisable
 
   public partial class FURL : ISerialisable
   {
+    public string Host;
+    public string Map;
+    public List<string> Op;
+    public int Port;
+    public string Portal;
+    public string Protocol;
+    public int Valid;
   }
 
   public partial class FGuidPair : ISerialisable
   {
+    public UObject.FGuid Guid;
+    public uint RefId;
   }
 
   public partial class FPushedState : ISerialisable
   {
+    public UStruct Node;
+    public int Offset;
+    public UState State;
   }
 
   public class FStateFrame
   {
+    public ushort LatentAction;
+    public UStruct Node;
+    public UObject Object;
+    public int Offset;
+    public uint ProbeMask;
+    public UState StateNode;
+    public List<UObject.FPushedState> StateStack;
   }
 
   public partial class FTextureLookup : ISerialisable
   {
+    public int TexCoordIndex;
+    public int TextureIndex;
+    public float UScale;
+    public float VScale;
   }
 
   public partial class FMaterial : ISerialisable
   {
+    public bool bUsesDynamicParameter;
+    public bool bUsesLightmapUVs;
+    public bool bUsesMaterialVertexPositionOffset;
+    public bool bUsesSceneColor;
+    public bool bUsesSceneDepth;
+    public List<string> CompileErrors;
+    public uint DummyDroppedFallbackComponents;
+    public UObject.FGuid Id;
+    public int MaxTextureDependencyLength;
+    public uint NumUserTexCoords;
+    public Dictionary<UMaterialExpression, int> TextureDependencyLengthMap;
+    public List<UObject.FTextureLookup> TextureLookups;
+    public List<UTexture> UniformExpressionTextures;
+    public uint unknown8C;
+    public uint UsingTransforms;
   }
 
   public partial class FMaterialResource : FMaterial
   {
+    public UMaterial Material;
   }
 
   public FPointer VfTableObject;
@@ -529,55 +579,6 @@ public partial class UObject : ISerialisable
   public FName Name;
   public UClass Class;
   public UObject ObjectArchetype;
-  public uint Packed;
-  public ushort X;
-  public ushort Y;
-  public FVector Center;
-  public float W;
-  public ushort MaxCoefficient;
-  public ushort MinCoefficient;
-  public byte[] V = new byte[9];
-  public FQuantizedSHVector B;
-  public FQuantizedSHVector G;
-  public FQuantizedSHVector R;
-  public List<byte> BulkData;
-  public string Host;
-  public string Map;
-  public List<string> Op;
-  public int Port;
-  public string Portal;
-  public string Protocol;
-  public int Valid;
-  public FGuid Guid;
-  public uint RefId;
-  public UStruct Node;
-  public int Offset;
-  public UState State;
-  public ushort LatentAction;
-  public UObject Object;
-  public uint ProbeMask;
-  public UState StateNode;
-  public List<FPushedState> StateStack;
-  public int TexCoordIndex;
-  public int TextureIndex;
-  public float UScale;
-  public float VScale;
-  public bool bUsesDynamicParameter;
-  public bool bUsesLightmapUVs;
-  public bool bUsesMaterialVertexPositionOffset;
-  public bool bUsesSceneColor;
-  public bool bUsesSceneDepth;
-  public List<string> CompileErrors;
-  public uint DummyDroppedFallbackComponents;
-  public FGuid Id;
-  public int MaxTextureDependencyLength;
-  public uint NumUserTexCoords;
-  public Dictionary<UMaterialExpression, int> TextureDependencyLengthMap;
-  public List<FTextureLookup> TextureLookups;
-  public List<UTexture> UniformExpressionTextures;
-  public uint unknown8C;
-  public uint UsingTransforms;
-  public UMaterial Material;
 }
 
 public class UComponent : UObject
@@ -672,10 +673,10 @@ public partial class UPackage : UObject
 {
   public partial class FLevelGuids : ISerialisable
   {
+    public List<UObject.FGuid> Guids;
+    public FName LevelName;
   }
 
-  public List<FGuid> Guids;
-  public FName LevelName;
   public bool bHasBeenFullyLoaded;
   public bool bIsBound;
   public int CurrentNumNetObjects;
@@ -695,74 +696,83 @@ public partial class ULinker : UObject
 {
   public partial class FCompressedChunk : ISerialisable
   {
+    public int CompressedOffset;
+    public int CompressedSize;
+    public int UncompressedOffset;
+    public int UncompressedSize;
   }
 
-  public class FGenerationInfo
+  public partial class FGenerationInfo : ISerialisable
   {
+    public int ExportCount;
+    public int NameCount;
+    public int NetObjectCount;
   }
 
   public partial class FPackageFileSummary : ISerialisable
   {
+    public string PackageName;
+    public string PackagePath;
+    public ulong FileSize;
+    public List<string> AdditionalPackagesToCook;
+    public List<ULinker.FCompressedChunk> CompressedChunks;
+    public uint CompressionFlags;
+    public int CookedContentVersion;
+    public int DependsOffset;
+    public int EngineVersion;
+    public int ExportCount;
+    public int ExportGuidsCount;
+    public int ExportOffset;
+    public ushort FileVersion;
+    public uint FileVersionRaw;
+    public ushort FileVersionLicensee;
+    public string FolderName;
+    public List<ULinker.FGenerationInfo> Generations;
+    public UObject.FGuid Guid;
+    public int ImportCount;
+    public int ImportExportGuidsOffset;
+    public int ImportGuidsCount;
+    public int ImportOffset;
+    public int NameCount;
+    public int NameOffset;
+    public uint PackageFlags;
+    public uint PackageSource;
+    public int Tag;
+    public int ThumbnailTableOffset;
+    public int TotalHeaderSize;
   }
 
   public partial class FObjectImport : ISerialisable
   {
+    public FName ClassName;
+    public FName ClassPackage;
+    public FName ObjectName;
+    public int OuterIndex;
+    public int SourceIndex;
+    public ULinker SourceLinker;
+    public UObject XObject;
   }
 
   public partial class FObjectExport : ISerialisable
   {
+    public int _iHashNext;
+    public UObject _Object;
+    public int ArchetypeIndex;
+    public int ClassIndex;
+    public uint ExportFlags;
+    public List<int> GenerationNetObjectCount;
+    public ulong ObjectFlags;
+    public FName ObjectName;
+    public int OuterIndex;
+    public uint PackageFlags;
+    public UObject.FGuid PackageGuid;
+    public int ScriptSerializationEndOffset;
+    public int ScriptSerializationStartOffset;
+    public int SerialOffset;
+    public int SerialSize;
+    public int SuperIndex;
   }
 
-  public int CompressedOffset;
-  public int CompressedSize;
-  public int UncompressedOffset;
-  public int UncompressedSize;
-  public int ExportCount;
-  public int NameCount;
-  public int NetObjectCount;
-  public List<string> AdditionalPackagesToCook;
-  public List<FCompressedChunk> CompressedChunks;
-  public uint CompressionFlags;
-  public int CookedContentVersion;
-  public int DependsOffset;
-  public int EngineVersion;
-  public int ExportGuidsCount;
-  public int ExportOffset;
-  public ushort FileVersion;
-  public ushort FileVersionLicensee;
-  public string FolderName;
-  public List<FGenerationInfo> Generations;
-  public FGuid Guid;
-  public int ImportCount;
-  public int ImportExportGuidsOffset;
-  public int ImportGuidsCount;
-  public int ImportOffset;
-  public int NameOffset;
-  public uint PackageFlags;
-  public uint PackageSource;
-  public int Tag;
-  public int ThumbnailTableOffset;
-  public int TotalHeaderSize;
-  public FName ClassName;
-  public FName ClassPackage;
-  public FName ObjectName;
-  public int OuterIndex;
-  public int SourceIndex;
-  public ULinker SourceLinker;
-  public UObject XObject;
-  public int _iHashNext;
-  public UObject _Object;
-  public int ArchetypeIndex;
-  public int ClassIndex;
-  public uint ExportFlags;
-  public List<int> GenerationNetObjectCount;
-  public ulong ObjectFlags;
-  public FGuid PackageGuid;
-  public int ScriptSerializationEndOffset;
-  public int ScriptSerializationStartOffset;
-  public int SerialOffset;
-  public int SerialSize;
-  public int SuperIndex;
   public string Basepath;
   public List<List<int>> DependsMap;
   public Dictionary<FGuid, int> ExportGuidsAwaitingLookup;
@@ -806,16 +816,16 @@ public partial class UStruct : UField
 {
   public partial class FPropertyTag : ISerialisable
   {
+    public int ArrayIndex;
+    public byte BoolVal;
+    public FName EnumName;
+    public FName Name;
+    public int Size;
+    public int SizeOffset;
+    public FName StructName;
+    public FName Type;
   }
 
-  public int ArrayIndex;
-  public byte BoolVal;
-  public FName EnumName;
-  public FName Name;
-  public int Size;
-  public int SizeOffset;
-  public FName StructName;
-  public FName Type;
   public UField Children;
   public UTextBuffer CppText;
   public int Line;
@@ -855,10 +865,10 @@ public partial class UClass : UState
 {
   public partial class FImplementedInterface : ISerialisable
   {
+    public UClass Class;
+    public UProperty PointerProperty;
   }
 
-  public UClass Class;
-  public UProperty PointerProperty;
   public List<FName> AutoCollapseCategories;
   public List<FName> AutoExpandCategories;
   public FName ClassConfigName;

@@ -1,20 +1,25 @@
-﻿namespace ue3bootstrap.Patch.Engine;
+﻿using System.Runtime.InteropServices;
 
+namespace ue3bootstrap.Patch.Engine;
+
+[StructLayout(LayoutKind.Sequential)]
 public class UEngineTypes : Core.UObject
 {
   public class FLightmassPrimitiveSettings
   {
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FQuantizedDirectionalLightSampleBulkData : FUntypedBulkData_Mirror
   {
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FQuantizedSimpleLightSampleBulkData : FUntypedBulkData_Mirror
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FLightMap
   {
     public FVector2D CoordinateBias;
@@ -30,6 +35,7 @@ public class UEngineTypes : Core.UObject
     public ULightMapTexture2D[] Textures = new ULightMapTexture2D[3];
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FBasedPosition
   {
     public AActor Base;
@@ -37,30 +43,33 @@ public class UEngineTypes : Core.UObject
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class AActor : Core.UObject
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FActorReference
   {
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UActorComponent : Core.UComponent
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class ULightComponent : UActorComponent
 {
   public List<FConvexVolume> ExclusionConvexVolumes;
 
   public List<FConvexVolume> InclusionConvexVolumes;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FLightingChannelContainer
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FConvexVolume
   {
     public List<FPlane> PermutedPlanes;
@@ -68,48 +77,54 @@ public class ULightComponent : UActorComponent
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UDirectionalLightComponent : ULightComponent
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UDominantDirectionalLightComponent : UDirectionalLightComponent
 {
   public List<ushort> DominantLightShadowMap;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UPointLightComponent : ULightComponent
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USpotLightComponent : UPointLightComponent
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UDominantSpotLightComponent : USpotLightComponent
 {
   public List<ushort> DominantLightShadowMap;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class ALight : AActor
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class AStaticLightCollectionActor : ALight
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UClient : Core.UObject
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class ABrush : AActor
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UModel : Core.UObject
 {
   public FBoxSphereBounds Bounds;
@@ -160,6 +175,7 @@ public class UModel : Core.UObject
 
   public FZoneProperties[] Zones = new FZoneProperties[64];
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FBspNode
   {
     public int ComponentElementIndex;
@@ -183,6 +199,7 @@ public class UModel : Core.UObject
     public FPlane Plane;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FVert
   {
     public FVector2D BackfaceShadowTexCoord;
@@ -191,6 +208,7 @@ public class UModel : Core.UObject
     public FVector2D ShadowTexCoord;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FBspSurf
   {
     public ABrush Actor;
@@ -212,11 +230,13 @@ public class UModel : Core.UObject
     public int vTextureV;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FLeaf
   {
     public int iZone;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FModelVertex
   {
     public FVector Position;
@@ -226,6 +246,7 @@ public class UModel : Core.UObject
     public FVector2D TexCoord;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FZoneProperties
   {
     public ulong Connectivity;
@@ -234,12 +255,14 @@ public class UModel : Core.UObject
     public AZoneInfo ZoneActor;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FTwoVector4DArrays
   {
     public List<FVector4> First;
     public List<FVector4> Second;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FBoxAndThenSome
   {
     public FBox Box;
@@ -247,15 +270,17 @@ public class UModel : Core.UObject
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UParticleSystem : Core.UObject
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UPolys : Core.UObject
 {
   public List<FPoly> Element;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FPoly
   {
     public ABrush Actor;
@@ -278,37 +303,39 @@ public class UPolys : Core.UObject
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UShadowMap1D : Core.UObject
 {
   public FGuid LightGuid;
   public List<float> Samples;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UKMeshProps : Core.UObject
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class URB_BodySetup : UKMeshProps
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FKCachedConvexDataElement
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FKCachedConvexData
   {
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FKCachedPerTriData
   {
     public List<char> CachedPerTriData;
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class ULevelBase : Core.UObject
 {
   public List<AActor> Actors;
@@ -316,7 +343,7 @@ public class ULevelBase : Core.UObject
   public FURL URL;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class ULevel : ULevelBase
 {
   public List<char> ApexSDKCachedData;
@@ -356,31 +383,35 @@ public class ULevel : ULevelBase
   public float ShadowmapTotalSize;
   public Dictionary<UTexture2D, List<FStreamableTextureInstance>> TextureToInstancesMap;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FStreamableTextureInstance
   {
     public FSphere BoundingSphere;
     public float TexelFactor;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FCachedPhysSMData
   {
     public int CachedDataIndex;
     public FVector Scale3D;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FCachedPerTriPhysSMData
   {
     public int CachedDataIndex;
     public FVector Scale3D;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FCoverIndexPair
   {
     public uint ActorRefItem;
     public char SlotIdx;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FVolumeLightingSample
   {
     public FColor AmbientRadiance;
@@ -397,6 +428,7 @@ public class ULevel : ULevelBase
     public float Radius;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FPrecomputedLightVolume
   {
     public bool bInitialized;
@@ -406,20 +438,22 @@ public class ULevel : ULevelBase
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UPendingLevel : ULevelBase
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UFaceFXAnimSet : Core.UObject
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USaveGameSummary : Core.UObject
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UWorld : Core.UObject
 {
   public FLevelViewportInfo[] EditorViews = new FLevelViewportInfo[4];
@@ -429,6 +463,7 @@ public class UWorld : Core.UObject
   public ULevel PersistentLevel;
   public USaveGameSummary SaveGameSummary;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FLevelViewportInfo
   {
     public float CamOrthoZoom;
@@ -437,46 +472,51 @@ public class UWorld : Core.UObject
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UPlayer : Core.UObject
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UNetConnection : UPlayer
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UChildConnection : UNetConnection
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USurface : Core.UObject
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UTexture : USurface
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UTexture2D : UTexture
 {
   public List<FTexture2DMipMap> CachedPVRTCMips;
 
   public List<FTexture2DMipMap> Mips;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FTexture2DMipMap
   {
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class ULightMapTexture2D : UTexture2D
 {
   public uint LightmapFlags;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UMaterialInterface : USurface
 {
   public class FStaticSwitchParameter
@@ -487,6 +527,7 @@ public class UMaterialInterface : USurface
     public bool Value;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FStaticComponentMaskParameter
   {
     public uint A;
@@ -498,6 +539,7 @@ public class UMaterialInterface : USurface
     public uint R;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FNormalParameter
   {
     public bool bOverride;
@@ -506,6 +548,7 @@ public class UMaterialInterface : USurface
     public FName ParameterName;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FStaticTerrainLayerWeightParameter
   {
     public bool bOverride;
@@ -515,7 +558,7 @@ public class UMaterialInterface : USurface
     public int WeightmapIndex;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FStaticParameterSet
   {
     public FGuid BaseMaterialId;
@@ -525,26 +568,31 @@ public class UMaterialInterface : USurface
     public List<FStaticTerrainLayerWeightParameter> TerrainLayerWeightParameters;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpression
   {
     public FName Type;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionRef
   {
     public ulong Index;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionAbs : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef X;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionCeil : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef X;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionClamp : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef Input;
@@ -552,45 +600,53 @@ public class UMaterialInterface : USurface
     public FMaterialUniformExpressionRef Min;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionFloor : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef X;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionFmod : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef A;
     public FMaterialUniformExpressionRef B;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionFrac : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef X;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionMin : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef A;
     public FMaterialUniformExpressionRef B;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionMax : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef A;
     public FMaterialUniformExpressionRef B;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionSine : FMaterialUniformExpression
   {
     public bool bIsCosine;
     public FMaterialUniformExpressionRef X;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionSquareRoot : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef X;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionAppendVector : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef A;
@@ -598,18 +654,21 @@ public class UMaterialInterface : USurface
     public uint NumComponentsA;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionVectorParameter : FMaterialUniformExpression
   {
     public FLinearColor DefaultValue;
     public FName ParameterName;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionConstant : FMaterialUniformExpression
   {
     public FLinearColor Value;
     public char ValueType;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionFoldedMath : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef A;
@@ -617,44 +676,53 @@ public class UMaterialInterface : USurface
     public char Op;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionLength : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef X;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionPeriodic : FMaterialUniformExpression
   {
     public FMaterialUniformExpressionRef X;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionRealTime : FMaterialUniformExpression
   {
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionScalarParameter : FMaterialUniformExpression
   {
     public float DefaultValue;
     public FName ParameterName;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionTexture : FMaterialUniformExpression
   {
     public int TextureIndex;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionTextureParameter : FMaterialUniformExpressionTexture
   {
     public FName ParameterName;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionFlipBookTextureParameter : FMaterialUniformExpressionTexture
   {
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialUniformExpressionTime : FMaterialUniformExpression
   {
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FShaderFrequencyUniformExpressions
   {
     public List<char> MaterialUniformExpressionStorage;
@@ -663,6 +731,7 @@ public class UMaterialInterface : USurface
     public List<FMaterialUniformExpressionRef> UniformVectorExpressions;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FUniformExpressionSet
   {
     public FShaderFrequencyUniformExpressions PixelExpressions;
@@ -671,24 +740,25 @@ public class UMaterialInterface : USurface
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UMaterialExpression : Core.UObject
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UMaterial : UMaterialInterface
 {
   public FMaterialResource[] MaterialResources = new FMaterialResource[3];
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UMaterialInstance : UMaterialInterface
 {
   public FStaticParameterSet[] StaticParameters = new FStaticParameterSet[3];
   public FMaterial[] StaticPermutationResources = new FMaterial[3];
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UShaderCache : Core.UObject
 {
   public FCompressedShaderCodeCache CompressedCache;
@@ -699,6 +769,7 @@ public class UShaderCache : Core.UObject
   public Dictionary<FName, uint> ShaderVersions;
   public Dictionary<FName, uint> VertexFactoryVersions;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FIndividualCompressedShaderInfo
   {
     public ushort ChunkIndex;
@@ -706,35 +777,41 @@ public class UShaderCache : Core.UObject
     public int UncompressedCodeOffset;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FCompressedShaderCodeChunk
   {
     public List<char> CompressedCode;
     public int UncompressedSize;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FTypeSpecificCompressedShaderCode
   {
     public List<FCompressedShaderCodeChunk> CodeChunks;
     public Dictionary<FGuid, FIndividualCompressedShaderInfo> CompressedShaderInfos;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FCompressedShaderCodeCache
   {
     public Dictionary<FName, FTypeSpecificCompressedShaderCode> ShaderTypeCompressedShaderCode;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FShaderKey
   {
     public List<char> Code;
     public uint ParameterMapCRC;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FShaderTarget
   {
     public char Frequency;
     public char Platform;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FShaderParameter
   {
     public ushort BaseIndex;
@@ -742,6 +819,7 @@ public class UShaderCache : Core.UObject
     public ushort NumBytes;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FUniformShaderParameter
   {
     public int Index;
@@ -749,6 +827,7 @@ public class UShaderCache : Core.UObject
     public char Type;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FShaderResourceParameter
   {
     public ushort BaseIndex;
@@ -756,6 +835,7 @@ public class UShaderCache : Core.UObject
     public ushort SamplerIndex;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FUniformShaderResourceParameter
   {
     public int Index;
@@ -763,12 +843,14 @@ public class UShaderCache : Core.UObject
     public char Type;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FDOFShaderParameters
   {
     public FShaderParameter PackedParameters0;
     public FShaderParameter PackedParameters1;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FSceneTextureShaderParameters
   {
     public FShaderResourceParameter NvStereoFixTextureParameter;
@@ -778,6 +860,7 @@ public class UShaderCache : Core.UObject
     public FShaderParameter ScreenPositionScaleBiasParameter;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialShaderParameters
   {
     public FShaderParameter CameraWorldPosParameter;
@@ -795,6 +878,7 @@ public class UShaderCache : Core.UObject
     public FShaderParameter WorldToViewParameter;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialPixelShaderParameters : FMaterialShaderParameters
   {
     public FShaderResourceParameter BeckmannTextureParameter;
@@ -814,11 +898,13 @@ public class UShaderCache : Core.UObject
     public List<FUniformShaderParameter> UniformPixelScalarParameters; // or: UniformPixelVectorParameters
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialVertexShaderParameters : FMaterialShaderParameters
   {
     public List<FUniformShaderParameter> UniformPixelScalarParameters; // or: UniformPixelVectorParameters
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FVertexFactoryParameters
   {
     public List<FName> ParameterOrder;
@@ -828,6 +914,7 @@ public class UShaderCache : Core.UObject
     public FName Type;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FShader
   {
     public FDOFShaderParameters DOFParameters;
@@ -847,22 +934,26 @@ public class UShaderCache : Core.UObject
     public FVertexFactoryParameters VertexFactoryParameters;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FShaderRef
   {
     public FGuid Id;
     public FName Type;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FShaderMap
   {
     public Dictionary<FName, FShaderRef> Shaders;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMeshMaterialShaderMap : FShaderMap
   {
     public FName VertexFactoryType;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMaterialShaderMap : FShaderMap
   {
     public string FriendlyName;
@@ -874,7 +965,7 @@ public class UShaderCache : Core.UObject
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UStaticMesh : Core.UObject
 {
   public bool bCanBecomeDynamic;
@@ -910,6 +1001,7 @@ public class UStaticMesh : Core.UObject
   public bool UseSimpleLineCollision;
   public bool UseSimpleRigidBodyCollision;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FStaticMeshVertex
   {
     public FColor Color;
@@ -921,14 +1013,14 @@ public class UStaticMesh : Core.UObject
     public FVector2D[] UVs = new FVector2D[4];
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FFragmentRange
   {
     public int BaseIndex;
     public int NumPrimitives;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FStaticMeshElement
   {
     public bool bEnableShadowCasting;
@@ -946,11 +1038,12 @@ public class UStaticMesh : Core.UObject
     public bool OldEnableCollision;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FStaticMeshTriangleBulkData : FUntypedBulkData_Mirror
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FStaticMeshVertexBuffer
   {
     public bool bUseFullPrecisionUVs;
@@ -960,7 +1053,7 @@ public class UStaticMesh : Core.UObject
     public List<char> UntypedData;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FPositionVertexBuffer
   {
     public List<FVector> Data;
@@ -968,7 +1061,7 @@ public class UStaticMesh : Core.UObject
     public uint Stride;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FColorVertexBuffer
   {
     public List<FColor> Data;
@@ -976,6 +1069,7 @@ public class UStaticMesh : Core.UObject
     public uint Stride;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FStaticMeshRenderData
   {
     public FColorVertexBuffer ColorVertexBuffer;
@@ -988,12 +1082,14 @@ public class UStaticMesh : Core.UObject
     public List<ushort> WireframeIndexBuffer;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FkDOP
   {
     public float[] Max = new float[3];
     public float[] Min = new float[3];
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FkDOPNode
   {
     public bool bIsLeaf;
@@ -1002,6 +1098,7 @@ public class UStaticMesh : Core.UObject
     public ushort RightNodeOrStartIndex;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FkDOPCollisionTriangle
   {
     public ushort MaterialIndex;
@@ -1010,6 +1107,7 @@ public class UStaticMesh : Core.UObject
     public ushort v3;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FkDOPTree
   {
     public List<FkDOPNode> Nodes;
@@ -1017,7 +1115,7 @@ public class UStaticMesh : Core.UObject
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UFracturedStaticMesh : UStaticMesh
 {
   public bool bAlwaysBreakOffIsolatedIslands;
@@ -1050,7 +1148,7 @@ public class UFracturedStaticMesh : UStaticMesh
   public UStaticMesh SourceCoreMesh;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class USkeletalMesh : Core.UObject
 {
   public List<FStaticLODModel> LODModels;
@@ -1061,13 +1159,14 @@ public class USkeletalMesh : Core.UObject
   public char unknown108;
   public FName unknown10C;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FVJointPos
   {
     public FQuat Orientation;
     public FVector Position;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FMeshBone
   {
     public FColor BoneColor;
@@ -1079,7 +1178,7 @@ public class USkeletalMesh : Core.UObject
     public int ParentIndex;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FSkelMeshSection
   {
     public uint BaseIndex;
@@ -1090,6 +1189,7 @@ public class USkeletalMesh : Core.UObject
     public char TriangleSorting;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FRigidSkinVertex
   {
     public char Bone;
@@ -1101,6 +1201,7 @@ public class USkeletalMesh : Core.UObject
     public FVector2D[] UVs = new FVector2D[4];
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FSoftSkinVertex
   {
     public FColor Color;
@@ -1113,7 +1214,7 @@ public class USkeletalMesh : Core.UObject
     public FVector2D[] UVs = new FVector2D[4];
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FSkelMeshChunk
   {
     public uint BaseVertexIndex;
@@ -1125,6 +1226,7 @@ public class USkeletalMesh : Core.UObject
     public List<FSoftSkinVertex> SoftVertices;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FSkeletalMeshVertexBuffer
   {
     public bool bUseFullPrecisionUVs;
@@ -1135,23 +1237,26 @@ public class USkeletalMesh : Core.UObject
     public List<char> UntypedData;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FSkeletalMeshVertexColorBuffer
   {
     public List<FColor> Data;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FVertexInfluence
   {
     public char[] Bones = new char[4];
     public char[] Weights = new char[4];
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FBoneIndexPair
   {
     public int[] BoneIdx = new int[2];
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FSkeletalMeshVertexInfluences
   {
     public List<FSkelMeshChunk> Chunks;
@@ -1161,6 +1266,7 @@ public class USkeletalMesh : Core.UObject
     public Dictionary<FBoneIndexPair, List<uint>> VertexInfluenceMapping;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FStaticLODModel
   {
     public List<ushort> ActiveBoneIndices;
@@ -1180,33 +1286,35 @@ public class USkeletalMesh : Core.UObject
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class AStaticMeshActorBase : AActor
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class AStaticMeshCollectionActor : AStaticMeshActorBase
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UPhysicsAssetInstance : Core.UObject
 {
   public Dictionary<FRigidBodyIndexPair, bool> CollisionDisableTable;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FRigidBodyIndexPair
   {
     public int[] Indices = new int[2];
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UGuidCache : Core.UObject
 {
   public Dictionary<FName, FGuid> PackageGuidMap;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UPersistentCookerData : Core.UObject
 {
   public List<string> ChildCookErrors;
@@ -1223,6 +1331,7 @@ public class UPersistentCookerData : Core.UObject
   public Dictionary<string, FCookedTextureUsageInfo> TextureUsageInfos;
   public ulong Unknown;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FCookedBulkDataInfo
   {
     public uint SavedBulkDataFlags;
@@ -1232,6 +1341,7 @@ public class UPersistentCookerData : Core.UObject
     public FName TextureFileCacheName;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FCookedTextureFileCacheInfo
   {
     public FDouble LastSaved;
@@ -1239,6 +1349,7 @@ public class UPersistentCookerData : Core.UObject
     public FName TextureFileCacheName;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FCookedTextureUsageInfo
   {
     public int DuplicatedMipSize;
@@ -1251,104 +1362,111 @@ public class UPersistentCookerData : Core.UObject
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class ANavigationPoint : AActor
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class ACoverLink : ANavigationPoint
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FCoverReference
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FCoverSlot
   {
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class APylon : ANavigationPoint
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FPolyReference
   {
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UAnimSequence : Core.UObject
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FRawAnimSequenceTrack
   {
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UAnimObject : Core.UObject
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UAnimNode : UAnimObject
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UAnimNodeBlendBase : UAnimNode
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UAnimNodeAimOffset : UAnimNodeBlendBase
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FAimTransform
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FAimComponent
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FAimOffsetProfile
   {
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class USoundCue : Core.UObject
 {
   public Dictionary<USoundNode, FSoundNodeEditorData> EditorData;
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FSoundNodeEditorData
   {
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UFont : Core.UObject
 {
   public Dictionary<ushort, ushort> CharRemap;
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FFontCharacter
   {
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UPrimitiveComponent : UActorComponent
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UFluidSurfaceComponent : UPrimitiveComponent
 {
   public UEngineTypes.FLightMap LightMap;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class USpeedTreeComponent : UPrimitiveComponent
 {
   public UEngineTypes.FLightMap BillboardLightMap;
@@ -1358,20 +1476,21 @@ public class USpeedTreeComponent : UPrimitiveComponent
   public UEngineTypes.FLightMap LeafMeshLightMap;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UBrushComponent : UPrimitiveComponent
 {
   public URB_BodySetup.FKCachedConvexData CachedPhysBrushData;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UMeshComponent : UPrimitiveComponent
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UStaticMeshComponent : UMeshComponent
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FStaticMeshComponentLODInfo
   {
     public UEngineTypes.FLightMap LightMap;
@@ -1380,11 +1499,12 @@ public class UStaticMeshComponent : UMeshComponent
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UDecalComponent : UPrimitiveComponent
 {
   public List<FStaticReceiverData> StaticReceivers;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FDecalVertex
   {
     public FVector2D LightMapCoordinate;
@@ -1393,7 +1513,7 @@ public class UDecalComponent : UPrimitiveComponent
     public FPackedNormal TangentZ;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FStaticReceiverData
   {
     public UPrimitiveComponent Component;
@@ -1407,15 +1527,18 @@ public class UDecalComponent : UPrimitiveComponent
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UDrawBSPTreeComponent : UPrimitiveComponent
 {
   public UModel Model;
 }
 
-public class UShadowMap2D : Core.UObject {};
+[StructLayout(LayoutKind.Sequential)]
+public class UShadowMap2D : Core.UObject
+{
+};
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UModelComponent : UPrimitiveComponent
 {
   public int BSPZoneIndex;
@@ -1426,6 +1549,7 @@ public class UModelComponent : UPrimitiveComponent
   public List<ushort> Nodes;
   public int ZoneIndex;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FModelElement
   {
     public UModelComponent Component;
@@ -1437,62 +1561,69 @@ public class UModelComponent : UPrimitiveComponent
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USequenceObject : Core.UObject
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USequenceOp : USequenceObject
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USequenceAction : USequenceOp
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USequence : USequenceOp
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USeqAct_Latent : USequenceAction
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class USeqAct_Interp : USeqAct_Latent
 {
   public Dictionary<AActor, FSavedTransform> SavedActorTransforms;
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FSavedTransform
   {
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class AInfo : AActor
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class AZoneInfo : AInfo
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class ATerrain : AInfo
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FAlphaMap
   {
     public List<char> Data;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FTerrainMaterialMask
   {
     public ulong BitMask;
     public int NumBits;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FTerrainMaterialResource : FMaterial
   {
     public FGuid LightingGuid;
@@ -1501,36 +1632,37 @@ public class ATerrain : AInfo
     public ATerrain Terrain;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FCachedTerrainMaterialArray
   {
     public List<FTerrainMaterialResource> CachedMaterials;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FTerrainHeight
   {
     public ushort Value;
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FTerrainInfoData
   {
     public char Data;
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UTerrainComponent : UPrimitiveComponent
 {
   public UEngineTypes.FLightMap LightMap;
   public List<FTerrainPatchBounds> PatchBounds;
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FTerrainkDOPTree
   {
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FTerrainSubRegion
   {
     public ushort XPos;
@@ -1539,6 +1671,7 @@ public class UTerrainComponent : UPrimitiveComponent
     public ushort YSize;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FTerrainBVNode
   {
     public bool bIsLeaf;
@@ -1546,11 +1679,13 @@ public class UTerrainComponent : UPrimitiveComponent
     public FTerrainSubRegion Region;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FTerrainBVTree
   {
     public List<FTerrainBVNode> Nodes;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FTerrainPatchBounds
   {
     public float MaxDisplacement;
@@ -1559,46 +1694,52 @@ public class UTerrainComponent : UPrimitiveComponent
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UUIRoot : Core.UObject
 {
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FWIDGET_ID : FGuid
   {
   }
 
-  [Native]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FSTYLE_ID : FGuid
   {
   }
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UUIDataProvider : UUIRoot
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UUIDynamicFieldProvider : UUIDataProvider
 {
   public Dictionary<FName, Dictionary<FName, List<string>>> PersistentCollectionData;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UUIState : UUIRoot
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UUITexture : UUIRoot
 {
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class UUIDataStore : UUIDataProvider
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UUISkin : UUIDataStore
 {
   public Dictionary<FName, FUICursorStyle> CursorMap;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FUICursorStyle
   {
     public UUITexture CursorImage;
@@ -1606,26 +1747,28 @@ public class UUISkin : UUIDataStore
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UUIStyle : UUIRoot
 {
   public Dictionary<UUIState, int> StateDataMap;
 }
 
+[StructLayout(LayoutKind.Sequential)]
 public class USoundNode : Core.UObject
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class USoundNodeWave : USoundNode
 {
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class USoundClass : Core.UObject
 {
   public Dictionary<USoundClass, FSoundClassEditorData> EditorData;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FSoundClassEditorData
   {
     public int NodePosX;
@@ -1633,11 +1776,12 @@ public class USoundClass : Core.UObject
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UMorphTarget : Core.UObject
 {
   private List<FMorphTargetLODModel> MorphLODModels;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMorphTargetVertex
   {
     public FVector PositionDelta;
@@ -1645,6 +1789,7 @@ public class UMorphTarget : Core.UObject
     public FPackedNormal TangentZDelta;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMorphTargetLODModel
   {
     public int NumBaseMeshVerts;
@@ -1652,14 +1797,14 @@ public class UMorphTarget : Core.UObject
   }
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class APrefabInstance : AActor
 {
   public Dictionary<Core.UObject, Core.UObject> ArchetypeToInstanceMap;
   public Dictionary<Core.UObject, int> PI_ObjectMap;
 }
 
-[Native]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UNavigationMeshBase : Core.UObject
 {
   public List<FBorderEdgeInfo> BorderEdgeSegments;
@@ -1674,12 +1819,14 @@ public class UNavigationMeshBase : Core.UObject
   public List<FMeshVertex> Verts;
   public FMatrix WorldToLocal;
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FPolyReference
   {
     public AActor.FActorReference OwningPylon;
     public int PolyId;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FNavMeshEdgeBase
   {
     public float DropHeight;
@@ -1705,11 +1852,13 @@ public class UNavigationMeshBase : Core.UObject
     public ushort Vert1;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FMeshVertex : FVector
   {
     public List<ushort> PolyIndices;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FEdgeStorageDatum
   {
     public FName ClassName;
@@ -1717,6 +1866,7 @@ public class UNavigationMeshBase : Core.UObject
     public ushort DataSize;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FNavMeshPolyBase
   {
     public FBox BoxBounds;
@@ -1729,6 +1879,7 @@ public class UNavigationMeshBase : Core.UObject
     public List<ushort> PolyVerts;
   }
 
+  [StructLayout(LayoutKind.Sequential)]
   public class FBorderEdgeInfo
   {
     public ushort Poly;

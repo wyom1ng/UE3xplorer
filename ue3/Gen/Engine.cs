@@ -5702,6 +5702,8 @@ public partial class ULightComponent : UActorComponent
 
   public partial class FConvexVolume : ISerialisable
   {
+    public List<UObject.FPlane> PermutedPlanes;
+    public List<UObject.FPlane> Planes;
   }
 
   public FPointer SceneInfo;
@@ -5756,8 +5758,6 @@ public partial class ULightComponent : UActorComponent
   public FColor BloomTint;
   public float RadialBlurPercent;
   public float OcclusionMaskDarkness;
-  public List<FPlane> PermutedPlanes;
-  public List<FPlane> Planes;
 }
 
 public class UDynamicLightEnvironmentComponent : ULightEnvironmentComponent
@@ -7661,9 +7661,9 @@ public partial class UStaticMeshComponent : UMeshComponent
   public partial class FStaticMeshComponentLODInfo : ISerialisable
   {
     public List<UShadowMap2D> ShadowMaps;
-    public List<UObject> ShadowVertexBuffers;
-    public UObject.FPointer LightMap;
-    public UObject.FPointer OverrideVertexColors;
+    public List<UShadowMap1D> ShadowVertexBuffers;
+    public UEngineTypes.FLightMap LightMap;
+    public UStaticMesh.FColorVertexBuffer OverrideVertexColors;
   }
 
   public class FLODMaterialInfo
@@ -7690,9 +7690,6 @@ public partial class UStaticMeshComponent : UMeshComponent
   public List<FLODMaterialInfo> LODMaterials;
   public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
   public int StaticMeshComponentID;
-  public UEngineTypes.FLightMap LightMap;
-  public UStaticMesh.FColorVertexBuffer OverrideVertexColors;
-  public List<UShadowMap1D> ShadowVertexBuffers;
 }
 
 public class UCoverMeshComponent : UStaticMeshComponent
@@ -8107,10 +8104,22 @@ public partial class UDecalComponent : UPrimitiveComponent
 
   public class FDecalVertex
   {
+    public UObject.FVector2D LightMapCoordinate;
+    public UObject.FVector Position;
+    public UObject.FPackedNormal TangentX;
+    public UObject.FPackedNormal TangentZ;
   }
 
   public partial class FStaticReceiverData : ISerialisable
   {
+    public UPrimitiveComponent Component;
+    public int Data;
+    public List<ushort> Indices;
+    public int InstanceIndex;
+    public UEngineTypes.FLightMap LightMap1D;
+    public uint NumTriangles;
+    public List<UShadowMap1D> ShadowMap1D;
+    public List<UDecalComponent.FDecalVertex> Vertices;
   }
 
   public UMaterialInterface DecalMaterial;
@@ -8164,18 +8173,6 @@ public partial class UDecalComponent : UPrimitiveComponent
   public FRotator ParentRelativeOrientation;
   public FVector OriginalParentRelativeLocation;
   public FVector OriginalParentRelativeOrientationVec;
-  public FVector2D LightMapCoordinate;
-  public FVector Position;
-  public FPackedNormal TangentX;
-  public FPackedNormal TangentZ;
-  public UPrimitiveComponent Component;
-  public int Data;
-  public List<ushort> Indices;
-  public int InstanceIndex;
-  public UEngineTypes.FLightMap LightMap1D;
-  public uint NumTriangles;
-  public List<UShadowMap1D> ShadowMap1D;
-  public List<FDecalVertex> Vertices;
 }
 
 public class ADecalActorBase : AActor
@@ -8226,94 +8223,148 @@ public partial class UMaterialInterface : USurface
 
   public class FStaticSwitchParameter
   {
+    public bool bOverride;
+    public UObject.FGuid ExpressionGUID;
+    public FName ParameterName;
+    public bool Value;
   }
 
   public class FStaticComponentMaskParameter
   {
+    public uint A;
+    public uint B;
+    public bool bOverride;
+    public UObject.FGuid ExpressionGUID;
+    public uint G;
+    public FName ParameterName;
+    public uint R;
   }
 
   public class FNormalParameter
   {
+    public bool bOverride;
+    public byte CompressionSettings;
+    public UObject.FGuid ExpressionGUID;
+    public FName ParameterName;
   }
 
   public class FStaticTerrainLayerWeightParameter
   {
+    public bool bOverride;
+    public UObject.FGuid ExpressionGUID;
+    public FName ParameterName;
+    public int WeightmapIndex;
   }
 
   public partial class FStaticParameterSet : ISerialisable
   {
+    public UObject.FGuid BaseMaterialId;
+    public List<UMaterialInterface.FNormalParameter> NormalParameters;
+    public List<UMaterialInterface.FStaticComponentMaskParameter> StaticComponentMaskParameters;
+    public List<UMaterialInterface.FStaticSwitchParameter> StaticSwitchParameters;
+    public List<UMaterialInterface.FStaticTerrainLayerWeightParameter> TerrainLayerWeightParameters;
   }
 
   public class FMaterialUniformExpression
   {
+    public FName Type;
   }
 
   public class FMaterialUniformExpressionRef
   {
+    public ulong Index;
   }
 
   public class FMaterialUniformExpressionAbs : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef X;
   }
 
   public class FMaterialUniformExpressionCeil : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef X;
   }
 
   public class FMaterialUniformExpressionClamp : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef Input;
+    public UMaterialInterface.FMaterialUniformExpressionRef Max;
+    public UMaterialInterface.FMaterialUniformExpressionRef Min;
   }
 
   public class FMaterialUniformExpressionFloor : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef X;
   }
 
   public class FMaterialUniformExpressionFmod : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef A;
+    public UMaterialInterface.FMaterialUniformExpressionRef B;
   }
 
   public class FMaterialUniformExpressionFrac : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef X;
   }
 
   public class FMaterialUniformExpressionMin : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef A;
+    public UMaterialInterface.FMaterialUniformExpressionRef B;
   }
 
   public class FMaterialUniformExpressionMax : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef A;
+    public UMaterialInterface.FMaterialUniformExpressionRef B;
   }
 
   public class FMaterialUniformExpressionSine : FMaterialUniformExpression
   {
+    public bool bIsCosine;
+    public UMaterialInterface.FMaterialUniformExpressionRef X;
   }
 
   public class FMaterialUniformExpressionSquareRoot : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef X;
   }
 
   public class FMaterialUniformExpressionAppendVector : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef A;
+    public UMaterialInterface.FMaterialUniformExpressionRef B;
+    public uint NumComponentsA;
   }
 
   public class FMaterialUniformExpressionVectorParameter : FMaterialUniformExpression
   {
+    public UObject.FLinearColor DefaultValue;
+    public FName ParameterName;
   }
 
   public class FMaterialUniformExpressionConstant : FMaterialUniformExpression
   {
+    public UObject.FLinearColor Value;
+    public byte ValueType;
   }
 
   public class FMaterialUniformExpressionFoldedMath : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef A;
+    public UMaterialInterface.FMaterialUniformExpressionRef B;
+    public byte Op;
   }
 
   public class FMaterialUniformExpressionLength : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef X;
   }
 
   public class FMaterialUniformExpressionPeriodic : FMaterialUniformExpression
   {
+    public UMaterialInterface.FMaterialUniformExpressionRef X;
   }
 
   public class FMaterialUniformExpressionRealTime : FMaterialUniformExpression
@@ -8322,14 +8373,18 @@ public partial class UMaterialInterface : USurface
 
   public class FMaterialUniformExpressionScalarParameter : FMaterialUniformExpression
   {
+    public float DefaultValue;
+    public FName ParameterName;
   }
 
   public class FMaterialUniformExpressionTexture : FMaterialUniformExpression
   {
+    public int TextureIndex;
   }
 
   public class FMaterialUniformExpressionTextureParameter : FMaterialUniformExpressionTexture
   {
+    public FName ParameterName;
   }
 
   public class FMaterialUniformExpressionFlipBookTextureParameter : FMaterialUniformExpressionTexture
@@ -8342,10 +8397,16 @@ public partial class UMaterialInterface : USurface
 
   public class FShaderFrequencyUniformExpressions
   {
+    public List<byte> MaterialUniformExpressionStorage;
+    public List<UMaterialInterface.FMaterialUniformExpressionRef> UniformScalarExpressions;
+    public List<UMaterialInterface.FMaterialUniformExpressionRef> UniformVectorExpressions;
   }
 
   public class FUniformExpressionSet
   {
+    public UMaterialInterface.FShaderFrequencyUniformExpressions PixelExpressions;
+    public UMaterialInterface.FShaderFrequencyUniformExpressions UniformCubeTextureExpressions;
+    public UMaterialInterface.FShaderFrequencyUniformExpressions VertexExpressions;
   }
 
   public FRenderCommandFence_Mirror ParentRefFence;
@@ -8353,39 +8414,6 @@ public partial class UMaterialInterface : USurface
   public string PreviewMesh;
   public FGuid LightingGuid;
   public UTexture FlattenedTexture;
-  public bool bOverride;
-  public FGuid ExpressionGUID;
-  public FName ParameterName;
-  public FLinearColor Value;
-  public FMaterialUniformExpressionRef A;
-  public FMaterialUniformExpressionRef B;
-  public uint G;
-  public uint R;
-  public byte CompressionSettings;
-  public int WeightmapIndex;
-  public FGuid BaseMaterialId;
-  public List<FNormalParameter> NormalParameters;
-  public List<FStaticComponentMaskParameter> StaticComponentMaskParameters;
-  public List<FStaticSwitchParameter> StaticSwitchParameters;
-  public List<FStaticTerrainLayerWeightParameter> TerrainLayerWeightParameters;
-  public FName Type;
-  public ulong Index;
-  public FMaterialUniformExpressionRef X;
-  public FMaterialUniformExpressionRef Input;
-  public FMaterialUniformExpressionRef Max;
-  public FMaterialUniformExpressionRef Min;
-  public bool bIsCosine;
-  public uint NumComponentsA;
-  public float DefaultValue;
-  public byte ValueType;
-  public byte Op;
-  public int TextureIndex;
-  public List<byte> MaterialUniformExpressionStorage;
-  public List<FMaterialUniformExpressionRef> UniformScalarExpressions;
-  public List<FMaterialUniformExpressionRef> UniformVectorExpressions;
-  public FShaderFrequencyUniformExpressions PixelExpressions;
-  public FShaderFrequencyUniformExpressions UniformCubeTextureExpressions;
-  public FShaderFrequencyUniformExpressions VertexExpressions;
 }
 
 public partial class UMaterial : UMaterialInterface
@@ -9504,23 +9532,23 @@ public partial class UEngineTypes : UObject
 
   public partial class FLightMap : ISerialisable
   {
+    public UObject.FVector2D CoordinateBias;
+    public UObject.FVector2D CoordinateScale;
+    public UEngineTypes.FQuantizedDirectionalLightSampleBulkData DirectionalSamples;
+    public List<UObject.FGuid> LightGuids;
+    public uint LightMapType;
+    public UObject Owner;
+    public UObject.FVector4[] ScaleVectors = new UObject.FVector4[3];
+    public UEngineTypes.FQuantizedSimpleLightSampleBulkData SimpleSamples;
+    public ULightMapTexture2D[] Textures = new ULightMapTexture2D[3];
   }
 
   public class FBasedPosition
   {
+    public AActor Base;
+    public UObject.FVector Position;
   }
 
-  public FVector2D CoordinateBias;
-  public FVector2D CoordinateScale;
-  public FQuantizedDirectionalLightSampleBulkData DirectionalSamples;
-  public List<FGuid> LightGuids;
-  public uint LightMapType;
-  public UObject Owner;
-  public FVector4[] ScaleVectors = new FVector4[3];
-  public FQuantizedSimpleLightSampleBulkData SimpleSamples;
-  public ULightMapTexture2D[] Textures = new ULightMapTexture2D[3];
-  public AActor Base;
-  public FVector Position;
 }
 
 public class AEnvironmentVolume : AVolume
@@ -12680,6 +12708,12 @@ public partial class UModelComponent : UPrimitiveComponent
 {
   public class FModelElement
   {
+    public UModelComponent Component;
+    public List<UObject.FGuid> IrrelevantLights;
+    public UEngineTypes.FLightMap LightMap;
+    public UMaterialInterface Material;
+    public List<ushort> Nodes;
+    public List<UShadowMap2D> ShadowMaps;
   }
 
   public UModel Model;
@@ -12688,11 +12722,6 @@ public partial class UModelComponent : UPrimitiveComponent
   public ushort ComponentIndex;
   public List<ushort> Nodes;
   public List<FModelElement> Elements;
-  public UModelComponent Component;
-  public List<FGuid> IrrelevantLights;
-  public UEngineTypes.FLightMap LightMap;
-  public UMaterialInterface Material;
-  public List<UShadowMap2D> ShadowMaps;
 }
 
 public class UMorphNodeBase : UAnimObject
@@ -12773,20 +12802,20 @@ public partial class UMorphTarget : UObject
 {
   public class FMorphTargetVertex
   {
+    public UObject.FVector PositionDelta;
+    public ushort SourceIdx;
+    public UObject.FPackedNormal TangentZDelta;
   }
 
   public class FMorphTargetLODModel
   {
+    public int NumBaseMeshVerts;
   }
 
   public List<int> MorphLODModels;
   public int MaterialSlotId;
   public FName ScalarParameterName;
   public UMaterialInstanceConstant MaterialInstanceConstant;
-  public FVector PositionDelta;
-  public ushort SourceIdx;
-  public FPackedNormal TangentZDelta;
-  public int NumBaseMeshVerts;
 }
 
 public class UMorphTargetSet : UObject
@@ -15138,6 +15167,7 @@ public partial class UPhysicsAssetInstance : UObject
 {
   public class FRigidBodyIndexPair
   {
+    public int[] Indices = new int[2];
   }
 
   public AActor Owner;
@@ -15152,7 +15182,6 @@ public partial class UPhysicsAssetInstance : UObject
   public float AngularDampingScale;
   public float AngularForceLimitScale;
   public bool bInitBodies;
-  public int[] Indices = new int[2];
 }
 
 public class UPhysXDestructible : UObject
@@ -15847,6 +15876,7 @@ public partial class URB_BodySetup : UKMeshProps
 
   public class FKCachedPerTriData
   {
+    public List<byte> CachedPerTriData;
   }
 
   public ESleepFamily SleepFamily;
@@ -15865,7 +15895,6 @@ public partial class URB_BodySetup : UKMeshProps
   public List<FVector> PreCachedPhysScale;
   public List<FKCachedConvexData> PreCachedPhysData;
   public int PreCachedPhysDataVersion;
-  public List<byte> CachedPerTriData;
 }
 
 public class ARigidBodyBase : AActor
@@ -17872,50 +17901,114 @@ public partial class USkeletalMesh : UObject
 
   public class FVJointPos
   {
+    public UObject.FQuat Orientation;
+    public UObject.FVector Position;
   }
 
   public partial class FMeshBone : ISerialisable
   {
+    public UObject.FColor BoneColor;
+    public USkeletalMesh.FVJointPos BonePos;
+    public int Depth;
+    public uint Flags;
+    public FName Name;
+    public int NumChildren;
+    public int ParentIndex;
   }
 
   public partial class FSkelMeshSection : ISerialisable
   {
+    public uint BaseIndex;
+    public byte bSelected;
+    public ushort ChunkIndex;
+    public ushort MaterialIndex;
+    public ushort NumTriangles;
+    public byte TriangleSorting;
   }
 
   public class FRigidSkinVertex
   {
+    public byte Bone;
+    public UObject.FColor Color;
+    public UObject.FVector Position;
+    public UObject.FPackedNormal TangentX;
+    public UObject.FPackedNormal TangentY;
+    public UObject.FPackedNormal TangentZ;
+    public UObject.FVector2D[] UVs = new UObject.FVector2D[4];
   }
 
   public class FSoftSkinVertex
   {
+    public UObject.FColor Color;
+    public byte[] InfluenceBones = new byte[4];
+    public byte[] InfluenceWeights = new byte[4];
+    public UObject.FVector Position;
+    public UObject.FPackedNormal TangentX;
+    public UObject.FPackedNormal TangentY;
+    public UObject.FPackedNormal TangentZ;
+    public UObject.FVector2D[] UVs = new UObject.FVector2D[4];
   }
 
   public partial class FSkelMeshChunk : ISerialisable
   {
+    public uint BaseVertexIndex;
+    public List<ushort> BoneMap;
+    public int MaxBoneInfluences;
+    public int NumRigidVertices;
+    public int NumSoftVertices;
+    public List<USkeletalMesh.FRigidSkinVertex> RigidVertices;
+    public List<USkeletalMesh.FSoftSkinVertex> SoftVertices;
   }
 
   public class FSkeletalMeshVertexBuffer
   {
+    public bool bUseFullPrecisionUVs;
+    public bool bUsePackedPosition;
+    public UObject.FVector MeshExtension;
+    public UObject.FVector MeshOrigin;
+    public uint NumTexCoords;
+    public List<byte> UntypedData;
   }
 
   public class FSkeletalMeshVertexColorBuffer
   {
+    public List<UObject.FColor> Data;
   }
 
   public class FVertexInfluence
   {
+    public byte[] Bones = new byte[4];
+    public byte[] Weights = new byte[4];
   }
 
   public class FBoneIndexPair
   {
+    public int[] BoneIdx = new int[2];
   }
 
   public partial class FSkeletalMeshVertexInfluences : ISerialisable
   {
+    public List<USkeletalMesh.FSkelMeshChunk> Chunks;
+    public List<USkeletalMesh.FVertexInfluence> Influences;
+    public List<byte> RequiredBones;
+    public List<USkeletalMesh.FSkelMeshSection> Sections;
+    public Dictionary<USkeletalMesh.FBoneIndexPair, List<uint>> VertexInfluenceMapping;
   }
 
   public class FStaticLODModel
   {
+    public List<ushort> ActiveBoneIndices;
+    public List<USkeletalMesh.FSkelMeshChunk> Chunks;
+    public List<UObject.FColor> ColorVertexBuffer;
+    public List<ushort> DynamicIndexBuffer;
+    public uint NumTexCoords;
+    public uint NumVertices;
+    public UObject.FWordBulkData RawPointIndices;
+    public List<byte> RequiredBones;
+    public List<USkeletalMesh.FSkelMeshSection> Sections;
+    public uint Size;
+    public USkeletalMesh.FSkeletalMeshVertexBuffer VertexBufferGPUSkin;
+    public List<USkeletalMesh.FSkeletalMeshVertexInfluences> VertexInfluences;
   }
 
   public FBoxSphereBounds Bounds;
@@ -18041,57 +18134,6 @@ public partial class USkeletalMesh : UObject
   public ulong SkelMeshRUID;
   public FVector2D UVOffset;
   public FVector2D UVScale;
-  public FQuat Orientation;
-  public FVector Position;
-  public FColor BoneColor;
-  public FVJointPos BonePos;
-  public int Depth;
-  public uint Flags;
-  public FName Name;
-  public int NumChildren;
-  public int ParentIndex;
-  public uint BaseIndex;
-  public byte bSelected;
-  public ushort ChunkIndex;
-  public ushort MaterialIndex;
-  public ushort NumTriangles;
-  public byte TriangleSorting;
-  public byte Bone;
-  public FColor Color;
-  public FPackedNormal TangentX;
-  public FPackedNormal TangentY;
-  public FPackedNormal TangentZ;
-  public FVector2D[] UVs = new FVector2D[4];
-  public byte[] InfluenceBones = new byte[4];
-  public byte[] InfluenceWeights = new byte[4];
-  public uint BaseVertexIndex;
-  public List<ushort> BoneMap;
-  public int MaxBoneInfluences;
-  public int NumRigidVertices;
-  public int NumSoftVertices;
-  public List<FRigidSkinVertex> RigidVertices;
-  public List<FSoftSkinVertex> SoftVertices;
-  public FVector MeshExtension;
-  public FVector MeshOrigin;
-  public uint NumTexCoords;
-  public List<byte> UntypedData;
-  public List<FColor> Data;
-  public byte[] Bones = new byte[4];
-  public byte[] Weights = new byte[4];
-  public int[] BoneIdx = new int[2];
-  public List<FSkelMeshChunk> Chunks;
-  public List<FVertexInfluence> Influences;
-  public List<byte> RequiredBones;
-  public List<FSkelMeshSection> Sections;
-  public Dictionary<FBoneIndexPair, List<uint>> VertexInfluenceMapping;
-  public List<ushort> ActiveBoneIndices;
-  public List<FColor> ColorVertexBuffer;
-  public List<ushort> DynamicIndexBuffer;
-  public uint NumVertices;
-  public FWordBulkData RawPointIndices;
-  public uint Size;
-  public FSkeletalMeshVertexBuffer VertexBufferGPUSkin;
-  public List<FSkeletalMeshVertexInfluences> VertexInfluences;
   public byte unknown108;
   public FName unknown10C;
 }
@@ -18219,8 +18261,6 @@ public partial class USoundClass : UObject
   public bool bIsChild;
   public int MenuID;
   public Dictionary<USoundClass, FSoundClassEditorData> EditorData;
-  public int NodePosX;
-  public int NodePosY;
 }
 
 public class USoundMode : UObject
@@ -18903,10 +18943,12 @@ public partial class ATerrain : AInfo
 {
   public partial class FTerrainHeight : ISerialisable
   {
+    public ushort Value;
   }
 
   public partial class FTerrainInfoData : ISerialisable
   {
+    public byte Data;
   }
 
   public class FTerrainWeightedMaterial
@@ -18931,6 +18973,7 @@ public partial class ATerrain : AInfo
 
   public partial class FAlphaMap : ISerialisable
   {
+    public List<byte> Data;
   }
 
   public class FTerrainDecorationInstance
@@ -18962,11 +19005,15 @@ public partial class ATerrain : AInfo
 
   public partial class FTerrainMaterialResource : FMaterial
   {
+    public UObject.FGuid LightingGuid;
+    public ATerrain.FTerrainMaterialMask Mask;
+    public List<UObject.FGuid> MaterialIds;
+    public ATerrain Terrain;
   }
 
   public partial class FCachedTerrainMaterialArray : ISerialisable
   {
-    public List<UObject.FPointer> CachedMaterials;
+    public List<ATerrain.FTerrainMaterialResource> CachedMaterials;
   }
 
   public class FSelectedTerrainVertex
@@ -18978,6 +19025,8 @@ public partial class ATerrain : AInfo
 
   public partial class FTerrainMaterialMask : ISerialisable
   {
+    public ulong BitMask;
+    public int NumBits;
   }
 
   public List<FTerrainHeight> Heights;
@@ -19030,14 +19079,6 @@ public partial class ATerrain : AInfo
   public List<FSelectedTerrainVertex> SelectedVertices;
   public FColor WireframeColor;
   public FGuid LightingGuid;
-  public byte Data;
-  public ulong BitMask;
-  public int NumBits;
-  public FTerrainMaterialMask Mask;
-  public List<FGuid> MaterialIds;
-  public ATerrain Terrain;
-  public List<FTerrainMaterialResource> CachedMaterials;
-  public ushort Value;
 }
 
 public partial class UTerrainComponent : UPrimitiveComponent
@@ -19050,19 +19091,29 @@ public partial class UTerrainComponent : UPrimitiveComponent
 
   public class FTerrainBVTree
   {
-    public List<int> Nodes;
+    public List<UTerrainComponent.FTerrainBVNode> Nodes;
   }
 
   public class FTerrainSubRegion
   {
+    public ushort XPos;
+    public ushort XSize;
+    public ushort YPos;
+    public ushort YSize;
   }
 
   public class FTerrainBVNode
   {
+    public bool bIsLeaf;
+    public UObject.FBox BoundingVolume;
+    public UTerrainComponent.FTerrainSubRegion Region;
   }
 
   public class FTerrainPatchBounds
   {
+    public float MaxDisplacement;
+    public float MaxHeight;
+    public float MinHeight;
   }
 
   public List<UShadowMap2D> ShadowMaps;
@@ -19088,17 +19139,6 @@ public partial class UTerrainComponent : UPrimitiveComponent
   public List<FVector> CollisionVertices;
   public FPointer RBHeightfield;
   public bool bDisplayCollisionLevel;
-  public ushort XPos;
-  public ushort XSize;
-  public ushort YPos;
-  public ushort YSize;
-  public bool bIsLeaf;
-  public FBox BoundingVolume;
-  public FTerrainSubRegion Region;
-  public List<FTerrainBVNode> Nodes;
-  public float MaxDisplacement;
-  public float MaxHeight;
-  public float MinHeight;
 }
 
 public class UTerrainLayerSetup : UObject
@@ -19680,6 +19720,8 @@ public partial class UUISkin : UUIDataStore
 
   public class FUICursorStyle
   {
+    public UUITexture CursorImage;
+    public FName CursorImageStyle;
   }
 
   public List<UUIStyle> Styles;
@@ -19690,8 +19732,6 @@ public partial class UUISkin : UUIDataStore
   public List<string> StyleGroupMap;
   public Dictionary<FName, FUICursorStyle> CursorMap;
   public Dictionary<byte, byte> SoundCueMap;
-  public UUITexture CursorImage;
-  public FName CursorImageStyle;
 }
 
 public class UUICustomSkin : UUISkin
@@ -20798,80 +20838,83 @@ public partial class UModel : UObject
 {
   public class FBspNode
   {
+    public int ComponentElementIndex;
+    public ushort ComponentIndex;
+    public ushort ComponentNodeIndex;
+    public int iBackOrChild;
+    public int iCollisionBound;
+    public int iFront;
+    public int[] iLeaf = new int[2];
+    public int iPlane;
+    public int iSurf;
+    public int iVertexIndex;
+    public int iVertPool;
+    public byte[] iZone = new byte[2];
+    public byte NodeFlags;
+    public byte NumVertices;
+    public UObject.FPlane Plane;
   }
 
   public class FVert
   {
+    public UObject.FVector2D BackfaceShadowTexCoord;
+    public int iSide;
+    public int pVertex;
+    public UObject.FVector2D ShadowTexCoord;
   }
 
   public class FBspSurf
   {
+    public ABrush Actor;
+    public bool bHiddenEdLevel;
+    public bool bHiddenEdTemporary;
+    public int iBrushPoly;
+    public int iLightmassIndex;
+    public ULightComponent.FLightingChannelContainer LightingChannels;
+    public UMaterialInterface Material;
+    public int pBase;
+    public UObject.FPlane Plane;
+    public uint PolyFlags;
+    public float ShadowMapScale;
+    public int vNormal;
+    public int vTextureU;
+    public int vTextureV;
   }
 
   public class FLeaf
   {
+    public int iZone;
   }
 
   public class FModelVertex
   {
+    public UObject.FVector Position;
+    public UObject.FVector2D ShadowTexCoord;
+    public UObject.FPackedNormal TangentX;
+    public UObject.FPackedNormal TangentZ;
+    public UObject.FVector2D TexCoord;
   }
 
   public class FZoneProperties
   {
+    public ulong Connectivity;
+    public float LastRenderTime;
+    public ulong Visibility;
+    public AZoneInfo ZoneActor;
   }
 
   public class FTwoVector4DArrays
   {
+    public List<UObject.FVector4> First;
+    public List<UObject.FVector4> Second;
   }
 
   public class FBoxAndThenSome
   {
+    public UObject.FBox Box;
+    public int[] Values = new int[10];
   }
 
-  public int ComponentElementIndex;
-  public ushort ComponentIndex;
-  public ushort ComponentNodeIndex;
-  public int iBackOrChild;
-  public int iCollisionBound;
-  public int iFront;
-  public int[] iLeaf = new int[2];
-  public int iPlane;
-  public int iSurf;
-  public int iVertexIndex;
-  public int iVertPool;
-  public int iZone;
-  public byte NodeFlags;
-  public uint NumVertices;
-  public FPlane Plane;
-  public FVector2D BackfaceShadowTexCoord;
-  public int iSide;
-  public int pVertex;
-  public FVector2D ShadowTexCoord;
-  public ABrush Actor;
-  public bool bHiddenEdLevel;
-  public bool bHiddenEdTemporary;
-  public int iBrushPoly;
-  public int iLightmassIndex;
-  public ULightComponent.FLightingChannelContainer LightingChannels;
-  public UMaterialInterface Material;
-  public int pBase;
-  public uint PolyFlags;
-  public float ShadowMapScale;
-  public int vNormal;
-  public int vTextureU;
-  public int vTextureV;
-  public FVector Position;
-  public FPackedNormal TangentX;
-  public FPackedNormal TangentZ;
-  public FVector2D TexCoord;
-  public ulong Connectivity;
-  public float LastRenderTime;
-  public ulong Visibility;
-  public AZoneInfo ZoneActor;
-  public List<FVector4> First;
-  public List<FVector4> Second;
-  public FBox Box;
-  public int[] Values = new int[10];
   public FBoxSphereBounds Bounds;
   public List<int> LeafHulls;
   public List<FLeaf> Leaves;
@@ -20880,6 +20923,7 @@ public partial class UModel : UObject
   public bool Linked;
   public List<FBspNode> Nodes;
   public int NumSharedSides;
+  public uint NumVertices;
   public int NumZones;
   public List<FVector> Points;
   public UPolys Polys;
@@ -20910,24 +20954,24 @@ public partial class UPolys : UObject
 {
   public class FPoly
   {
+    public ABrush Actor;
+    public UObject.FVector Base;
+    public int iBrushPoly;
+    public int iLink;
+    public FName ItemName;
+    public uint LightingChannels;
+    public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
+    public UMaterialInterface Material;
+    public UObject.FVector Normal;
+    public uint PolyFlags;
+    public FName RulesetVariation;
+    public float ShadowMapScale;
+    public uint SmoothingMask;
+    public UObject.FVector TextureU;
+    public UObject.FVector TextureV;
+    public List<UObject.FVector> Vertices;
   }
 
-  public ABrush Actor;
-  public FVector Base;
-  public int iBrushPoly;
-  public int iLink;
-  public FName ItemName;
-  public uint LightingChannels;
-  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
-  public UMaterialInterface Material;
-  public FVector Normal;
-  public uint PolyFlags;
-  public FName RulesetVariation;
-  public float ShadowMapScale;
-  public uint SmoothingMask;
-  public FVector TextureU;
-  public FVector TextureV;
-  public List<FVector> Vertices;
   public List<FPoly> Element;
 }
 
@@ -20948,48 +20992,50 @@ public partial class ULevel : ULevelBase
 {
   public class FStreamableTextureInstance
   {
+    public UObject.FSphere BoundingSphere;
+    public float TexelFactor;
   }
 
   public class FCachedPhysSMData
   {
+    public int CachedDataIndex;
+    public UObject.FVector Scale3D;
   }
 
   public class FCachedPerTriPhysSMData
   {
+    public int CachedDataIndex;
+    public UObject.FVector Scale3D;
   }
 
   public partial class FCoverIndexPair : ISerialisable
   {
+    public uint ActorRefItem;
+    public byte SlotIdx;
   }
 
   public class FVolumeLightingSample
   {
+    public UObject.FColor AmbientRadiance;
+    public byte bShadowedFromDominantLights;
+    public byte EnvironmentDirectionPhi;
+    public byte EnvironmentDirectionTheta;
+    public UObject.FColor EnvironmentRadiance;
+    public byte IndirectDirectionPhi;
+    public byte IndirectDirectionTheta;
+    public UObject.FColor IndirectRadiance;
+    public UObject.FVector Position;
+    public float Radius;
   }
 
   public class FPrecomputedLightVolume
   {
+    public bool bInitialized;
+    public UObject.FBox Bounds;
+    public int NumSamples;
+    public List<ULevel.FVolumeLightingSample> Samples;
   }
 
-  public FSphere BoundingSphere;
-  public float TexelFactor;
-  public int CachedDataIndex;
-  public FVector Scale3D;
-  public uint ActorRefItem;
-  public byte SlotIdx;
-  public FColor AmbientRadiance;
-  public byte bShadowedFromDominantLights;
-  public byte EnvironmentDirectionPhi;
-  public byte EnvironmentDirectionTheta;
-  public FColor EnvironmentRadiance;
-  public byte IndirectDirectionPhi;
-  public byte IndirectDirectionTheta;
-  public FColor IndirectRadiance;
-  public FVector Position;
-  public float Radius;
-  public bool bInitialized;
-  public FBox Bounds;
-  public int NumSamples;
-  public List<FVolumeLightingSample> Samples;
   public List<byte> ApexSDKCachedData;
   public List<byte> CachedPhysBSPData;
   public int CachedPhysBSPDataVersion;
@@ -21029,11 +21075,11 @@ public partial class UWorld : UObject
 {
   public class FLevelViewportInfo
   {
+    public float CamOrthoZoom;
+    public UObject.FVector CamPosition;
+    public UObject.FRotator CamRotation;
   }
 
-  public float CamOrthoZoom;
-  public FVector CamPosition;
-  public FRotator CamRotation;
   public FLevelViewportInfo[] EditorViews = new FLevelViewportInfo[4];
   public List<UObject> ExtraReferencedObjects;
   public UFaceFXAnimSet PersistentFaceFXAnimSet;
@@ -21058,162 +21104,178 @@ public partial class UShaderCache : UObject
 {
   public class FIndividualCompressedShaderInfo
   {
+    public ushort ChunkIndex;
+    public ushort UncompressedCodeLength;
+    public int UncompressedCodeOffset;
   }
 
   public class FCompressedShaderCodeChunk
   {
+    public List<byte> CompressedCode;
+    public int UncompressedSize;
   }
 
   public class FTypeSpecificCompressedShaderCode
   {
+    public List<UShaderCache.FCompressedShaderCodeChunk> CodeChunks;
+    public Dictionary<UObject.FGuid, UShaderCache.FIndividualCompressedShaderInfo> CompressedShaderInfos;
   }
 
   public class FCompressedShaderCodeCache
   {
+    public Dictionary<FName, UShaderCache.FTypeSpecificCompressedShaderCode> ShaderTypeCompressedShaderCode;
   }
 
   public class FShaderKey
   {
+    public List<byte> Code;
+    public uint ParameterMapCRC;
   }
 
   public class FShaderTarget
   {
+    public byte Frequency;
+    public byte Platform;
   }
 
   public class FShaderParameter
   {
+    public ushort BaseIndex;
+    public ushort BufferIndex;
+    public ushort NumBytes;
   }
 
   public class FUniformShaderParameter
   {
+    public int Index;
+    public UShaderCache.FShaderParameter ShaderParameter;
+    public byte Type;
   }
 
   public class FShaderResourceParameter
   {
+    public ushort BaseIndex;
+    public ushort NumResources;
+    public ushort SamplerIndex;
   }
 
   public class FUniformShaderResourceParameter
   {
+    public int Index;
+    public UShaderCache.FShaderResourceParameter ShaderParameter;
+    public byte Type;
   }
 
   public class FDOFShaderParameters
   {
+    public UShaderCache.FShaderParameter PackedParameters0;
+    public UShaderCache.FShaderParameter PackedParameters1;
   }
 
   public class FSceneTextureShaderParameters
   {
+    public UShaderCache.FShaderResourceParameter NvStereoFixTextureParameter;
+    public UShaderCache.FShaderResourceParameter SceneColorTextureParameter;
+    public UShaderCache.FShaderParameter SceneDepthCalcParameter;
+    public UShaderCache.FShaderResourceParameter SceneDepthTextureParameter;
+    public UShaderCache.FShaderParameter ScreenPositionScaleBiasParameter;
   }
 
   public class FMaterialShaderParameters
   {
+    public UShaderCache.FShaderParameter CameraWorldPosParameter;
+    public UShaderCache.FShaderParameter FoliageImpParameter;
+    public UShaderCache.FShaderParameter FoliageNormalizedRotationAxisAndAngleParameter;
+    public UShaderCache.FShaderParameter InvViewProjectionParameter;
+    public UShaderCache.FShaderParameter LocalToWorldParameter;
+    public UShaderCache.FShaderParameter ObjectOrientationParameter;
+    public UShaderCache.FShaderParameter ObjectWorldPositionAndRadiusParameter;
+    public UShaderCache.FShaderParameter OcclusionPercentageParameter;
+    public UShaderCache.FShaderParameter ViewProjectionParameter;
+    public UShaderCache.FShaderParameter ViewToWorldParameter;
+    public UShaderCache.FShaderParameter WindDirectionAndSpeedParameter;
+    public UShaderCache.FShaderParameter WorldToLocalParameter;
+    public UShaderCache.FShaderParameter WorldToViewParameter;
   }
 
   public class FMaterialPixelShaderParameters : FMaterialShaderParameters
   {
+    public UShaderCache.FShaderResourceParameter BeckmannTextureParameter;
+    public UShaderCache.FShaderParameter bEnableScreenDoorFadeParameter;
+    public UShaderCache.FShaderParameter DecalFarPlaneDistanceParameter;
+    public UShaderCache.FShaderParameter MatInverseGammaParameter;
+    public UShaderCache.FShaderParameter ObjectMacroUVScalesParameter;
+    public UShaderCache.FShaderParameter ObjectNDCPositionParameter;
+    public UShaderCache.FShaderParameter ObjectPostProjectionPositionParameter;
+    public UShaderCache.FSceneTextureShaderParameters SceneTextureParameters;
+    public UShaderCache.FShaderParameter ScreenDoorFadeSettings2Parameter;
+    public UShaderCache.FShaderParameter ScreenDoorFadeSettingsParameter;
+    public UShaderCache.FShaderResourceParameter ScreenDoorNoiseTextureParameter;
+    public UShaderCache.FShaderParameter TwoSidedSignParameter;
+    public List<UShaderCache.FUniformShaderResourceParameter> Uniform2DShaderResourceParameters;
+    public List<UShaderCache.FUniformShaderParameter> UniformPixelScalarParameters;
   }
 
   public class FMaterialVertexShaderParameters : FMaterialShaderParameters
   {
+    public List<UShaderCache.FUniformShaderParameter> UniformPixelScalarParameters;
   }
 
   public class FVertexFactoryParameters
   {
+    public List<FName> ParameterOrder;
+    public Dictionary<FName, UShaderCache.FShaderParameter> ShaderParameters;
+    public Dictionary<FName, UShaderCache.FShaderResourceParameter> ShaderResourceParameters;
+    public FName Type;
   }
 
   public class FShader
   {
+    public UShaderCache.FDOFShaderParameters DOFParameters;
+    public UObject.FGuid Id;
+    public UShaderCache.FShaderKey Key;
+    public UShaderCache.FMaterialPixelShaderParameters MaterialPixelParameters;
+    public UShaderCache.FMaterialVertexShaderParameters MaterialVertexParameters;
+    public uint NumInstructions;
+    public List<FName> ParameterOrder;
+    public UShaderCache.FSceneTextureShaderParameters SceneTextureParameters;
+    public Dictionary<FName, UShaderCache.FShaderParameter> ShaderParameters;
+    public Dictionary<FName, UShaderCache.FShaderResourceParameter> ShaderResourceParameters;
+    public UShaderCache.FShaderTarget Target;
+    public FName Type;
+    public UShaderCache.FVertexFactoryParameters VertexFactoryParameters;
   }
 
   public class FShaderRef
   {
+    public UObject.FGuid Id;
+    public FName Type;
   }
 
   public class FShaderMap
   {
+    public Dictionary<FName, UShaderCache.FShaderRef> Shaders;
   }
 
   public class FMeshMaterialShaderMap : FShaderMap
   {
+    public FName VertexFactoryType;
   }
 
   public class FMaterialShaderMap : FShaderMap
   {
+    public string FriendlyName;
+    public UObject.FGuid MaterialId;
+    public List<UShaderCache.FMeshMaterialShaderMap> MeshShaderMaps;
+    public int Platform;
+    public UMaterialInterface.FStaticParameterSet StaticParameters;
+    public UMaterialInterface.FUniformExpressionSet UniformExpressionSet;
   }
 
-  public ushort ChunkIndex;
-  public ushort UncompressedCodeLength;
-  public int UncompressedCodeOffset;
-  public List<byte> CompressedCode;
-  public int UncompressedSize;
-  public List<FCompressedShaderCodeChunk> CodeChunks;
-  public Dictionary<FGuid, FIndividualCompressedShaderInfo> CompressedShaderInfos;
-  public Dictionary<FName, FTypeSpecificCompressedShaderCode> ShaderTypeCompressedShaderCode;
-  public List<byte> Code;
-  public uint ParameterMapCRC;
-  public byte Frequency;
-  public byte Platform;
-  public ushort BaseIndex;
-  public ushort BufferIndex;
-  public ushort NumBytes;
-  public int Index;
-  public FShaderResourceParameter ShaderParameter;
-  public FName Type;
-  public ushort NumResources;
-  public ushort SamplerIndex;
-  public FShaderParameter PackedParameters0;
-  public FShaderParameter PackedParameters1;
-  public FShaderResourceParameter NvStereoFixTextureParameter;
-  public FShaderResourceParameter SceneColorTextureParameter;
-  public FShaderParameter SceneDepthCalcParameter;
-  public FShaderResourceParameter SceneDepthTextureParameter;
-  public FShaderParameter ScreenPositionScaleBiasParameter;
-  public FShaderParameter CameraWorldPosParameter;
-  public FShaderParameter FoliageImpParameter;
-  public FShaderParameter FoliageNormalizedRotationAxisAndAngleParameter;
-  public FShaderParameter InvViewProjectionParameter;
-  public FShaderParameter LocalToWorldParameter;
-  public FShaderParameter ObjectOrientationParameter;
-  public FShaderParameter ObjectWorldPositionAndRadiusParameter;
-  public FShaderParameter OcclusionPercentageParameter;
-  public FShaderParameter ViewProjectionParameter;
-  public FShaderParameter ViewToWorldParameter;
-  public FShaderParameter WindDirectionAndSpeedParameter;
-  public FShaderParameter WorldToLocalParameter;
-  public FShaderParameter WorldToViewParameter;
-  public FShaderResourceParameter BeckmannTextureParameter;
-  public FShaderParameter bEnableScreenDoorFadeParameter;
-  public FShaderParameter DecalFarPlaneDistanceParameter;
-  public FShaderParameter MatInverseGammaParameter;
-  public FShaderParameter ObjectMacroUVScalesParameter;
-  public FShaderParameter ObjectNDCPositionParameter;
-  public FShaderParameter ObjectPostProjectionPositionParameter;
-  public FSceneTextureShaderParameters SceneTextureParameters;
-  public FShaderParameter ScreenDoorFadeSettings2Parameter;
-  public FShaderParameter ScreenDoorFadeSettingsParameter;
-  public FShaderResourceParameter ScreenDoorNoiseTextureParameter;
-  public FShaderParameter TwoSidedSignParameter;
-  public List<FUniformShaderResourceParameter> Uniform2DShaderResourceParameters;
-  public List<FUniformShaderParameter> UniformPixelScalarParameters;
-  public List<FName> ParameterOrder;
-  public Dictionary<FName, FShaderParameter> ShaderParameters;
-  public Dictionary<FName, FShaderResourceParameter> ShaderResourceParameters;
-  public FDOFShaderParameters DOFParameters;
-  public FGuid Id;
-  public FShaderKey Key;
-  public FMaterialPixelShaderParameters MaterialPixelParameters;
-  public FMaterialVertexShaderParameters MaterialVertexParameters;
-  public uint NumInstructions;
-  public FShaderTarget Target;
-  public FVertexFactoryParameters VertexFactoryParameters;
-  public Dictionary<FGuid, FShader> Shaders;
-  public FName VertexFactoryType;
-  public string FriendlyName;
-  public FGuid MaterialId;
-  public List<FMeshMaterialShaderMap> MeshShaderMaps;
-  public UMaterialInterface.FStaticParameterSet StaticParameters;
-  public UMaterialInterface.FUniformExpressionSet UniformExpressionSet;
   public FCompressedShaderCodeCache CompressedCache;
   public Dictionary<UMaterialInterface.FStaticParameterSet, FMaterialShaderMap> MaterialShaderMap;
+  public byte Platform;
+  public Dictionary<FGuid, FShader> Shaders;
   public Dictionary<FName, uint> ShaderVersions;
   public Dictionary<FName, uint> VertexFactoryVersions;
 }
@@ -21222,14 +21284,34 @@ public partial class UStaticMesh : UObject
 {
   public class FStaticMeshVertex
   {
+    public UObject.FColor Color;
+    public ushort FragmentIndex;
+    public UObject.FVector Position;
+    public UObject.FPackedNormal TangentX;
+    public UObject.FPackedNormal TangentY;
+    public UObject.FPackedNormal TangentZ;
+    public UObject.FVector2D[] UVs = new UObject.FVector2D[4];
   }
 
   public partial class FFragmentRange : ISerialisable
   {
+    public int BaseIndex;
+    public int NumPrimitives;
   }
 
   public partial class FStaticMeshElement : ISerialisable
   {
+    public bool bEnableShadowCasting;
+    public bool EnableCollision;
+    public uint FirstIndex;
+    public List<UStaticMesh.FFragmentRange> Fragments;
+    public UMaterialInterface Material;
+    public int MaterialIndex;
+    public uint MaxVertexIndex;
+    public uint MinVertexIndex;
+    public string Name;
+    public uint NumTriangles;
+    public bool OldEnableCollision;
   }
 
   public partial class FStaticMeshTriangleBulkData : FUntypedBulkData_Mirror
@@ -21238,80 +21320,67 @@ public partial class UStaticMesh : UObject
 
   public partial class FStaticMeshVertexBuffer : ISerialisable
   {
+    public bool bUseFullPrecisionUVs;
+    public uint NumTexCoords;
+    public uint NumVertices;
+    public uint Stride;
+    public List<byte> UntypedData;
   }
 
   public partial class FPositionVertexBuffer : ISerialisable
   {
+    public List<UObject.FVector> Data;
+    public uint NumVertices;
+    public uint Stride;
   }
 
   public partial class FColorVertexBuffer : ISerialisable
   {
+    public List<UObject.FColor> Data;
+    public uint NumVertices;
+    public uint Stride;
   }
 
   public class FStaticMeshRenderData
   {
+    public UStaticMesh.FColorVertexBuffer ColorVertexBuffer;
+    public List<UStaticMesh.FStaticMeshElement> Elements;
+    public List<ushort> IndexBuffer;
+    public uint NumVertices;
+    public UStaticMesh.FPositionVertexBuffer PositionVertexBuffer;
+    public UStaticMesh.FStaticMeshTriangleBulkData RawTriangles;
+    public UStaticMesh.FStaticMeshVertexBuffer VertexBuffer;
+    public List<ushort> WireframeIndexBuffer;
   }
 
   public class FkDOP
   {
+    public float[] Max = new float[3];
+    public float[] Min = new float[3];
   }
 
   public class FkDOPNode
   {
+    public bool bIsLeaf;
+    public UStaticMesh.FkDOP BoundingVolume;
+    public ushort LeftNodeOrNumTriangles;
+    public ushort RightNodeOrStartIndex;
   }
 
   public class FkDOPCollisionTriangle
   {
+    public ushort MaterialIndex;
+    public ushort v1;
+    public ushort v2;
+    public ushort v3;
   }
 
   public class FkDOPTree
   {
+    public List<UStaticMesh.FkDOPNode> Nodes;
+    public List<UStaticMesh.FkDOPCollisionTriangle> Triangles;
   }
 
-  public FColor Color;
-  public ushort FragmentIndex;
-  public FVector Position;
-  public FPackedNormal TangentX;
-  public FPackedNormal TangentY;
-  public FPackedNormal TangentZ;
-  public FVector2D[] UVs = new FVector2D[4];
-  public int BaseIndex;
-  public int NumPrimitives;
-  public bool bEnableShadowCasting;
-  public bool EnableCollision;
-  public uint FirstIndex;
-  public List<FFragmentRange> Fragments;
-  public UMaterialInterface Material;
-  public ushort MaterialIndex;
-  public uint MaxVertexIndex;
-  public uint MinVertexIndex;
-  public string Name;
-  public uint NumTriangles;
-  public bool OldEnableCollision;
-  public bool bUseFullPrecisionUVs;
-  public uint NumTexCoords;
-  public uint NumVertices;
-  public uint Stride;
-  public List<byte> UntypedData;
-  public List<FColor> Data;
-  public FColorVertexBuffer ColorVertexBuffer;
-  public List<FStaticMeshElement> Elements;
-  public List<ushort> IndexBuffer;
-  public FPositionVertexBuffer PositionVertexBuffer;
-  public FStaticMeshTriangleBulkData RawTriangles;
-  public FStaticMeshVertexBuffer VertexBuffer;
-  public List<ushort> WireframeIndexBuffer;
-  public float[] Max = new float[3];
-  public float[] Min = new float[3];
-  public bool bIsLeaf;
-  public FkDOP BoundingVolume;
-  public ushort LeftNodeOrNumTriangles;
-  public ushort RightNodeOrStartIndex;
-  public ushort v1;
-  public ushort v2;
-  public ushort v3;
-  public List<FkDOPNode> Nodes;
-  public List<FkDOPCollisionTriangle> Triangles;
   public bool bCanBecomeDynamic;
   public URB_BodySetup BodySetup;
   public FBoxSphereBounds Bounds;
@@ -21382,30 +21451,31 @@ public partial class UPersistentCookerData : UObject
 {
   public class FCookedBulkDataInfo
   {
+    public uint SavedBulkDataFlags;
+    public int SavedBulkDataOffsetInFile;
+    public int SavedBulkDataSizeOnDisk;
+    public int SavedElementCount;
+    public FName TextureFileCacheName;
   }
 
   public class FCookedTextureFileCacheInfo
   {
+    public double LastSaved;
+    public UObject.FGuid TextureFileCacheGuid;
+    public FName TextureFileCacheName;
   }
 
   public class FCookedTextureUsageInfo
   {
+    public int DuplicatedMipSize;
+    public byte Format;
+    public byte LODGroup;
+    public List<string> PackageNames;
+    public int SizeX;
+    public int SizeY;
+    public int StoredOnceMipSize;
   }
 
-  public uint SavedBulkDataFlags;
-  public int SavedBulkDataOffsetInFile;
-  public int SavedBulkDataSizeOnDisk;
-  public int SavedElementCount;
-  public FName TextureFileCacheName;
-  public double LastSaved;
-  public FGuid TextureFileCacheGuid;
-  public int DuplicatedMipSize;
-  public byte Format;
-  public byte LODGroup;
-  public List<string> PackageNames;
-  public int SizeX;
-  public int SizeY;
-  public int StoredOnceMipSize;
   public List<string> ChildCookErrors;
   public List<string> ChildCookWarnings;
   public Dictionary<string, FCookedBulkDataInfo> CookedBulkDataInfoMap;
@@ -21421,63 +21491,66 @@ public partial class UNavigationMeshBase : UObject
 {
   public class FPolyReference
   {
+    public AActor.FActorReference OwningPylon;
+    public int PolyId;
   }
 
   public class FNavMeshEdgeBase
   {
+    public float DropHeight;
+    public UObject.FVector EdgeCenter;
+    public UObject.FVector EdgeExtent;
+    public byte EdgeGroupID;
+    public byte EdgeType;
+    public float EffectiveEdgeLength;
+    public UEngineTypes.FBasedPosition MoveDest;
+    public int MoveDir;
+    public ushort ObstaclePolyID;
+    public ushort OtherPylonVert0;
+    public ushort OtherPylonVert1;
+    public ushort Poly0;
+    public UNavigationMeshBase.FPolyReference Poly0Ref;
+    public ushort Poly1;
+    public UNavigationMeshBase.FPolyReference Poly1Ref;
+    public AActor.FActorReference RelActor;
+    public int RelItem;
+    public ushort Vert0;
+    public ushort Vert1;
   }
 
   public partial class FMeshVertex : FVector
   {
+    public List<ushort> PolyIndices;
   }
 
   public class FEdgeStorageDatum
   {
+    public FName ClassName;
+    public uint DataPtrOffset;
+    public ushort DataSize;
   }
 
   public class FNavMeshPolyBase
   {
+    public UObject.FBox BoxBounds;
+    public ushort Item;
+    public UObject.FVector PolyCenter;
+    public List<ACoverLink.FCoverReference> PolyCover;
+    public List<ushort> PolyEdges;
+    public float PolyHeight;
+    public UObject.FVector PolyNormal;
+    public List<ushort> PolyVerts;
   }
 
   public class FBorderEdgeInfo
   {
+    public ushort Poly;
+    public ushort Vert0;
+    public ushort Vert1;
   }
 
-  public AActor.FActorReference OwningPylon;
-  public int PolyId;
-  public float DropHeight;
-  public FVector EdgeCenter;
-  public FVector EdgeExtent;
-  public byte EdgeGroupID;
-  public byte EdgeType;
-  public float EffectiveEdgeLength;
-  public UEngineTypes.FBasedPosition MoveDest;
-  public int MoveDir;
-  public ushort ObstaclePolyID;
-  public ushort OtherPylonVert0;
-  public ushort OtherPylonVert1;
-  public ushort Poly0;
-  public FPolyReference Poly0Ref;
-  public ushort Poly1;
-  public FPolyReference Poly1Ref;
-  public AActor.FActorReference RelActor;
-  public int RelItem;
-  public ushort Vert0;
-  public ushort Vert1;
-  public List<ushort> PolyIndices;
-  public FName ClassName;
-  public uint DataPtrOffset;
-  public ushort DataSize;
-  public FBox BoxBounds;
-  public ushort Item;
-  public FVector PolyCenter;
-  public List<ACoverLink.FCoverReference> PolyCover;
-  public List<ushort> PolyEdges;
-  public float PolyHeight;
-  public FVector PolyNormal;
-  public List<ushort> PolyVerts;
-  public ushort Poly;
   public List<FBorderEdgeInfo> BorderEdgeSegments;
+  public FBox BoxBounds;
   public List<FNavMeshEdgeBase> Edges;
   public List<FEdgeStorageDatum> EdgeStorageData;
   public FMatrix LocalToWorld;

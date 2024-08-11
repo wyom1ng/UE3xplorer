@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3bootstrap", "ue3bootstra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3", "ue3\ue3.csproj", "{C4B0A278-8434-4982-B899-471DD071BB7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3viewer", "ue3viewer\ue3viewer.csproj", "{B3768689-E408-47B1-8BAE-8B557B4DEB61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3example", "ue3example\ue3example.csproj", "{BC11C2C9-AEFE-4F93-97ED-5F1E78B1C241}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{C4B0A278-8434-4982-B899-471DD071BB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4B0A278-8434-4982-B899-471DD071BB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4B0A278-8434-4982-B899-471DD071BB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3768689-E408-47B1-8BAE-8B557B4DEB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3768689-E408-47B1-8BAE-8B557B4DEB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3768689-E408-47B1-8BAE-8B557B4DEB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3768689-E408-47B1-8BAE-8B557B4DEB61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC11C2C9-AEFE-4F93-97ED-5F1E78B1C241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC11C2C9-AEFE-4F93-97ED-5F1E78B1C241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC11C2C9-AEFE-4F93-97ED-5F1E78B1C241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC11C2C9-AEFE-4F93-97ED-5F1E78B1C241}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
