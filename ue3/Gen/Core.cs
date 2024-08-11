@@ -781,7 +781,7 @@ public partial class ULinker : UObject
   public string Filepath;
   public List<FObjectImport> ImportMap;
   public UPackage LinkerRoot;
-  public List<int> NameMap;
+  public List<FName> NameMap;
   public FPointer PrecachedBuffer;
   public int PrecachedBufferSize;
   public FPackageFileSummary Summary;

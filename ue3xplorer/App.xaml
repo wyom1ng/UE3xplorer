@@ -1,7 +1,7 @@
-﻿<Application x:Class="ue3viewer.App"
+﻿<Application x:Class="ue3explorer.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ue3viewer"
+             xmlns:local="clr-namespace:ue3explorer"
              StartupUri="Startup.xaml">
     <Application.Resources>
          

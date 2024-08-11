@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3bootstrap", "ue3bootstra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3", "ue3\ue3.csproj", "{C4B0A278-8434-4982-B899-471DD071BB7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3viewer", "ue3viewer\ue3viewer.csproj", "{B3768689-E408-47B1-8BAE-8B557B4DEB61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3xplorer", "ue3xplorer\ue3xplorer.csproj", "{B3768689-E408-47B1-8BAE-8B557B4DEB61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ue3example", "ue3example\ue3example.csproj", "{BC11C2C9-AEFE-4F93-97ED-5F1E78B1C241}"
 EndProject

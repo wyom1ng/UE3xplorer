@@ -1,11 +1,11 @@
-﻿<Window x:Class="ue3viewer.PackageList"
+﻿<Window x:Class="ue3explorer.PackageContents"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:ue3viewer"
+        xmlns:local="clr-namespace:ue3explorer"
         mc:Ignorable="d"
-        Title="PackageList" Height="450" Width="800">
+        Title="UE3xplorer - Contents" Width="1024" Height="720" WindowState="Maximized">
     <Grid Name="Grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="64px" />
@@ -16,18 +16,18 @@
             <RowDefinition Height="32px" />
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.ColumnSpan="2" Name="PackagesDataGrid" IsReadOnly="True">
+        <DataGrid Grid.ColumnSpan="2" Name="EntriesDataGrid" IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="index" Binding="{Binding Index}" />
+                <DataGridTextColumn Header="outer" Binding="{Binding Outer}" />
+                <DataGridTextColumn Header="class" Binding="{Binding Class}" />
                 <DataGridTextColumn Header="name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="file size" Binding="{Binding FileSizeMiB, StringFormat=\{0:0.####\} MiB}" />
-                <DataGridTextColumn Header="compression" Binding="{Binding Compression}" />
-                <DataGridTextColumn Header="imports" Binding="{Binding Imports}" />
-                <DataGridTextColumn Header="exports" Binding="{Binding Exports}" />
-                <DataGridTextColumn Header="guid" Binding="{Binding Guid}" />
+                <DataGridTextColumn Header="size on disk" Binding="{Binding SizeOnDiskKiB, StringFormat=\{0:0.####\} KiB}" />
+                <DataGridTextColumn Header="flags" Binding="{Binding Flags}" />
                 <DataGridTemplateColumn Header="action">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="PackageView_Click">view</Button>
+                            <Button Click="PackageContent_Click">view</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

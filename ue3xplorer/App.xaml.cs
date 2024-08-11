@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Interop;
 
-namespace ue3viewer;
+namespace ue3explorer;
 
 /// <summary>
 /// Interaction logic for App.xaml

@@ -2,14 +2,13 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Input;
 using ue3;
 
-namespace ue3viewer;
+namespace ue3explorer;
 
 public partial class PackageList : Window
 {
-  struct PackageView
+  class PackageView
   {
     public string Name { get; set; }
     public double FileSizeMiB { get; set; }
@@ -67,6 +66,7 @@ public partial class PackageList : Window
 
       Label label = new Label();
       label.Content = "filter:";
+      label.Margin = new Thickness(0, 4, 8, 4);
       Grid.SetRow(label, 1);
       Grid.Children.Add(label);
 
@@ -94,6 +94,10 @@ public partial class PackageList : Window
 
   private void PackageView_Click(object sender, RoutedEventArgs e)
   {
+    PackageView view = ((FrameworkElement)sender).DataContext as PackageView;
+    
+    PackageContents contents = new PackageContents(view.Name);
+    contents.Show();
   }
 
   private string FormatCompression(uint flags)

@@ -2,13 +2,17 @@
 
 namespace ue3;
 
-public enum ECompressionFlags {
+public enum ECompressionFlags
+{
   /** No compression																*/
   None = 0x00,
+
   /** Compress with ZLIB															*/
   ZLIB = 0x01,
+
   /** Compress with LZO															*/
   LZO = 0x02,
+
   /** Compress with LZX															*/
   LZX = 0x04,
 };
@@ -37,10 +41,16 @@ public class FArchive
 {
   private int offset;
   private readonly byte[] underlying;
+  private string[] names;
 
   public FArchive(string FilePath)
   {
     underlying = File.ReadAllBytes(FilePath);
+  }
+
+  public void SetNames(string[] InNames)
+  {
+    names = InNames;
   }
 
   public void Seek(int position)
@@ -154,6 +164,14 @@ public class FArchive
     offset += indicatedLength;
   }
 
+  public void Serialise(ref FName name)
+  {
+    Serialise(ref name.PackageIndex);
+    Serialise(ref name.Number);
+
+    if (names != null) name.ResolveFrom(names);
+  }
+
   public void Serialise<T>(ref T[] values) where T : ISerialisable
   {
     int length = 0;
@@ -174,6 +192,20 @@ public class FArchive
     {
       T value = new T();
       value.Serialise(this);
+      values.Add(value);
+    }
+  }
+
+  public void Serialise(ref List<int> values)
+  {
+    int length = 0;
+    Serialise(ref length);
+
+    values = new List<int>(length);
+    for (int i = 0; i < length; ++i)
+    {
+      int value = 0;
+      Serialise(ref value);
       values.Add(value);
     }
   }

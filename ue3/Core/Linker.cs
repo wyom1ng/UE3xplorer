@@ -106,7 +106,10 @@ public partial class ULinker
   {
     public void Serialise(FArchive archive)
     {
-      throw new NotImplementedException();
+      archive.Serialise(ref ClassPackage);
+      archive.Serialise(ref ClassName);
+      archive.Serialise(ref OuterIndex);
+      archive.Serialise(ref ObjectName);
     }
   }
 
@@ -114,7 +117,19 @@ public partial class ULinker
   {
     public void Serialise(FArchive archive)
     {
-      throw new NotImplementedException();
+      archive.Serialise(ref ClassIndex);
+      archive.Serialise(ref SuperIndex);
+      archive.Serialise(ref OuterIndex);
+      archive.Serialise(ref ObjectName);
+      archive.Serialise(ref ArchetypeIndex);
+      archive.Serialise(ref ObjectFlags);
+      archive.Serialise(ref SerialSize);
+      archive.Serialise(ref SerialOffset);
+      archive.Serialise(ref ExportFlags);
+      archive.Serialise(ref GenerationNetObjectCount);
+      PackageGuid = new();
+      PackageGuid.Serialise(archive);
+      archive.Serialise(ref PackageFlags);
     }
   }
 }
@@ -123,13 +138,18 @@ public class ULinkerLoad : ULinker
 {
   public static Dictionary<string, string> FileCache = new();
   public static string Locale;
-  
+
+  public FObjectExport[] Exports;
+  public FObjectImport[] Imports;
+  public string[] Names;
+
+
   private FArchive archive;
 
   public static void InitFileCache(string FilePath, string InLocale)
   {
     Locale = InLocale;
-    
+
     foreach (string file in Directory.GetFiles(FilePath, "*.upk", SearchOption.TopDirectoryOnly))
     {
       string name = Path.GetFileNameWithoutExtension(file);
@@ -153,13 +173,64 @@ public class ULinkerLoad : ULinker
     }
   }
 
+  public FName GetEntryClass(int entryIndex)
+  {
+    if (entryIndex == 0) return new FName(EName.None);
+    if (entryIndex < 0) return Imports[-entryIndex - 1].ClassName;
+    return GetEntryName(Exports[entryIndex - 1].ClassIndex);
+  }
+
+  public FName GetEntryName(int entryIndex)
+  {
+    if (entryIndex == 0) return new FName(EName.None);
+    if (entryIndex < 0) return Imports[-entryIndex - 1].ObjectName;
+    return Exports[entryIndex - 1].ObjectName;
+  }
+
 
   public ULinkerLoad(string name, string file)
   {
+    Name = FName.ResolveName(name);
+
     archive = new FArchive(file);
     Summary = new();
     Summary.PackageName = name;
     Summary.PackagePath = file;
     Summary.Serialise(archive);
+  }
+
+  public void Load()
+  {
+    archive.Seek(Summary.NameOffset);
+    Names = new string[Summary.NameCount];
+    NameMap = new(Summary.NameCount);
+    for (int i = 0; i < Summary.NameCount; ++i)
+    {
+      ulong flags = 0;
+      string name = "";
+
+      archive.Serialise(ref name);
+      archive.Serialise(ref flags);
+
+      Names[i] = name;
+      NameMap.Add(FName.ResolveNameAndCorrectCasing(name));
+    }
+    archive.SetNames(Names);
+
+    archive.Seek(Summary.ImportOffset);
+    Imports = new FObjectImport[Summary.ImportCount];
+    for (int i = 0; i < Summary.ImportCount; ++i)
+    {
+      Imports[i] = new();
+      Imports[i].Serialise(archive);
+    }
+
+    archive.Seek(Summary.ExportOffset);
+    Exports = new FObjectExport[Summary.ExportCount];
+    for (int i = 0; i < Summary.ExportCount; ++i)
+    {
+      Exports[i] = new();
+      Exports[i].Serialise(archive);
+    }
   }
 }

@@ -5,7 +5,7 @@ using System.Windows.Interop;
 using Ookii.Dialogs.Wpf;
 using ue3;
 
-namespace ue3viewer;
+namespace ue3explorer;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
