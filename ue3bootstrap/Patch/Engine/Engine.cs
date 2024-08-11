@@ -1413,7 +1413,7 @@ public class UDrawBSPTreeComponent : UPrimitiveComponent
   public UModel Model;
 }
 
-public class UShadowMap2D;
+public class UShadowMap2D : Core.UObject {};
 
 [Native]
 public class UModelComponent : UPrimitiveComponent

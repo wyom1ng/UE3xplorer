@@ -430,7 +430,7 @@ public class UStruct(ULinker linker, FObjectExport export, int linkerIndex) : UF
 
   public int CppTextIndex;
 
-  public bool hasNativeSerialiser;
+  public bool IsNative;
   public int Line;
 
   public List<FName> Properties = new();
@@ -599,7 +599,7 @@ public class Bootstrap(string basePath)
 
           if (patch.BaseType.Name != "Object")
             patchedClass.SuperFieldName = FName.ResolveNameAndCorrectCasing(patch.BaseType.Name.Substring(1));
-          patchedClass.hasNativeSerialiser = Attribute.GetCustomAttribute(patch, typeof(NativeAttribute)) != null;
+          patchedClass.IsNative = Attribute.GetCustomAttribute(patch, typeof(NativeAttribute), false) != null;
 
 
           if (!ULinker.allStructuresByOuter.ContainsKey(classNameString))
@@ -628,6 +628,27 @@ public class Bootstrap(string basePath)
             }
 
             byOuter[structNameString] = patchedStruct;
+
+            patchedStruct.IsNative = Attribute.GetCustomAttribute(nested, typeof(NativeAttribute)) != null;
+            if (nested.BaseType.Name != "Object")
+              patchedStruct.SuperFieldName = FName.ResolveNameAndCorrectCasing(nested.BaseType.Name.Substring(1));
+
+            object structInstance = Activator.CreateInstance(nested);
+            foreach (var field in nested.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
+            {
+              var propertyName = FName.ResolveNameAndCorrectCasing(field.Name);
+              UProperty patchedProperty = CreatePropertyFromReflection(linker, structInstance, nested, field.FieldType, field.Name);
+
+              if (patchedClass.PropertyMap.ContainsKey(field.Name))
+              {
+                patchedClass.PropertyMap[field.Name] = patchedProperty;
+              }
+              else
+              {
+                patchedClass.PropertyMap[field.Name] = patchedProperty;
+                patchedClass.Properties.Add(propertyName);
+              }
+            }
           }
 
 
@@ -674,10 +695,22 @@ public class Bootstrap(string basePath)
         {
           UClass uClass = pair.Value;
 
+          bool anyInnerIsNative = uClass.IsNative || AnyStructInnerIsNative(linker, uClass.Name.Resolved);
+
+          string partialSpecifier = anyInnerIsNative ? "partial " : "";
           char prefix = linker.DerivesFromActor(uClass.Name.Resolved) ? 'A' : 'U';
           char superPrefix = uClass.Name == EName.Actor ? 'U' : prefix;
-          string superClass = uClass.SuperFieldName == EName.None ? "" : " : " + superPrefix + uClass.SuperFieldName.Resolved;
-          stream.Write("public class {0}{1}{2}\n{{\n", prefix, uClass.Name.Resolved, superClass);
+          string superClass;
+          if (uClass.SuperFieldName == EName.None)
+          {
+            superClass = " : ISerialisable";
+          }
+          else
+          {
+            superClass = " : " + superPrefix + uClass.SuperFieldName.Resolved;
+          }
+
+          stream.Write("public {0}class {1}{2}{3}\n{{\n", partialSpecifier, prefix, uClass.Name.Resolved, superClass);
 
           WriteStructInners(linker, uClass.Name.Resolved, stream);
           foreach (FName propertyName in uClass.Properties)
@@ -715,13 +748,13 @@ public class Bootstrap(string basePath)
     {
       case TypeCode.Byte:
         return new UByteProperty(linker, fakeExport, -1);
-      
+
       case TypeCode.UInt16:
         return new UWordNativeProperty(linker, fakeExport, -1);
 
       case TypeCode.Int32:
         return new UIntProperty(linker, fakeExport, -1);
-      
+
       case TypeCode.UInt32:
         return new UDwordNativeProperty(linker, fakeExport, -1);
 
@@ -873,6 +906,22 @@ public class Bootstrap(string basePath)
     return name;
   }
 
+  private bool AnyStructInnerIsNative(ULinker linker, string outerName)
+  {
+    if (linker.structuresByOuter.ContainsKey(outerName))
+    {
+      Dictionary<string, UStruct> byOuter = linker.structuresByOuter[outerName];
+
+      foreach (var structPair in byOuter)
+      {
+        if (structPair.Value.IsNative) return true;
+        if (AnyStructInnerIsNative(linker, structPair.Key)) return true;
+      }
+    }
+
+    return false;
+  }
+
   private void WriteStructInners(ULinker linker, string outerName, StreamWriter stream, int indentLevel = 2)
   {
     string indent = new string(' ', indentLevel);
@@ -885,8 +934,20 @@ public class Bootstrap(string basePath)
       {
         UStruct uStruct = structPair.Value;
 
-        string superStruct = uStruct.SuperFieldName == EName.None ? "" : " : F" + uStruct.SuperFieldName.Resolved;
-        stream.Write(indent + "public class F{0}{1}\n", uStruct.Name.Resolved, superStruct);
+        bool anyInnerIsNative = uStruct.IsNative || AnyStructInnerIsNative(linker, uStruct.Name.Resolved);
+        string partialSpecifier = anyInnerIsNative ? "partial " : "";
+
+        string superStruct;
+        if (uStruct.SuperFieldName == EName.None)
+        {
+          superStruct = uStruct.IsNative ? " : ISerialisable" : "";
+        }
+        else
+        {
+          superStruct = " : F" + uStruct.SuperFieldName.Resolved;
+        }
+
+        stream.Write(indent + "public {0}class F{1}{2}\n", partialSpecifier, uStruct.Name.Resolved, superStruct);
         stream.Write(indent + "{\n");
 
         WriteStructInners(linker, uStruct.Name.Resolved, stream, indentLevel + 2);

@@ -97,7 +97,7 @@ public enum AlphaBlendType
   ABT_MAX,
 }
 
-public class UObject
+public partial class UObject : ISerialisable
 {
   public class FInterpCurvePointFloat
   {
@@ -218,18 +218,18 @@ public class UObject
     public float Scale;
   }
 
-  public class FPointer
+  public partial class FPointer : ISerialisable
   {
     public int Dummy;
   }
 
-  public class FQWord
+  public partial class FQWord : ISerialisable
   {
     public int A;
     public int B;
   }
 
-  public class FDouble
+  public partial class FDouble : ISerialisable
   {
     public int A;
     public int B;
@@ -274,7 +274,7 @@ public class UObject
     public UObject.FSet_Mirror Pairs;
   }
 
-  public class FUntypedBulkData_Mirror
+  public partial class FUntypedBulkData_Mirror : ISerialisable
   {
     public UObject.FPointer VfTable;
     public int BulkDataFlags;
@@ -325,7 +325,7 @@ public class UObject
     public UObject.FArray_Mirror SecondaryData;
   }
 
-  public class FGuid
+  public partial class FGuid : ISerialisable
   {
     public int A;
     public int B;
@@ -333,14 +333,14 @@ public class UObject
     public int D;
   }
 
-  public class FVector
+  public partial class FVector : ISerialisable
   {
     public float X;
     public float Y;
     public float Z;
   }
 
-  public class FColor
+  public partial class FColor : ISerialisable
   {
     public byte B;
     public byte G;
@@ -348,7 +348,7 @@ public class UObject
     public byte A;
   }
 
-  public class FLinearColor
+  public partial class FLinearColor : ISerialisable
   {
     public float R;
     public float G;
@@ -356,14 +356,14 @@ public class UObject
     public float A;
   }
 
-  public class FBox
+  public partial class FBox : ISerialisable
   {
     public UObject.FVector Min;
     public UObject.FVector Max;
     public byte IsValid;
   }
 
-  public class FVector4
+  public partial class FVector4 : ISerialisable
   {
     public float X;
     public float Y;
@@ -371,31 +371,31 @@ public class UObject
     public float W;
   }
 
-  public class FVector2D
+  public partial class FVector2D : ISerialisable
   {
     public float X;
     public float Y;
   }
 
-  public class FTwoVectors
+  public partial class FTwoVectors : ISerialisable
   {
     public UObject.FVector v1;
     public UObject.FVector v2;
   }
 
-  public class FPlane : FVector
+  public partial class FPlane : FVector
   {
     public float W;
   }
 
-  public class FRotator
+  public partial class FRotator : ISerialisable
   {
     public int Pitch;
     public int Yaw;
     public int Roll;
   }
 
-  public class FQuat
+  public partial class FQuat : ISerialisable
   {
     public float X;
     public float Y;
@@ -439,14 +439,14 @@ public class UObject
     public AlphaBlendType BlendType;
   }
 
-  public class FBoxSphereBounds
+  public partial class FBoxSphereBounds : ISerialisable
   {
     public UObject.FVector Origin;
     public UObject.FVector BoxExtent;
     public float SphereRadius;
   }
 
-  public class FMatrix
+  public partial class FMatrix : ISerialisable
   {
     public UObject.FPlane XPlane;
     public UObject.FPlane YPlane;
@@ -460,43 +460,43 @@ public class UObject
     public float Height;
   }
 
-  public class FPackedNormal
+  public partial class FPackedNormal : ISerialisable
   {
   }
 
-  public class FVector2DHalf
+  public partial class FVector2DHalf : ISerialisable
   {
   }
 
-  public class FSphere
+  public partial class FSphere : ISerialisable
   {
   }
 
-  public class FQuantizedSHVector
+  public partial class FQuantizedSHVector : ISerialisable
   {
   }
 
-  public class FQuantizedSHVectorRGB
+  public partial class FQuantizedSHVectorRGB : ISerialisable
   {
   }
 
-  public class FWordBulkData
+  public partial class FWordBulkData : FUntypedBulkData_Mirror
   {
   }
 
-  public class FIntBulkData
+  public partial class FIntBulkData : FUntypedBulkData_Mirror
   {
   }
 
-  public class FURL
+  public partial class FURL : ISerialisable
   {
   }
 
-  public class FGuidPair
+  public partial class FGuidPair : ISerialisable
   {
   }
 
-  public class FPushedState
+  public partial class FPushedState : ISerialisable
   {
   }
 
@@ -504,15 +504,15 @@ public class UObject
   {
   }
 
-  public class FTextureLookup
+  public partial class FTextureLookup : ISerialisable
   {
   }
 
-  public class FMaterial
+  public partial class FMaterial : ISerialisable
   {
   }
 
-  public class FMaterialResource
+  public partial class FMaterialResource : FMaterial
   {
   }
 
@@ -529,6 +529,55 @@ public class UObject
   public FName Name;
   public UClass Class;
   public UObject ObjectArchetype;
+  public uint Packed;
+  public ushort X;
+  public ushort Y;
+  public FVector Center;
+  public float W;
+  public ushort MaxCoefficient;
+  public ushort MinCoefficient;
+  public byte[] V = new byte[9];
+  public FQuantizedSHVector B;
+  public FQuantizedSHVector G;
+  public FQuantizedSHVector R;
+  public List<byte> BulkData;
+  public string Host;
+  public string Map;
+  public List<string> Op;
+  public int Port;
+  public string Portal;
+  public string Protocol;
+  public int Valid;
+  public FGuid Guid;
+  public uint RefId;
+  public UStruct Node;
+  public int Offset;
+  public UState State;
+  public ushort LatentAction;
+  public UObject Object;
+  public uint ProbeMask;
+  public UState StateNode;
+  public List<FPushedState> StateStack;
+  public int TexCoordIndex;
+  public int TextureIndex;
+  public float UScale;
+  public float VScale;
+  public bool bUsesDynamicParameter;
+  public bool bUsesLightmapUVs;
+  public bool bUsesMaterialVertexPositionOffset;
+  public bool bUsesSceneColor;
+  public bool bUsesSceneDepth;
+  public List<string> CompileErrors;
+  public uint DummyDroppedFallbackComponents;
+  public FGuid Id;
+  public int MaxTextureDependencyLength;
+  public uint NumUserTexCoords;
+  public Dictionary<UMaterialExpression, int> TextureDependencyLengthMap;
+  public List<FTextureLookup> TextureLookups;
+  public List<UTexture> UniformExpressionTextures;
+  public uint unknown8C;
+  public uint UsingTransforms;
+  public UMaterial Material;
 }
 
 public class UComponent : UObject
@@ -602,29 +651,31 @@ public class UHelpCommandlet : UCommandlet
 {
 }
 
-public class UTextBuffer : UObject
+public partial class UTextBuffer : UObject
 {
   public int Pos;
   public string Text;
   public int Top;
 }
 
-public class UMetaData : UObject
+public partial class UMetaData : UObject
 {
   public Dictionary<UObject, Dictionary<FName, string>> ObjectMetaDataMap;
 }
 
-public class UObjectRedirector : UObject
+public partial class UObjectRedirector : UObject
 {
   public UObject DestinationObject;
 }
 
-public class UPackage : UObject
+public partial class UPackage : UObject
 {
-  public class FLevelGuids
+  public partial class FLevelGuids : ISerialisable
   {
   }
 
+  public List<FGuid> Guids;
+  public FName LevelName;
   public bool bHasBeenFullyLoaded;
   public bool bIsBound;
   public int CurrentNumNetObjects;
@@ -640,9 +691,9 @@ public class UPackage : UObject
   public uint PackageFlags;
 }
 
-public class ULinker : UObject
+public partial class ULinker : UObject
 {
-  public class FCompressedChunk
+  public partial class FCompressedChunk : ISerialisable
   {
   }
 
@@ -650,18 +701,68 @@ public class ULinker : UObject
   {
   }
 
-  public class FPackageFileSummary
+  public partial class FPackageFileSummary : ISerialisable
   {
   }
 
-  public class FObjectImport
+  public partial class FObjectImport : ISerialisable
   {
   }
 
-  public class FObjectExport
+  public partial class FObjectExport : ISerialisable
   {
   }
 
+  public int CompressedOffset;
+  public int CompressedSize;
+  public int UncompressedOffset;
+  public int UncompressedSize;
+  public int ExportCount;
+  public int NameCount;
+  public int NetObjectCount;
+  public List<string> AdditionalPackagesToCook;
+  public List<FCompressedChunk> CompressedChunks;
+  public uint CompressionFlags;
+  public int CookedContentVersion;
+  public int DependsOffset;
+  public int EngineVersion;
+  public int ExportGuidsCount;
+  public int ExportOffset;
+  public ushort FileVersion;
+  public ushort FileVersionLicensee;
+  public string FolderName;
+  public List<FGenerationInfo> Generations;
+  public FGuid Guid;
+  public int ImportCount;
+  public int ImportExportGuidsOffset;
+  public int ImportGuidsCount;
+  public int ImportOffset;
+  public int NameOffset;
+  public uint PackageFlags;
+  public uint PackageSource;
+  public int Tag;
+  public int ThumbnailTableOffset;
+  public int TotalHeaderSize;
+  public FName ClassName;
+  public FName ClassPackage;
+  public FName ObjectName;
+  public int OuterIndex;
+  public int SourceIndex;
+  public ULinker SourceLinker;
+  public UObject XObject;
+  public int _iHashNext;
+  public UObject _Object;
+  public int ArchetypeIndex;
+  public int ClassIndex;
+  public uint ExportFlags;
+  public List<int> GenerationNetObjectCount;
+  public ulong ObjectFlags;
+  public FGuid PackageGuid;
+  public int ScriptSerializationEndOffset;
+  public int ScriptSerializationStartOffset;
+  public int SerialOffset;
+  public int SerialSize;
+  public int SuperIndex;
   public string Basepath;
   public List<List<int>> DependsMap;
   public Dictionary<FGuid, int> ExportGuidsAwaitingLookup;
@@ -676,23 +777,23 @@ public class ULinker : UObject
   public FPackageFileSummary Summary;
 }
 
-public class UField : UObject
+public partial class UField : UObject
 {
   public UField Next;
   public UField SuperField;
 }
 
-public class UConst : UField
+public partial class UConst : UField
 {
   public string Value;
 }
 
-public class UEnum : UField
+public partial class UEnum : UField
 {
   public List<FName> Names;
 }
 
-public class UProperty : UField
+public partial class UProperty : UField
 {
   public int ArrayDim;
   public FName ArraySizeEnum;
@@ -701,12 +802,20 @@ public class UProperty : UField
   public ushort RepOffset;
 }
 
-public class UStruct : UField
+public partial class UStruct : UField
 {
-  public class FPropertyTag
+  public partial class FPropertyTag : ISerialisable
   {
   }
 
+  public int ArrayIndex;
+  public byte BoolVal;
+  public FName EnumName;
+  public FName Name;
+  public int Size;
+  public int SizeOffset;
+  public FName StructName;
+  public FName Type;
   public UField Children;
   public UTextBuffer CppText;
   public int Line;
@@ -719,7 +828,7 @@ public class UStruct : UField
   public int TextPos;
 }
 
-public class UFunction : UStruct
+public partial class UFunction : UStruct
 {
   public FName FriendlyName;
   public uint FunctionFlags;
@@ -728,13 +837,13 @@ public class UFunction : UStruct
   public ushort ReplicationOffset;
 }
 
-public class UScriptStruct : UStruct
+public partial class UScriptStruct : UStruct
 {
   public List<byte> StructDefaults;
   public uint StructFlags;
 }
 
-public class UState : UStruct
+public partial class UState : UStruct
 {
   public Dictionary<FName, UFunction> FuncMap;
   public ushort LabelTableOffset;
@@ -742,12 +851,14 @@ public class UState : UStruct
   public uint StateFlags;
 }
 
-public class UClass : UState
+public partial class UClass : UState
 {
-  public class FImplementedInterface
+  public partial class FImplementedInterface : ISerialisable
   {
   }
 
+  public UClass Class;
+  public UProperty PointerProperty;
   public List<FName> AutoCollapseCategories;
   public List<FName> AutoExpandCategories;
   public FName ClassConfigName;
@@ -761,7 +872,7 @@ public class UClass : UState
   public List<FImplementedInterface> Interfaces;
 }
 
-public class UArrayProperty : UProperty
+public partial class UArrayProperty : UProperty
 {
   public UProperty Inner;
 }
@@ -771,12 +882,12 @@ public class UBoolProperty : UProperty
   public uint BitMask;
 }
 
-public class UByteProperty : UProperty
+public partial class UByteProperty : UProperty
 {
   public UEnum Enum;
 }
 
-public class UDelegateProperty : UProperty
+public partial class UDelegateProperty : UProperty
 {
   public UFunction Function;
   public UFunction SourceDelegate;
@@ -786,7 +897,7 @@ public class UFloatProperty : UProperty
 {
 }
 
-public class UInterfaceProperty : UProperty
+public partial class UInterfaceProperty : UProperty
 {
   public UClass InterfaceClass;
 }
@@ -795,7 +906,7 @@ public class UIntProperty : UProperty
 {
 }
 
-public class UMapProperty : UProperty
+public partial class UMapProperty : UProperty
 {
   public UProperty Key;
   public UProperty Value;
@@ -809,17 +920,17 @@ public class UStrProperty : UProperty
 {
 }
 
-public class UStructProperty : UProperty
+public partial class UStructProperty : UProperty
 {
   public UScriptStruct Struct;
 }
 
-public class UObjectProperty : UProperty
+public partial class UObjectProperty : UProperty
 {
   public UClass PropertyClass;
 }
 
-public class UClassProperty : UObjectProperty
+public partial class UClassProperty : UObjectProperty
 {
   public UClass MetaClass;
 }
