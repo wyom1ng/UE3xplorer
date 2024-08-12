@@ -17,11 +17,8 @@ public partial class PackageContents : Window
   class EntryView
   {
     public int Index { get; set; }
-
     public string Outer { get; set; }
-
     public string Class { get; set; }
-
     public string Name { get; set; }
     public double SizeOnDiskKiB { get; set; }
     public string Flags { get; set; }
@@ -55,7 +52,7 @@ public partial class PackageContents : Window
 
   private void LoadPackage()
   {
-    loader.Load();
+    loader.LoadImportExports();
 
     int index = 0;
     foreach (ULinker.FObjectExport export in loader.Exports)
@@ -64,7 +61,10 @@ public partial class PackageContents : Window
 
       view.Index = index++;
 
-      view.Outer = loader.GetEntryClass(export.OuterIndex).Resolved + "'" + loader.GetEntryName(export.OuterIndex).Resolved;
+      if (export.OuterIndex != 0)
+        view.Outer = loader.GetEntryClass(export.OuterIndex).Resolved + "'" + loader.GetEntryName(export.OuterIndex).Resolved;
+      else view.Outer = "None";
+
       view.Class = loader.GetEntryName(export.ClassIndex).Resolved;
       view.Name = export.ObjectName.Resolved;
       view.SizeOnDiskKiB = export.SerialSize / 1024.0;
@@ -111,5 +111,8 @@ public partial class PackageContents : Window
 
   private void PackageContent_Click(object sender, RoutedEventArgs e)
   {
+    EntryView view = ((FrameworkElement)sender).DataContext as EntryView;
+    UObject Obj = loader.LoadExport(loader.Exports[view.Index]);
+    loader.FullyLoadObject(Obj);
   }
 }

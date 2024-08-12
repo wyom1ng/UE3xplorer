@@ -581,7 +581,7 @@ public partial class UObject : ISerialisable
   public UObject ObjectArchetype;
 }
 
-public class UComponent : UObject
+public partial class UComponent : UObject
 {
   public UClass TemplateOwnerClass;
   public FName TemplateName;

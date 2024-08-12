@@ -19,9 +19,9 @@
         <DataGrid Grid.ColumnSpan="2" Name="EntriesDataGrid" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="index" Binding="{Binding Index}" />
-                <DataGridTextColumn Header="outer" Binding="{Binding Outer}" />
-                <DataGridTextColumn Header="class" Binding="{Binding Class}" />
                 <DataGridTextColumn Header="name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="class" Binding="{Binding Class}" />
+                <DataGridTextColumn Header="outer" Binding="{Binding Outer}" />
                 <DataGridTextColumn Header="size on disk" Binding="{Binding SizeOnDiskKiB, StringFormat=\{0:0.####\} KiB}" />
                 <DataGridTextColumn Header="flags" Binding="{Binding Flags}" />
                 <DataGridTemplateColumn Header="action">

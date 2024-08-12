@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace ue3;
 
@@ -46,13 +47,13 @@ public partial class ULinker
       switch (FileVersionRaw & 0xffff)
       {
         case 902:
-          FileVersion = (ushort)EUnrealEngineObjectVersion.VER_ADD_NORMAL_PARAMETERS;
+          FileVersion = (ushort)EFileVersion.ADD_NORMAL_PARAMETERS;
           break;
         case 903:
-          FileVersion = (ushort)EUnrealEngineObjectVersion.VER_ANIMNOTIFY_TRAIL_SAMPLEFRAMERATE;
+          FileVersion = (ushort)EFileVersion.ANIMNOTIFY_TRAIL_SAMPLEFRAMERATE;
           break;
         case 904:
-          FileVersion = (ushort)EUnrealEngineObjectVersion.VER_VISUALIZETEXTURE;
+          FileVersion = (ushort)EFileVersion.VISUALIZETEXTURE;
           break;
         default:
           FileVersion = (ushort)(FileVersionRaw & 0xffff);
@@ -72,7 +73,7 @@ public partial class ULinker
       archive.Serialise(ref ImportOffset);
       archive.Serialise(ref DependsOffset);
 
-      if (FileVersion >= (ushort)EUnrealEngineObjectVersion.VER_ADDED_CROSSLEVEL_REFERENCES)
+      if (FileVersion >= (ushort)EFileVersion.ADDED_CROSSLEVEL_REFERENCES)
       {
         archive.Serialise(ref ImportExportGuidsOffset);
         archive.Serialise(ref ImportGuidsCount);
@@ -83,7 +84,7 @@ public partial class ULinker
         ImportExportGuidsOffset = -1;
       }
 
-      if (FileVersion >= (ushort)EUnrealEngineObjectVersion.VER_ASSET_THUMBNAILS_IN_PACKAGES)
+      if (FileVersion >= (ushort)EFileVersion.ASSET_THUMBNAILS_IN_PACKAGES)
         archive.Serialise(ref ThumbnailTableOffset);
 
       Guid = new();
@@ -97,7 +98,7 @@ public partial class ULinker
       archive.Serialise(ref CompressedChunks);
       archive.Serialise(ref PackageSource);
 
-      if (FileVersion >= (ushort)EUnrealEngineObjectVersion.VER_ADDITIONAL_COOK_PACKAGE_SUMMARY)
+      if (FileVersion >= (ushort)EFileVersion.ADDITIONAL_COOK_PACKAGE_SUMMARY)
         archive.Serialise(ref AdditionalPackagesToCook);
     }
   }
@@ -132,6 +133,14 @@ public partial class ULinker
       archive.Serialise(ref PackageFlags);
     }
   }
+
+  public virtual void FullyLoadObject(UObject InObject)
+  {
+  }
+
+  public virtual void SerialiseObjectRef<T>(ref T InObject) where T : UObject
+  {
+  }
 }
 
 public class ULinkerLoad : ULinker
@@ -165,10 +174,18 @@ public class ULinkerLoad : ULinker
 
   public static IEnumerable<FPackageFileSummary> LoadSummaries()
   {
+    var asm = Assembly.GetExecutingAssembly();
+    foreach (Type type in asm.GetTypes().Where(t => t == typeof(UObject) || t.IsSubclassOf(typeof(UObject))))
+    {
+      GetStaticClass(type.Name.Substring(1));
+    }
+
     foreach (var pair in FileCache)
     {
       ULinkerLoad loader = new ULinkerLoad(pair.Key, pair.Value);
+      loader.Class = GetStaticClass<ULinkerLoad>();
       GObjLoaders[pair.Key] = loader;
+      GObjObjects[loader.GetPath()] = loader;
       yield return loader.Summary;
     }
   }
@@ -193,14 +210,122 @@ public class ULinkerLoad : ULinker
     Name = FName.ResolveName(name);
 
     archive = new FArchive(file);
+    archive.SetSourceLinker(this);
+
     Summary = new();
     Summary.PackageName = name;
     Summary.PackagePath = file;
     Summary.Serialise(archive);
+    archive.Version = (EFileVersion)Summary.FileVersion;
   }
 
-  public void Load()
+  public UObject LoadExport(FObjectExport Export)
   {
+    if (Export._Object != null) return Export._Object;
+
+    UObject outer = LoadByIndex(Export.OuterIndex);
+    // loading Outer loaded this object
+    if (Export._Object != null) return Export._Object;
+
+    UObject CreatedObject;
+    if (Export.ClassIndex == 0) // this is a class
+    {
+      CreatedObject = GetStaticClass(Export.ObjectName.Resolved);
+      CreatedObject.Class = GetStaticClass<UClass>();
+    }
+    else
+    {
+      FName ClassName = GetEntryName(Export.ClassIndex);
+      Type ClassType = Type.GetType("ue3.U" + ClassName.Resolved);
+      if (ClassType == null) ClassType = Type.GetType("ue3.A" + ClassName.Resolved);
+      if (ClassType == null) throw new PackageCorruptException("unknown class");
+
+      Debug.Assert(ClassType.IsSubclassOf(typeof(UObject)));
+      CreatedObject = (UObject)Activator.CreateInstance(ClassType);
+      CreatedObject.Class = (UClass)LoadByIndex(Export.ClassIndex);
+      Debug.Assert(CreatedObject.Class != null);
+
+      // loading Class loaded this object
+      if (Export._Object != null) return Export._Object;
+    }
+
+    CreatedObject.Outer = outer;
+    CreatedObject.Name = Export.ObjectName;
+    CreatedObject.Linker = this;
+    CreatedObject.LinkerIndex = Array.FindIndex(Exports, match => match == Export);
+    CreatedObject.ObjectFlags = Export.ObjectFlags;
+    CreatedObject.SetFlag(EObjectFlags.RF_NeedLoad);
+
+    GObjObjects[CreatedObject.GetPath()] = CreatedObject;
+    return Export._Object = CreatedObject;
+  }
+
+  public UObject LoadImport(FObjectImport Import)
+  {
+    if (Import.XObject != null) return Import.XObject;
+
+    if (Import.ClassName == EName.Class)
+    {
+      UObject ExistingObject = GetStaticClass(Import.ObjectName.Resolved);
+      Import.SourceLinker = ExistingObject.Linker;
+      Import.SourceIndex = ExistingObject.LinkerIndex;
+      Import.XObject = ExistingObject;
+      return ExistingObject;
+    }
+
+    string path = "";
+    FName OuterName = GetEntryName(Import.OuterIndex);
+    if (Import.OuterIndex != 0) path += OuterName.Resolved + ":";
+    path += Import.ClassName.Resolved + "'";
+    path += Import.ObjectName.Resolved;
+
+    if (GObjObjects.ContainsKey(path))
+    {
+      UObject ExistingObject = GObjObjects[path];
+      Import.SourceLinker = ExistingObject.Linker;
+      Import.SourceIndex = ExistingObject.LinkerIndex;
+      Import.XObject = ExistingObject;
+      return ExistingObject;
+    }
+
+    GObjLoaders[Import.ClassPackage.Resolved].LoadImportExports();
+    if (GObjObjects.ContainsKey(path))
+    {
+      UObject ExistingObject = GObjObjects[path];
+      Import.SourceLinker = ExistingObject.Linker;
+      Import.SourceIndex = ExistingObject.LinkerIndex;
+      Import.XObject = ExistingObject;
+      return ExistingObject;
+    }
+
+    if (OuterName != EName.None)
+    {
+      GObjLoaders[OuterName.Resolved].LoadImportExports();
+      if (GObjObjects.ContainsKey(path))
+      {
+        UObject ExistingObject = GObjObjects[path];
+        Import.SourceLinker = ExistingObject.Linker;
+        Import.SourceIndex = ExistingObject.LinkerIndex;
+        Import.XObject = ExistingObject;
+        return ExistingObject;
+      }
+    }
+
+    // @TODO: Import.ClassName == ObjectRedirector
+    return null;
+  }
+
+  public UObject LoadByIndex(int index)
+  {
+    if (index == 0) return null;
+    if (index < 0) return LoadImport(Imports[-index - 1]);
+    else return LoadExport(Exports[index - 1]);
+  }
+
+  public void LoadImportExports()
+  {
+    if (Names != null) return; // already loaded
+
     archive.Seek(Summary.NameOffset);
     Names = new string[Summary.NameCount];
     NameMap = new(Summary.NameCount);
@@ -215,6 +340,7 @@ public class ULinkerLoad : ULinker
       Names[i] = name;
       NameMap.Add(FName.ResolveNameAndCorrectCasing(name));
     }
+
     archive.SetNames(Names);
 
     archive.Seek(Summary.ImportOffset);
@@ -231,6 +357,78 @@ public class ULinkerLoad : ULinker
     {
       Exports[i] = new();
       Exports[i].Serialise(archive);
+    }
+  }
+
+  public override void FullyLoadObject(UObject InObject)
+  {
+    if (!InObject.HasAnyFlags(EObjectFlags.RF_NeedLoad)) return;
+    if (InObject.Linker != this)
+    {
+      InObject.Linker.FullyLoadObject(InObject);
+      return;
+    }
+
+    if (InObject.IsA<UField>())
+    {
+      UField InStruct = (UField)InObject;
+      if (InStruct.SuperField != null) FullyLoadObject(InStruct.SuperField);
+      // loading the `SuperField` may have loaded us as well
+      if (!InStruct.HasAnyFlags(EObjectFlags.RF_NeedLoad)) return;
+    }
+
+    InObject.ClearFlag(EObjectFlags.RF_NeedLoad);
+
+    if (InObject.HasAnyFlags(EObjectFlags.RF_ClassDefaultObject))
+    {
+      // @TODO
+    }
+    else
+    {
+      FObjectExport Export = Exports[InObject.LinkerIndex];
+      archive.Seek(Export.SerialOffset);
+
+      InObject.Serialise(archive);
+
+      int SerialisedBytes = archive.Tell() - Export.SerialOffset;
+      if (SerialisedBytes < Export.SerialSize)
+      {
+        Debug.WriteLine("failed to fully serialise {0}'{1}, missed {2} bytes", InObject.Class.Name.Resolved, InObject.Name.Resolved,
+          Export.SerialSize - SerialisedBytes);
+      }
+      else
+      {
+        Debug.WriteLine("failed to serialise {0}'{1}, out of bounds by {2} bytes", InObject.Class.Name.Resolved, InObject.Name.Resolved,
+          SerialisedBytes - Export.SerialSize);
+      }
+    }
+  }
+
+  public override void SerialiseObjectRef<T>(ref T InObject)
+  {
+    int Index = 0;
+    archive.Serialise(ref Index);
+
+    if (Index == 0)
+    {
+      InObject = null;
+      return;
+    }
+
+    if (Index < 0)
+    {
+      UObject xObject = Imports[-Index - 1].XObject;
+      if (xObject != null) // some imports may be severed
+      {
+        if (!(xObject is T)) throw new PackageCorruptException();
+        InObject = (T)xObject;
+      }
+    }
+    else
+    {
+      UObject xObject = Exports[Index - 1]._Object;
+      if (!(xObject is T)) throw new PackageCorruptException();
+      InObject = (T)xObject;
     }
   }
 }

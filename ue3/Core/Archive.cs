@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 
 namespace ue3;
 
@@ -39,9 +40,12 @@ public interface ISerialisable
 
 public class FArchive
 {
+  public EFileVersion Version;
+  
   private int offset;
   private readonly byte[] underlying;
   private string[] names;
+  private ULinker sourceLinker;
 
   public FArchive(string FilePath)
   {
@@ -51,6 +55,11 @@ public class FArchive
   public void SetNames(string[] InNames)
   {
     names = InNames;
+  }
+
+  public void SetSourceLinker(ULinker linker)
+  {
+    sourceLinker = linker;
   }
 
   public void Seek(int position)
@@ -170,6 +179,11 @@ public class FArchive
     Serialise(ref name.Number);
 
     if (names != null) name.ResolveFrom(names);
+  }
+
+  public void Serialise<T>(ref T value) where T : UObject
+  {
+    sourceLinker.SerialiseObjectRef<T>(ref value);
   }
 
   public void Serialise<T>(ref T[] values) where T : ISerialisable

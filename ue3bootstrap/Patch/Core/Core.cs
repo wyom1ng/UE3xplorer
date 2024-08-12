@@ -222,7 +222,7 @@ public class UObject
   public FStateFrame StateFrame;
 }
 
-[StructLayout(LayoutKind.Sequential)]
+[Native, StructLayout(LayoutKind.Sequential)]
 public class UComponent : UObject
 {
   public FName TemplateName;
