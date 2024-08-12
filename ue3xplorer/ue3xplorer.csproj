@@ -3,7 +3,7 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net8.0-windows</TargetFramework>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
         <RootNamespace>ue3explorer</RootNamespace>
@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ClCompile Include="Shaders\TextureViewer.fx" />
+      <None Include="Shaders\TextureViewer.hlsl" />
     </ItemGroup>
 
 </Project>

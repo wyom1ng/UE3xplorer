@@ -101,7 +101,13 @@ public partial class PackageContents : Window
     if (filterInput.Text.Length > 0)
     {
       string query = filterInput.Text.ToLower();
-      entriesSourceList.View.Filter = item => ((EntryView)item).Name.ToLower().Contains(query);
+      entriesSourceList.View.Filter = item =>
+      {
+        EntryView entryView = (EntryView)item;
+        if (entryView.Name.ToLower().Contains(query)) return true;
+        if (entryView.Class.ToLower().Contains(query)) return true;
+        return false;
+      };
     }
     else
     {
@@ -114,5 +120,11 @@ public partial class PackageContents : Window
     EntryView view = ((FrameworkElement)sender).DataContext as EntryView;
     UObject Obj = loader.LoadExport(loader.Exports[view.Index]);
     loader.FullyLoadObject(Obj);
+
+    if (Obj is UTexture2D)
+    {
+      TextureViewer textureViewer = new(Obj as UTexture2D);
+      textureViewer.Show();
+    }
   }
 }

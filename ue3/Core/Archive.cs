@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using System.IO.Compression;
 using System.Text;
+using lzo.net;
 
 namespace ue3;
 
@@ -259,5 +261,53 @@ public class FArchive
 
     Array.Copy(underlying, offset, To, 0, To.Length);
     offset += To.Length;
+  }
+
+  private struct CompressedChunkHeader
+  {
+    public uint Tag;
+    public int CompressionChunkSize;
+  }
+
+  private struct CompressedChunkInfo
+  {
+    public int CompressedSize;
+    public int DecompressedSize;
+  }
+
+  public void SerialiseCompressedLZO(ref byte[] To)
+  {
+    CompressedChunkHeader Header = new();
+    Serialise(ref Header.Tag);
+    Serialise(ref Header.CompressionChunkSize);
+
+    if (Header.Tag == ULinker.FPackageFileSummary.PACKAGE_FILE_TAG_BYTESWAPPED) throw new NotImplementedException();
+    if (Header.Tag != ULinker.FPackageFileSummary.PACKAGE_FILE_TAG) throw new PackageCorruptException();
+
+
+    CompressedChunkInfo Total = new();
+    Serialise(ref Total.CompressedSize);
+    Serialise(ref Total.DecompressedSize);
+
+    int ChunkCount = (Total.DecompressedSize + Header.CompressionChunkSize - 1) / Header.CompressionChunkSize;
+    CompressedChunkInfo[] Chunks = new CompressedChunkInfo[ChunkCount]; 
+
+    for (int i = 0; i < ChunkCount; ++i)
+    {
+      Serialise(ref Chunks[i].CompressedSize);
+      Serialise(ref Chunks[i].DecompressedSize);
+    }
+
+    if (offset + Total.CompressedSize > underlying.Length) throw new OutOfBoundsException();
+    Debug.Assert(Total.DecompressedSize == To.Length);
+
+    MemoryStream ToStream = new(To, true);
+    for (int i = 0; i < ChunkCount; ++i)
+    {
+      LzoStream lzo = new LzoStream(new MemoryStream(underlying, offset, Chunks[i].CompressedSize), CompressionMode.Decompress);
+      lzo.CopyTo(ToStream);
+      
+      offset += Chunks[i].CompressedSize;
+    }
   }
 }

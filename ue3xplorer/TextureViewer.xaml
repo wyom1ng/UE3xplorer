@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="UE3xplorer- Texture" Height="450" Width="800">
     <Grid x:Name="ImageGrid">
-        <Image x:Name="ImageHost" Stretch="Fill">
+        <Image x:Name="ImageHost">
             <Image.Source>
                 <directX:D3D11Image x:Name="InteropImage"/>
             </Image.Source>

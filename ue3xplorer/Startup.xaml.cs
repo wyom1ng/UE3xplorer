@@ -38,7 +38,7 @@ public partial class Startup : Window
     }
   }
 
-  private async void OkButton_OnClick(object sender, RoutedEventArgs e)
+  private void OkButton_OnClick(object sender, RoutedEventArgs e)
   {
     if (Directory.Exists(Path.Text))
     {

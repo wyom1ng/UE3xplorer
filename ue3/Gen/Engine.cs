@@ -6323,9 +6323,9 @@ public partial class UTexture : USurface
 
 public partial class UTexture2D : UTexture
 {
-  public partial class FTexture2DMipMap : ISerialisable
+  public class FTexture2DMipMap
   {
-    public UObject.FByteBulkData Data = new();
+    public UTexture2D.FTextureMipBulkData Data = new();
     public int SizeX;
     public int SizeY;
   }
@@ -6335,6 +6335,10 @@ public partial class UTexture2D : UTexture
     public UObject.FPointer Element = new();
     public UObject.FPointer Next = new();
     public UObject.FPointer PrevLink = new();
+  }
+
+  public partial class FTextureMipBulkData : FByteBulkData
+  {
   }
 
   public List<FTexture2DMipMap> Mips;

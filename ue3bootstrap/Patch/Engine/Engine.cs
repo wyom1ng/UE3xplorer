@@ -506,9 +506,14 @@ public class UTexture2D : UTexture
   public List<FTexture2DMipMap> Mips;
 
   [Native, StructLayout(LayoutKind.Sequential)]
+  public class FTextureMipBulkData : FByteBulkData
+  {
+  }
+
+  [StructLayout(LayoutKind.Sequential)]
   public class FTexture2DMipMap
   {
-    public FByteBulkData Data;
+    public FTextureMipBulkData Data;
   }
 }
 

@@ -144,6 +144,7 @@ public partial class ULinker
 public class ULinkerLoad : ULinker
 {
   public static Dictionary<string, string> FileCache = new();
+  public static string BasePath;
   public static string Locale;
 
   public FObjectExport[] Exports;
@@ -155,6 +156,7 @@ public class ULinkerLoad : ULinker
 
   public static void InitFileCache(string FilePath, string InLocale)
   {
+    BasePath = FilePath;
     Locale = InLocale;
 
     foreach (string file in Directory.GetFiles(FilePath, "*.upk", SearchOption.TopDirectoryOnly))
