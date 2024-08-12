@@ -633,7 +633,8 @@ public class Bootstrap(string basePath)
               patchedStruct.SuperFieldName = FName.ResolveNameAndCorrectCasing(nested.BaseType.Name.Substring(1));
 
             object structInstance = Activator.CreateInstance(nested);
-            foreach (var field in nested.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly).OrderBy(field => field.MetadataToken))
+            foreach (var field in nested.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
+                       .OrderBy(field => field.MetadataToken))
             {
               var propertyName = FName.ResolveNameAndCorrectCasing(field.Name);
               UProperty patchedProperty = CreatePropertyFromReflection(linker, structInstance, nested, field.FieldType, field.Name);
@@ -652,7 +653,8 @@ public class Bootstrap(string basePath)
 
 
           object instance = Activator.CreateInstance(patch);
-          foreach (var field in patch.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly).OrderBy(field => field.MetadataToken))
+          foreach (var field in patch.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
+                     .OrderBy(field => field.MetadataToken))
           {
             var propertyName = FName.ResolveNameAndCorrectCasing(field.Name);
             UProperty patchedProperty = CreatePropertyFromReflection(linker, instance, patch, field.FieldType, field.Name);
@@ -720,11 +722,15 @@ public class Bootstrap(string basePath)
 
             if (property.ArrayDim == 1)
             {
-              stream.Write("  public {0} {1};\n", typename, propertyNameString);
+              string initialiser = "";
+              if (property is UStructProperty) initialiser = " = new()";
+              stream.Write("  public {0} {1}{2};\n", typename, propertyNameString, initialiser);
             }
             else
             {
-              stream.Write("  public {0}[] {1} = new {0}[{2}];\n", typename, propertyNameString, property.ArrayDim);
+              string initialiser = "";
+              if (property.ArrayDim != 0) initialiser = String.Format(" = new {0}[{1}]", typename, property.ArrayDim);
+              stream.Write("  public {0}[] {1}{2};\n", typename, propertyNameString, initialiser);
             }
           }
 
@@ -812,7 +818,9 @@ public class Bootstrap(string basePath)
       UProperty inner = CreatePropertyFromReflection(linker, instance, containingType, type.GetElementType(), name);
       FieldInfo? fieldInfo = containingType.GetField(name);
       object array = fieldInfo.GetValue(instance);
-      inner.ArrayDim = (array as Array).Length;
+      if (array != null)
+        inner.ArrayDim = (array as Array).Length;
+      else inner.ArrayDim = 0;
 
       return inner;
     }
@@ -959,11 +967,15 @@ public class Bootstrap(string basePath)
 
           if (property.ArrayDim == 1)
           {
-            stream.Write(indent + "  public {0} {1};\n", typename, propertyNameString);
+            string initialiser = "";
+            if (property is UStructProperty) initialiser = " = new()";
+            stream.Write(indent + "  public {0} {1}{2};\n", typename, propertyNameString, initialiser);
           }
           else
           {
-            stream.Write(indent + "  public {0}[] {1} = new {0}[{2}];\n", typename, propertyNameString, property.ArrayDim);
+            string initialiser = "";
+            if (property.ArrayDim != 0) initialiser = String.Format(" = new {0}[{1}]", typename, property.ArrayDim);
+            stream.Write(indent + "  public {0}[] {1}{2};\n", typename, propertyNameString, initialiser);
           }
         }
 

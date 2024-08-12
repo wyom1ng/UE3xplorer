@@ -4653,7 +4653,7 @@ public class UActorFactoryPrimaryTarget : UActorFactoryBarricade
 public class UActorFactorySFBreakableActor : UActorFactory
 {
   public UStaticMesh StaticMesh;
-  public FVector DrawScale3D;
+  public FVector DrawScale3D = new();
   public bool bNoEncroachCheck;
   public bool bNotifyRigidBodyCollision;
   public bool bBlockRigidBody;
@@ -4821,7 +4821,7 @@ public class USFTypes : UObject
 
   public class FSFacebookUserInfo
   {
-    public ulong FacebookID;
+    public ulong FacebookID = new();
     public string FacebookName;
     public int USN;
     public string CodeName;
@@ -4959,8 +4959,8 @@ public class USFTypes : UObject
   public class FUserConditionData
   {
     public int PlayerID;
-    public USFTypes.FGameCondition RecentCondition;
-    public USFTypes.FGameCondition BaseCondition;
+    public USFTypes.FGameCondition RecentCondition = new();
+    public USFTypes.FGameCondition BaseCondition = new();
   }
 
   public class FSBombSPData
@@ -5039,8 +5039,8 @@ public class USFTypes : UObject
     public int reward;
     public string RewardText;
     public string RewardType;
-    public ulong ItemSN;
-    public ulong ItemNSN;
+    public ulong ItemSN = new();
+    public ulong ItemNSN = new();
     public string EndDate;
     public int Durability;
     public byte SupplyItemType;
@@ -5059,7 +5059,7 @@ public class USFTypes : UObject
   public class FSRecvPromoEventReward
   {
     public int PromotionID;
-    public USFTypes.FSRecvReward RecvReward;
+    public USFTypes.FSRecvReward RecvReward = new();
   }
 
   public class FsRecvRandomBoxReward
@@ -5196,9 +5196,9 @@ public class USFTypes : UObject
   {
     public float KillCamThrowTime;
     public int KillCamProjID;
-    public UObject.FVector KillCamProjLoc;
-    public UObject.FRotator KillCamProjRot;
-    public UObject.FVector KillCamProjVel;
+    public UObject.FVector KillCamProjLoc = new();
+    public UObject.FRotator KillCamProjRot = new();
+    public UObject.FVector KillCamProjVel = new();
     public int KillCamProjItemID;
     public float KillCamProjLifeSpan;
     public UClass KillCamProjClass;
@@ -5207,8 +5207,8 @@ public class USFTypes : UObject
   public class FKillCamExplosion
   {
     public float ExplosionTime;
-    public UObject.FVector ExplosionLocation;
-    public UObject.FRotator ExplosionRotation;
+    public UObject.FVector ExplosionLocation = new();
+    public UObject.FRotator ExplosionRotation = new();
     public UGameExplosion ExplosionTemplate;
   }
 
@@ -5252,7 +5252,7 @@ public class USFTypes : UObject
 
   public class FSGiftItem
   {
-    public ulong GiftNSN;
+    public ulong GiftNSN = new();
     public int GiftValue;
     public int USN;
     public string CodeName;
@@ -5310,7 +5310,7 @@ public class USFTypes : UObject
     public bool bShowObjectBehind;
     public EObjectIconInterplateType nInterpolateType;
     public float LastInterpTypeChangedTime;
-    public UObject.FVector vInterPolateTarget;
+    public UObject.FVector vInterPolateTarget = new();
     public EObjectInterpDir InterpDirX;
     public EObjectInterpDir InterpDirY;
   }
@@ -5379,7 +5379,7 @@ public class USFTypes : UObject
 
   public class FsDeadPawnObject
   {
-    public UObject.FVector Loc;
+    public UObject.FVector Loc = new();
     public int TeamNum;
     public string PlayerName;
     public float TimeofDeath;
@@ -5444,7 +5444,7 @@ public class USFTypes : UObject
     public int LeagueTicketCount;
     public int Age;
     public byte Sex;
-    public USFTypes.FSCodeNameColor CodeNameColor;
+    public USFTypes.FSCodeNameColor CodeNameColor = new();
     public bool bIsColor;
     public int Coin;
     public int CoinGauge;
@@ -5453,7 +5453,7 @@ public class USFTypes : UObject
     public string CharacterBirthday;
     public string FaceItemCode;
     public string PmcCode;
-    public ulong PmcItemSN;
+    public ulong PmcItemSN = new();
     public string[] Tag = new string[3];
     public int[] TagID = new int[3];
     public int MiniGachaCoin;
@@ -5540,7 +5540,7 @@ public class USFTypes : UObject
     public int Rank;
     public int PlayerGradeLV;
     public string LongTimeMainWeaponItemCode;
-    public USFTypes.FSCodeNameColor CodeNameColor;
+    public USFTypes.FSCodeNameColor CodeNameColor = new();
     public int CSN;
     public string ClanMark;
   }
@@ -5634,7 +5634,7 @@ public class USFTypes : UObject
     public EWeaponState PawnEffectState;
     public EWeaponState StopPawnEffectState;
     public float Scale;
-    public UObject.FColor Color;
+    public UObject.FColor Color = new();
     public float Duration;
     public bool PSCLoops;
     public List<float> Timing;
@@ -5766,7 +5766,7 @@ public class USFTypes : UObject
     public int X;
     public int Y;
     public int ItemId;
-    public ulong ItemSN;
+    public ulong ItemSN = new();
     public int DialogType;
   }
 
@@ -5780,7 +5780,7 @@ public class USFTypes : UObject
     public string WeaponName;
     public string WeaponImg;
     public int RepairGauge;
-    public ulong ItemSN;
+    public ulong ItemSN = new();
   }
 
   public class FSRepairAllDialogInfo
@@ -5867,7 +5867,7 @@ public class USFTypes : UObject
     public USoundCue EffectSound;
     public EWeaponEffectState WeaponEffectState;
     public float Scale;
-    public UObject.FColor Color;
+    public UObject.FColor Color = new();
     public float Duration;
     public bool PSCLoops;
     public List<float> Timing;
@@ -5883,7 +5883,7 @@ public class USFTypes : UObject
     public byte Status;
     public byte GroupSN;
     public byte ClanLevel;
-    public USFTypes.FSCodeNameColor CodeNameColor;
+    public USFTypes.FSCodeNameColor CodeNameColor = new();
     public int NoticeCount;
     public int channelType;
     public int channelNum;
@@ -5947,7 +5947,7 @@ public class USFTypes : UObject
     public bool bFromMe;
     public string TimeStamp;
     public bool bSeen;
-    public USFTypes.FSCodeNameColor CodeNameColor;
+    public USFTypes.FSCodeNameColor CodeNameColor = new();
     public int WhisperUSN;
     public string WhisperCodeName;
     public int NametagImage;
@@ -6042,15 +6042,15 @@ public class USFTypes : UObject
   public class FSRealTimeEvent
   {
     public int EventNumber;
-    public ulong EventStartDate;
-    public ulong EventEndDate;
+    public ulong EventStartDate = new();
+    public ulong EventEndDate = new();
     public FName EventType;
     public int EventCondition1;
     public string EventCondition1Value;
     public string EventCondition2;
     public int EventCondition2Value;
-    public USFTypes.FTime_t ParsedEventStartDate;
-    public USFTypes.FTime_t ParsedEventEndDate;
+    public USFTypes.FTime_t ParsedEventStartDate = new();
+    public USFTypes.FTime_t ParsedEventEndDate = new();
     public List<int> ParsedEventValues1;
     public List<string> ParsedEventValues2;
     public int EXPValue;
@@ -6095,7 +6095,7 @@ public class USFTypes : UObject
     public int AllPlayTime;
     public int ExpRank;
     public int ClanRank;
-    public USFTypes.FSCodeNameColor CodeNameColor;
+    public USFTypes.FSCodeNameColor CodeNameColor = new();
     public bool bIsColor;
     public byte GradeLevel;
     public string ClanMark;
@@ -6235,7 +6235,7 @@ public class USFTypes : UObject
 
   public class FSliceState
   {
-    public UObject.FPlane SlicePlane;
+    public UObject.FPlane SlicePlane = new();
     public int StaticMeshComponentID;
   }
 
@@ -6248,8 +6248,8 @@ public class USFTypes : UObject
   public class FSFTakeHitInfo
   {
     public int Damage;
-    public UObject.FVector HitLocation;
-    public UObject.FVector Momentum;
+    public UObject.FVector HitLocation = new();
+    public UObject.FVector Momentum = new();
     public UClass DamageType;
     public FName HitBone;
     public int HitBoneIndex;
@@ -6368,7 +6368,7 @@ public class USFTypes : UObject
     public string FinishTime;
     public string ApplyDay;
     public string Description;
-    public USFTypes.FSFeverValues Values;
+    public USFTypes.FSFeverValues Values = new();
     public string RewardItemID;
     public string SaleItemID;
     public List<int> ParsedRewardItemID;
@@ -6383,7 +6383,7 @@ public class USFTypes : UObject
     public UParticleSystem PSCTemplate;
     public UParticleSystem PSCTemplateZoom;
     public float Scale;
-    public UObject.FColor Color;
+    public UObject.FColor Color = new();
     public float Duration;
     public bool PSCLoops;
   }
@@ -6411,7 +6411,7 @@ public class UAIAvoidanceCylinderComponent : UCylinderComponent
 {
   public Dictionary<byte, byte> LinkedNavigationPoints;
   public Dictionary<byte, byte> LinkedReachSpecs;
-  public FVector LastReLinkLocation;
+  public FVector LastReLinkLocation = new();
   public float UpdateThreshold;
   public bool bEnabled;
   public ETeam TeamThatShouldFleeMe;
@@ -6443,7 +6443,7 @@ public class UAICmd_Attack_Base : USFAICommand
 
 public class UAICmd_Attack_BossSkill : UAICmd_Attack_Base
 {
-  public FVector TargetLocation;
+  public FVector TargetLocation = new();
   public bool IsActive;
   public float SkillEndDelay;
 }
@@ -6459,7 +6459,7 @@ public class UAICmd_Attack_Melee : UAICmd_Attack_Base
 
 public class UAICmd_Attack_MeleeJump : UAICmd_Attack_Melee
 {
-  public FVector vMovingAttackPosition;
+  public FVector vMovingAttackPosition = new();
   public float fFireStatDuration;
   public float fFyingTime;
   public float fRestTime;
@@ -6479,8 +6479,8 @@ public class UAICmd_Attack_RangeTurret : UAICmd_Attack_Range
 
 public class UAICmd_Attack_RollingAttack : UAICmd_Attack_Range
 {
-  public FVector TargetLocation;
-  public FVector LineCheckStartLocation;
+  public FVector TargetLocation = new();
+  public FVector LineCheckStartLocation = new();
   public bool IsRolling;
   public bool OldFreeze;
   public bool bHitEnemyPawn;
@@ -6518,8 +6518,8 @@ public class UAICmd_Base_UtilActionSelector : UAICmd_Base_UtilitySelectedCmd
 
 public class UAICmd_EvadeGrenade : USFAICommand
 {
-  public FVector MoveDir;
-  public FVector TargetPosition;
+  public FVector MoveDir = new();
+  public FVector TargetPosition = new();
   public float WaitTimeMin;
   public float WaitTimeMax;
   public ASFProjectile EvadeProj;
@@ -6528,7 +6528,7 @@ public class UAICmd_EvadeGrenade : USFAICommand
 
 public class UAICmd_FullBodyAnimation : USFAICommand
 {
-  public FVector AnimFocus;
+  public FVector AnimFocus = new();
   public int AnimIndex;
   public FName AnimName;
   public float StartTime;
@@ -6540,19 +6540,19 @@ public class UAICmd_MoveToMesh : USFAICommand
 {
   public bool bSavedIgnoreStepAside;
   public List<FVector> ValidPositionOnMesh;
-  public FVector BestValidPosition;
+  public FVector BestValidPosition = new();
   public float ValidSearchRadius;
 }
 
 public class UAICmd_MoveToDir : UAICmd_MoveToMesh
 {
   public float MoveDist;
-  public FVector MoveDir;
+  public FVector MoveDir = new();
 }
 
 public class UAICmd_MoveToGoal_Jump : USFAICommand
 {
-  public FVector vTargetDir;
+  public FVector vTargetDir = new();
   public float fTargetDist;
   public int JumpMoveSpeed;
 }
@@ -6565,13 +6565,13 @@ public class UAICmd_MoveToGoal_Mesh : USFAICommand
   public bool bFinalApproach;
   public bool bHastriedToEscapeFromAnchor;
   public bool bSavedIgnoreStepAside;
-  public FVector IntermediatePoint;
-  public FVector LastMovePoint;
+  public FVector IntermediatePoint = new();
+  public FVector LastMovePoint = new();
   public int NumMovePointFails;
   public int MaxMovePointFails;
-  public FVector InitialFinalDestination;
-  public FVector FailSafeDestination;
-  public AActor.FBasedPosition LastMoveTargetPathLocation;
+  public FVector InitialFinalDestination = new();
+  public FVector FailSafeDestination = new();
+  public AActor.FBasedPosition LastMoveTargetPathLocation = new();
   public float FinalApproachTime;
 }
 
@@ -6593,7 +6593,7 @@ public class UAICmd_MoveToGoal_SuppressiveTarget : UAICmd_MoveToGoal_Roaming
   public float StayTime;
   public float RoamingTime;
   public float lapTime;
-  public FVector BaseLocation;
+  public FVector BaseLocation = new();
 }
 
 public class UAICmd_MoveToGoal_Tactic : UAICmd_MoveToGoal_Mesh
@@ -6606,22 +6606,22 @@ public class UAICmd_MoveToGoal_Wandering : USFAICommand
   public bool bValidRouteCache;
   public bool bNotifyBumped;
   public bool bWanderingSprint;
-  public FVector IntermediatePoint;
-  public FVector InitialFinalDestination;
+  public FVector IntermediatePoint = new();
+  public FVector InitialFinalDestination = new();
   public int WanderDistance;
   public float WanderJitter;
-  public FVector WanderTargetDir;
-  public FVector WanderTarget;
+  public FVector WanderTargetDir = new();
+  public FVector WanderTarget = new();
   public float JitterThisTimeSlice;
   public float MoveDurationTime;
   public int NeedUpdateCount;
-  public FVector BumpedDir;
+  public FVector BumpedDir = new();
 }
 
 public class UAICmd_StepAside : USFAICommand
 {
-  public AActor.FBasedPosition PreStepAsideLocation;
-  public AActor.FBasedPosition StepAsideLocation;
+  public AActor.FBasedPosition PreStepAsideLocation = new();
+  public AActor.FBasedPosition StepAsideLocation = new();
   public bool bDelayStep;
 }
 
@@ -6642,8 +6642,8 @@ public class UAIReactChan_Damage : UAIReactChannel
   public APawn DamageInstigator;
   public bool bDirectDamage;
   public UClass DamageType;
-  public AActor.FTraceHitInfo HitInfo;
-  public FVector LastInstigatorLoc;
+  public AActor.FTraceHitInfo HitInfo = new();
+  public FVector LastInstigatorLoc = new();
   public int DamageAmt;
 }
 
@@ -6709,7 +6709,7 @@ public class UAIReactCond_EnemyMoved : UAIReactCond_Conduit_Base
   public class FLastThreshPosPair
   {
     public APawn Enemy;
-    public UObject.FVector Position;
+    public UObject.FVector Position = new();
   }
 
   public float DistanceThreshold;
@@ -6789,7 +6789,7 @@ public class ASFSquad : AInfo
   {
     public float LastUpdateTime;
     public AActor Target;
-    public UObject.FVector KnownLocation;
+    public UObject.FVector KnownLocation = new();
     public AActor Base;
     public float InitialSeenTime;
     public float LastSeenTime;
@@ -6824,7 +6824,7 @@ public class ASFSquad : AInfo
   public float GoalDistance;
   public int MaxSquadSize;
   public int Size;
-  public FsEnemyInfo EnemyInfo;
+  public FsEnemyInfo EnemyInfo = new();
   public List<FsSquadChargePoint> SquadChargePoints;
   public List<FDelayUpdateInfo> DelayUpdateList;
   public float LastTimeUpdateTakeDamages;
@@ -6852,10 +6852,10 @@ public class UAIVisibilityManager : UObject
 {
   public int ControllerIttStartPoint;
   public bool bDrawVisTests;
-  public FPointer FreeLineCheckResList;
-  public FPointer BusyLineCheckResList;
-  public FPointer PendingLineCheckHead;
-  public FPointer PendingLineCheckTail;
+  public FPointer FreeLineCheckResList = new();
+  public FPointer BusyLineCheckResList = new();
+  public FPointer PendingLineCheckHead = new();
+  public FPointer PendingLineCheckTail = new();
 }
 
 public class UCheckpoint : UObject
@@ -6901,7 +6901,7 @@ public class ACombatZone : AVolume
 {
   public string ZoneName;
   public int WavePointsRemaining;
-  public FGuid ZoneGuid;
+  public FGuid ZoneGuid = new();
   public byte MaxOccupants;
   public byte MaxResidents;
   public byte DelayMovesForTeam;
@@ -6919,7 +6919,7 @@ public class ACombatZone : AVolume
   public List<FActorReference> CoverSlotRefs;
   public List<FActorReference> MyNavRefs;
   public AFauxPathNode NetworkNode;
-  public FVector ZoneCenter;
+  public FVector ZoneCenter = new();
   public List<AActor> AmbushTargets;
 }
 
@@ -6969,7 +6969,7 @@ public class UInterface_AIMoveFailed : UInterface
 
 public class ULeapReachSpec : UAdvancedReachSpec
 {
-  public FVector CachedVelocity;
+  public FVector CachedVelocity = new();
   public float RequiredJumpZ;
 }
 
@@ -7044,7 +7044,7 @@ public class ASFHUD : AGameHUD
   {
     public float InnerWidth;
     public float BarLength;
-    public UObject.FColor Color;
+    public UObject.FColor Color = new();
   }
 
   public class FPawnInfo
@@ -7060,7 +7060,7 @@ public class ASFHUD : AGameHUD
     public AActor Instigator;
     public float FadeTime;
     public float FadeValue;
-    public UObject.FVector Direction;
+    public UObject.FVector Direction = new();
     public UMaterialInstanceConstant MatConstant;
   }
 
@@ -7073,8 +7073,8 @@ public class ASFHUD : AGameHUD
 
   public class FHitMarkInfo
   {
-    public UObject.FVector HitLocation;
-    public UObject.FVector HitScreenLocation;
+    public UObject.FVector HitLocation = new();
+    public UObject.FVector HitScreenLocation = new();
     public float DrawTime;
     public float MaxDrawTime;
   }
@@ -7124,10 +7124,10 @@ public class ASFHUD : AGameHUD
   public UClass CrossHairClass;
   public List<USFCrosshairBase> CrosshairBase;
   public int CrosshairIndex;
-  public FS_CROSSHAIR Crosshair;
-  public FS_CROSSHAIR CrosshairByHit;
-  public FColor CrosshairDefaultColor;
-  public FColor CrosshairByHitDefaultColor;
+  public FS_CROSSHAIR Crosshair = new();
+  public FS_CROSSHAIR CrosshairByHit = new();
+  public FColor CrosshairDefaultColor = new();
+  public FColor CrosshairByHitDefaultColor = new();
   public float SpreadRatio;
   public float DomRatio;
   public float DomLengthRatio;
@@ -7139,11 +7139,11 @@ public class ASFHUD : AGameHUD
   public float HitCrosshairInterpExp;
   public float OutlineWidth;
   public float OutlineExtLength;
-  public FColor OutlineColor;
-  public FColor OutlineColorEx;
-  public FColor OutlineHitColor;
-  public FColor AimedWeakpointColor;
-  public FColor AimedWeakpointOutlineColor;
+  public FColor OutlineColor = new();
+  public FColor OutlineColorEx = new();
+  public FColor OutlineHitColor = new();
+  public FColor AimedWeakpointColor = new();
+  public FColor AimedWeakpointOutlineColor = new();
   public float StandardVerticalSize;
   public List<FPawnInfo> PawnList;
   public List<FPawnInfo> PawnListSnowStun;
@@ -7170,7 +7170,7 @@ public class ASFHUD : AGameHUD
   public float HitIndicatorSize;
   public float HitIndicatorFadeTime;
   public float HitIndicatorFadeValue;
-  public FLinearColor HitIndicator_Color;
+  public FLinearColor HitIndicator_Color = new();
   public UMaterial DamageIndicatorMaterial;
   public FName PositionalParamName;
   public FName FadeParamName;
@@ -7223,7 +7223,7 @@ public class ASFHUD : AGameHUD
   public float HitMarkMultiCrossPlayTime;
   public float HitMarkSingleEdgeSize;
   public float HitMarkInnerEdgeSize;
-  public FColor HitMarkColor;
+  public FColor HitMarkColor = new();
   public List<FHitMarkInfo> HitMarkInfos;
   public List<bool> ChatTypeSupportArray;
   public float fOldDeltaSeconds;
@@ -7383,7 +7383,7 @@ public class USFAggroSystem : UObject
   public List<FsAINoise> AINoiseList;
   public List<float> AggroChaseTime;
   public List<FsAggro> AggroList;
-  public FsAWaitTime AwaitTime;
+  public FsAWaitTime AwaitTime = new();
   public ASFAIController Owner;
   public float LastUpdateTime;
   public float AggroDPS;
@@ -7495,10 +7495,10 @@ public class ASFAIController : AGameAIController
     public bool bVisible;
     public float InitialVisibleTime;
     public float LastVisibleTime;
-    public UObject.FVector LastSeenPos;
-    public UObject.FVector LastSeeingPos;
+    public UObject.FVector LastSeenPos = new();
+    public UObject.FVector LastSeeingPos = new();
     public float LastFailedPathTime;
-    public UObject.FVector AsyncVisibleLocation;
+    public UObject.FVector AsyncVisibleLocation = new();
     public bool bEnemyInfoValid;
   }
 
@@ -7556,23 +7556,23 @@ public class ASFAIController : AGameAIController
   public AActor StepAsideGoal;
   public float MaxStepAsideDist;
   public AActor MoveGoal;
-  public FBasedPosition MovePosition;
+  public FBasedPosition MovePosition = new();
   public AActor MoveFocus;
   public float MoveOffset;
   public float IntermediatePointArrivalDist;
-  public FBasedPosition TetherPosition;
+  public FBasedPosition TetherPosition = new();
   public float LastObstructionTime;
   public float LastDetourCheckTime;
   public float LastMoveFinishTime;
   public float LastFailedToFindStepAsideLocation;
-  public FRotator Debug_StepRot;
-  public FBasedPosition Debug_StepLoc;
+  public FRotator Debug_StepRot = new();
+  public FBasedPosition Debug_StepLoc = new();
   public float EnemyAquisitionTime;
   public float LastShotAtTime;
   public float ChanceToEvade;
   public float ChanceToEvadeGrenade;
   public ASFSquad Squad;
-  public FVector LastSquadLeaderPosition;
+  public FVector LastSquadLeaderPosition = new();
   public float LastActionTransitionTime;
   public float TargetAquisitionTime;
   public float DamageReceivedInAction;
@@ -7591,7 +7591,7 @@ public class ASFAIController : AGameAIController
   public AActor SavedTarget;
   public AActor BumpedActor;
   public AActor RoamingTarget;
-  public FVector RoamingTargetLoc;
+  public FVector RoamingTargetLoc = new();
   public ASFPawn_AI MySFAIPawn;
   public float EnemyDistance_Short;
   public float EnemyDistance_Medium;
@@ -7621,7 +7621,7 @@ public class ASFAIController : AGameAIController
   public ACombatZone PendingCombatZone;
   public ACombatZone CurrentCombatZone;
   public FName NOISETYPE_FootStep;
-  public FRotator GrenadeThrowDirection;
+  public FRotator GrenadeThrowDirection = new();
   public float SimProjectileExtraGravity;
   public float CoolTimeBombingSupport;
   public USFAggroSystem AggroSys;
@@ -7656,8 +7656,8 @@ public class ASFAIController_Human : ASFAIController
   public float RoamingStart;
   public List<int> CachedWeaponSet;
   public List<int> CachedPawnItemList;
-  public USFTypes.FPawnInventorySet PawnInventoryInfo;
-  public USFTypes.FWeaponInventorySet WeaponInventoryInfo;
+  public USFTypes.FPawnInventorySet PawnInventoryInfo = new();
+  public USFTypes.FWeaponInventorySet WeaponInventoryInfo = new();
   public List<FsTacticMove> TacticMoveDelays;
   public List<FsTacticMove> TacticMoveDirs;
   public List<float> SpreadAdjust;
@@ -7673,7 +7673,7 @@ public class ASFAIController_Human : ASFAIController
 
 public class ASFAIController_Solider : ASFAIController_Human
 {
-  public FVector vDiedLocationLast;
+  public FVector vDiedLocationLast = new();
   public float AloneRoamingLimit;
   public float AloneRoamingTime;
   public List<FsTacticMove> PointCampingStay;
@@ -7726,11 +7726,11 @@ public class USFGameExplosion : UGameExplosion
 {
   public FName EffectType;
   public UMaterialInterface ExplosionDecal;
-  public FVector2D ExplosionDecalSize;
+  public FVector2D ExplosionDecalSize = new();
   public float ExplosionDecalThickness;
   public float ExplosionDecalLifeTime;
   public FName ExplosionDecalDissolveParamName;
-  public FRotator ExplosionEmitterRotator;
+  public FRotator ExplosionEmitterRotator = new();
   public float ExplosionSoundModeDuration;
   public bool bIgnoreMaterialbyLeaning;
   public bool IgnoreBehindExplosion;
@@ -7742,7 +7742,7 @@ public class USFGameExplosion : UGameExplosion
 
 public class ASFAIController_Tyrant : ASFAIController_Melee
 {
-  public FVector LineCheckStartLocation;
+  public FVector LineCheckStartLocation = new();
   public float ExtraRollingDistance;
   public float RollingDistance;
   public float LastRollingAttackTime;
@@ -7779,7 +7779,7 @@ public class ASFAIController_Sentinel : ASFAIController_TEST
   public ASFPawn MainTarget;
   public float ObservingRange;
   public float ObservingAngleDot;
-  public FVector RealFocalPoint;
+  public FVector RealFocalPoint = new();
   public ASFPawnAI_Sentinel Sentinel;
 }
 
@@ -7953,7 +7953,7 @@ public class USFAimKillCountEventData : USFSpecialKillEventData
 public class ASFDroppedPickup : ADroppedPickup
 {
   public UDynamicLightEnvironmentComponent MyLightEnvironment;
-  public FRigidBodyState RBState;
+  public FRigidBodyState RBState = new();
   public float AngErrorAccumulator;
 }
 
@@ -7965,7 +7965,7 @@ public class ASFDroppedPickup_Airdrop : ASFDroppedPickup
   public float DropDelay;
   public float DropDamage;
   public float DamageRadius;
-  public FVector StartVelocity;
+  public FVector StartVelocity = new();
   public int UsedCount;
   public bool bLanded;
   public UStaticMeshComponent Mesh;
@@ -8077,7 +8077,7 @@ public class ASFGameReplicationInfo : AGameReplicationInfo
   public List<ASFProj_HG_Function> FunctionalProj;
   public USFTemporaryObjectPool tempObjPool;
   public List<ASFSpectatorEmitter> arrSFSpectatorEmitters;
-  public FReplicatedWeatherData ReplicatedWeather;
+  public FReplicatedWeatherData ReplicatedWeather = new();
   public List<AActor> MissionActors;
   public int[] AliveMissionActors = new int[10];
   public List<FName> IgnoreInputGameInfoState;
@@ -8107,8 +8107,8 @@ public class ASFGameReplicationInfo : AGameReplicationInfo
   public int VoteStartTrigger;
   public int AIAutoBalanceMode;
   public int DefaultMeshUseAILevel;
-  public FLinearColor defaultModePointedColor;
-  public FRotator CameraBaseRotation;
+  public FLinearColor defaultModePointedColor = new();
+  public FRotator CameraBaseRotation = new();
   public int ChangePlayerStartGroupNumber;
   public int GameModeID;
   public int GameMapID;
@@ -8118,7 +8118,7 @@ public class ASFGameReplicationInfo : AGameReplicationInfo
   public List<FVector> ProjectileTeamColor;
   public List<USFTypes.FUserConditionData> UserConditionList;
   public int UserConditionMinPlaytime;
-  public USFTypes.FSFeverValues FeverValues;
+  public USFTypes.FSFeverValues FeverValues = new();
 }
 
 public class ASFTDGameReplicationInfo : ASFGameReplicationInfo
@@ -8263,7 +8263,7 @@ public class ASFGameInfo : AGameInfo
   public int PreMatchIntroDelay;
   public int CountDownDelay;
   public int PreCountDownDelay;
-  public FColor FadeColor;
+  public FColor FadeColor = new();
   public float DesaturationFadeInTime;
   public float MinRespawnDelay;
   public float MaxMissionScore;
@@ -8445,8 +8445,8 @@ public class ASFAISpawnManager : AActor
   public class FDummyMemory
   {
     public AController Dummy;
-    public UObject.FVector SpawnLocation;
-    public UObject.FRotator SpawnRotation;
+    public UObject.FVector SpawnLocation = new();
+    public UObject.FRotator SpawnRotation = new();
     public bool bCrouch;
     public bool bJump;
     public float KilledTime;
@@ -8464,7 +8464,7 @@ public class ASFAISpawnManager : AActor
   public ELevelOfDifficulty Difficulty;
   public ETeam BeSpawnTeam;
   public ACombatZone CurrentCombatZone;
-  public FVector StandardLocation;
+  public FVector StandardLocation = new();
   public int MaxWaves;
   public bool ArrivedMaxWaves;
   public bool bUseRandomRespawn;
@@ -8483,7 +8483,7 @@ public class ASFAISpawnManager : AActor
   public List<int> EnemyListAliveCount;
   public float WaveSpawningStartTime;
   public ANavigationPoint LastEnemyStartSpot;
-  public FVector SpawningEnemySize;
+  public FVector SpawningEnemySize = new();
   public float MinStartRating;
   public List<ANavigationPoint> EnemyStartSpots;
   public List<FDummyMemory> DummyRegister;
@@ -8513,7 +8513,7 @@ public class ASFPlayerReplicationInfo : APlayerReplicationInfo
     public int PlayerID;
     public int TargetTeam;
     public EPingNotifyType PingType;
-    public UObject.FVector Location;
+    public UObject.FVector Location = new();
     public float Time;
   }
 
@@ -8557,7 +8557,7 @@ public class ASFPlayerReplicationInfo : APlayerReplicationInfo
   public bool bUseAILuckyPointRatio;
   public List<string> SpectatorDecoInfo;
   public UClass CrossHairClass;
-  public FColor CrossHairColor;
+  public FColor CrossHairColor = new();
   public string ClanMarkEffect;
   public int ConsecutiveKills;
   public int ConsecutiveDeaths;
@@ -8567,7 +8567,7 @@ public class ASFPlayerReplicationInfo : APlayerReplicationInfo
   public int CustomHelmetCacheIndex;
   public List<byte> arrPreLoadedWeapSlotIndex;
   public int LastUsingWeapSetIndex;
-  public FColor DefaultHudColor;
+  public FColor DefaultHudColor = new();
   public float CurrentLuckyPointRatio;
   public float LastUpdatedLuckyPointRatio;
   public int CurrentLuckyPointCount;
@@ -8589,9 +8589,9 @@ public class ASFPlayerReplicationInfo : APlayerReplicationInfo
   public int PreNotifyMissionLog3;
   public float LastDeadTimeSeconds;
   public List<int> PawnItemIDCache;
-  public USFGameDatabase.FSFTestLog_User TestLogUser;
-  public USFGameDatabase.FSFTestLog_Room TestLogRoom;
-  public USFGameDatabase.FSFTestLog_System TestLogSystem;
+  public USFGameDatabase.FSFTestLog_User TestLogUser = new();
+  public USFGameDatabase.FSFTestLog_Room TestLogRoom = new();
+  public USFGameDatabase.FSFTestLog_System TestLogSystem = new();
   public int SpecialKillBonus;
   public int ContinuousKillBonus;
   public int RareKillBonus;
@@ -8608,7 +8608,7 @@ public class ASFPlayerReplicationInfo : APlayerReplicationInfo
   public EGender Gender;
   public List<int> SprayImageIndex;
   public UTexture CachedSprayTexture;
-  public FSPingNotify PingNotifyInfo;
+  public FSPingNotify PingNotifyInfo = new();
   public int CountProposeInGameKick;
   public int Log_DamageToPlayer;
   public int Log_DamageByPlayer;
@@ -8618,16 +8618,16 @@ public class ASFPlayerReplicationInfo : APlayerReplicationInfo
   public int Log_PrevDamageByPlayer;
   public int ContinualKillDeath;
   public UClass ItemCrosshairClass;
-  public FColor ItemCrosshairColor;
+  public FColor ItemCrosshairColor = new();
   public List<int> AIRankbyDifficulty;
   public string AIName;
   public int DisguiseRank;
   public string GFXPromotionRank;
   public float MaxApplyExpRatio;
   public float LocalValidPlayTime;
-  public USFTypes.FUserConditionData UserGameConditionInfo;
+  public USFTypes.FUserConditionData UserGameConditionInfo = new();
   public int ClanBuffState;
-  public USFTypes.FSBombSPData UserBombSPData;
+  public USFTypes.FSBombSPData UserBombSPData = new();
 }
 
 public class ASFAITDMPlayerReplicationInfo : ASFPlayerReplicationInfo
@@ -8654,7 +8654,7 @@ public class ASFPlayerController : APlayerController
   public class FColorationInfo
   {
     public float DesaturationAmount;
-    public UObject.FLinearColor Color;
+    public UObject.FLinearColor Color = new();
     public float Power;
     public float Priority;
   }
@@ -8752,17 +8752,17 @@ public class ASFPlayerController : APlayerController
   public UClass SFAnnounceGameClass;
   public UCameraAnimInst CameraAnimPlayer;
   public UCameraAnimInst currentCameraAnimInstant;
-  public APostProcessVolume.FPostProcessSettings CamOverridePostProcess;
-  public FVector ShakeOffset;
-  public FRotator ShakeRot;
+  public APostProcessVolume.FPostProcessSettings CamOverridePostProcess = new();
+  public FVector ShakeOffset = new();
+  public FRotator ShakeRot = new();
   public float LastCameraTimeStamp;
   public UClass MatineeCameraClass;
   public float FOVLinearZoomRate;
   public float FOVNonlinearZoomInterpSpeed;
   public float FOVChangingTime;
-  public FRotator DebugFreeCamRot;
+  public FRotator DebugFreeCamRot = new();
   public float LastShowPathTime;
-  public FRotator rotInput;
+  public FRotator rotInput = new();
   public ASFEmit_Weather WeatherEmitter;
   public string RespawnCameraAnimName;
   public UCameraAnim RespawnCameraAnim;
@@ -8794,7 +8794,7 @@ public class ASFPlayerController : APlayerController
   public int PrevWeaponWeapSlotIndex;
   public int PickupWeaponID;
   public int[] PickupWeaponItemIDTable = new int[16];
-  public USFTypes.FPawnInventorySet PawnInventoryInfo;
+  public USFTypes.FPawnInventorySet PawnInventoryInfo = new();
   public USFTypes.FWeaponInventorySet[] WeaponInventoryInfo = new USFTypes.FWeaponInventorySet[3];
   public USFTypes.FWeaponInventorySet[] BackupInventoryInfo = new USFTypes.FWeaponInventorySet[3];
   public string MissionAttackWeaponClass;
@@ -8808,9 +8808,9 @@ public class ASFPlayerController : APlayerController
   public APawn DroneControllPawn;
   public AActor DronePawn;
   public FColorationInfo[] ColorationInfos = new FColorationInfo[10];
-  public FColorationInfo TargetColoration;
-  public FColorationInfo StartColoration;
-  public FColorationInfo CurrentColoration;
+  public FColorationInfo TargetColoration = new();
+  public FColorationInfo StartColoration = new();
+  public FColorationInfo CurrentColoration = new();
   public float ColorationDuration;
   public float ColorationAdjustTime;
   public List<USFTypes.FKillCamExplosion> KillCamExplosionArray;
@@ -8819,7 +8819,7 @@ public class ASFPlayerController : APlayerController
   public UMotionBlurEffect MotionBlurEffect;
   public float KillCamMotionBlurMaxVelocity;
   public float KillCamMotionBlurAmount;
-  public FLinearColor vFlashBangColor;
+  public FLinearColor vFlashBangColor = new();
   public float NoInputExpireTime;
   public float LastDamageShakeAdjustTime;
   public float DamageShakeInterval;
@@ -8833,7 +8833,7 @@ public class ASFPlayerController : APlayerController
   public int Last_Armor;
   public int Last_PlayerID;
   public int Last_HitType;
-  public FVector Last_HitLocation;
+  public FVector Last_HitLocation = new();
   public float Last_HitDist;
   public string Last_HitBone;
   public string LastDeath_HitDir;
@@ -8918,7 +8918,7 @@ public class ASFPlayerController : APlayerController
   public List<FName> SkipAutoMessageList;
   public int PurchasedRandomWeaponID;
   public List<string> DefaultFunctionalItemClassNames;
-  public USFGameDatabase.FSFPlayerLog DedicatePlayerLog;
+  public USFGameDatabase.FSFPlayerLog DedicatePlayerLog = new();
   public float AddtionalScore;
   public float AddtionalLuckyPoint;
   public float AntiFatigueReduceRatio;
@@ -8982,9 +8982,9 @@ public class USFGameScore : UObject
   }
 
   public List<FSLadderPointBasis> LadderPointBasisList;
-  public FSClanPointBasis ClanPointBasis;
+  public FSClanPointBasis ClanPointBasis = new();
   public int DeductionClanPoint;
-  public FSpawnBasis PawnBasis;
+  public FSpawnBasis PawnBasis = new();
   public int SCORE_TimeOver;
   public int WinningTeamMemberScore;
   public int DefeatingTeamMemberScore;
@@ -9037,7 +9037,7 @@ public class USFThirdPersonCameraModeBase : UGameThirdPersonCameraMode
 
 public class USFAIThirdPersonCameraMode : USFThirdPersonCameraModeBase
 {
-  public FVector EvadePawnRelativeOffset;
+  public FVector EvadePawnRelativeOffset = new();
   public float WorstLocAimingZOffset;
   public bool bTemporaryOriginRotInterp;
   public float TemporaryOriginRotInterpSpeed;
@@ -9113,7 +9113,7 @@ public class ASFObstaclesActor : ADynamicSMActor
   public float CollideRadius;
   public UStaticMesh PreviewMesh;
   public float HealthDirty;
-  public FVector IconLocationOffset;
+  public FVector IconLocationOffset = new();
   public ASFObstaclesActor nextObstaclesActor;
   public float ProjectileDOTExpireTime;
   public List<USFTypes.FsDOT> SteadyDOTs;
@@ -9181,7 +9181,7 @@ public class USFAnimBlendByDirection : USFAnimBlendBase
   public List<float> DirWeight;
   public List<float> SkelRotWeight;
   public bool bUseScaleRateBySpeed;
-  public FStandardAnimVelocityStruct StandardAnimVelocity;
+  public FStandardAnimVelocityStruct StandardAnimVelocity = new();
 }
 
 public class USFAnimBlendByFall : USFAnimBlendBase
@@ -9227,7 +9227,7 @@ public class USFAnimBlendByLobbyWeapon : USFAnimBlendBase
   public class FQueuingChildInfo
   {
     public ELobbyWeapAnimStep QueuingChildIndex;
-    public UAnimNodeBlendBase.FAnimBlendChild ChildInfo;
+    public UAnimNodeBlendBase.FAnimBlendChild ChildInfo = new();
   }
 
   public List<FLobbyStepInfo> LobbyStep;
@@ -9236,7 +9236,7 @@ public class USFAnimBlendByLobbyWeapon : USFAnimBlendBase
   public FName LobbyStepName;
   public FName PrevLobbyStepName;
   public int PrevWeaponID;
-  public FQueuingChildInfo QueuingChild;
+  public FQueuingChildInfo QueuingChild = new();
   public bool bIsFemale;
 }
 
@@ -9543,7 +9543,7 @@ public class ASFModeVolume : AVolume
   public UClass NotifyTriggerClass;
   public FName currState;
   public USpriteComponent IconLocationForEditor;
-  public FVector IconLocationOffset;
+  public FVector IconLocationOffset = new();
 }
 
 public class ASFArriveAtVolume : ASFModeVolume
@@ -9576,7 +9576,7 @@ public class USFAwardManager : UObject
   public class FAwardInfo
   {
     public UClass AwardClass;
-    public UGFxMoviePlayer.FASValue AwardValue;
+    public UGFxMoviePlayer.FASValue AwardValue = new();
   }
 
   public List<UClass> AwardClassList;
@@ -9639,7 +9639,7 @@ public class ASFBeastPlayerController : ASFPlayerController
   public int OriginalWeaponSetIndex;
   public bool bCompleteBackupOriginalWeaponSetID;
   public int LastTeamIndex;
-  public USFGameDatabase.FSFManHuntPlayerLog DedicateManHuntPlayerLog;
+  public USFGameDatabase.FSFManHuntPlayerLog DedicateManHuntPlayerLog = new();
 }
 
 public class ASFTeamInfo : ATeamInfo
@@ -9787,7 +9787,7 @@ public class USFBombSPMessage : USFLocalMessage
 
 public class ASFBombVolume : ASFModeVolume
 {
-  public FVector TriggersLocationForIcon;
+  public FVector TriggersLocationForIcon = new();
   public List<AStaticMeshActorForBlastingGame> BlastingMeshActor;
 }
 
@@ -9836,16 +9836,16 @@ public class ASFBreakableActor : AActor
   public USFGameExplosion ExplosionInfo;
   public bool bDirectionalExplosion;
   public UDrawSphereComponent DamageRadiusSphere;
-  public FVector DamageRadiusSpherePosition;
+  public FVector DamageRadiusSpherePosition = new();
   public FName currState;
   public List<ASFTrigger_PlasticBomb> arrPlasticBomb;
   public int PassedTime;
-  public FVector vTriggerDmgLoc;
-  public FVector vTriggerDmgDir;
+  public FVector vTriggerDmgLoc = new();
+  public FVector vTriggerDmgDir = new();
   public List<FSModeInfo> FlagOfDefualtMode;
   public List<FSModeInfo> FlagOfMissionMode;
-  public FVector InitialLocation;
-  public FRotator InitialRotation;
+  public FVector InitialLocation = new();
+  public FRotator InitialRotation = new();
   public int Step1DelayTime;
   public int Step2DelayTime;
   public int Step3DelayTime;
@@ -9880,7 +9880,7 @@ public class ASFBreakableActorByDamage : ASFBreakableActor
   public int CurrentDamage;
   public List<AEmitter> FireEmitters;
   public USFFlickerLightByPeriod FireLight;
-  public FVector FireLightPosition;
+  public FVector FireLightPosition = new();
   public float ExplodeTime;
   public float FirstDamageTime;
   public List<FSFBreakPartsInfo> arrBreakParts;
@@ -9912,7 +9912,7 @@ public class ASFBreakableGlassActor : AInterpActor
   public List<UParticleSystem> BreakingParticleTemplates;
   public List<USoundCue> BreakingSounds;
   public float BrokenTime;
-  public FVector DamageDir;
+  public FVector DamageDir = new();
 }
 
 public class ASFBreakableGlassSyncActor : ASFBreakableGlassActor
@@ -9968,9 +9968,9 @@ public class USFBuffInfo : UObject
     public FName EffectBoneName;
     public UParticleSystem EffectPS;
     public UParticleSystem CameraLensEffectPS;
-    public UObject.FVector EffectRelativeLocation;
-    public UObject.FRotator EffectRelativeRotation;
-    public UObject.FVector EffectRelativeScale;
+    public UObject.FVector EffectRelativeLocation = new();
+    public UObject.FRotator EffectRelativeRotation = new();
+    public UObject.FVector EffectRelativeScale = new();
     public float EffectDurationTime;
     public USoundCue SoundEffect;
   }
@@ -9994,8 +9994,8 @@ public class USFCameraBase : UGameCameraBase
 public class USFCameraModifier_ShakeByDamage : UCameraModifier
 {
   public EDamageShakeState DmgShakeState;
-  public FRotator DmgShakeRotation;
-  public FRotator DamageShakeGoal;
+  public FRotator DmgShakeRotation = new();
+  public FRotator DamageShakeGoal = new();
   public float DamageShakeGoalTime;
   public float DamageShakeTransitTime;
 }
@@ -10090,10 +10090,10 @@ public class USFCCTV_DataStoreBase : UObject
 {
   public class FCCTVInfo
   {
-    public UObject.FVector FreeCamLocation;
-    public UObject.FRotator FreeCamRotation;
-    public UObject.FVector TranslucentCamLocation;
-    public UObject.FRotator TranslucentCamRotation;
+    public UObject.FVector FreeCamLocation = new();
+    public UObject.FRotator FreeCamRotation = new();
+    public UObject.FVector TranslucentCamLocation = new();
+    public UObject.FRotator TranslucentCamRotation = new();
   }
 
 }
@@ -10102,8 +10102,8 @@ public class USFCCTV_MapInfo : USFCCTV_DataStoreBase
 {
   public string MapName;
   public FCCTVInfo[] CCTVInfos = new FCCTVInfo[10];
-  public FVector TopViewCamLocation;
-  public FRotator TopviewCamRotation;
+  public FVector TopViewCamLocation = new();
+  public FRotator TopviewCamRotation = new();
   public List<AActor> ViewTargetActorList;
 }
 
@@ -10117,10 +10117,10 @@ public class USFChallengeListCondition : USFBaseCondition
 
   public class FChallengeProgressData
   {
-    public USFTypes.FChallengeData TableData;
-    public USFTypes.FChallengeLocalized TableLocalized;
+    public USFTypes.FChallengeData TableData = new();
+    public USFTypes.FChallengeLocalized TableLocalized = new();
     public int CurrScore;
-    public USFTypes.FTime_t CompleteDate;
+    public USFTypes.FTime_t CompleteDate = new();
   }
 
   public List<FSChallengeMedalRange> MedalRangeList;
@@ -10162,7 +10162,7 @@ public class ASFCheatManager : ACheatManager
     public string PSName;
   }
 
-  public FCylinder SpawningEnemySize;
+  public FCylinder SpawningEnemySize = new();
   public ASFAIController SpawnedAI;
   public int SpawnedAIIndex;
   public float AIDeadTime;
@@ -10251,7 +10251,7 @@ public class ASFConvoyanceGame : ASFTeamGameInfo
   public List<ASFPlayerController> ControllerArrayNearCar;
   public ASFConvoyanceTargetVolume ConvoyanceTargetVolume;
   public ASFConvoyanceGameReplicationInfo SFConvoyanceGRI;
-  public FVector ConvoyanceStartLocation;
+  public FVector ConvoyanceStartLocation = new();
   public int TotalMoney;
   public int RemainMoney;
   public int SeizureMoney;
@@ -10503,10 +10503,10 @@ public class USFMeshBuilder : UObject
 
   public class FMergedTextureInfo
   {
-    public UTexture2DComposite.FSourceTexture2DRegion Region;
+    public UTexture2DComposite.FSourceTexture2DRegion Region = new();
     public EPartType Type;
-    public UObject.FVector2D UVOffset;
-    public UObject.FVector2D UVScale;
+    public UObject.FVector2D UVOffset = new();
+    public UObject.FVector2D UVScale = new();
   }
 
   public class FMergedTextureSize
@@ -10565,16 +10565,16 @@ public class USFMeshBuilder : UObject
   public float FirstViewWeaponSpecularIntensity;
   public float FirstViewWeaponSPPowerHigh;
   public float FirstViewWeaponSPPowerLow;
-  public FLinearColor FirstViewWeaponRimLightColor;
-  public FLinearColor FirstViewWeaponSpecularColor;
+  public FLinearColor FirstViewWeaponRimLightColor = new();
+  public FLinearColor FirstViewWeaponSpecularColor = new();
   public float ThirdViewWeaponDiffusePower;
   public float ThirdViewWeaponReflectionIntensity;
   public float ThirdViewWeaponRimLightPower;
   public float ThirdViewWeaponSpecularIntensity;
   public float ThirdViewWeaponSPPowerHigh;
   public float ThirdViewWeaponSPPowerLow;
-  public FLinearColor ThirdViewWeaponRimLightColor;
-  public FLinearColor ThirdViewWeaponSpecularColor;
+  public FLinearColor ThirdViewWeaponRimLightColor = new();
+  public FLinearColor ThirdViewWeaponSpecularColor = new();
   public FScriptDelegate __OnMeshGroupInfoSetted__Delegate;
   public FScriptDelegate __OnPrepareResources__Delegate;
 }
@@ -10611,10 +10611,10 @@ public class USFMeshParts : UObject
     public List<string> MaskTexture;
   }
 
-  public FSFEDMeshPart MeshViewerPart;
+  public FSFEDMeshPart MeshViewerPart = new();
   public bool bIsLoading;
   public int CurrentOpenedPropertyWindowCount;
-  public FSFMeshPart MeshPart;
+  public FSFMeshPart MeshPart = new();
 }
 
 public class ASFCustomPreview : ASkeletalMeshCinematicActor
@@ -10639,8 +10639,8 @@ public class ASFCustomPreview : ASkeletalMeshCinematicActor
     public string CamoTextureString;
     public int GroupArrayIndex;
     public int PartArrayIndex;
-    public UObject.FLinearColor EpauletPatternColors;
-    public UObject.FLinearColor BackgroundPatternColors;
+    public UObject.FLinearColor EpauletPatternColors = new();
+    public UObject.FLinearColor BackgroundPatternColors = new();
   }
 
   public class FDetachMeshGroupInfo
@@ -10650,8 +10650,8 @@ public class ASFCustomPreview : ASkeletalMeshCinematicActor
   }
 
   public List<FCustomPreviewAnimInfo> FullBodyAnimTypes;
-  public FRotator RollMin;
-  public FRotator RollMax;
+  public FRotator RollMin = new();
+  public FRotator RollMax = new();
   public FName PlayingAnim;
   public bool bMatchresultAnimPlaying;
   public bool bSettedBoneLoc;
@@ -10665,9 +10665,9 @@ public class ASFCustomPreview : ASkeletalMeshCinematicActor
   public string PreviewName;
   public float BlinkTime;
   public float BlinkInterval;
-  public FVector TargetOrigLoc;
-  public FVector MoverOrigLoc;
-  public FVector ZoomVelocity;
+  public FVector TargetOrigLoc = new();
+  public FVector MoverOrigLoc = new();
+  public FVector ZoomVelocity = new();
   public ECustomZoomState ZoomState;
   public EMoverType MoverType;
   public EMeshGroup PreViewWeaponGroupLabel;
@@ -10691,8 +10691,8 @@ public class ASFCustomPreview : ASkeletalMeshCinematicActor
   public FName HelmetSocketName;
   public USkeletalMeshSocket HelmetSocket;
   public FName WeaponRepairBaseSocketName;
-  public FRotator PrevMousePos;
-  public FRotator MouseDelta;
+  public FRotator PrevMousePos = new();
+  public FRotator MouseDelta = new();
   public List<int> PendingCharItems;
   public List<int> PrevPendingCharItems;
   public List<int> PendingWeapItems;
@@ -10713,7 +10713,7 @@ public class ASFCustomPreview : ASkeletalMeshCinematicActor
   public FName BreathSocketName;
   public UMorphNodeWeight MorphBreathNode;
   public UParticleSystemComponent BreathPSC;
-  public FRotator CameraDefaultRotation;
+  public FRotator CameraDefaultRotation = new();
   public USkeletalMeshComponent DualWeaponComp;
   public FName DualWeaponSocketName;
   public USkeletalMeshComponent AccessoryComponent;
@@ -10723,7 +10723,7 @@ public class ASFCustomPreview : ASkeletalMeshCinematicActor
   public UMaterialInstanceConstant MaterialInstance;
   public List<UAnimSet> AnimSets;
   public int PreviewWeaponID;
-  public ulong PreviewWeaponSN;
+  public ulong PreviewWeaponSN = new();
   public UParticleSystemComponent EquipmentEffectPSC;
   public UParticleSystemComponent WeaponEffectPSC;
 }
@@ -10855,8 +10855,8 @@ public class USFDeadPersonCameraMode : USFThirdPersonCameraModeBase
   public bool bShowWall;
   public bool bDrawDebug;
   public float DOF_Distance;
-  public FVector DeathCamLocation;
-  public FRotator DeathCamRotation;
+  public FVector DeathCamLocation = new();
+  public FRotator DeathCamRotation = new();
   public float ActiveTime;
   public float DOFDistance;
   public float DOFFocusInnerRadius;
@@ -10957,7 +10957,7 @@ public class ASFSurvivalGame : ASFTeamGameInfo
   {
     public float Time;
     public APawn Inst;
-    public UObject.FVector Loc;
+    public UObject.FVector Loc = new();
     public UClass TargetClass;
   }
 
@@ -11279,14 +11279,14 @@ public class ASFWaterVolume : AWaterVolume
   {
     public UParticleSystem Effect;
     public float ScaleRatio;
-    public UObject.FVector2D ScaleRange;
+    public UObject.FVector2D ScaleRange = new();
     public float NormalOffset;
   }
 
   public class FWaterSplashInfo
   {
     public UParticleSystem Effect;
-    public UObject.FVector LocationOffset;
+    public UObject.FVector LocationOffset = new();
     public int Yaw;
   }
 
@@ -11312,7 +11312,7 @@ public class ASFDropOnlyHelmet : AActor
 {
   public USkeletalMeshComponent HelmetMesh;
   public UDynamicLightEnvironmentComponent LightEnvironment;
-  public FVector DropOffImpulse;
+  public FVector DropOffImpulse = new();
   public FName HeadBoneName;
 }
 
@@ -11320,7 +11320,7 @@ public class ASFDroppableParts : AActor
 {
   public USkeletalMeshComponent DropMesh;
   public UDynamicLightEnvironmentComponent LightEnvironment;
-  public FVector DropOffImpulse;
+  public FVector DropOffImpulse = new();
   public FName BoneName;
 }
 
@@ -11390,10 +11390,10 @@ public class ASFDroppedPickup_Weapon : ASFDroppedPickup
   public float ValidTouchAngleConverted;
   public float CollisionRadius;
   public float CollisionHeight;
-  public FVector SpawnLocation;
-  public FRotator SpawnRotation;
-  public FVector ThrowLinearVelocity;
-  public FVector ThrowAngularVelocity;
+  public FVector SpawnLocation = new();
+  public FRotator SpawnRotation = new();
+  public FVector ThrowLinearVelocity = new();
+  public FVector ThrowAngularVelocity = new();
   public byte PhysicsPropertyMask;
 }
 
@@ -11537,7 +11537,7 @@ public class ASFEmitterNoSync : AEmitter
 public class ASFEmitterNoSync_WaterSplash : ASFEmitterNoSync
 {
   public APawn BasePawn;
-  public FVector2D LocationOffset;
+  public FVector2D LocationOffset = new();
 }
 
 public class ASFEmitterNoSyncSpawnable : ASFEmitterNoSync
@@ -11550,7 +11550,7 @@ public class ASFEmitterPool : AEmitterPool
   {
     public USFExplosionLight Light;
     public AActor Base;
-    public UObject.FVector RelativeLocation;
+    public UObject.FVector RelativeLocation = new();
   }
 
   public List<FAttachedExplosionLight> RelativeExplosionLights;
@@ -11592,15 +11592,15 @@ public class ASFEntryGame : ASFGameInfo
 public class ASFEntryHUD : ASFHUD
 {
   public List<ASFCustomPreview> arrPreview;
-  public FVector CameraWeaponRepireLoc3DOld;
-  public FVector CameraWeaponRepireLoc3D;
-  public FVector CameraWeaponRepireLoc2D;
+  public FVector CameraWeaponRepireLoc3DOld = new();
+  public FVector CameraWeaponRepireLoc3D = new();
+  public FVector CameraWeaponRepireLoc2D = new();
 }
 
 public class ASFEntryPlayerController : ASFPlayerController
 {
   public int PreviewWeaponID;
-  public ulong PreviewWeaponSN;
+  public ulong PreviewWeaponSN = new();
   public bool bPreviewDefCharacter;
   public bool bEnableGFxUISystem;
   public FName LobbyStep;
@@ -11752,7 +11752,7 @@ public class USFExplosionLight : UPointLightComponent
   {
     public float StartTime;
     public float Brightness;
-    public UObject.FColor LightColor;
+    public UObject.FColor LightColor = new();
   }
 
   public bool bInitialized;
@@ -11834,7 +11834,7 @@ public class USFFelloutFirstPersonCameraMode : USFThirdPersonCameraModeBase
 
 public class USFFelloutPersonCameraMode : USFThirdPersonCameraModeBase
 {
-  public FVector InitLocation;
+  public FVector InitLocation = new();
 }
 
 public class ASFFFAPlayerController : ASFPlayerController
@@ -11888,9 +11888,9 @@ public class USFFirstKillEventData : USFSpecialKillEventData
 
 public class ASFFlagActor : ASkeletalMeshActor
 {
-  public FVector OriginPosition;
-  public FRotator OriginRotation;
-  public FVector DroppedLocation;
+  public FVector OriginPosition = new();
+  public FRotator OriginRotation = new();
+  public FVector DroppedLocation = new();
   public ASFPawn Catcher;
   public ETeam FlagTeam;
   public LastFlagAction LastAction;
@@ -11964,10 +11964,10 @@ public class ASFGamePlayerStart : APlayerStart
   public bool bHumanStart;
   public bool bOnlyUseToRespawn;
   public float EnemyRadiusForRespawn;
-  public FVector EnemeyRadiusCenterOffsetForRespawn;
+  public FVector EnemeyRadiusCenterOffsetForRespawn = new();
   public float fLastReSpawnTime;
-  public FVector FriendLocation;
-  public FVector EnemeyRadiusCenterInWorldSpace;
+  public FVector FriendLocation = new();
+  public FVector EnemeyRadiusCenterInWorldSpace = new();
   public List<UTexture2D> TeamSprites;
   public UTexture2D DefaultSprite;
   public UDrawSphereComponentWhenSelecting SphereComp;
@@ -12152,7 +12152,7 @@ public class USFGameEngine : UGameEngine
   public class FSectionDebugInfo
   {
     public string SectionName;
-    public double SectionStartTime;
+    public double SectionStartTime = new();
     public int TabCount;
   }
 
@@ -12162,7 +12162,7 @@ public class USFGameEngine : UGameEngine
     public string Size;
   }
 
-  public FPointer VfTable_FCallbackEventDevice;
+  public FPointer VfTable_FCallbackEventDevice = new();
   public string OggMusicFolder;
   public string PLAYMAP_OPTION;
   public string PCState_OPTION;
@@ -12178,7 +12178,7 @@ public class USFGameEngine : UGameEngine
   public bool bEnableIndependentMapLoading;
   public bool IsUsePackageVerification;
   public bool bUseDefaultUnitItems;
-  public FLinearColor OverlayColorWhenDisconnected;
+  public FLinearColor OverlayColorWhenDisconnected = new();
   public List<FSectionDebugInfo> arrSectionDebug;
   public float DeltaTime;
   public float DedicatedServerGarbageCollectionTime;
@@ -12252,7 +12252,7 @@ public class USFPhysicalMaterialProperty : UPhysicalMaterialPropertyBase
   public bool bSliceHollowMesh;
   public List<FMaterialImpactEffect> ImpactEffects;
   public float ReducePower;
-  public FColor LightColor;
+  public FColor LightColor = new();
   public float LightRadius;
   public float LightBrightness;
   public float LightFallOffExponent;
@@ -12269,7 +12269,7 @@ public class USFPhysicalMaterialProperty : UPhysicalMaterialPropertyBase
 public class ASFGameExplosionActor : AGameExplosionActor
 {
   public FVector[] DecalTraceDirections = new FVector[6];
-  public FVector GoDirection;
+  public FVector GoDirection = new();
   public UParticleSystemComponent ExplosionPSC;
   public List<FName> IgnoreDamageBlockActors;
   public FScriptDelegate __HurtRadiusExtraEffectTo__Delegate;
@@ -12295,7 +12295,7 @@ public class USFGameExplosionArtifire : USFGameExplosion
 public class ASFGameExplosionArtifireActor : ASFGameExplosionActor_Spawnable
 {
   public List<UParticleSystemComponent> ArtilleryPSC;
-  public FVector ArtilleryRandomLocation;
+  public FVector ArtilleryRandomLocation = new();
   public USFGameExplosionArtifire ExplosionArtifireTemplate;
 }
 
@@ -12312,7 +12312,7 @@ public class USFGameExplosionIncendiary : USFGameExplosion
 public class ASFGameExplosionIncendiaryActor : ASFGameExplosionActor_Spawnable
 {
   public USFGameExplosionIncendiary IncendExplosionTemplate;
-  public FVector AdjustExploLocation;
+  public FVector AdjustExploLocation = new();
 }
 
 public class USFGameExplosionOutline : USFGameExplosion
@@ -12442,26 +12442,26 @@ public class USFGameItem : UObject
     public int ItemId;
     public int ItemCount;
     public string ItemCode;
-    public ulong ItemSN;
-    public ulong ItemNSN;
+    public ulong ItemSN = new();
+    public ulong ItemNSN = new();
     public string EndDate;
     public int Durability;
     public int MaxDurability;
     public List<string> ParsePropertys;
-    public USFGameItem.FSFItemData ItemData;
+    public USFGameItem.FSFItemData ItemData = new();
   }
 
   public class FSRecvItemShortInfo
   {
     public int ItemId;
-    public ulong ItemSN;
+    public ulong ItemSN = new();
     public string ItemCode;
   }
 
   public class FSRecvPartsItemInfo
   {
-    public ulong ParentsSN;
-    public ulong PartsSN;
+    public ulong ParentsSN = new();
+    public ulong PartsSN = new();
     public int partsID;
     public string Propertys;
   }
@@ -12573,22 +12573,22 @@ public class USFGameViewportClient : UGameViewportClient
   public bool bSendGameExitMessage;
   public bool bEnableClanRankingWithLoading;
   public float DelayTimeToSendGameExitMessage;
-  public FLoadingTextureStruct DefaultBackgroundTexture;
+  public FLoadingTextureStruct DefaultBackgroundTexture = new();
   public List<FLoadingTextureStruct> LoadingTextureArray;
   public List<FLoadingTextureStruct> LobbyLoadingTextureConfigArray;
-  public FColor LoadingBGColor;
+  public FColor LoadingBGColor = new();
   public List<FLobbyLoadingTexture> LobbyLoadingTextureArray;
   public string LoadingTipMessage;
   public string LoadingMapLocalizedMapName;
   public string LoadingInternationalMapName;
-  public FLoadingTextureStruct LoadingBackPannelTextureName;
+  public FLoadingTextureStruct LoadingBackPannelTextureName = new();
   public UTexture2D LoadingBackPannelTexture;
   public UTexture2D LoadingBackGroundTexture;
   public int LoadingDotCount;
   public EBGTEXType BGDrawTypeNow;
   public float FadeTarget;
   public float FadeAmount;
-  public FVector2D FadeAlpha;
+  public FVector2D FadeAlpha = new();
   public float FadeTime;
   public float FadeTimeRemaining;
   public float FadeDelay;
@@ -12598,7 +12598,7 @@ public class USFGameViewportClient : UGameViewportClient
   public int MyClanRankingIndex;
   public string ClanRankingTitleText;
   public int ClanRankingCount;
-  public FColor MyClanColor;
+  public FColor MyClanColor = new();
   public USFOnlineSubsystemPC OnlineSubPC;
 }
 
@@ -12672,11 +12672,11 @@ public class USFGFxUIView : UGFxObject
   public class FSDisplayItem
   {
     public int ItemId;
-    public ulong ItemSN;
+    public ulong ItemSN = new();
     public int ItemTag;
     public int ItemType;
     public string ItemCode;
-    public USFGameItem.FSFItemData ItemData;
+    public USFGameItem.FSFItemData ItemData = new();
     public int Selected;
     public int ItemCount;
   }
@@ -12799,7 +12799,7 @@ public class USFGFxDialog_AllItemRepair : USFGFxDialog_Repair
     public string WeaponImg;
     public int RepairGauge;
     public int NeedSp;
-    public ulong ItemSN;
+    public ulong ItemSN = new();
     public bool bSelected;
   }
 
@@ -12949,13 +12949,13 @@ public class USFGFxDialog_BuyOne : USFGFxDialog_Buy
   public int RestMoney;
   public int SelectedItemID;
   public int SelectedItemPrice;
-  public USFGameItem.FSFItemData SelectedItemData;
+  public USFGameItem.FSFItemData SelectedItemData = new();
   public int SelectedPaymentType;
   public List<string> PaymentTypeArray;
   public bool bBuyCanceled;
   public bool IsGiftDialog;
   public bool IsFocusCodeNameEdit;
-  public FSItemLIst BuyItem;
+  public FSItemLIst BuyItem = new();
   public string CouponSalePrecentText;
   public string CouponRemainDateText;
   public string NotUseCouponText;
@@ -13191,7 +13191,7 @@ public class USFGFxDialog_ChallengeComplete : USFGFxDialog_RewardItem
 public class USFGFxDialog_FuncUseDefault : USFGFxDialog
 {
   public int UseItemId;
-  public ulong GiftNSN;
+  public ulong GiftNSN = new();
   public UClass ItemClass;
   public string strUseFailDefault;
   public List<string> strUseFail;
@@ -13648,7 +13648,7 @@ public class USFGFxDialog_GameResultBase : USFGFxDialog
   public bool IsDisableMyResultFlag;
   public int LevelUpCount;
   public int SPUpCount;
-  public USFUIDataStore_GameResult.FSUserResult MyResult;
+  public USFUIDataStore_GameResult.FSUserResult MyResult = new();
   public int SPImmediatelyLimit;
   public float SPImmediatelyRatio;
   public FScriptDelegate __SortByGameScore__Delegate;
@@ -13725,20 +13725,20 @@ public class USFGFxDialog_ItemRepair : USFGFxDialog_Repair
   public class FsReservedData
   {
     public string WeaponName;
-    public ulong ISN;
+    public ulong ISN = new();
     public int CouponID;
     public int CouponCount;
     public int MySp;
   }
 
-  public FsReservedData ReservedData;
+  public FsReservedData ReservedData = new();
 }
 
 public class USFGFxDialog_ItemResell : USFGFxDialog
 {
   public float ResellPriceRatio;
   public string ResellPriceErrorMessage;
-  public ulong ResellItemSN;
+  public ulong ResellItemSN = new();
   public string ResellItemType;
   public string ResellItemCount;
   public bool bOpenReconfirmDialog;
@@ -13795,7 +13795,7 @@ public class USFGFxDialog_PartsApply : USFGFxDialog
   public List<USFGameItem.FSFItemData> UseItemList;
   public string TargetSocketName;
   public int TargetItemID;
-  public ulong TargetItemSN;
+  public ulong TargetItemSN = new();
   public bool IsApplyItem;
 }
 
@@ -13857,7 +13857,7 @@ public class USFGFxDialog_SpectatorDeco : USFGFxDialog_FuncUseDefault
   public List<string> CommentFilterMessage;
   public int CommentLengthMin;
   public string SendProperty;
-  public FsSpectatorSettingData SpectatorSettingData;
+  public FsSpectatorSettingData SpectatorSettingData = new();
 }
 
 public class USFGFxDialog_SysSetting : USFGFxDialog
@@ -13977,7 +13977,7 @@ public class USFGFxDialog_UseCamo : USFGFxDialog_FuncUseDefault
 {
   public class FsCamouseWeaponList
   {
-    public ulong ISN;
+    public ulong ISN = new();
     public int ItemId;
     public int CamoID;
     public string Icon;
@@ -13988,9 +13988,9 @@ public class USFGFxDialog_UseCamo : USFGFxDialog_FuncUseDefault
   public int RowSize;
   public int SelectedItemIdx;
   public int SelectedWeaponID;
-  public ulong SelectedWeaponISN;
+  public ulong SelectedWeaponISN = new();
   public List<int> WeaponCamoMCItemArray;
-  public FRotator rRotLast;
+  public FRotator rRotLast = new();
   public string GFxName;
   public string strWaringMessage;
   public string strPrecautionMessage;
@@ -14014,7 +14014,7 @@ public class USFGFxDialog_UseBombSPCoupon : USFGFxDialog_UseCamo
 
 public class USFGFxDialog_UseCarveWeaponTag : USFGFxDialog_UseCamo
 {
-  public USFTypes.FSInputTextFilter InputTextLimit;
+  public USFTypes.FSInputTextFilter InputTextLimit = new();
   public List<USFGFxDialog_ClanMake.FSClanTextInputStateMsg> InputTextStateMsgs;
   public List<string> SystemMsgColorArray;
   public USFGFxMoviePlayer_WeaponNameTag WeaponTagMoviePlayer;
@@ -14096,7 +14096,7 @@ public class USFGFxDialog_UseInfiniteMagazine : USFGFxDialog_FuncUseDefault
 {
   public class FsCamouseWeaponList
   {
-    public ulong ISN;
+    public ulong ISN = new();
     public int ItemId;
     public int CamoID;
     public string Icon;
@@ -14107,9 +14107,9 @@ public class USFGFxDialog_UseInfiniteMagazine : USFGFxDialog_FuncUseDefault
   public int RowSize;
   public int SelectedItemIdx;
   public int SelectedWeaponID;
-  public ulong SelectedWeaponISN;
+  public ulong SelectedWeaponISN = new();
   public List<int> WeaponCamoMCItemArray;
-  public FRotator rRotLast;
+  public FRotator rRotLast = new();
   public string GFxName;
   public string strItemDuplicate;
   public string strWaringMessage;
@@ -14128,7 +14128,7 @@ public class USFGFxDialog_UseInitWeaponKillDeath : USFGFxDialog_FuncUseDefault
 {
   public class FsCamouseWeaponList
   {
-    public ulong ISN;
+    public ulong ISN = new();
     public int ItemId;
     public int CamoID;
     public string Icon;
@@ -14137,13 +14137,13 @@ public class USFGFxDialog_UseInitWeaponKillDeath : USFGFxDialog_FuncUseDefault
     public string Groups;
     public string ItemCode;
     public int WeaponLogIndex;
-    public USFTypes.FSFWeaponLogMember LogMember;
+    public USFTypes.FSFWeaponLogMember LogMember = new();
   }
 
   public int RowSize;
   public int SelectedItemIdx;
   public int SelectedWeaponID;
-  public ulong SelectedWeaponISN;
+  public ulong SelectedWeaponISN = new();
   public string GFxName;
   public string strWaringMessage;
   public string strKADRatioMessage;
@@ -14257,7 +14257,7 @@ public class USFGFxDialog_UseStoredMaterial : USFGFxDialog_FuncUseDefault
 
   public class FDisplayedItemInfo
   {
-    public ulong ISN;
+    public ulong ISN = new();
     public int ItemId;
     public string Icon;
     public string Name;
@@ -14276,7 +14276,7 @@ public class USFGFxDialog_UseStoredMaterial : USFGFxDialog_FuncUseDefault
 
 public class USFGFxDialog_UseWeaponParts : USFGFxDialog_UseCamo
 {
-  public USFTypes.FSInputTextFilter InputTextLimit;
+  public USFTypes.FSInputTextFilter InputTextLimit = new();
   public List<USFGFxDialog_ClanMake.FSClanTextInputStateMsg> InputTextStateMsgs;
   public List<string> SystemMsgColorArray;
   public USFGFxMoviePlayer_WeaponNameTag WeaponTagMoviePlayer;
@@ -14390,8 +14390,8 @@ public class USFGFxHUD_Death : USFGFxHUDMoviePlayer
   public UGFxObject FirstRankMC;
   public UGFxObject MyTopRankMC;
   public UGFxObject RankBoardMC;
-  public FRankBoardStruct RankBoardArray;
-  public FSortPRIDataDeath SortPRIArray;
+  public FRankBoardStruct RankBoardArray = new();
+  public FSortPRIDataDeath SortPRIArray = new();
   public ASFPlayerReplicationInfo FirstPRI;
   public int MyRank;
   public int WholePlayerNum;
@@ -14572,10 +14572,10 @@ public class USFGFxHUD_ThunderRun : USFGFxHUDMoviePlayer
   public int AttackProgress;
   public int PlayerProgress;
   public int OldArrowRotaion;
-  public FVector vPointLoc;
-  public FVector2D StartAreaLocation;
-  public FVector2D EndAreaLocation;
-  public FVector2D AreaDirection;
+  public FVector vPointLoc = new();
+  public FVector2D StartAreaLocation = new();
+  public FVector2D EndAreaLocation = new();
+  public FVector2D AreaDirection = new();
   public float AreaDist;
   public int WarningBlinkDistance;
   public int WarningTime;
@@ -14921,7 +14921,7 @@ public class USFGFxHUDWidget_ConvoyanceGauge : USFGFxHUDWidget
 
 public class USFGFxHUDWidget_ConvoyanceHeadUp : USFGFxHUDWidget_PawnHeadUpBase
 {
-  public FVector ConvoyanceHeadUpOffset;
+  public FVector ConvoyanceHeadUpOffset = new();
 }
 
 public class USFGFxHUDWidget_ConvoyanceMatchResult : USFGFxHUDWidget
@@ -15383,7 +15383,7 @@ public class USFGFxHUDWidget_TargetScore : USFGFxHUDWidget
   {
     public UGFxObject MovieClip;
     public int Index;
-    public UObject.FVector Location;
+    public UObject.FVector Location = new();
     public bool bUse;
     public int Score;
     public float CallTime;
@@ -15540,7 +15540,7 @@ public class USFGFxLobby : USFGFxMoviePlayer
 
   public class FsRepairReserved
   {
-    public ulong ItemSN;
+    public ulong ItemSN = new();
     public float Dur;
     public float DurMax;
     public int NeedSp;
@@ -15607,7 +15607,7 @@ public class USFGFxLobby : USFGFxMoviePlayer
   public int ItemTag_Discount;
   public int ItemTag_GashaRareWeapon;
   public int ItemTag_FEVER;
-  public FsRepairReserved RepairReserved;
+  public FsRepairReserved RepairReserved = new();
   public List<FsRepairReserved> RepairReserveds;
   public string UnablebuyCauseCashString;
   public string[] RepairQuestings = new string[10];
@@ -15622,15 +15622,15 @@ public class USFGFxLobby : USFGFxMoviePlayer
   public USFEmblemManager EmblemManager;
   public string DefaultScreenShotsPath;
   public string DefaultRecordPath;
-  public USFTypes.FSRepairDialogInfo RepairDialogInfo;
-  public USFTypes.FSRepairAllDialogInfo RepairAllDialogInfo;
+  public USFTypes.FSRepairDialogInfo RepairDialogInfo = new();
+  public USFTypes.FSRepairAllDialogInfo RepairAllDialogInfo = new();
   public int ForcedMainTabIndex;
   public string Message_FacebookInterlocked;
   public string Message_FacebookInterlockedWithSP;
   public List<int> CacheWeaponItemArray;
   public FName LobbyBGM;
-  public FVector OriginalCameraLoc;
-  public FVector CameraOffset;
+  public FVector OriginalCameraLoc = new();
+  public FVector CameraOffset = new();
   public List<USFTypes.FSRecvPacketHandler> RecvPacketHandlerArray;
   public FScriptDelegate __OnPacketRecv__Delegate;
   public FScriptDelegate __ViewDataSortByDepth__Delegate;
@@ -15917,7 +15917,7 @@ public class USFGFxLobby_ChannelList : USFGFxLobbyScreen
   public List<UGFxClikWidget> ChannelBtn;
   public UGFxClikWidget ChannelList;
   public UGFxClikWidget ChannelList_Ad;
-  public USFTypes.FSChannelSetting SelectedChannel;
+  public USFTypes.FSChannelSetting SelectedChannel = new();
   public int SelectedChannelIndex;
   public int MaxChannelIndex;
   public string SeparationBaseString;
@@ -15955,7 +15955,7 @@ public class USFGFxLobby_ChannelRenweal : USFGFxLobbyScreen
   public UGFxClikWidget QuickStart;
   public UGFxClikWidget ChannelList;
   public UGFxClikWidget ChannelList_Ad;
-  public USFTypes.FSChannelSetting SelectedChannel;
+  public USFTypes.FSChannelSetting SelectedChannel = new();
   public int SelectedChannelIndex;
   public int MaxChannelIndex;
   public string SeparationBaseString;
@@ -16191,7 +16191,7 @@ public class USFGFXLobby_Enchant : USFGFxLobbyScreen
   public int MaxPageCount;
   public int PositionalNum;
   public int CurrentDesignID;
-  public ulong SelectedItemSN;
+  public ulong SelectedItemSN = new();
   public int SelectedBaseItemID;
   public List<FSDisplayItem> SelectedItemList;
   public int MaxMultiSelectItemCount;
@@ -16308,7 +16308,7 @@ public class USFGFxLobby_GashaOrgelBox : USFGFxLobby_GashaBase
   public List<string> DevelopToolTipArray;
   public List<FsCapsuleCommenctInfo> OpneCapsuleCommnetArray;
   public string NoRewardItemErrorMsg;
-  public FsOrgelBtnInfo BtnInfoArray;
+  public FsOrgelBtnInfo BtnInfoArray = new();
   public USFGFxDialog_BuyOne BuyOneDlg;
   public FName SoundEventName;
   public int ExitCount;
@@ -16392,7 +16392,7 @@ public class USFGFxLobby_Inventory : USFGFxLobbyScreen
   public string ClanManagerItemUseFailedMessage;
   public string ClanMemberItemUseFailedMessage;
   public List<USFTypes.FSFUITabList> DefaultMainTabList;
-  public ulong GiftNSN;
+  public ulong GiftNSN = new();
   public FScriptDelegate __MainCategoryButtonDelegate__Delegate;
   public FScriptDelegate __OnItemRollOverDelegate__Delegate;
   public FScriptDelegate __OnItemRollOutDelegate__Delegate;
@@ -16735,8 +16735,8 @@ public class USFGFxLobby_Navi : USFGFxLobbyScreenEx
   public bool bBackbtnNow;
   public bool bEnvbtnNow;
   public bool bSerialbtnNow;
-  public FRotator LastCharRot;
-  public FVector WeaponSocketLoc3DOld;
+  public FRotator LastCharRot = new();
+  public FVector WeaponSocketLoc3DOld = new();
   public string ChannelInfoSrc;
   public string PlayerRankText;
   public string AutoMovingNoticeStr;
@@ -16744,9 +16744,9 @@ public class USFGFxLobby_Navi : USFGFxLobbyScreenEx
   public List<string> CannotJoinRoomBecause;
   public List<string> CannotEnterChannelBecause;
   public string TwitchTVOnMessage;
-  public ulong ViewingRepairItemSN;
+  public ulong ViewingRepairItemSN = new();
   public int ViewingWeaponID;
-  public ulong ViewingWeaponISN;
+  public ulong ViewingWeaponISN = new();
   public float SendInvenChangedtoServerTime;
   public int MaxMovetoChannelRetrycount;
   public float DelayTimeMovetoChannel;
@@ -16774,9 +16774,9 @@ public class USFGFxLobby_Navi : USFGFxLobbyScreenEx
   public int AdditionalStatusIdx;
   public List<FsWatingInviteRespond> WatingInviteResponds;
   public int WeaponRepaitRate;
-  public FVector2D RepairAllPos;
-  public USFTypes.FTime_t ClanLeagueRemainTime;
-  public USFTypes.FTime_t FeverRemainTime;
+  public FVector2D RepairAllPos = new();
+  public USFTypes.FTime_t ClanLeagueRemainTime = new();
+  public USFTypes.FTime_t FeverRemainTime = new();
   public FScriptDelegate __OnCharRotStartDelegate__Delegate;
   public FScriptDelegate __OnCharRotDelegate__Delegate;
   public FScriptDelegate __OnCharRotEndDelegate__Delegate;
@@ -16902,7 +16902,7 @@ public class USFGFxLobby_Shop : USFGFxLobbyScreen
   public class FSLastBuyItem
   {
     public int ItemId;
-    public ulong ItemSN;
+    public ulong ItemSN = new();
   }
 
   public class FsItemAttrib
@@ -17130,7 +17130,7 @@ public class USFGFxLobby_WeaponParts : USFGFxLobbyScreen
   public List<string> CustomizeDownToolTip;
   public bool ReturnAfterRotate;
   public bool bAllowAllParts;
-  public FRotator rRotLast;
+  public FRotator rRotLast = new();
   public List<FWeaponPartsInfo> WeaponPartsInfoArray;
   public USkeletalMeshComponent WeaponMeshComp;
   public List<int> WeapStatArray;
@@ -17138,9 +17138,9 @@ public class USFGFxLobby_WeaponParts : USFGFxLobbyScreen
   public string OriginMagStr;
   public string ChangeMagStr;
   public int SelectedWeaponID;
-  public ulong SelectedWeaponSN;
+  public ulong SelectedWeaponSN = new();
   public int ApplyPartsID;
-  public ulong ApplyPartsSN;
+  public ulong ApplyPartsSN = new();
   public string OriginSelectedParts;
   public int BuyPartsCnt;
   public int BuyPartsMaxCnt;
@@ -17151,14 +17151,14 @@ public class USFGFxLobby_WeaponParts : USFGFxLobbyScreen
   public List<int> SelectedItemArray;
   public List<int> OriginalItemArray;
   public List<int> ShoppingItemArray;
-  public FVector GripWorldLoc;
-  public FVector SightWorldLoc;
-  public FVector SilencerWorldLoc;
-  public FVector LaserPointerWorldLoc;
-  public FVector EffectWorldLoc;
+  public FVector GripWorldLoc = new();
+  public FVector SightWorldLoc = new();
+  public FVector SilencerWorldLoc = new();
+  public FVector LaserPointerWorldLoc = new();
+  public FVector EffectWorldLoc = new();
   public float DisplaySizeX;
   public float DisplaySizeY;
-  public FVector DisplayLoc;
+  public FVector DisplayLoc = new();
   public FScriptDelegate __OnPreviewRotationStartDelegate__Delegate;
   public FScriptDelegate __OnPreviewRotationDelegate__Delegate;
   public FScriptDelegate __OnPreviewRotationEndDelegate__Delegate;
@@ -17235,8 +17235,8 @@ public class USFGFxLobbyPart_SysSetting_Capture : USFGFxLobbyPart_SysSetting
   public string SelecteScreenRecordPath;
   public int SelecteScreenRecordPresetNum;
   public List<FSScreenRecResType> ScreenRecResList;
-  public FSCaptureSetting OldSetting;
-  public FSCaptureSetting NewSetting;
+  public FSCaptureSetting OldSetting = new();
+  public FSCaptureSetting NewSetting = new();
 }
 
 public class USFGFxLobbyPart_AlbumScreenShot : USFGFxLobbyPart_SysSetting_Capture
@@ -17366,7 +17366,7 @@ public class USFUIDataStore_ClanHome : USFUIDataStore_ClanBase
     public List<USFUIDataStore_ClanHome.FSClanMemberInfo> MemberArray;
     public List<USFUIDataStore_ClanHome.FSMessageInfo> MessageBoardArray;
     public List<USFUIDataStore_ClanHome.FSClanRecordInfo> RecordArray;
-    public USFTypes.FSClanInfo ClanInfo;
+    public USFTypes.FSClanInfo ClanInfo = new();
     public List<USFUIDataStore_ClanHome.FSClanRankInfo> ClanRankInfo;
   }
 
@@ -17442,8 +17442,8 @@ public class USFUIDataStore_ClanHome : USFUIDataStore_ClanBase
     public string LongTimeMainWeaponItemCode;
   }
 
-  public FClanHomeData ViewHomeData;
-  public FClanHomeData MyHomeData;
+  public FClanHomeData ViewHomeData = new();
+  public FClanHomeData MyHomeData = new();
   public bool bAscending_Check;
   public bool bAscending_Level;
   public bool bAscending_CodeName;
@@ -17624,7 +17624,7 @@ public class USFUIDataStore_ClanList : USFUIDataStore_ClanBase
   public int nClanListMorePage;
   public EClanListType SelectSortType;
   public int SearchCount;
-  public FSClanListInfo ClanLists;
+  public FSClanListInfo ClanLists = new();
   public int MaxPageCount;
   public int nPrevRequestPage;
   public List<string> ResultClanList;
@@ -17865,7 +17865,7 @@ public class USFGFxLobbyPart_Inven : USFGFxLobbyPart
 {
   public List<FSDisplayItem> DisplayItems;
   public List<USFTypes.FSFUITabList> SubTabList;
-  public USFTypes.FSResellDialogInfo ResellDialogInfo;
+  public USFTypes.FSResellDialogInfo ResellDialogInfo = new();
   public List<bool> InvenTabResellButtonVisible;
   public int DisplayItemCount;
   public int DisplayRowSize;
@@ -17880,7 +17880,7 @@ public class USFGFxLobbyPart_InvenEquip : USFGFxLobbyPart_Inven
 {
   public class FSUnitInvenItem
   {
-    public USFGameItem.FSRecvItemInfo UnitItem;
+    public USFGameItem.FSRecvItemInfo UnitItem = new();
     public int UnitItemID;
     public List<USFGameItem.FSRecvItemInfo> AllItemArray;
     public List<USFGameItem.FSRecvItemInfo> HeadItemArray;
@@ -18166,7 +18166,7 @@ public class USFGFxLobbyPart_PCRoomRank : USFGFxLobbyPart_Rank
   public string PCRoomMyRankDataNone;
   public string PCRoomMyPrevRankDataNone;
   public string PCRoomMyRankEqualPrevRank;
-  public FSPCRoomRankData TestMyRankInfo;
+  public FSPCRoomRankData TestMyRankInfo = new();
 }
 
 public class USFGFxLobbyPart_Shop : USFGFxLobbyPart
@@ -18189,7 +18189,7 @@ public class USFGFxLobbyPart_ShopEquip : USFGFxLobbyPart_Shop
 {
   public class FSUnitShopItem
   {
-    public USFGameItem.FSFItemData UnitItemData;
+    public USFGameItem.FSFItemData UnitItemData = new();
     public int UnitItemID;
     public List<USFGameItem.FSFItemData> AllItemArray;
     public List<USFGameItem.FSFItemData> FaceItemArray;
@@ -18206,7 +18206,7 @@ public class USFGFxLobbyPart_ShopEquip : USFGFxLobbyPart_Shop
 
 public class USFGFxLobbyPart_ShopEventItem : USFGFxLobbyPart_Shop
 {
-  public ulong LastSelectedItemSN;
+  public ulong LastSelectedItemSN = new();
   public int PrevLastSelectedItem;
   public int HotNewInfoIndex;
   public int UpdateTime;
@@ -18215,7 +18215,7 @@ public class USFGFxLobbyPart_ShopEventItem : USFGFxLobbyPart_Shop
 
 public class USFGFxLobbyPart_ShopFeverItem : USFGFxLobbyPart_Shop
 {
-  public ulong LastSelectedItemSN;
+  public ulong LastSelectedItemSN = new();
   public int PrevLastSelectedItem;
   public string DataProvide_BindingName;
   public int FeverItemInfoIndex;
@@ -18234,7 +18234,7 @@ public class USFGFxLobbyPart_ShopModeItem : USFGFxLobbyPart_Shop
 
 public class USFGFxLobbyPart_ShopWeapon : USFGFxLobbyPart_Shop
 {
-  public ulong LastSelectedItemSN;
+  public ulong LastSelectedItemSN = new();
   public int SelectedWeaponProgItemID;
   public List<USFTypes.FSWeaponProgressionTask> SelectedWeaponProgressionArray;
 }
@@ -18275,9 +18275,9 @@ public class USFGFxLobbyPart_SysSetting_Audio : USFGFxLobbyPart_SysSetting
   public UGFxClikWidget VolumeEnvSlider;
   public UGFxClikWidget VolumeVoiceSlider;
   public USFSoundGroup_UX AudioSampleSoundGroup;
-  public FsSoundSetting SoundSettingNow;
-  public FsSoundSetting SoundSettingNew;
-  public FsSoundSetting SoundSettingOld;
+  public FsSoundSetting SoundSettingNow = new();
+  public FsSoundSetting SoundSettingNew = new();
+  public FsSoundSetting SoundSettingOld = new();
 }
 
 public class USFGFxLobbyPart_SysSetting_Controll : USFGFxLobbyPart_SysSetting
@@ -18309,8 +18309,8 @@ public class USFGFxLobbyPart_SysSetting_Controll : USFGFxLobbyPart_SysSetting
   public UGFxClikWidget btnSpecialOk;
   public UGFxClikWidget btnSpecialClose;
   public UGFxClikWidget btnSpecialCancel;
-  public FsConrollSetting ConrollSettingNow;
-  public FsConrollSetting ConrollSettingNew;
+  public FsConrollSetting ConrollSettingNow = new();
+  public FsConrollSetting ConrollSettingNew = new();
   public int UseMouseSensitivityZoom;
   public int MouseSensitivityZoom;
   public int MouseInvertY;
@@ -18339,8 +18339,8 @@ public class USFGFxLobbyPart_SysSetting_Facebook : USFGFxLobbyPart_SysSetting
   public UGFxClikWidget ChkAutoUpdate_Screenshot;
   public UGFxClikWidget ChkAutoUpdate_Movie;
   public UGFxClikWidget ChkMaintainCookie;
-  public FSFacebookSettingInfo DefaultSetting;
-  public FSFacebookSettingInfo CurrentSetting;
+  public FSFacebookSettingInfo DefaultSetting = new();
+  public FSFacebookSettingInfo CurrentSetting = new();
 }
 
 public class USFGFxLobbyPart_SysSetting_Video : USFGFxLobbyPart_SysSetting
@@ -18389,8 +18389,8 @@ public class USFGFxLobbyPart_SysSetting_Video : USFGFxLobbyPart_SysSetting
   public UGFxClikWidget[] UISizeChk = new UGFxClikWidget[2];
   public UGFxClikWidget[] GoreChk = new UGFxClikWidget[2];
   public UGFxClikWidget RadarRotation;
-  public FsGraphicSetting GraphicSettingNew;
-  public FsGraphicSetting GraphicSettingNow;
+  public FsGraphicSetting GraphicSettingNew = new();
+  public FsGraphicSetting GraphicSettingNow = new();
   public string DefaultScreenResolution;
   public List<string> ScreenResList;
   public List<int> ScreenType;
@@ -18419,8 +18419,8 @@ public class USFGFxLobbyPart_SysSetting_Whisper : USFGFxLobbyPart_SysSetting
   public UGFxClikWidget[] ChkNormalBlockWhisper = new UGFxClikWidget[2];
   public UGFxClikWidget[] ChkFriendBlockWhisper = new UGFxClikWidget[2];
   public UGFxClikWidget[] ChkClanBlockWhisper = new UGFxClikWidget[2];
-  public FSWhisperSettingInfo DefaultSetting;
-  public FSWhisperSettingInfo CurrentSetting;
+  public FSWhisperSettingInfo DefaultSetting = new();
+  public FSWhisperSettingInfo CurrentSetting = new();
 }
 
 public class USFGFxMoviePlayer_ClanMark : USFGFxMoviePlayer
@@ -18506,7 +18506,7 @@ public class USFGlowTDMGameScore : USFTeamDeathGameScore
 public class ASFGoldDiggerGame : ASFBaseTeamDeathGame
 {
   public string DroppedPickupMoneyClassName;
-  public FVector MoneySpawnRandomVel;
+  public FVector MoneySpawnRandomVel = new();
   public int BaseMoney;
   public bool bOnlySameTeamCanPickUpMoney;
   public EOverTimeCheckType OverTimeCheckType;
@@ -18613,21 +18613,21 @@ public class ASFHandActor : AActor
   public bool bIsShowed;
   public bool bSteadyWeaponRun;
   public bool bUpdateParticlDynamicData;
-  public FVector LagLocation;
-  public FVector LagMax;
-  public FVector LagMaxWhenZoomed;
-  public FVector LagResult;
-  public FRotator LastViewDirForLag;
-  public FVector MeshTranslation;
-  public FRotator MeshRotation;
+  public FVector LagLocation = new();
+  public FVector LagMax = new();
+  public FVector LagMaxWhenZoomed = new();
+  public FVector LagResult = new();
+  public FRotator LastViewDirForLag = new();
+  public FVector MeshTranslation = new();
+  public FRotator MeshRotation = new();
   public float MeshFOV;
   public float WeaponSteadyLengthRate;
   public float WeaponSteadyWalkFrame;
   public float WeaponSteadyRunFrame;
   public float WeaponSteadyRate;
   public float PawnSpeed2DSq;
-  public FVector CurrentPlayerViewLocation;
-  public FRotator CurrentPlayerViewRotation;
+  public FVector CurrentPlayerViewLocation = new();
+  public FRotator CurrentPlayerViewRotation = new();
 }
 
 public class ASFHardcoreBlastingGame : ASFBlastingGame
@@ -18728,7 +18728,7 @@ public class ASFHeadQuarters : AInfo
   public class FsEnemyReport
   {
     public AActor Target;
-    public UObject.FVector Loc;
+    public UObject.FVector Loc = new();
     public float LastReport;
   }
 
@@ -18880,13 +18880,13 @@ public class USFImportFontCharSet : UObject
     public string LoadingTipMode;
   }
 
-  public FVector2D BaseScreenRes;
-  public FVector2D LoadingRatePos;
-  public FVector2D LoadingTipPos;
-  public FVector2D LocalizedMapNamePos;
-  public FVector2D InternationalMapNamePos;
-  public FVector2D ClanRankingPos;
-  public FVector2D ClanRankingTitlePos;
+  public FVector2D BaseScreenRes = new();
+  public FVector2D LoadingRatePos = new();
+  public FVector2D LoadingTipPos = new();
+  public FVector2D LocalizedMapNamePos = new();
+  public FVector2D InternationalMapNamePos = new();
+  public FVector2D ClanRankingPos = new();
+  public FVector2D ClanRankingTitlePos = new();
   public string LoadingTip;
   public List<string> LoadingTipCommon;
   public List<string> LoadingTipBase;
@@ -18962,7 +18962,7 @@ public class ASFInGameStore : AActor
   public USFUIDataProvider_InGameStore InGameStoreItemList;
   public bool bEnabled;
   public bool bOnlyPurchaseUsableLevel;
-  public FPurchaseInfo PurchaseItemInfo;
+  public FPurchaseInfo PurchaseItemInfo = new();
   public int RepCurrentLevel;
   public int[] CurrentItemCount = new int[60];
   public List<FSAccountBook> AccountBook;
@@ -19097,8 +19097,8 @@ public class USFItem_WeapOption_Sight : USFItem_WeapOption
   public class FWeaponAlignment
   {
     public FName WeaponClassName;
-    public UObject.FVector vLocZoomIN;
-    public UObject.FVector vLocZoomOut;
+    public UObject.FVector vLocZoomIN = new();
+    public UObject.FVector vLocZoomOut = new();
     public float fZoomedMeshFOV;
     public int SpecificSightType;
   }
@@ -19272,7 +19272,7 @@ public class USFItem_Func_EnhancedCrosshair : USFItem_Functional_UI
   public class FsCrossHairColor
   {
     public string CrossHairUIColor;
-    public UObject.FColor CrossHairRGBColor;
+    public UObject.FColor CrossHairRGBColor = new();
   }
 
   public List<FsCrossHairType> CrossHairType;
@@ -19289,8 +19289,8 @@ public class USFItem_Func_ExtraArmor : USFItem_Functional_Char
   public int DefencePoint;
   public bool Dropable;
   public FName SocketName;
-  public FVector Translation;
-  public FRotator Rotation;
+  public FVector Translation = new();
+  public FRotator Rotation = new();
   public float DefenceDir;
   public float DefenceRange;
   public List<FName> BoneNames;
@@ -19562,16 +19562,16 @@ public class USFItem_Weap : USFItem_Base
   public int UIGroup;
   public int UISlot;
   public string UIMaker;
-  public FVector vLocation;
-  public FVector vLocationZoom;
-  public FVector vStepLocation;
-  public FRotator rOrgRotation;
-  public FRotator rStepRotation;
+  public FVector vLocation = new();
+  public FVector vLocationZoom = new();
+  public FVector vStepLocation = new();
+  public FRotator rOrgRotation = new();
+  public FRotator rStepRotation = new();
   public float fScale;
   public float fFieldOfView;
   public float fZoomOutMaxFOV;
-  public FVector vLocationMuzzleFlash;
-  public FRotator rRotationMuzzleFlash;
+  public FVector vLocationMuzzleFlash = new();
+  public FRotator rRotationMuzzleFlash = new();
   public int ReplaceAmmoCount;
   public int ReplaceAmmoCountInMgz;
   public string[] LobbyWeaponAnimSet = new string[4];
@@ -19766,7 +19766,7 @@ public class USFItem_WeapOption_WeaponEffect : USFItem_WeapOption
   public string SFWeaponEffectClassName;
   public List<USFTypes.FSWeaponEffect> WeaponEffect1stView;
   public List<USFTypes.FSWeaponEffect> WeaponEffect3rdView;
-  public USFTypes.FSWeaponEffect WeaponEffectlobby;
+  public USFTypes.FSWeaponEffect WeaponEffectlobby = new();
 }
 
 public class USFItem_WeapOption_WeaponTag : USFItem_WeapOption
@@ -19899,8 +19899,8 @@ public class ASFKActor : AKActor
 {
   public class FCheckpointRecord
   {
-    public UObject.FVector Location;
-    public UObject.FRotator Rotation;
+    public UObject.FVector Location = new();
+    public UObject.FRotator Rotation = new();
     public ECollisionType CollisionType;
     public bool bHidden;
     public EPhysics Physics;
@@ -19941,10 +19941,10 @@ public class ASFKActorNoSyncSpawnable : ASFKActorNoSync
 
 public class ASFKAsset : AKAsset
 {
-  public FRigidBodyState RBState;
+  public FRigidBodyState RBState = new();
   public float AngErrorAccumulator;
-  public FVector InitialLocation;
-  public FRotator InitialRotation;
+  public FVector InitialLocation = new();
+  public FRotator InitialRotation = new();
   public EPhysics InitialPhysics;
   public float InitialPhysicsWeight;
   public bool InitialBlockRigidBody;
@@ -20247,20 +20247,20 @@ public class USFMapInfo : UMapInfo
   {
     public FName CubeMapActorName;
     public UTextureCube CubeMap;
-    public UObject.FVector Location;
+    public UObject.FVector Location = new();
   }
 
   public class FVectorParamForEffect
   {
     public FName ParamName;
-    public UObject.FVector Value;
+    public UObject.FVector Value = new();
   }
 
   public UDynamicLightEnvironmentComponent MapLightEnvironment;
-  public FVector RoundEnd_MidTones;
-  public FVector RoundEnd_Shadows;
+  public FVector RoundEnd_MidTones = new();
+  public FVector RoundEnd_Shadows = new();
   public float RoundEnd_Desaturation;
-  public FVector LensFlarePosition;
+  public FVector LensFlarePosition = new();
   public List<ACombatZone> CombatZones;
   public float VisibilityModifier;
   public List<FSFStreamLevelInfo> arrSFStreamLevel;
@@ -20347,8 +20347,8 @@ public class ASFMinimapActor : AActor
 {
   public class FMiniMapImageAdjustmentData
   {
-    public UUIRoot.FUIImageAdjustmentData Horizontal;
-    public UUIRoot.FUIImageAdjustmentData Vertical;
+    public UUIRoot.FUIImageAdjustmentData Horizontal = new();
+    public UUIRoot.FUIImageAdjustmentData Vertical = new();
   }
 
   public class FsMiniMapLayer
@@ -20370,8 +20370,8 @@ public class ASFMinimapActor : AActor
   public float WholeMapRedTeamRotationVaule;
   public float WholeMapBlueTeamRotationVaule;
   public float WholeMapRotationVaule;
-  public FVector ObserverTopViewLocation;
-  public FRotator ObserverTopViewRotation;
+  public FVector ObserverTopViewLocation = new();
+  public FRotator ObserverTopViewRotation = new();
   public int WorldSizeX;
   public int WorldSizeY;
   public UStaticMeshComponent StaticMeshComponent;
@@ -20448,7 +20448,7 @@ public class USFObjectPool : UObject
     public EMeshGroup MeshGroupLabel;
     public string IDString;
     public USkeletalMesh MergedMesh;
-    public double LastAccessTime;
+    public double LastAccessTime = new();
   }
 
   public List<UObject> arrNewObjList;
@@ -20489,8 +20489,8 @@ public class ASFObserverController : ASFPlayerController
   public ETeam CurrentViewTeam;
   public EObserverShowArmBand ShowArmBandMode;
   public EObserverShowArmBand PrevArmBandMode;
-  public FVector OldLocation;
-  public FRotator OldRotation;
+  public FVector OldLocation = new();
+  public FRotator OldRotation = new();
   public UMaterialInterface TranslucentRedMaterial;
   public UMaterialInterface TranslucentBlueMaterial;
   public UMaterialInterface TranslucentDefaultMaterial;
@@ -20505,8 +20505,8 @@ public class USFObserverInput : UPlayerInput
 
 public class ASFPrimaryTargetActor : ASFObstaclesActor
 {
-  public FVector OriginStep;
-  public FRotator OriginRot;
+  public FVector OriginStep = new();
+  public FRotator OriginRot = new();
   public bool bIconState;
 }
 
@@ -20550,9 +20550,9 @@ public class USFOnlineSubsystemInternet : UObject
     public string strArgValue;
   }
 
-  public FPointer _hOpen;
-  public FPointer _hConnection;
-  public FPointer _hRequest;
+  public FPointer _hOpen = new();
+  public FPointer _hConnection = new();
+  public FPointer _hRequest = new();
   public string[] BaseUrl = new string[38];
   public int ClanServerPort;
   public string strPlayerUSN;
@@ -20616,7 +20616,7 @@ public class USFOnlineSubsystemPC : USFOnlineSubsystemPCBase
   public string PlayerAddInfos;
   public int ClanSN;
   public string SpareCookie;
-  public ulong PlayerFacebookID;
+  public ulong PlayerFacebookID = new();
   public string PlayerFacebookToken;
   public string BlockExpirationDate;
   public int LoginedServerYear;
@@ -20651,9 +20651,9 @@ public class USFOnlineSubsystemPC : USFOnlineSubsystemPCBase
   public float WaitingTimeOutTime;
   public string RequestSupplyCode;
   public List<FName> AdditionalGoreSuppress;
-  public FPointer WebBrowserControl;
-  public FPointer WebBrowserEvent;
-  public FPointer SteamManager;
+  public FPointer WebBrowserControl = new();
+  public FPointer WebBrowserEvent = new();
+  public FPointer SteamManager = new();
   public int WebControlLastError;
   public string OpenWebTargetFrameName;
   public string OpenWebHeaders;
@@ -20851,7 +20851,7 @@ public class USFParticleModuleResistance : UParticleModuleAcceleration
 public class USFParticleSystemComponent : UParticleSystemComponent
 {
   public bool bHasSavedScale3D;
-  public FVector SavedScale3D;
+  public FVector SavedScale3D = new();
 }
 
 public class USFWorldCubeMapComponent : UActorComponent
@@ -20918,7 +20918,7 @@ public class ASFPawn : AGamePawn
   public class FSAimingInfo
   {
     public int HitDistance;
-    public UObject.FVector HitLocation;
+    public UObject.FVector HitLocation = new();
     public AActor HitActor;
     public FName HitBone;
   }
@@ -20927,9 +20927,9 @@ public class ASFPawn : AGamePawn
   {
     public APawn Attacker;
     public APawn Victim;
-    public USFTypes.FSFTakeHitInfo HitInfo;
+    public USFTypes.FSFTakeHitInfo HitInfo = new();
     public AActor DamageCauser;
-    public UObject.FVector AttackerLocation;
+    public UObject.FVector AttackerLocation = new();
     public EBodyParts bodyParts;
     public byte FiringMode;
     public int RecoilCRC;
@@ -21027,8 +21027,8 @@ public class ASFPawn : AGamePawn
   public USFWorldCubeMapComponent WorldCubeComp;
   public FName PostProcessVolumeName;
   public float fLastUpdateCharacterLightEnv;
-  public FVector FixedViewLoc;
-  public FRotator FixedViewRot;
+  public FVector FixedViewLoc = new();
+  public FRotator FixedViewRot = new();
   public float CameraScale;
   public float CurrentCameraScale;
   public float CameraZOffset;
@@ -21068,20 +21068,20 @@ public class ASFPawn : AGamePawn
   public FName HelmetBoneName;
   public float ReflexScopeDistance;
   public List<FSAimProfileInfo> AimProfileInfo;
-  public USFTypes.FSFTakeHitInfo LastTakeHitInfo;
+  public USFTypes.FSFTakeHitInfo LastTakeHitInfo = new();
   public int LastTakeHitInfo_Damage;
-  public FVector LastTakeHitInfo_HitLocation;
-  public FVector LastTakeHitInfo_Momentum;
+  public FVector LastTakeHitInfo_HitLocation = new();
+  public FVector LastTakeHitInfo_Momentum = new();
   public UClass LastTakeHitInfo_DamageType;
   public int LastTakeHitInfo_WeaponID;
   public AActor LastTakeHitInfo_DamagedBy;
   public int LastTakeHitInfo_DamagedByPID;
   public int LastTakeHitInfo_HitType;
-  public FVector FreeCamStartPos;
+  public FVector FreeCamStartPos = new();
   public int RootYaw;
   public float RootYawSpeed;
   public int MaxYawAim;
-  public FVector2D CurrentSkelAim;
+  public FVector2D CurrentSkelAim = new();
   public UAnimNodeAimOffset AimNode;
   public List<USFTypes.FSFaceMorphNode> FaceMorphNodeArray;
   public USkelControlFootPlacement LeftLegControl;
@@ -21089,7 +21089,7 @@ public class ASFPawn : AGamePawn
   public float OverrideFootOffset;
   public USkelControlLookAt LookAtControl;
   public float CrouchTranslationOffset;
-  public FVector MeshTranslationOffset;
+  public FVector MeshTranslationOffset = new();
   public float MeshYawOffset;
   public float MeshFloorZOffset;
   public float MeshFloorConformTranslation;
@@ -21113,7 +21113,7 @@ public class ASFPawn : AGamePawn
   public List<USFTypes.FSKillCamProjectile> KillCamProjectileArray;
   public int KilledProjectileID;
   public UClass DeathAnimDamageType;
-  public FVector DeathAnimHitLoc;
+  public FVector DeathAnimHitLoc = new();
   public List<FName> SpringBonesName;
   public float DeathDamageRadius;
   public float PlayDeathTime;
@@ -21121,7 +21121,7 @@ public class ASFPawn : AGamePawn
   public List<USkelControlSingleBone> SkelRotationCtrlList;
   public float WalkingRotationAim;
   public List<float> SpeedDirPct;
-  public FVector ActorSpaceAccel;
+  public FVector ActorSpaceAccel = new();
   public float MaxSpeed;
   public float MinSpeed;
   public float MaxSpeedWeight;
@@ -21141,16 +21141,16 @@ public class ASFPawn : AGamePawn
   public List<FName> DisableSocketNames;
   public List<USFItem_Char.FSpecialSound> SpecialSounds;
   public int PostEffectRefInfo;
-  public FFlashBangPostEffect FlashBangEffect;
-  public FDistortionPostEffect DistortionEffect;
+  public FFlashBangPostEffect FlashBangEffect = new();
+  public FDistortionPostEffect DistortionEffect = new();
   public UClass SFPostEffectClass;
   public float ShockDamage;
   public int ShockDamageRep;
   public float MinElectricShockInterval;
   public float MaxElectricShockInterval;
   public float MaxElectricShockDuration;
-  public FVector MinElectricShockImpulse;
-  public FVector MaxElectricShockImpulse;
+  public FVector MinElectricShockImpulse = new();
+  public FVector MaxElectricShockImpulse = new();
   public float ElectricShockDuration;
   public float JumpOffPawnTime;
   public int JumpOffPawnCount;
@@ -21159,7 +21159,7 @@ public class ASFPawn : AGamePawn
   public int KillAssistMinDmg;
   public FSKillAssist[] KillAssistArray = new FSKillAssist[4];
   public List<USFTypes.FWeaponItemIDSet> CachedCurrentWeaponItems;
-  public FSAimingInfo AimingInfo;
+  public FSAimingInfo AimingInfo = new();
   public float fLastUpdateAimInfo;
   public float DamagedTime;
   public float MaimTime;
@@ -21171,8 +21171,8 @@ public class ASFPawn : AGamePawn
   public float fSpeedNow;
   public float RemoteViewPitchBlendSpeed;
   public int BlendedRemoteViewPitch;
-  public FVector SFSavedLocation;
-  public FRotator SFSavedRotation;
+  public FVector SFSavedLocation = new();
+  public FRotator SFSavedRotation = new();
   public int SavedZoomState;
   public int CachedHitType;
   public FVector[] ImpactLocation = new FVector[32];
@@ -21197,16 +21197,16 @@ public class ASFPawn : AGamePawn
   public float LastHitTime;
   public int CurrentWeaponSet;
   public ASFPlayerReplicationInfo CachedPRI;
-  public FVector CodeNameOffset;
+  public FVector CodeNameOffset = new();
   public float ThirdPersonCameraScale;
   public float ThirdPersonCameraScaleAtMatchIsOver;
   public float ThirdPersonCameraScaleInterpSpeed;
   public ASFDroppedPickup CurrentValidDroppedPickUp;
   public ASFProj_Arrow NailProj;
   public float FallingDownDamagePct;
-  public FVector DyingLocation;
-  public FVector DyingMomentum;
-  public FRotator DyingRotation;
+  public FVector DyingLocation = new();
+  public FVector DyingMomentum = new();
+  public FRotator DyingRotation = new();
   public FName DyingAnimationName;
   public float DyingTime;
   public float RecordingPeriod;
@@ -21267,7 +21267,7 @@ public class ASFPawn : AGamePawn
   public List<FEventServePart> EventServeParts;
   public float ExtendDamageDepictionColor;
   public float ExtendDamageDepictionMesh;
-  public FVector OriginalTrans;
+  public FVector OriginalTrans = new();
   public List<int> PurchacedWeaponIDsAtInGameStore;
   public float SearchDelay;
   public float LastSearchedTime;
@@ -21300,7 +21300,7 @@ public class ASFPawn_AI : ASFPawn
   public class FWeaponStartTraceLocationCacheStruct
   {
     public bool bUpToDate;
-    public UObject.FVector StartLoc;
+    public UObject.FVector StartLoc = new();
     public AWeapon WeaponCacheIsValidFor;
   }
 
@@ -21308,8 +21308,8 @@ public class ASFPawn_AI : ASFPawn
   {
     public int Damage;
     public AController EventInstigator;
-    public UObject.FVector HitLocation;
-    public UObject.FVector Momentum;
+    public UObject.FVector HitLocation = new();
+    public UObject.FVector Momentum = new();
     public UClass DamageType;
   }
 
@@ -21335,8 +21335,8 @@ public class ASFPawn_AI : ASFPawn
   public EInventoryTypes CustomAIWeapon;
   public eSpecialAI SpecialMarked;
   public FName SightBoneName;
-  public FWeaponStartTraceLocationCacheStruct WeaponStartTraceLocationCache;
-  public FDelayedDamageInfoStruct DelayedDamageInfo;
+  public FWeaponStartTraceLocationCacheStruct WeaponStartTraceLocationCache = new();
+  public FDelayedDamageInfoStruct DelayedDamageInfo = new();
   public List<FFullBodyAnimation> DefaultFullBodyAnimations;
   public int AIFullBodyAnimCount;
   public int AIFullBodyAnimIndex;
@@ -21400,7 +21400,7 @@ public class ASFPawn_AI_Aliens_Base : ASFPawn_AI_Aliens
 
 public class ASFPawn_AI_Human : ASFPawn_AI
 {
-  public FRotator SightDegree;
+  public FRotator SightDegree = new();
   public float SightRatioWalk;
   public float SightRatioStop;
   public float fInsightDot;
@@ -21461,9 +21461,9 @@ public class ASFPawn_Player : ASFPawn
   public float JumpBob;
   public float AppliedBob;
   public float bobtime;
-  public FVector WalkBob;
-  public FVector IdleBob;
-  public FVector WeaponBobValue;
+  public FVector WalkBob = new();
+  public FVector IdleBob = new();
+  public FVector WeaponBobValue = new();
   public float OldWeaponBobValueZ;
   public int BobValueDir;
   public float fBobSpeed;
@@ -21494,18 +21494,18 @@ public class ASFPawn_Player : ASFPawn
   public UMaterialInterface BlueArmBandMaterial;
   public List<ASFProjectile> GrenadeIndicators;
   public List<FSFAutoMessageWeaponType> AutoMessageWeaponTypeList;
-  public FS_RECOIL_RESULT RecoilResult;
+  public FS_RECOIL_RESULT RecoilResult = new();
   public float StartFireSecondsForRecoil;
   public float LastCrossVertForRecoil;
   public float InterpSpeedForRecoilMovingValue;
   public float InterpSpeedForRecoilStopValue;
-  public FRotator rotRecoil;
+  public FRotator rotRecoil = new();
   public UParticleSystem ObserverFlashBangEffect;
   public AEmitter ObserverFlashBangEmitter;
-  public FVector ObserverFlashBangEffectRelLocation;
+  public FVector ObserverFlashBangEffectRelLocation = new();
   public UStaticMeshComponent ObserverLookAtConeComponent;
-  public FVector ObserverLookAtConeRelLocation;
-  public FRotator ObserverLookAtConeRelRotation;
+  public FVector ObserverLookAtConeRelLocation = new();
+  public FRotator ObserverLookAtConeRelRotation = new();
   public List<float> ShakeChanceByBodyParts;
   public List<USFTypes.FAddtionalIdleMotion> AddedIdleMotions;
   public int SettedIdleMotions;
@@ -21529,12 +21529,12 @@ public class ASFPawn_GlowPlayer : ASFPawn_Player
 {
   public int GlowModeEffectType;
   public int GlowModeIndex;
-  public FVector CurrentGlowModeColor;
-  public FVector CurrentGlowModeScalar;
-  public FVector StartGlowModeColor;
-  public FVector NextGlowModeColor;
-  public FVector StartGlowModeScalar;
-  public FVector NextGlowModeScalar;
+  public FVector CurrentGlowModeColor = new();
+  public FVector CurrentGlowModeScalar = new();
+  public FVector StartGlowModeColor = new();
+  public FVector NextGlowModeColor = new();
+  public FVector StartGlowModeScalar = new();
+  public FVector NextGlowModeScalar = new();
   public float CurrentGlowTransitionTime;
   public float GlowTransitionTime;
   public int GlowModeEffectMax;
@@ -21556,7 +21556,7 @@ public class ASFPawn_CaptainPlayer : ASFPawn_GlowPlayer
   public bool IsCaptainPoint;
   public int DamageAdvantage;
   public int AdvantageTime;
-  public FAdvantage CaptainAdvantage;
+  public FAdvantage CaptainAdvantage = new();
 }
 
 public class ASFPawn_Drone : ASFPawn_Player
@@ -21675,7 +21675,7 @@ public class ASFPawnAI_Sentinel : ASFPawn_AI
   public float ObservingRange;
   public float ObservingAngle;
   public UClass WeaponClass;
-  public FVector FiringPosition;
+  public FVector FiringPosition = new();
   public float PreFireDelayTime;
   public FName WeaponBoneName;
   public bool bTrackingEnemyWhenFire;
@@ -21764,7 +21764,7 @@ public class USFTemporaryObjectPool : UObject
     public float Thickness;
     public float DepthBias;
     public float Lifetime;
-    public UObject.FVector2D DecalBlendRange;
+    public UObject.FVector2D DecalBlendRange = new();
     public bool bNoClip;
     public bool bProjectOnSkeletalMeshes;
     public int DecalsIndex;
@@ -21810,7 +21810,7 @@ public class USFTemporaryObjectPool : UObject
   public FarrPSCInfo[] CachedHitEffect = new FarrPSCInfo[3];
   public UParticleSystem DamageCameraBlood;
   public UParticleSystem DeathCameraBlood;
-  public FSFBloodDecalPool WallBloodDecals;
+  public FSFBloodDecalPool WallBloodDecals = new();
   public UMaterialInstanceConstant WallBloodDecalMIC;
   public List<FSprayInfo> arrSprayInfo;
   public int SpraySpawnCounterForDepth;
@@ -21943,9 +21943,9 @@ public class USFPawnFX_Human_EquipmentEffect : USFPawnFX_Human
   public FName EquipmentEffectBoneName;
   public UParticleSystem EquipmentEffectPS;
   public UParticleSystemComponent EquipmentEffectPSC;
-  public FVector EquipmentEffectColor;
-  public FVector EquipmentEffectScalar;
-  public FRotator EquipmentEffectRotator;
+  public FVector EquipmentEffectColor = new();
+  public FVector EquipmentEffectScalar = new();
+  public FRotator EquipmentEffectRotator = new();
 }
 
 public class USFPawnFX_Zombie : USFPawnFX_Aliens
@@ -21985,8 +21985,8 @@ public class USFPCRoomCare : UObject
 
 public class ASFPendingPlayerController : APlayerController
 {
-  public FVector Scene_MidTones;
-  public FVector Scene_Shadows;
+  public FVector Scene_MidTones = new();
+  public FVector Scene_Shadows = new();
   public float Scene_Desaturation;
   public ACameraActor WorldCamera;
 }
@@ -22191,8 +22191,8 @@ public class ASFProjectile : AProjectile
   public UClass ExplosionLightClass;
   public USFGameExplosion ExplosionInfo;
   public UClass GameExplosionActorClass;
-  public FVector vWaterSurface;
-  public FVector vWaterSurfaceNormal;
+  public FVector vWaterSurface = new();
+  public FVector vWaterSurfaceNormal = new();
   public int nStrikeDamage;
   public int UseWeaponEffectGroupIndex;
   public float StrikeDamageReduceRatioWhenHitWall;
@@ -22202,18 +22202,18 @@ public class ASFProjectile : AProjectile
   public int PhysicTickMaxCounter;
   public int InstigatorUniqueID;
   public ASFPlayerReplicationInfo InstigatorPRI;
-  public FVector NewDesiredAcceleration;
+  public FVector NewDesiredAcceleration = new();
   public float WarnProjectileTimer;
   public float NoticeDistance;
   public float ExposedDistance;
   public AActor VictimActor;
-  public FVector OwnerInertiaApplyRatio;
+  public FVector OwnerInertiaApplyRatio = new();
   public float KillCamCameraInterpSpeed;
-  public FVector KillCamRelativeLocation;
+  public FVector KillCamRelativeLocation = new();
   public float KillCamCameraFadding;
-  public FVector SpawnLocation;
-  public FRotator SpawnRotation;
-  public FVector InitialVelocity;
+  public FVector SpawnLocation = new();
+  public FRotator SpawnRotation = new();
+  public FVector InitialVelocity = new();
   public UParticleSystemComponent ProjectileFlashBackScreenEffect;
   public float SpeedToStop;
   public List<float> StrikeDmgScaleBodyParts;
@@ -22237,7 +22237,7 @@ public class ASFProj_Throw : ASFProjectile
   public List<UParticleSystem> ProjRotateTemplate;
   public List<FName> ProjRotateSocketName;
   public FName ProjFlightEffectsSocketName;
-  public FVector ProjFlightEffectsAttachOffset;
+  public FVector ProjFlightEffectsAttachOffset = new();
   public float fLastTimeToSpawnImpact;
   public float fLastMaxTimeToSpawnImpact;
   public float MaxTrajectorySimulationTime;
@@ -22259,7 +22259,7 @@ public class ASFProj_HandGrenade : ASFProj_Explosive
   public bool bExplodeWhenHitWall;
   public bool bExplodeAfterHitGround;
   public float fRotSpeed;
-  public FVector StartLoc;
+  public FVector StartLoc = new();
   public float ExtraExplodeTimeAfterHitGround;
   public string SFPostEffectClassName;
 }
@@ -22330,8 +22330,8 @@ public class ASFProj_Arrow : ASFProj_Explosive
   public UAudioComponent ArrowAudioComponent;
   public float StuckCameraSpeedRatio;
   public UDynamicLightEnvironmentComponent SelfLightEnvironment;
-  public FRotator MeshRotationRateBySpeed;
-  public FRotator DefaultMeshRotation;
+  public FRotator MeshRotationRateBySpeed = new();
+  public FRotator DefaultMeshRotation = new();
 }
 
 public class ASFProj_GrenadeLauncher : ASFProj_Explosive
@@ -22348,7 +22348,7 @@ public class ASFProj_HandGrenadeAimingArc : ASFProj_HandGrenade
 
 public class ASFProj_HG_BabyStunner : ASFProj_HandGrenade
 {
-  public FVector ThrowDirection;
+  public FVector ThrowDirection = new();
   public float GroundSpeed;
   public float GroundMaxSpeed;
   public float GroundWaitTime;
@@ -22413,7 +22413,7 @@ public class ASFProj_Knife : ASFProj_Throw
   public bool bRequestDamageRPC;
   public AActor AttachedTo;
   public float MomentumToDeadBody;
-  public FVector AddedAccel;
+  public FVector AddedAccel = new();
   public USoundCue WhippingSound;
   public USoundCue StuckSound;
   public UAudioComponent KnifeAudioComponent;
@@ -22494,7 +22494,7 @@ public class USFPvEMapInfo : USFMapInfo
 public class ASFPvEPlayerController : ASFPlayerController
 {
   public int OldCurrentWave;
-  public USFGameDatabase.FSFPEVPlayerLog DedicatePEVPlayerLog;
+  public USFGameDatabase.FSFPEVPlayerLog DedicatePEVPlayerLog = new();
 }
 
 public class USFPVEPlayTimeEventData : USFBaseEventData
@@ -22510,7 +22510,7 @@ public class USFQACheckMessage : UObject
   public class FSFQAMessage
   {
     public float TimeToDisplay;
-    public UObject.FColor DisplayColor;
+    public UObject.FColor DisplayColor = new();
     public string QAMessage;
   }
 
@@ -22553,7 +22553,7 @@ public class USFRandomRespawn : UObject
   {
     public float fDistRatio;
     public ASFGamePlayerStart PS_Respawn;
-    public UObject.FVector TargetLocation;
+    public UObject.FVector TargetLocation = new();
   }
 
   public class FPlayerStartRating
@@ -22641,12 +22641,12 @@ public class ASFRescueVolume : ASFModeVolume
 
 public class USFRespawnCameraMode : USFThirdPersonCameraModeBase
 {
-  public FVector StartLocTangent;
-  public FRotator StartRotTangent;
-  public FVector EndLocTangent;
-  public FRotator EndRotTangent;
-  public FVector StartLocationOffset;
-  public FRotator StartRotationOffset;
+  public FVector StartLocTangent = new();
+  public FRotator StartRotTangent = new();
+  public FVector EndLocTangent = new();
+  public FRotator EndRotTangent = new();
+  public FVector StartLocationOffset = new();
+  public FRotator StartRotationOffset = new();
   public float RespawnCameraDelay;
   public float fPassedTime;
 }
@@ -22836,8 +22836,8 @@ public class USFSeqAct_AddHealth : USequenceAction
 
 public class USFSeqAct_AddImpulse : USequenceAction
 {
-  public FVector Impulse;
-  public FVector Position;
+  public FVector Impulse = new();
+  public FVector Position = new();
   public FName BoneName;
   public bool bVelChange;
 }
@@ -22866,7 +22866,7 @@ public class USFSeqAct_AddMoneyToAllPlayer : USFSeqAct_SFGameInfo
 public class USFSeqAct_AddRadialImpulse : USequenceAction
 {
   public float Impulse;
-  public FVector Position;
+  public FVector Position = new();
   public AActor SpawnPoint;
   public bool bVelChange;
 }
@@ -22975,8 +22975,8 @@ public class USFSeqAct_ChangeMatineeSkel : USequenceAction
   public class FAttachedActorInfo
   {
     public AActor AttachedActor;
-    public UObject.FVector RelativeLocation;
-    public UObject.FRotator RelativeRotation;
+    public UObject.FVector RelativeLocation = new();
+    public UObject.FRotator RelativeRotation = new();
     public bool bHardAttach;
   }
 
@@ -23029,8 +23029,8 @@ public class USFSeqAct_Explode : USequenceAction
   public AActor Instigator;
   public bool bUseTargetLocationNRotation;
   public AActor SpawnPoint;
-  public FVector SpawnLocation;
-  public FVector SpawnOrientation;
+  public FVector SpawnLocation = new();
+  public FVector SpawnOrientation = new();
   public UClass DefaultDamageType;
 }
 
@@ -23635,19 +23635,19 @@ public class USFSeqVar_PlayerSelectTeam : USeqVar_Object
 
 public class USFSeqVar_RandomVector : USeqVar_Vector
 {
-  public FVector Min;
-  public FVector Max;
+  public FVector Min = new();
+  public FVector Max = new();
 }
 
 public class USFServerConnection : UObject
 {
   public class FSFSocket
   {
-    public UObject.FPointer Socket;
-    public UObject.FPointer netBuf;
-    public UObject.FPointer CriticalSection;
-    public UObject.FPointer RecvRunnable;
-    public UObject.FPointer RecvThread;
+    public UObject.FPointer Socket = new();
+    public UObject.FPointer netBuf = new();
+    public UObject.FPointer CriticalSection = new();
+    public UObject.FPointer RecvRunnable = new();
+    public UObject.FPointer RecvThread = new();
     public List<UPacket> PacketArray;
     public int PacketArraySize;
     public int nRead;
@@ -23662,14 +23662,14 @@ public class USFServerConnection : UObject
   public bool bIsPolling;
   public bool bForceExitWhenDisconnect;
   public int PollingCount;
-  public FSFSocket SocketInfo;
+  public FSFSocket SocketInfo = new();
   public int ConnectTryCount;
 }
 
 public class ASFShooterGame : ASFTeamGameInfo
 {
   public List<string> DroppedPickupList;
-  public FVector PickupSpawnRandomVel;
+  public FVector PickupSpawnRandomVel = new();
 }
 
 public class ASFShooterCTFGame : ASFShooterGame
@@ -23738,7 +23738,7 @@ public class ASFShooterDefenceGameReplicationInfo : ASFSurvivalGameReplicationIn
 {
   public float EnemyMarkOutlineWidth;
   public float EnemyMarkOutLineIntense;
-  public FLinearColor ItemCarrierPointedColor;
+  public FLinearColor ItemCarrierPointedColor = new();
 }
 
 public class USFSurvivalGameScore : USFGameScore
@@ -23783,8 +23783,8 @@ public class ASFShooterPlayerController : ASFPvEPlayerController
   public string LookAtConeMeshString;
   public UStaticMesh LookAtConeMesh;
   public USpotLightComponent LookAtLight;
-  public FRotator LookAtConeRelRotation;
-  public FVector LastFocusOrigin;
+  public FRotator LookAtConeRelRotation = new();
+  public FVector LastFocusOrigin = new();
   public float CameraIsolateViewDistance;
   public float CameraMaxHeight;
   public float CameraApplyRatio;
@@ -23804,16 +23804,16 @@ public class ASFShooterPlayerController : ASFPvEPlayerController
   public float DesiredCameraExtentViewRatio;
   public float DesiredCameraApplyInterpTime;
   public float DesiredAlpha;
-  public FRotator CameraBaseRotation;
-  public FVector CameraBaseDirection;
-  public FRotator ViewRotationLimit;
+  public FRotator CameraBaseRotation = new();
+  public FVector CameraBaseDirection = new();
+  public FRotator ViewRotationLimit = new();
   public float PlaneConstantOld;
-  public FVector2D StartTrace2d;
-  public FVector2D EndTrace2d;
+  public FVector2D StartTrace2d = new();
+  public FVector2D EndTrace2d = new();
   public float ShooterMouseSensitivity;
   public float ShooterMouseCalibration;
-  public FVector2D ShooterMouseLoc;
-  public FVector2D HalfScreenRes;
+  public FVector2D ShooterMouseLoc = new();
+  public FVector2D HalfScreenRes = new();
   public eMOUSEMode MouseModecurrent;
 }
 
@@ -23983,9 +23983,9 @@ public class USFShutDownLaw : UObject
 
 public class USFSkelControl_CantileverBeam : USkelControlLookAt
 {
-  public FVector WorldSpaceGoal;
-  public FVector InitialWorldSpaceGoalOffset;
-  public FVector Velocity;
+  public FVector WorldSpaceGoal = new();
+  public FVector InitialWorldSpaceGoalOffset = new();
+  public FVector Velocity = new();
   public float SpringStiffness;
   public float SpringDamping;
   public float PercentBeamVelocityTransfer;
@@ -24149,7 +24149,7 @@ public class USFSoundGroup_Voice : USFSoundGroup
   public class FVoiceMessage
   {
     public FName EventName;
-    public USFSoundGroup_Voice.FBGMInfo BGMToPlay;
+    public USFSoundGroup_Voice.FBGMInfo BGMToPlay = new();
     public USFSoundGroup_Voice.FVoiceWave[] Sounds = new USFSoundGroup_Voice.FVoiceWave[10];
   }
 
@@ -24171,8 +24171,8 @@ public class ASFSpawner : AActor
   {
     public bool bEnabled;
     public ASFPawn_AI SpawningPawn;
-    public UObject.FVector LocationOffset;
-    public UObject.FRotator RotationOffset;
+    public UObject.FVector LocationOffset = new();
+    public UObject.FRotator RotationOffset = new();
     public EHoleEmergeAnim EmergeAnim;
   }
 
@@ -24237,7 +24237,7 @@ public class USFSpectatorCam_AutoFraming : UObject
   public class FAutoframingWatchedPawn
   {
     public ASFPawn SFP;
-    public UObject.FVector LookatLoc;
+    public UObject.FVector LookatLoc = new();
     public float LastRelevantTime;
     public EAutoFramingPawnTracePoint LastTracePoint;
     public float NormalizedWeight;
@@ -24248,26 +24248,26 @@ public class USFSpectatorCam_AutoFraming : UObject
   public float LastFOV;
   public float FOVInterpSpeed;
   public float FOVInterpSpeed_MovingCamera;
-  public FRotator LastDeltaRot;
+  public FRotator LastDeltaRot = new();
   public float RotInterpSpeed;
   public float RotInterpSpeed_MovingCamera;
   public bool bLastLookatIsValid;
   public bool bDebugSkipFOVAdj;
   public bool bDebugShowWatchedPawns;
   public bool bWasInterpolating;
-  public FVector LastLookat;
+  public FVector LastLookat = new();
   public float LookatInterpSpeed;
   public float LookatInterpSpeed_MovingCamera;
-  public FVector2D WorldPitchRange;
-  public FVector2D RelativeYawRange;
-  public FVector2D AcceptableFOVRange;
+  public FVector2D WorldPitchRange = new();
+  public FVector2D RelativeYawRange = new();
+  public FVector2D AcceptableFOVRange = new();
   public float BorderBufferPercentage_Horizontal;
   public float BorderBufferPercentage_Vertical;
   public float ZoomFOVAdjustmentMag;
   public float ZoomBufferAdjustmentMag;
   public float DirSelectionWeightMultiplier_Good;
   public float DirSelectionWeightMultiplier_Bad;
-  public FVector LastCamActorLoc;
+  public FVector LastCamActorLoc = new();
   public List<FAutoframingWatchedPawn> RelevantPawnList;
   public float RelevanceLagTime;
   public float RelevanceFadeTime;
@@ -24318,13 +24318,13 @@ public class ASFSpectatorPoint : ACameraActor
 
   public string DisplayText;
   public int OrderIndex;
-  public FRotator UserRotationRange;
+  public FRotator UserRotationRange = new();
   public float MaxRotationRate;
-  public FZoomPropertyStruct ZoomProperty;
+  public FZoomPropertyStruct ZoomProperty = new();
   public ESpecPointCameraMode CameraMode;
-  public FFOVInterpSpeedPropertyStruct FOVInterpSpeedProperty;
-  public FRotInterpSpeedPropertyStruct RotInterpSpeedProperty;
-  public FLookatInterpSpeedPropertyStruct LookatInterpSpeedProperty;
+  public FFOVInterpSpeedPropertyStruct FOVInterpSpeedProperty = new();
+  public FRotInterpSpeedPropertyStruct RotInterpSpeedProperty = new();
+  public FLookatInterpSpeedPropertyStruct LookatInterpSpeedProperty = new();
 }
 
 public class USFSplashEventData : USFSpecialKillEventData
@@ -24339,7 +24339,7 @@ public class ASFSprayActor : ADecalActor
   public int SlotIndex;
   public int EmblemID;
   public string EmblemFileName;
-  public FRotator ViewRotation;
+  public FRotator ViewRotation = new();
   public USFSprayDecal SprayDecal;
   public UMaterial SprayBaseMaterial;
   public string SprayMaterialName;
@@ -24381,17 +24381,17 @@ public class ASFSquadFormation : AInfo
     public int YawOffset;
     public float Distance;
     public float LastUpdateTime;
-    public UObject.FVector LastUpdatePosition;
-    public UObject.FVector IdealPosition;
+    public UObject.FVector LastUpdatePosition = new();
+    public UObject.FVector IdealPosition = new();
     public ANavigationPoint Nav;
     public ASFAIController AI;
-    public UObject.FColor DebugColor;
+    public UObject.FColor DebugColor = new();
   }
 
   public ASFSquad Squad;
   public List<FFormationPosition> Positions;
-  public FVector LastSquadPosition;
-  public FVector CurrentSquadPosition;
+  public FVector LastSquadPosition = new();
+  public FVector CurrentSquadPosition = new();
 }
 
 public class ASFSquadFormation_Line : ASFSquadFormation
@@ -24421,7 +24421,7 @@ public class ASFStealOffGame : ASFBaseTeamDeathGame
   public bool bDropMoneyEvenIfTeamKill;
   public int DropMoneyWhenDead;
   public int GiveMoneyWhenSpawn;
-  public FVector MoneySpawnRandomVel;
+  public FVector MoneySpawnRandomVel = new();
   public int DropMoneyMaxBunch;
   public int DropMoneyMinBunch;
 }
@@ -24608,7 +24608,7 @@ public class ASFTargetPaper : AInterpActor
 
   public class FRandomTargetInfo
   {
-    public ASFTargetPaper.FTargetInfo Target;
+    public ASFTargetPaper.FTargetInfo Target = new();
     public float RandomRate;
   }
 
@@ -24838,8 +24838,8 @@ public class ASFThunderRunState : AReplicationInfo
 {
   public class FPawnLocation
   {
-    public UObject.FVector Location;
-    public UObject.FVector RelativeLocation;
+    public UObject.FVector Location = new();
+    public UObject.FVector RelativeLocation = new();
     public int PlayerID;
   }
 
@@ -24868,7 +24868,7 @@ public class USFTomahawkEventData : USFSpecialKillEventData
 
 public class USFTopViewDeadPersonCameraMode : USFThirdPersonCameraModeBase
 {
-  public FVector InitLocation;
+  public FVector InitLocation = new();
   public float DOF_Distance;
   public float ActiveTime;
   public float DOFDistance;
@@ -24899,7 +24899,7 @@ public class USFTournamentResultWriter : USFTournamentResultWriterBase
 
 public class USFTPCM_Libertine : USFThirdPersonCameraModeBase
 {
-  public FVector EvadePawnRelativeOffset;
+  public FVector EvadePawnRelativeOffset = new();
   public float WorstLocAimingZOffset;
   public bool bTemporaryOriginRotInterp;
   public float TemporaryOriginRotInterpSpeed;
@@ -24954,7 +24954,7 @@ public class ASFTrainingHUD : ASFTeamHUD
 public class ASFTrainingPlayerController : ASFPlayerController
 {
   public ASFProjectile FiredProjectile;
-  public FRotator SavedRotation;
+  public FRotator SavedRotation = new();
 }
 
 public class ASFTrigger_Use : ATrigger
@@ -24993,7 +24993,7 @@ public class ASFTrigger_Use : ATrigger
   public bool bCanUseInTrainingGame;
   public List<FAimValueToInteractive> AimValues;
   public UStaticMeshComponent MeshComponent;
-  public FVector MeshOffset;
+  public FVector MeshOffset = new();
   public FName currState;
   public ETeam ValidTeamIndex;
   public ETeam ValidTeamIndexForReactive;
@@ -25008,7 +25008,7 @@ public class ASFTrigger_Use : ATrigger
   public string[] InstanceUseMessage = new string[9];
   public string[] GaugeUseMessage = new string[9];
   public List<USFTypes.FStateIconType> StateIconTypes;
-  public FVector IconLocationOffset;
+  public FVector IconLocationOffset = new();
   public List<USFTypes.FNextStateInfo> arrNextStateInfo;
   public AActor UsingActor;
   public int MaxUserCount;
@@ -25038,9 +25038,9 @@ public class ASFTrigger_ReplaceMesh : ASFTrigger_Use
   public UMaterialInterface Material_First;
   public UMaterialInterface Material_Second;
   public USFFlickerLightByPeriod FlickerLight;
-  public FColor FlickerLightFirstColor;
-  public FColor FlickerLightSecondColor;
-  public FVector FlickerLightOffset;
+  public FColor FlickerLightFirstColor = new();
+  public FColor FlickerLightSecondColor = new();
+  public FVector FlickerLightOffset = new();
   public bool bUseFlickerLight;
   public UDynamicLightEnvironmentComponent LightEnvironment;
   public UDrawSphereComponent FlickerLightSphere;
@@ -25052,7 +25052,7 @@ public class ASFTrigger_Bomb : ASFTrigger_ReplaceMesh
   {
     public float RemainTime;
     public float CycleTime;
-    public UObject.FLinearColor UVOffset;
+    public UObject.FLinearColor UVOffset = new();
   }
 
   public USFGameExplosion ExplosionInfo;
@@ -25101,9 +25101,9 @@ public class ASFTrigger_ConvoyanceStoreHouse : ASFTrigger_Use
 
 public class ASFTrigger_Elevator : ASFTrigger_Use
 {
-  public FLinearColor UpButtonColor;
+  public FLinearColor UpButtonColor = new();
   public FName UpButtonParamName;
-  public FLinearColor DownButtonColor;
+  public FLinearColor DownButtonColor = new();
   public FName DownButtonParamName;
   public ASFElevatorActor ElevatorActor;
   public UMaterialInstanceConstant MIC;
@@ -25126,7 +25126,7 @@ public class ASFTrigger_Escape : ASFTrigger_ReplaceMesh
 public class ASFTrigger_PlasticBomb : ASFTrigger_ReplaceMesh
 {
   public ASFBreakableActor BaseBreakableActor;
-  public FVector DamageDir;
+  public FVector DamageDir = new();
   public UArrowComponent DamageDirArrow;
   public AController Installer;
   public USkeletalMeshComponent SkelMeshComp;
@@ -25160,8 +25160,8 @@ public class ASFTrigger_Seizure : ASFTrigger_ReplaceMesh
 {
   public FName GameObjBone3P;
   public int nPlayerID;
-  public FVector InitialLocation;
-  public FRotator InitialRotation;
+  public FVector InitialLocation = new();
+  public FRotator InitialRotation = new();
   public byte nTryAttachToPawn;
   public ADynamicSMActor MeshActor;
 }
@@ -25198,7 +25198,7 @@ public class ASFTurret : AVehicle
 {
   public class FsPointOfView
   {
-    public UObject.FVector DirOffset;
+    public UObject.FVector DirOffset = new();
     public float Distance;
     public float fZAdjust;
   }
@@ -25210,15 +25210,15 @@ public class ASFTurret : AVehicle
 
   public AController Claim;
   public List<UClass> DefaultInventory;
-  public FRotator AimDir;
-  public FRotator DesiredAimDir;
-  public FVector2D YawLimit;
+  public FRotator AimDir = new();
+  public FRotator DesiredAimDir = new();
+  public FVector2D YawLimit = new();
   public float TurretTurnRateScale;
   public float AimingTurretTurnRateScale;
-  public FVector CannonFireOffset;
+  public FVector CannonFireOffset = new();
   public FName PitchBone;
   public FName BaseBone;
-  public FVector EntryPosition;
+  public FVector EntryPosition = new();
   public bool bRelativeExitPos;
   public bool bUnableToLeave;
   public bool bSpottedSomething;
@@ -25230,7 +25230,7 @@ public class ASFTurret : AVehicle
   public bool bUseLimitRot;
   public bool bNotTarget;
   public bool bNeedResetIdleDesiredAimDir;
-  public FsPointOfView POV;
+  public FsPointOfView POV = new();
   public AWeapon myWeapon;
   public FName LeftHandBoneHandleName;
   public FName RightHandBoneHandleName;
@@ -25239,18 +25239,18 @@ public class ASFTurret : AVehicle
   public float InitialEntryZOffset;
   public APawn ReservedDriver;
   public AWeapon LastWeapon;
-  public FVector CameraViewOffsetHigh;
-  public FVector CameraViewOffsetMid;
-  public FVector CameraViewOffsetLow;
-  public FVector CameraTargetingViewOffsetHigh;
-  public FVector CameraTargetingViewOffsetMid;
-  public FVector CameraTargetingViewOffsetLow;
+  public FVector CameraViewOffsetHigh = new();
+  public FVector CameraViewOffsetMid = new();
+  public FVector CameraViewOffsetLow = new();
+  public FVector CameraTargetingViewOffsetHigh = new();
+  public FVector CameraTargetingViewOffsetMid = new();
+  public FVector CameraTargetingViewOffsetLow = new();
   public float CameraFOV;
   public float CameraTargetingFOV;
   public FName WorstCamLocSocketName;
-  public FVector ViewRotVel;
+  public FVector ViewRotVel = new();
   public float ViewRotInterpSpeed;
-  public FMatrix LastBaseTM;
+  public FMatrix LastBaseTM = new();
   public UDynamicLightEnvironmentComponent MyLightEnvironment;
   public float CameraScale;
   public float CurrentCameraScale;
@@ -25259,7 +25259,7 @@ public class ASFTurret : AVehicle
   public float ExtendDamageDepictionColor;
   public List<UMaterialInstanceConstant> DamagedMICs;
   public List<ASFPawn.FBonePartsTable> BoneNameToBodyParts;
-  public FVector IconLocationOffset;
+  public FVector IconLocationOffset = new();
   public byte LastTakeHitInfo_Mask;
   public AActor LastTakeHitInfo_DamagedBy;
   public UClass LastTakeHitInfo_DamageType;
@@ -25279,9 +25279,9 @@ public class ASFTurret_MiniGunBase : ASFTurret
   public float TraceSpeed;
   public float SearchSpeed;
   public float TooCloseDist;
-  public FRotator TurretControlRot;
-  public FVector SpottedLoc;
-  public FVector DesiredSpottedLoc;
+  public FRotator TurretControlRot = new();
+  public FVector SpottedLoc = new();
+  public FVector DesiredSpottedLoc = new();
   public USkelControlLookAt Pivot_Latitude;
   public USkelControlLookAt Pivot_Longitude;
   public FName Pivot_Latitude_BoneName;
@@ -25346,7 +25346,7 @@ public class USFTutorialGameScore : USFGameScore
 public class ASFTutorialHUD : ASFHUD
 {
   public int Pending_Score;
-  public FVector Pending_TargetPosition;
+  public FVector Pending_TargetPosition = new();
 }
 
 public class ASFTutorialPlayerController : ASFPlayerController
@@ -25372,7 +25372,7 @@ public class ASFTutorialPlayerReplicationInfo : ASFPlayerReplicationInfo
   public int PrevScore_EnemyTarget;
   public int Score_GuardianTarget;
   public int PrevScore_GuardianTarget;
-  public FVector TargetHitLocation;
+  public FVector TargetHitLocation = new();
   public int TutorialResultRank;
   public int Score_RemainingTime;
   public int EarnExp;
@@ -25487,7 +25487,7 @@ public class USFUIDataStore : UUIDataStore_Remote
 public class USFUIDataStore_BPEvent : USFUIDataStoreBase
 {
   public List<USFTypes.FSRealTimeEvent> RealTimeEventArray;
-  public USFTypes.FSFeverTimeEvent FeverTimeEvent;
+  public USFTypes.FSFeverTimeEvent FeverTimeEvent = new();
   public int RecvPromoEventCount;
   public int RecvMyPromoEventCount;
   public List<USFTypes.FSPromotionEvent> PromotionEventArray;
@@ -25513,7 +25513,7 @@ public class USFUIDataStore_ChannelList : USFUIDataStoreBase
   public int CurChannelListCount;
   public int SelectedGroupIndex;
   public int SelectedChannelIndex;
-  public USFTypes.FSChannelSetting JoinedChannel;
+  public USFTypes.FSChannelSetting JoinedChannel = new();
   public int ChannelListRefreshCount;
   public bool bRequestQuickJoin;
   public bool bEnableRookiePopUp;
@@ -25546,7 +25546,7 @@ public class USFUIDataStore_Chatting : USFUIDataStoreBase
   }
 
   public List<USFTypes.FSChatMsgInfo> ChattingMessageList;
-  public USFTypes.FSChatMsgInfo SendPendingChatMsg;
+  public USFTypes.FSChatMsgInfo SendPendingChatMsg = new();
   public EChatSendType ChatSendType;
   public byte[] CencoredChat = new byte[16];
   public int MaxChattingLength;
@@ -25693,7 +25693,7 @@ public class USFUIDataStore_CombatReport : USFUIDataStoreBase
 
 public class USFUIDataStore_Community : USFUIDataStoreBase
 {
-  public USFTypes.FSCommunityEvent CommunityEvent;
+  public USFTypes.FSCommunityEvent CommunityEvent = new();
   public List<USFTypes.FSCommunityMessage> CommunityMessageArray;
   public List<USFTypes.FSCommunityBuddy> CommunityBuddyArray;
   public float fPrevNotReadReqTime;
@@ -25710,14 +25710,14 @@ public class USFUIDataStore_Enchant : USFUIDataStoreBase
   public class FDetailItem
   {
     public int ItemId;
-    public ulong UnusedItemSN;
-    public ulong UsedItemSN;
+    public ulong UnusedItemSN = new();
+    public ulong UsedItemSN = new();
   }
 
   public class FItemExtractInfo
   {
-    public USFUIDataStore_Enchant.FDetailItem ItemInfo;
-    public USFUIDataStore_Enchant.FEnchantParts PartsInfo;
+    public USFUIDataStore_Enchant.FDetailItem ItemInfo = new();
+    public USFUIDataStore_Enchant.FEnchantParts PartsInfo = new();
   }
 
   public class FEnchantParts
@@ -25747,8 +25747,8 @@ public class USFUIDataStore_Enchant : USFUIDataStoreBase
   public List<int> AllBaseItemIDList;
   public List<UClass> ExtractableItemClassList;
   public List<FItemExtractInfo> ExtractResultList;
-  public FEnchantParts MaxEnchantParts;
-  public FEnchantParts CurrentEnchantParts;
+  public FEnchantParts MaxEnchantParts = new();
+  public FEnchantParts CurrentEnchantParts = new();
   public int PartsTypeCount;
   public List<UClass> WeapEnchantDesignClassList;
 }
@@ -25761,7 +25761,7 @@ public class USFUIDataStore_GameResult : USFUIDataStoreBase
     public string CodeName;
     public string GfxRank;
     public string ClanMark;
-    public USFTypes.FSCodeNameColor CodeNameColor;
+    public USFTypes.FSCodeNameColor CodeNameColor = new();
     public int Kill;
     public int Death;
     public int Assist;
@@ -25907,7 +25907,7 @@ public class USFUIDataStore_InGameScore : USFUIDataStoreBase
     public FName HitPawnName;
   }
 
-  public USFGameDatabase.FSFPlayerLog PlayerLog;
+  public USFGameDatabase.FSFPlayerLog PlayerLog = new();
   public List<FHitPawnInfo> HitPawnListForPlayerLog;
   public List<FHitPawnInfo> HitPawnListForWeaponLog;
 }
@@ -25917,7 +25917,7 @@ public class USFUIDataStore_InvenChar : USFUIDataStoreBase
   public class FSCharUnit
   {
     public int UnitItemID;
-    public USFGameItem.FSFItemData UnitItemData;
+    public USFGameItem.FSFItemData UnitItemData = new();
     public List<ulong> ItemSNArray;
   }
 
@@ -25937,23 +25937,23 @@ public class USFUIDataStore_InvenWeap : USFUIDataStoreBase
     public int ArmorySN;
     public int SetIndex;
     public string SetName;
-    public ulong MainItemSN;
-    public USFGameItem.FSFItemData MainItemData;
-    public ulong SubItemSN;
-    public USFGameItem.FSFItemData SubItemData;
+    public ulong MainItemSN = new();
+    public USFGameItem.FSFItemData MainItemData = new();
+    public ulong SubItemSN = new();
+    public USFGameItem.FSFItemData SubItemData = new();
     public List<ulong> ThrowItemSNArray;
     public List<USFGameItem.FSFItemData> ThrowItemDataArray;
-    public ulong SpecialItemSN;
-    public USFGameItem.FSFItemData SpecialItemData;
+    public ulong SpecialItemSN = new();
+    public USFGameItem.FSFItemData SpecialItemData = new();
   }
 
   public class FsMuzzleColorUpgrade
   {
     public string StyleID;
     public string ColorID;
-    public UObject.FVector MuzzleColor_01;
-    public UObject.FVector MuzzleColor_02;
-    public UObject.FVector MuzzleColor_03;
+    public UObject.FVector MuzzleColor_01 = new();
+    public UObject.FVector MuzzleColor_02 = new();
+    public UObject.FVector MuzzleColor_03 = new();
   }
 
   public class FsMuzzleStyleUpgrade
@@ -25990,13 +25990,13 @@ public class USFUIDataStore_InvenWeap : USFUIDataStoreBase
   }
 
   public List<FsWeaponEffectStyleUpgrade> WeaponEffectUpgrade;
-  public FsWeaponEffectInfo WeaponEffectInfo;
+  public FsWeaponEffectInfo WeaponEffectInfo = new();
   public List<FsMuzzleColorUpgrade> MuzzleColorUpgrade;
   public List<FsMuzzleStyleUpgrade> MuzzleStyleUpgrade;
   public List<string> MuzzleColorNameList;
   public int temp1;
   public int temp2;
-  public FsMuzzleInfo MuzzleInfo;
+  public FsMuzzleInfo MuzzleInfo = new();
   public int RecvWeaponSetCount;
   public int CurWeaponSetCount;
   public List<FSInvenWeaponSet> InvenWeaponSetArray;
@@ -26008,10 +26008,10 @@ public class USFUIDataStore_InvenWeap : USFUIDataStoreBase
   public bool bNeedServerUpdateMainWPSet;
   public List<int> NeedServerUpdateWPSetArray;
   public int PartsItemID;
-  public ulong PartsParentItemSN;
-  public ulong PartsItemSN;
+  public ulong PartsParentItemSN = new();
+  public ulong PartsItemSN = new();
   public string PartsProperty;
-  public ulong DeathPartsItemSN;
+  public ulong DeathPartsItemSN = new();
 }
 
 public class USFUIDataStore_ItemList : USFUIDataStoreBase
@@ -26126,7 +26126,7 @@ public class USFUIDataStore_ItemList : USFUIDataStoreBase
   public int RecvNewItemID;
   public int RecvNewItemPrice;
   public string RecvNewItemEndDate;
-  public ulong RecvNewItemSN;
+  public ulong RecvNewItemSN = new();
   public string RecvRewardType;
   public int ModeRewardCount;
   public List<USFTypes.FSRecvReward> ModeRewardArray;
@@ -26136,7 +26136,7 @@ public class USFUIDataStore_ItemList : USFUIDataStoreBase
   public int NewUsedItemID;
   public int NewUsedItemModeID;
   public int NewUsedItemCount;
-  public ulong NewUseGiftNSN;
+  public ulong NewUseGiftNSN = new();
   public int GiftReceivedCount;
   public int GiftSendedCount;
   public int GiftReceivedTotalCount;
@@ -26146,7 +26146,7 @@ public class USFUIDataStore_ItemList : USFUIDataStoreBase
   public string GiftReceiverCodeName;
   public int GiftRecvLimitSize;
   public int GiftNoticeType;
-  public ulong UsedGiftNSN;
+  public ulong UsedGiftNSN = new();
   public int RecvItemTableInfoCount;
   public int CurItemTableInfoCount;
   public int RecvDailyDiscountInfoCount;
@@ -26183,7 +26183,7 @@ public class USFUIDataStore_ItemList : USFUIDataStoreBase
   public List<USFTypes.FsRandomBoxInfo> RandomBoxInfoArray;
   public int CombineDesignCount;
   public List<FCombineDesignInfo> CombineDesignList;
-  public FCombineParts CurrentCombineParts;
+  public FCombineParts CurrentCombineParts = new();
   public FScriptDelegate __CodeNameColorSortByVersionNumberDelegate__Delegate;
   public FScriptDelegate __DiscountCouponListSortDelegate__Delegate;
   public FScriptDelegate __SortByDBIndex__Delegate;
@@ -26219,12 +26219,12 @@ public class USFUIDataStore_Messenger : USFUIDataStoreBase
   public List<USFTypes.FsMessengerNotice> Notices;
   public List<int> NeedUpdateFriendList;
   public List<int> LocUpdatedList;
-  public USFTypes.FsMessengerNotice DisplayingNotice;
+  public USFTypes.FsMessengerNotice DisplayingNotice = new();
   public List<USFTypes.FSMsgrChattingInfo> MsgrChattingInfoArray;
-  public USFTypes.FSChatMsgInfo SendPendingChatMsg;
+  public USFTypes.FSChatMsgInfo SendPendingChatMsg = new();
   public int statusNow;
   public int inGameNow;
-  public USFTypes.FsBuddyFiltterCondition FiltterCondition;
+  public USFTypes.FsBuddyFiltterCondition FiltterCondition = new();
   public string RecvCodeName;
   public List<FSMsgrNotice> PendingMsgrNoticeArray;
   public List<FSMsgrNotice> MsgrNoticeInfo;
@@ -26350,10 +26350,10 @@ public class USFUIDataStore_PlayerInfo : USFUIDataStoreBase
   public bool bUseKADRatio;
   public bool IsShopPMCItem;
   public bool bClanBuff;
-  public USFTypes.FSPlayerInfo MyInfo;
-  public USFTypes.FSPlayerInfo OldMyInfo;
-  public USFTypes.FSPlayerInfo NewMyInfo;
-  public USFTypes.FSMyRanking MyRanking;
+  public USFTypes.FSPlayerInfo MyInfo = new();
+  public USFTypes.FSPlayerInfo OldMyInfo = new();
+  public USFTypes.FSPlayerInfo NewMyInfo = new();
+  public USFTypes.FSMyRanking MyRanking = new();
   public List<FSRecvRanking> MyRankingArray;
   public List<string> LastClanMsgUSNArray;
   public List<string> LastClanMsgCodeNameArray;
@@ -26392,9 +26392,9 @@ public class USFUIDataStore_PlayerInfo : USFUIDataStoreBase
   public int ExitCheckResult;
   public string ExitCheckGroup;
   public List<FsExitItemData> ExitItemArray;
-  public USFTypes.FsPlayerVIPInfo VipInfo;
+  public USFTypes.FsPlayerVIPInfo VipInfo = new();
   public List<FMonthlyRewardInfo> MonthlyRewardList;
-  public FMyMonthlyRewardInfo MyMonthlyReward;
+  public FMyMonthlyRewardInfo MyMonthlyReward = new();
   public int MonthlyRewardStartDay;
   public FSMapID[] ActivePvEMapID = new FSMapID[4];
   public List<string> ColorCodeNameV2Array;
@@ -26426,7 +26426,7 @@ public class USFUIDataStore_Rank : USFUIDataStoreBase
 
   public class FPVERankTeamInfo
   {
-    public ulong Rank;
+    public ulong Rank = new();
     public int TeamScore;
     public int Level;
     public List<USFUIDataStore_Rank.FPVERankPlayerInfo> Members;
@@ -26464,7 +26464,7 @@ public class USFUIDataStore_Rank : USFUIDataStoreBase
   public List<FSoloLeagueRankInfo> SoloLeagueRankList;
   public List<FModeRankInfo> ModeRankTeamList;
   public List<FPVERankTeamInfo> CurrentRankTeamList;
-  public FRankUpdateDateInfo LastRankUpdatedDate;
+  public FRankUpdateDateInfo LastRankUpdatedDate = new();
   public int ReceivedRankSize;
   public int LastRequestedModeID;
   public int CurrentGameModeID;
@@ -26474,7 +26474,7 @@ public class USFUIDataStore_Rank : USFUIDataStoreBase
 public class USFUIDataStore_RealTimeEvent : USFUIDataStoreBase
 {
   public List<USFTypes.FSRealTimeEvent> RealTimeEventArray;
-  public USFTypes.FSFeverTimeEvent FeverTimeEvent;
+  public USFTypes.FSFeverTimeEvent FeverTimeEvent = new();
   public int RecvPromoEventCount;
   public int RecvMyPromoEventCount;
   public List<USFTypes.FSPromotionEvent> PromotionEventArray;
@@ -26563,7 +26563,7 @@ public class USFUIDataStore_RoomSetting : USFUIDataStoreBase
   public List<USFUIDataProvider_TrainingModeInfo> TrainingModeDataProvider;
   public List<USFUIDataProvider_ModeInfo> AllModeDataProvider;
   public List<USFUIDataProvider_MapInfo> MapDataProvider;
-  public FSPreQuickJoinInfo QuickJoinInfo;
+  public FSPreQuickJoinInfo QuickJoinInfo = new();
   public List<FSModeInfoSearchCache> ModeInfoSearchCacheArray;
   public List<FSMapInfoSearchCache> MapInfoSearchCacheArray;
   public List<int> ClanPlayerCount;
@@ -26583,10 +26583,10 @@ public class USFUIDataStore_RoomSetting : USFUIDataStoreBase
   public int RelayPort;
   public int ExtraOption;
   public string GameUniqueKey;
-  public USFTypes.FSRoomSetting PendingRoom;
-  public USFTypes.FSRoomSetting GamingRoom;
-  public USFTypes.FSRoomSetting PartyRoom;
-  public USFTypes.FSFindMatchingRoom FindMatchingRoom;
+  public USFTypes.FSRoomSetting PendingRoom = new();
+  public USFTypes.FSRoomSetting GamingRoom = new();
+  public USFTypes.FSRoomSetting PartyRoom = new();
+  public USFTypes.FSFindMatchingRoom FindMatchingRoom = new();
   public int RecvRoomType;
   public int DefPartyRoomUserCount;
   public int SecondHalfWaitingTime;
@@ -26640,9 +26640,9 @@ public class USFUIDataStore_RoomUserList : USFUIDataStoreBase
   public bool bPendingMasterChanged;
   public int BeginPlayerLimit;
   public int MaxTeamType;
-  public USFTypes.FSRoomUserInfo GamingRoomUser;
-  public USFTypes.FSRoomUserInfo PartyRoomUser;
-  public USFTypes.FSRoomUserInfo FindMatchingRoomUser;
+  public USFTypes.FSRoomUserInfo GamingRoomUser = new();
+  public USFTypes.FSRoomUserInfo PartyRoomUser = new();
+  public USFTypes.FSRoomUserInfo FindMatchingRoomUser = new();
   public byte RecvUserStatus;
   public int RecvUSN;
   public int RecvOldSlotIndex;
@@ -26767,9 +26767,9 @@ public class ASFUIMinimapRadar : AActor
   public float RadarRangeMin;
   public float RadarRangeDelta;
   public float LerpColorTopHeight;
-  public FColor LerpColorTop;
+  public FColor LerpColorTop = new();
   public float LerpColorBottomHeight;
-  public FColor LerpColorBottom;
+  public FColor LerpColorBottom = new();
   public float DeadPawnDurationTime;
   public USFUIMinimapRadarGFxValue RadarGFxValue;
   public int GFxFrameSizeX;
@@ -26811,7 +26811,7 @@ public class USFUIMinimapRadarGFxValue : UGFxObject
   public class FSGFxPingData
   {
     public UGFxObject IconMC;
-    public UObject.FVector TargetLocation;
+    public UObject.FVector TargetLocation = new();
     public EIconType IconType;
     public float RegisteredTime;
   }
@@ -26821,7 +26821,7 @@ public class USFUIMinimapRadarGFxValue : UGFxObject
   public UGFxObject MapOverlayMC;
   public UGFxObject MapNavigationOverlayMC;
   public UGFxObject MaskMC;
-  public FMatrix IconMatrix;
+  public FMatrix IconMatrix = new();
   public ASFPlayerController SFPlayerOwner;
   public FGFxIconData[] IconDatas = new FGFxIconData[15];
   public List<FSGFxPingData> PingList;
@@ -26858,7 +26858,7 @@ public class ASFUnitTestRunner_Total : AActor
 public class ASFVehicle : AVehicle
 {
   public UDynamicLightEnvironmentComponent LightEnvironment;
-  public FVector BaseOffset;
+  public FVector BaseOffset = new();
   public float CamDist;
 }
 
@@ -26868,8 +26868,8 @@ public class ASFVehicle_ConvoyTarget : ASFVehicle
 
 public class USFVehicleSimCar : USVehicleSimCar
 {
-  public FInterpCurveFloat TorqueVSpeedCurve;
-  public FInterpCurveFloat EngineRPMCurve;
+  public FInterpCurveFloat TorqueVSpeedCurve = new();
+  public FInterpCurveFloat EngineRPMCurve = new();
   public float LSDFactor;
   public float ThrottleSpeed;
   public float MinRPM;
@@ -27063,9 +27063,9 @@ public class ASFWeapon : AGameWeapon
   public float BehindVelocityRatioForProjectile;
   public float CurrentRating;
   public float AimError;
-  public FVector2D AI_AccCone_Min;
-  public FVector2D AI_AccCone_Max;
-  public FVector2D AI_AimDelay;
+  public FVector2D AI_AccCone_Min = new();
+  public FVector2D AI_AccCone_Max = new();
+  public FVector2D AI_AimDelay = new();
   public float DelayTimeToFire;
   public float WeaponEquipWeight;
   public float WeaponUnequipWeight;
@@ -27080,15 +27080,15 @@ public class ASFWeapon : AGameWeapon
   public float fStartSprintTime;
   public float fEndSprintTime;
   public float fAllowTimeWeaponModeChange;
-  public USFTypes.FS_RECOIL RecoilDefault;
-  public USFTypes.FS_RECOIL RecoilZoomDefault;
+  public USFTypes.FS_RECOIL RecoilDefault = new();
+  public USFTypes.FS_RECOIL RecoilZoomDefault = new();
   public float RecoilZoomModifier;
   public float RecoilCrouchModifier;
   public float RecoilRate;
   public int RecoilSeed;
-  public USFTypes.FS_RECOIL RecoilCurrent;
-  public USFTypes.FS_RECOIL Recoil;
-  public USFTypes.FS_RECOIL RecoilZoom;
+  public USFTypes.FS_RECOIL RecoilCurrent = new();
+  public USFTypes.FS_RECOIL Recoil = new();
+  public USFTypes.FS_RECOIL RecoilZoom = new();
   public float RecoilCrouchRatio;
   public float RecoilDurationModifier;
   public UPhysicsAsset FirstViewWeaponPhysicsAsset;
@@ -27100,14 +27100,14 @@ public class ASFWeapon : AGameWeapon
   public float AccuracyDivisor;
   public float AccuracyOffset;
   public float MaxInaccuracy;
-  public FRecoilValue TestRecoil;
-  public FVector CurrentPunchAngle;
-  public FVector CurrentPunchAngleVelocity;
+  public FRecoilValue TestRecoil = new();
+  public FVector CurrentPunchAngle = new();
+  public FVector CurrentPunchAngleVelocity = new();
   public float currentCrouchModifier;
   public float currentZoomModifier;
-  public USFTypes.FsWeaponState WeaponStateNow;
-  public USFTypes.FsWeaponState WeaponStateNew;
-  public USFTypes.FsWeaponState WeaponStateOld;
+  public USFTypes.FsWeaponState WeaponStateNow = new();
+  public USFTypes.FsWeaponState WeaponStateNew = new();
+  public USFTypes.FsWeaponState WeaponStateOld = new();
   public float ZoomStateChangedTime;
   public float CrosshairScaling;
   public float WarnAimingMinDistance;
@@ -27150,34 +27150,34 @@ public class ASFWeapon : AGameWeapon
   public USkeletalMesh MeshWeapon1stViewEx;
   public USkeletalMesh MeshWeapon3rdView;
   public USkeletalMesh MeshWeapon3rdViewEx;
-  public FVector vLagMaxDegree;
-  public FVector vLagMaxDegreeWhenZoomed;
+  public FVector vLagMaxDegree = new();
+  public FVector vLagMaxDegreeWhenZoomed = new();
   public float fLagSpeed;
-  public FVector vLagRotSpeed;
-  public FVector vLagYawTranslation;
-  public FVector vLagPitchTranslation;
+  public FVector vLagRotSpeed = new();
+  public FVector vLagYawTranslation = new();
+  public FVector vLagPitchTranslation = new();
   public USoundCue ShellOut3rdSound;
   public UParticleSystem ShellOutPSCTemplate;
   public UParticleSystem ShellOutPSCTemplate1stView;
   public float ShellOutTimming;
-  public FVector vShellOut1stScale;
-  public FVector vShellOutScale;
+  public FVector vShellOut1stScale = new();
+  public FVector vShellOutScale = new();
   public float ShellDropSoundPlayTime;
   public FName ShellDropSoundGroupName;
   public float fWeaponSteadyLength;
   public float fWeaponSteadyLengthWalk;
   public float fWeaponSteadyLengthFire;
-  public FVector vWeaponSteadyTrans;
+  public FVector vWeaponSteadyTrans = new();
   public float InnerWidth;
   public float BarLength;
   public float FireNoise;
   public float ZoomBobDamping;
   public float PreReloadTime;
   public float PostReloadTime;
-  public FVector vLocZoomIN;
-  public FVector vLocZoomOut;
-  public FRotator RotZoomIn;
-  public FRotator RotZoomOut;
+  public FVector vLocZoomIN = new();
+  public FVector vLocZoomOut = new();
+  public FRotator RotZoomIn = new();
+  public FRotator RotZoomOut = new();
   public float fZoomedFOV;
   public float fZoomedFOVEx;
   public float fZoomOutFOV;
@@ -27240,7 +27240,7 @@ public class ASFWeapon : AGameWeapon
   public List<UClass> OptionRISList;
   public float ActionCamoKillTime;
   public FName SocketNameToAttach;
-  public FVector AdditionalMovement;
+  public FVector AdditionalMovement = new();
   public float EquipBlendTime;
   public float EquipUpExBlendTime;
   public float FireBlendTime;
@@ -27253,7 +27253,7 @@ public class ASFWeapon : AGameWeapon
   public List<int> WeaponItemList;
   public FName BackSideSocketName;
   public FName BackSideSocketNameEx;
-  public FVector MaxImpulseAnimRelativePosiion;
+  public FVector MaxImpulseAnimRelativePosiion = new();
   public USkelControlLimb ImpulseLeftIK;
   public USkelControlLimb ImpulseRightIK;
   public USkelControlSingleBone ImpulseWeaponFit;
@@ -27291,7 +27291,7 @@ public class ASFWeapon : AGameWeapon
   public List<float> fAttackableDot;
   public float CriticalHeadShotMul;
   public float BackAttackMul;
-  public USFTypes.FAddtionalIdleMotion AdditionalIdle;
+  public USFTypes.FAddtionalIdleMotion AdditionalIdle = new();
   public float CachedThrowMaxRange;
   public int OldRequestedAmmoCountInMgz;
   public int OldRequestedAmmoCount;
@@ -27550,7 +27550,7 @@ public class ASFWeap_BossSkill : ASFWeapon
 public class ASFWeap_BossSkill_Barrage : ASFWeap_BossSkill
 {
   public int ShotCountNow;
-  public FRotator AimDirBase;
+  public FRotator AimDirBase = new();
   public bool bPlayingFireAnim;
   public float DirectAimRatio;
   public int BaseSetPitch;
@@ -27593,7 +27593,7 @@ public class ASFWeap_Bullet : ASFWeap_InstantHit
 
   public float fPenetrationMax;
   public int MaxPenetrationCount;
-  public FRifleHitResult HitResult;
+  public FRifleHitResult HitResult = new();
   public bool bPendingZoom;
   public bool bLockManualZoom;
   public bool bUseLoopReload;
@@ -27616,7 +27616,7 @@ public class ASFWeap_Bullet : ASFWeap_InstantHit
   public float fZoomoutBoltAction;
   public float fMuzzleFlashScale1st;
   public USFTypes.FGunTrailInfo[] GunTrailInfos = new USFTypes.FGunTrailInfo[3];
-  public FVector GunTrailColor;
+  public FVector GunTrailColor = new();
   public int nCountContinuousFireforExtraGunTrail;
   public UParticleSystem ExtraTracerTemplateFriend;
   public UParticleSystem ExtraTracerTemplateFoe;
@@ -27807,7 +27807,7 @@ public class ASFWeap_ThrowingMelee : ASFWeap_Melee
 
   public List<FBoneInfoToHide> BoneNamesToHide;
   public FName EmptyMagazineHideBoneName;
-  public USFTypes.FWeaponStateData EmptyMagazineWeaponState;
+  public USFTypes.FWeaponStateData EmptyMagazineWeaponState = new();
   public float PenaltySpread;
 }
 
@@ -27929,9 +27929,9 @@ public class ASFWeaponFlamer : ASFWeaponDischarger
   public FName TorchSocketName;
   public UParticleSystem TorchEffect;
   public List<UParticleSystemComponent> TorchEffectPSCArray;
-  public FVector CurAim;
-  public FVector AimDiff;
-  public FVector vPrevFlameDir;
+  public FVector CurAim = new();
+  public FVector AimDiff = new();
+  public FVector vPrevFlameDir = new();
   public int FlameRotSpeed;
   public int FlameYawSensitivity;
   public int FlamePitchSensitivity;
@@ -27967,8 +27967,8 @@ public class USFWeaponRIS_SkelComponentBase : USFWeaponRISBase
   public bool bAttachRISOnce;
   public bool bIsAttached;
   public bool bCheckMinMax;
-  public FVector MaxScreenAlignDistance;
-  public FVector MinScreenAlignDistance;
+  public FVector MaxScreenAlignDistance = new();
+  public FVector MinScreenAlignDistance = new();
   public USkeletalMeshComponent RISkelComponent3rd;
   public UPhysicsAsset RISkelComponent3rdPhysicsAsset;
   public FName RISocketName3rd;
@@ -28176,9 +28176,9 @@ public class USFWeaponRIS_TacticalLight : USFWeaponRISBase
   public float fCameraDotMin;
   public float fUDistNear;
   public float fUDistFar;
-  public FVector LightMeshScale;
-  public FVector LightMesh3rdScale;
-  public FVector Light3rdMeshScale;
+  public FVector LightMeshScale = new();
+  public FVector LightMesh3rdScale = new();
+  public FVector Light3rdMeshScale = new();
   public UMaterialInstance LightMaterialInst;
   public float InSightPower;
   public float InSightDelay;

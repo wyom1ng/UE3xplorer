@@ -4,7 +4,7 @@ public partial class UPackage
 {
   public partial class FLevelGuids
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
       throw new NotImplementedException();
     }

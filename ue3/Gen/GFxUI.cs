@@ -83,7 +83,7 @@ public class USwfMovie : UGFxRawData
   public string SourceFileTimestamp;
   public int RTTextures;
   public int RTVideoTextures;
-  public ulong ImportTimeStamp;
+  public ulong ImportTimeStamp = new();
 }
 
 public class UFlashMovie : USwfMovie
@@ -133,9 +133,9 @@ public class UGFxMoviePlayer : UObject
     public string S;
   }
 
-  public FPointer pMovie;
-  public FPointer pCaptureKeys;
-  public FPointer pFocusIgnoreKeys;
+  public FPointer pMovie = new();
+  public FPointer pCaptureKeys = new();
+  public FPointer pFocusIgnoreKeys = new();
   public Dictionary<byte, byte> ASUClasses;
   public Dictionary<byte, byte> ASUObjects;
   public int NextASUObject;
@@ -261,8 +261,8 @@ public class UGFxObject : UObject
 
   public class FASColorTransform
   {
-    public UObject.FLinearColor Multiply;
-    public UObject.FLinearColor Add;
+    public UObject.FLinearColor Multiply = new();
+    public UObject.FLinearColor Add = new();
   }
 
   public int[] Value = new int[12];
@@ -316,7 +316,7 @@ public class UGFxFSCmdHandler_Kismet : UGFxFSCmdHandler
 
 public class UGFxInteraction : UInteraction
 {
-  public FPointer VfTable_FCallbackEventDevice;
+  public FPointer VfTable_FCallbackEventDevice = new();
   public bool bFakeMobileTouches;
 }
 

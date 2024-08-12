@@ -120,15 +120,20 @@ public class UObject
   [Native, StructLayout(LayoutKind.Sequential)]
   public class FUntypedBulkData_Mirror
   {
-    public List<char> BulkData;
+    public byte[] BulkData;
   }
 
-  [StructLayout(LayoutKind.Sequential)]
+  [Native, StructLayout(LayoutKind.Sequential)]
+  public class FByteBulkData : FUntypedBulkData_Mirror
+  {
+  }
+
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FWordBulkData : FUntypedBulkData_Mirror
   {
   }
 
-  [StructLayout(LayoutKind.Sequential)]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FIntBulkData : FUntypedBulkData_Mirror
   {
   }

@@ -146,7 +146,7 @@ public enum EPropertyFlags : ulong
   CPF_EditInline = 0x0000000004000000, // Edit this object reference inline.
 
   CPF_EditInlineUse = 0x0000000010000000, // EditInline with Use button.
-  CPF_Deprecated = 0x0000000020000000, // Property is deprecated.  Read it from an archive, but don't save it.
+  CPF_Deprecated = 0x0000000020000000, // Property is deprecated.  Read it from an Archive, but don't save it.
   CPF_DataBinding = 0x0000000040000000, // Indicates that this patched_property should be exposed to data stores
   CPF_SerializeText = 0x0000000080000000, // Native patched_property should be serialized as text (ImportText, ExportText)
 
@@ -193,3 +193,28 @@ public enum EPropertyFlags : ulong
 
   CPF_AllFlags = 0xFFFFFFFFFFFFFFFF
 }
+
+[Flags]
+public enum EBulkDataFlags {
+  /** Empty flag set.*/
+  None = 0,
+  /** If set, payload is [going to be] stored in separate file.*/
+  StoreInSeparateFile = 1 << 0,
+  /** If set, payload should be [un]compressed using ZLIB during serialization.*/
+  SerializeCompressedZLIB = 1 << 1,
+  /** Force usage of SerializeElement over bulk serialization.*/
+  ForceSingleElementSerialization = 1 << 2,
+  /** Bulk data is only used once at runtime in the game.*/
+  SingleUse = 1 << 3,
+  /** If set, payload should be [un]compressed using LZO during serialization.*/
+  SerializeCompressedLZO = 1 << 4,
+  /** Bulk data won't be used and doesn't need to be loaded*/
+  Unused = 1 << 5,
+  /** If specified, only payload data will be written to Archive.*/
+  StoreOnlyPayload = 1 << 6,
+  /** If set, payload should be [un]compressed using LZX during serialization.*/
+  SerializeCompressedLZX = 1 << 7,
+  /** Flag to check if either compression mode is specified*/
+  SerializeCompressed = (SerializeCompressedZLIB | SerializeCompressedLZO | SerializeCompressedLZX),
+
+};

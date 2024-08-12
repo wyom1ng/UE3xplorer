@@ -4,7 +4,7 @@ public partial class USoundCue
 {
   public partial class FSoundNodeEditorData
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
       throw new NotImplementedException();
     }

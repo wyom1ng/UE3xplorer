@@ -56,8 +56,8 @@ public class UPacket : UObject
     public byte[] Buffer = new byte[2048];
   }
 
-  public FData _data;
-  public FPointer Buffer;
+  public FData _data = new();
+  public FPointer Buffer = new();
   public int total_size;
   public int st_point;
   public int Point;

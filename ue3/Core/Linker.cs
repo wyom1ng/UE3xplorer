@@ -8,22 +8,22 @@ public partial class ULinker
 {
   public partial class FCompressedChunk
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
-      archive.Serialise(ref CompressedSize);
-      archive.Serialise(ref UncompressedSize);
-      archive.Serialise(ref CompressedOffset);
-      archive.Serialise(ref UncompressedOffset);
+      Archive.Serialise(ref CompressedSize);
+      Archive.Serialise(ref UncompressedSize);
+      Archive.Serialise(ref CompressedOffset);
+      Archive.Serialise(ref UncompressedOffset);
     }
   }
 
   public partial class FGenerationInfo
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
-      archive.Serialise(ref ExportCount);
-      archive.Serialise(ref NameCount);
-      archive.Serialise(ref NetObjectCount);
+      Archive.Serialise(ref ExportCount);
+      Archive.Serialise(ref NameCount);
+      Archive.Serialise(ref NetObjectCount);
     }
   }
 
@@ -32,18 +32,18 @@ public partial class ULinker
     public const uint PACKAGE_FILE_TAG = 0x9E2A83C1;
     public const uint PACKAGE_FILE_TAG_BYTESWAPPED = 0xC1832A9E;
 
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
-      FileSize = archive.Size();
+      FileSize = Archive.Size();
 
-      archive.Serialise(ref Tag);
+      Archive.Serialise(ref Tag);
       if ((uint)Tag == PACKAGE_FILE_TAG_BYTESWAPPED)
         throw new NotImplementedException("byte swapping is not implemented");
 
       if ((uint)Tag != PACKAGE_FILE_TAG)
         throw new PackageCorruptException();
 
-      archive.Serialise(ref FileVersionRaw);
+      Archive.Serialise(ref FileVersionRaw);
       switch (FileVersionRaw & 0xffff)
       {
         case 902:
@@ -62,22 +62,22 @@ public partial class ULinker
 
       FileVersionLicensee = (ushort)((FileVersionRaw >> 16) & 0xffff);
 
-      archive.Serialise(ref TotalHeaderSize);
-      archive.Serialise(ref FolderName);
-      archive.Serialise(ref PackageFlags);
-      archive.Serialise(ref NameCount);
-      archive.Serialise(ref NameOffset);
-      archive.Serialise(ref ExportCount);
-      archive.Serialise(ref ExportOffset);
-      archive.Serialise(ref ImportCount);
-      archive.Serialise(ref ImportOffset);
-      archive.Serialise(ref DependsOffset);
+      Archive.Serialise(ref TotalHeaderSize);
+      Archive.Serialise(ref FolderName);
+      Archive.Serialise(ref PackageFlags);
+      Archive.Serialise(ref NameCount);
+      Archive.Serialise(ref NameOffset);
+      Archive.Serialise(ref ExportCount);
+      Archive.Serialise(ref ExportOffset);
+      Archive.Serialise(ref ImportCount);
+      Archive.Serialise(ref ImportOffset);
+      Archive.Serialise(ref DependsOffset);
 
       if (FileVersion >= (ushort)EFileVersion.ADDED_CROSSLEVEL_REFERENCES)
       {
-        archive.Serialise(ref ImportExportGuidsOffset);
-        archive.Serialise(ref ImportGuidsCount);
-        archive.Serialise(ref ExportGuidsCount);
+        Archive.Serialise(ref ImportExportGuidsOffset);
+        Archive.Serialise(ref ImportGuidsCount);
+        Archive.Serialise(ref ExportGuidsCount);
       }
       else
       {
@@ -85,52 +85,50 @@ public partial class ULinker
       }
 
       if (FileVersion >= (ushort)EFileVersion.ASSET_THUMBNAILS_IN_PACKAGES)
-        archive.Serialise(ref ThumbnailTableOffset);
+        Archive.Serialise(ref ThumbnailTableOffset);
 
-      Guid = new();
-      Guid.Serialise(archive);
-      archive.Serialise(ref Generations);
+      Guid.Serialise(Archive);
+      Archive.Serialise(ref Generations);
 
-      archive.Serialise(ref EngineVersion);
-      archive.Serialise(ref CookedContentVersion);
-      archive.Serialise(ref CompressionFlags);
+      Archive.Serialise(ref EngineVersion);
+      Archive.Serialise(ref CookedContentVersion);
+      Archive.Serialise(ref CompressionFlags);
 
-      archive.Serialise(ref CompressedChunks);
-      archive.Serialise(ref PackageSource);
+      Archive.Serialise(ref CompressedChunks);
+      Archive.Serialise(ref PackageSource);
 
       if (FileVersion >= (ushort)EFileVersion.ADDITIONAL_COOK_PACKAGE_SUMMARY)
-        archive.Serialise(ref AdditionalPackagesToCook);
+        Archive.Serialise(ref AdditionalPackagesToCook);
     }
   }
 
   public partial class FObjectImport
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
-      archive.Serialise(ref ClassPackage);
-      archive.Serialise(ref ClassName);
-      archive.Serialise(ref OuterIndex);
-      archive.Serialise(ref ObjectName);
+      Archive.Serialise(ref ClassPackage);
+      Archive.Serialise(ref ClassName);
+      Archive.Serialise(ref OuterIndex);
+      Archive.Serialise(ref ObjectName);
     }
   }
 
   public partial class FObjectExport
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
-      archive.Serialise(ref ClassIndex);
-      archive.Serialise(ref SuperIndex);
-      archive.Serialise(ref OuterIndex);
-      archive.Serialise(ref ObjectName);
-      archive.Serialise(ref ArchetypeIndex);
-      archive.Serialise(ref ObjectFlags);
-      archive.Serialise(ref SerialSize);
-      archive.Serialise(ref SerialOffset);
-      archive.Serialise(ref ExportFlags);
-      archive.Serialise(ref GenerationNetObjectCount);
-      PackageGuid = new();
-      PackageGuid.Serialise(archive);
-      archive.Serialise(ref PackageFlags);
+      Archive.Serialise(ref ClassIndex);
+      Archive.Serialise(ref SuperIndex);
+      Archive.Serialise(ref OuterIndex);
+      Archive.Serialise(ref ObjectName);
+      Archive.Serialise(ref ArchetypeIndex);
+      Archive.Serialise(ref ObjectFlags);
+      Archive.Serialise(ref SerialSize);
+      Archive.Serialise(ref SerialOffset);
+      Archive.Serialise(ref ExportFlags);
+      Archive.Serialise(ref GenerationNetObjectCount);
+      PackageGuid.Serialise(Archive);
+      Archive.Serialise(ref PackageFlags);
     }
   }
 
@@ -153,7 +151,7 @@ public class ULinkerLoad : ULinker
   public string[] Names;
 
 
-  private FArchive archive;
+  private FArchive Archive;
 
   public static void InitFileCache(string FilePath, string InLocale)
   {
@@ -209,14 +207,13 @@ public class ULinkerLoad : ULinker
   {
     Name = FName.ResolveName(name);
 
-    archive = new FArchive(file);
-    archive.SetSourceLinker(this);
+    Archive = new FArchive(file);
+    Archive.SetSourceLinker(this);
 
-    Summary = new();
     Summary.PackageName = name;
     Summary.PackagePath = file;
-    Summary.Serialise(archive);
-    archive.Version = (EFileVersion)Summary.FileVersion;
+    Summary.Serialise(Archive);
+    Archive.Version = (EFileVersion)Summary.FileVersion;
   }
 
   public UObject LoadExport(FObjectExport Export)
@@ -326,7 +323,7 @@ public class ULinkerLoad : ULinker
   {
     if (Names != null) return; // already loaded
 
-    archive.Seek(Summary.NameOffset);
+    Archive.Seek(Summary.NameOffset);
     Names = new string[Summary.NameCount];
     NameMap = new(Summary.NameCount);
     for (int i = 0; i < Summary.NameCount; ++i)
@@ -334,29 +331,29 @@ public class ULinkerLoad : ULinker
       ulong flags = 0;
       string name = "";
 
-      archive.Serialise(ref name);
-      archive.Serialise(ref flags);
+      Archive.Serialise(ref name);
+      Archive.Serialise(ref flags);
 
       Names[i] = name;
       NameMap.Add(FName.ResolveNameAndCorrectCasing(name));
     }
 
-    archive.SetNames(Names);
+    Archive.SetNames(Names);
 
-    archive.Seek(Summary.ImportOffset);
+    Archive.Seek(Summary.ImportOffset);
     Imports = new FObjectImport[Summary.ImportCount];
     for (int i = 0; i < Summary.ImportCount; ++i)
     {
       Imports[i] = new();
-      Imports[i].Serialise(archive);
+      Imports[i].Serialise(Archive);
     }
 
-    archive.Seek(Summary.ExportOffset);
+    Archive.Seek(Summary.ExportOffset);
     Exports = new FObjectExport[Summary.ExportCount];
     for (int i = 0; i < Summary.ExportCount; ++i)
     {
       Exports[i] = new();
-      Exports[i].Serialise(archive);
+      Exports[i].Serialise(Archive);
     }
   }
 
@@ -386,17 +383,17 @@ public class ULinkerLoad : ULinker
     else
     {
       FObjectExport Export = Exports[InObject.LinkerIndex];
-      archive.Seek(Export.SerialOffset);
+      Archive.Seek(Export.SerialOffset);
 
-      InObject.Serialise(archive);
+      InObject.Serialise(Archive);
 
-      int SerialisedBytes = archive.Tell() - Export.SerialOffset;
+      int SerialisedBytes = Archive.Tell() - Export.SerialOffset;
       if (SerialisedBytes < Export.SerialSize)
       {
         Debug.WriteLine("failed to fully serialise {0}'{1}, missed {2} bytes", InObject.Class.Name.Resolved, InObject.Name.Resolved,
           Export.SerialSize - SerialisedBytes);
       }
-      else
+      else if (SerialisedBytes > Export.SerialSize)
       {
         Debug.WriteLine("failed to serialise {0}'{1}, out of bounds by {2} bytes", InObject.Class.Name.Resolved, InObject.Name.Resolved,
           SerialisedBytes - Export.SerialSize);
@@ -407,7 +404,7 @@ public class ULinkerLoad : ULinker
   public override void SerialiseObjectRef<T>(ref T InObject)
   {
     int Index = 0;
-    archive.Serialise(ref Index);
+    Archive.Serialise(ref Index);
 
     if (Index == 0)
     {
@@ -417,7 +414,7 @@ public class ULinkerLoad : ULinker
 
     if (Index < 0)
     {
-      UObject xObject = Imports[-Index - 1].XObject;
+      UObject xObject = LoadImport(Imports[-Index - 1]);
       if (xObject != null) // some imports may be severed
       {
         if (!(xObject is T)) throw new PackageCorruptException();
@@ -426,7 +423,7 @@ public class ULinkerLoad : ULinker
     }
     else
     {
-      UObject xObject = Exports[Index - 1]._Object;
+      UObject xObject = LoadExport(Exports[Index - 1]);
       if (!(xObject is T)) throw new PackageCorruptException();
       InObject = (T)xObject;
     }

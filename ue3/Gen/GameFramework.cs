@@ -106,14 +106,14 @@ public class UGameTypes : UObject
   {
     public float TimeToGo;
     public float TimeDuration;
-    public UObject.FVector RotAmplitude;
-    public UObject.FVector RotFrequency;
-    public UObject.FVector RotSinOffset;
-    public UGameTypes.FShakeParams RotParam;
-    public UObject.FVector LocAmplitude;
-    public UObject.FVector LocFrequency;
-    public UObject.FVector LocSinOffset;
-    public UGameTypes.FShakeParams LocParam;
+    public UObject.FVector RotAmplitude = new();
+    public UObject.FVector RotFrequency = new();
+    public UObject.FVector RotSinOffset = new();
+    public UGameTypes.FShakeParams RotParam = new();
+    public UObject.FVector LocAmplitude = new();
+    public UObject.FVector LocFrequency = new();
+    public UObject.FVector LocSinOffset = new();
+    public UGameTypes.FShakeParams LocParam = new();
     public float FOVAmplitude;
     public float FOVFrequency;
     public float FOVSinOffset;
@@ -125,14 +125,14 @@ public class UGameTypes : UObject
 
   public class FTakeHitInfo
   {
-    public UObject.FVector HitLocation;
-    public UObject.FVector Momentum;
+    public UObject.FVector HitLocation = new();
+    public UObject.FVector Momentum = new();
     public UClass DamageType;
     public APawn InstigatedBy;
     public byte HitBoneIndex;
     public UPhysicalMaterial PhysicalMaterial;
     public float Damage;
-    public UObject.FVector RadialDamageOrigin;
+    public UObject.FVector RadialDamageOrigin = new();
   }
 
   public class FGameSpecialMoveInfo
@@ -164,9 +164,9 @@ public class UGameTypes : UObject
 
   public class FCrowdSpawnerPlayerInfo
   {
-    public UObject.FVector ViewLocation;
-    public UObject.FRotator ViewRotation;
-    public UObject.FVector PredictLocation;
+    public UObject.FVector ViewLocation = new();
+    public UObject.FRotator ViewRotation = new();
+    public UObject.FVector PredictLocation = new();
     public APlayerController PC;
   }
 
@@ -198,7 +198,7 @@ public class UGameTypes : UObject
     public bool bForceNavMeshPathing;
     public bool bEnableCrowdLightEnvironment;
     public bool bCastShadows;
-    public ULightComponent.FLightingChannelContainer AgentLightingChannel;
+    public ULightComponent.FLightingChannelContainer AgentLightingChannel = new();
     public int NumAgentsToTickPerFrame;
     public int LastAgentTickedIndex;
     public List<AGameCrowdDestination> PotentialSpawnPoints;
@@ -213,7 +213,7 @@ public class UGameTypes : UObject
 
 public class AGameCrowdDestination : AGameCrowdInteractionPoint
 {
-  public FPointer VfTable_IEditorLinkSelectionInterface;
+  public FPointer VfTable_IEditorLinkSelectionInterface = new();
   public bool bKillWhenReached;
   public bool bAllowAsPreviousDestination;
   public bool bAvoidWhenPanicked;
@@ -281,7 +281,7 @@ public class UGameAICmd_Hover_MoveToGoal : UGameAICommand
   public float CurrentHoverHeight;
   public float SubGoalReachDist;
   public float GoalDistance;
-  public FVector MoveVectDest;
+  public FVector MoveVectDest = new();
   public UReachSpec CurrentSpec;
 }
 
@@ -296,14 +296,14 @@ public class UGameAICmd_Hover_MoveToGoal_Mesh : UGameAICommand
   public float CurrentHoverHeight;
   public float SubGoalReachDist;
   public float GoalDistance;
-  public FVector IntermediatePoint;
-  public FVector LastMovePoint;
+  public FVector IntermediatePoint = new();
+  public FVector LastMovePoint = new();
   public int NumMovePointFails;
   public int MaxMovePointFails;
-  public FVector FallbackDest;
+  public FVector FallbackDest = new();
   public AActor MoveToActor;
-  public AActor.FBasedPosition LastMoveTargetPathLocation;
-  public FVector InitialFinalDestination;
+  public AActor.FBasedPosition LastMoveTargetPathLocation = new();
+  public FVector InitialFinalDestination = new();
 }
 
 public class AGameAIController : AAIController
@@ -357,7 +357,7 @@ public class UGameCrowdAgentBehavior : UObject
   public float DurationOfViralBehaviorPropagation;
   public float TimeToStopPropagatingViralBehavior;
   public AGameCrowdAgent MyAgent;
-  public FColor DebugBehaviorColor;
+  public FColor DebugBehaviorColor = new();
 }
 
 public class AGameCrowdAgent : ACrowdAgentBase
@@ -385,10 +385,10 @@ public class AGameCrowdAgent : ACrowdAgentBase
     public bool bCanBeUsed;
   }
 
-  public FPointer VfTable_IInterface_RVO;
+  public FPointer VfTable_IInterface_RVO = new();
   public UGameCrowdGroup MyGroup;
-  public FVector PreferredVelocity;
-  public FVector PendingVelocity;
+  public FVector PreferredVelocity = new();
+  public FVector PendingVelocity = new();
   public AGameCrowdDestination CurrentDestination;
   public AGameCrowdDestination BehaviorDestination;
   public AGameCrowdDestination PreviousDestination;
@@ -433,15 +433,15 @@ public class AGameCrowdAgent : ACrowdAgentBase
   public int ExtraPathCost;
   public float RotateToTargetSpeed;
   public float MaxYawRate;
-  public FVector MeshMinScale3D;
-  public FVector MeshMaxScale3D;
+  public FVector MeshMinScale3D = new();
+  public FVector MeshMaxScale3D = new();
   public float EyeZOffset;
   public float ProximityLODDist;
   public float VisibleProximityLODDist;
-  public FVector LastKnownGoodPosition;
+  public FVector LastKnownGoodPosition = new();
   public float GroundOffset;
-  public FVector IntermediatePoint;
-  public FVector SearchExtent;
+  public FVector IntermediatePoint = new();
+  public FVector SearchExtent = new();
   public UClass NavigationHandleClass;
   public UNavigationHandle NavigationHandle;
   public int ObstacleCheckCount;
@@ -455,9 +455,9 @@ public class AGameCrowdAgent : ACrowdAgentBase
   public float MaxSpeed;
   public List<FRecentInteraction> RecentInteractions;
   public float BeaconMaxDist;
-  public FVector BeaconOffset;
+  public FVector BeaconOffset = new();
   public UTexture2D BeaconTexture;
-  public FLinearColor BeaconColor;
+  public FLinearColor BeaconColor = new();
   public USoundCue AmbientSoundCue;
   public UAudioComponent AmbientSoundComponent;
   public UGameCrowdAgentBehavior CurrentBehavior;
@@ -480,9 +480,9 @@ public class AGameCrowdAgent : ACrowdAgentBase
   public float DesiredGroupRadiusSq;
   public float MaxLOSLifeDistanceSq;
   public FScriptInterface MySpawner;
-  public FVector SpawnOffset;
+  public FVector SpawnOffset = new();
   public float InitialLastRenderTime;
-  public FColor DebugAgentColor;
+  public FColor DebugAgentColor = new();
   public AGameCrowdDestination DebugSpawnDest;
 }
 
@@ -492,7 +492,7 @@ public class AGameCrowdAgentSkeletal : AGameCrowdAgent
   {
     public UStaticMesh StaticMesh;
     public float Chance;
-    public UObject.FVector Scale3D;
+    public UObject.FVector Scale3D = new();
   }
 
   public class FGameCrowdAttachmentList
@@ -601,8 +601,8 @@ public class AGameCrowdInteractionDestination : AGameCrowdDestination
 
 public class AGameCrowdPopulationManager : ACrowdPopulationManagerBase
 {
-  public FPointer VfTable_IInterface_NavigationHandle;
-  public UGameTypes.FCrowdSpawnInfoItem CloudSpawnInfo;
+  public FPointer VfTable_IInterface_NavigationHandle = new();
+  public UGameTypes.FCrowdSpawnInfoItem CloudSpawnInfo = new();
   public List<UGameTypes.FCrowdSpawnInfoItem> ScriptedSpawnInfo;
   public AGameCrowdInfoVolume ActiveCrowdInfoVolume;
   public List<AGameCrowdDestination> GlobalPotentialSpawnPoints;
@@ -649,8 +649,8 @@ public class UGameDamageType : UDamageType
   public bool bSuppressPlayExplosiveRadialDamageEffects;
   public bool bAllowHeadShotGib;
   public float DistFromHitLocToGib;
-  public UCanvas.FCanvasIcon KilledByIcon;
-  public UCanvas.FCanvasIcon HeadshotIcon;
+  public UCanvas.FCanvasIcon KilledByIcon = new();
+  public UCanvas.FCanvasIcon HeadshotIcon = new();
   public float IconScale;
 }
 
@@ -696,14 +696,14 @@ public class UGameExplosion : UObject
   public float KnockDownRadius;
   public float KnockDownStrength;
   public float CringeRadius;
-  public FVector2D CringeDuration;
+  public FVector2D CringeDuration = new();
   public float MomentumTransferScale;
   public UParticleSystem ParticleEmitterTemplate;
   public UParticleSystem ExtraParticleEmitterTemplate;
   public float ExplosionEmitterScale;
   public AActor HitActor;
-  public FVector HitLocation;
-  public FVector HitNormal;
+  public FVector HitLocation = new();
+  public FVector HitNormal = new();
   public USoundCue ExplosionSound;
   public UPointLightComponent ExploLight;
   public float ExploLightFadeOutTime;
@@ -740,11 +740,11 @@ public class AGameExplosionActor : AActor
   public URB_RadialImpulseComponent RadialImpulseComponent;
   public AController InstigatorController;
   public AActor HitActorFromPhysMaterialTrace;
-  public FVector HitLocationFromPhysMaterialTrace;
+  public FVector HitLocationFromPhysMaterialTrace = new();
   public AActor Attachee;
   public AController AttacheeController;
   public float DirectionalExplosionMinDot;
-  public FVector ExplosionDirection;
+  public FVector ExplosionDirection = new();
   public float ExtraHowLongToLive;
 }
 
@@ -808,7 +808,7 @@ public class AGamePlayerCamera : ACamera
   public AActor LastViewTarget;
   public float SplitScreenShakeScale;
   public AActor LastTargetBase;
-  public FMatrix LastTargetBaseTM;
+  public FMatrix LastTargetBaseTM = new();
 }
 
 public class AGamePlayerController : APlayerController
@@ -842,24 +842,24 @@ public class UGameSkelCtrl_Recoil : USkelControlBase
   {
     public float TimeToGo;
     public float TimeDuration;
-    public UObject.FVector RotAmplitude;
-    public UObject.FVector RotFrequency;
-    public UObject.FVector RotSinOffset;
-    public UGameSkelCtrl_Recoil.FRecoilParams RotParams;
-    public UObject.FRotator RotOffset;
-    public UObject.FVector LocAmplitude;
-    public UObject.FVector LocFrequency;
-    public UObject.FVector LocSinOffset;
-    public UGameSkelCtrl_Recoil.FRecoilParams LocParams;
-    public UObject.FVector LocOffset;
+    public UObject.FVector RotAmplitude = new();
+    public UObject.FVector RotFrequency = new();
+    public UObject.FVector RotSinOffset = new();
+    public UGameSkelCtrl_Recoil.FRecoilParams RotParams = new();
+    public UObject.FRotator RotOffset = new();
+    public UObject.FVector LocAmplitude = new();
+    public UObject.FVector LocFrequency = new();
+    public UObject.FVector LocSinOffset = new();
+    public UGameSkelCtrl_Recoil.FRecoilParams LocParams = new();
+    public UObject.FVector LocOffset = new();
   }
 
   public bool bBoneSpaceRecoil;
   public bool bPlayRecoil;
   public bool bOldPlayRecoil;
   public bool bApplyControl;
-  public FRecoilDef Recoil;
-  public FVector2D Aim;
+  public FRecoilDef Recoil = new();
+  public FVector2D Aim = new();
 }
 
 public class UGameSpecialMove : UObject
@@ -873,11 +873,11 @@ public class UGameSpecialMove : UObject
   public bool bReachPreciseRotation;
   public bool bReachedPreciseRotation;
   public bool bForcePrecisePosition;
-  public FVector PreciseDestination;
+  public FVector PreciseDestination = new();
   public AActor PreciseDestBase;
-  public FVector PreciseDestRelOffset;
+  public FVector PreciseDestRelOffset = new();
   public float PreciseRotationInterpolationTime;
-  public FRotator PreciseRotation;
+  public FRotator PreciseRotation = new();
 }
 
 public class UGameThirdPersonCamera : UGameCameraBase
@@ -886,10 +886,10 @@ public class UGameThirdPersonCamera : UGameCameraBase
   {
     public AActor FocusActor;
     public FName FocusBoneName;
-    public UObject.FVector FocusWorldLoc;
+    public UObject.FVector FocusWorldLoc = new();
     public float CameraFOV;
-    public UObject.FVector2D InterpSpeedRange;
-    public UObject.FVector2D InFocusFOV;
+    public UObject.FVector2D InterpSpeedRange = new();
+    public UObject.FVector2D InFocusFOV = new();
     public bool bAlwaysFocus;
     public bool bAdjustCamera;
     public bool bIgnoreTrace;
@@ -898,23 +898,23 @@ public class UGameThirdPersonCamera : UGameCameraBase
 
   public class FPenetrationAvoidanceFeeler
   {
-    public UObject.FRotator AdjustmentRot;
+    public UObject.FRotator AdjustmentRot = new();
     public float WorldWeight;
     public float PawnWeight;
-    public UObject.FVector Extent;
+    public UObject.FVector Extent = new();
   }
 
-  public FVector LastActualCameraOrigin;
+  public FVector LastActualCameraOrigin = new();
   public float WorstLocBlockedPct;
   public float WorstLocPenetrationExtentScale;
   public float PenetrationBlendOutTime;
   public float PenetrationBlendInTime;
   public float PenetrationBlockedPct;
   public float PenetrationExtentScale;
-  public FVector LastActualOriginOffset;
-  public FRotator LastActualCameraOriginRot;
+  public FVector LastActualOriginOffset = new();
+  public FRotator LastActualCameraOriginRot = new();
   public float OriginOffsetInterpSpeed;
-  public FVector LastViewOffset;
+  public FVector LastViewOffset = new();
   public float LastCamFOV;
   public UGameThirdPersonCameraMode ThirdPersonCamDefault;
   public UClass ThirdPersonCamDefaultClass;
@@ -928,9 +928,9 @@ public class UGameThirdPersonCamera : UGameCameraBase
   public int Focus_MaxTries;
   public float Focus_FastAdjustKickInTime;
   public float LastFocusChangeTime;
-  public FVector ActualFocusPointWorldLoc;
-  public FVector LastFocusPointLoc;
-  public FCamFocusPointParams FocusPoint;
+  public FVector ActualFocusPointWorldLoc = new();
+  public FVector LastFocusPointLoc = new();
+  public FCamFocusPointParams FocusPoint = new();
   public bool bFocusPointSet;
   public bool bFocusPointSuccessful;
   public bool bDoingACameraTurn;
@@ -947,21 +947,21 @@ public class UGameThirdPersonCamera : UGameCameraBase
   public int DirectLookYaw;
   public float DirectLookInterpSpeed;
   public float WorstLocInterpSpeed;
-  public FVector LastWorstLocationLocal;
-  public FVector LastPreModifierCameraLoc;
-  public FRotator LastPreModifierCameraRot;
+  public FVector LastWorstLocationLocal = new();
+  public FVector LastPreModifierCameraLoc = new();
+  public FRotator LastPreModifierCameraRot = new();
   public List<FPenetrationAvoidanceFeeler> PenetrationAvoidanceFeelers;
   public float OffsetAdjustmentInterpSpeed;
-  public FVector LastOffsetAdjustment;
+  public FVector LastOffsetAdjustment = new();
 }
 
 public class UGameThirdPersonCameraMode : UObject
 {
   public class FViewOffsetData
   {
-    public UObject.FVector OffsetHigh;
-    public UObject.FVector OffsetMid;
-    public UObject.FVector OffsetLow;
+    public UObject.FVector OffsetHigh = new();
+    public UObject.FVector OffsetMid = new();
+    public UObject.FVector OffsetLow = new();
   }
 
   public UGameThirdPersonCamera ThirdPersonCam;
@@ -986,23 +986,23 @@ public class UGameThirdPersonCameraMode : UObject
   public float FollowingInterpSpeed_Roll;
   public float FollowingCameraVelThreshold;
   public float OriginLocInterpSpeed;
-  public FVector PerAxisOriginLocInterpSpeed;
+  public FVector PerAxisOriginLocInterpSpeed = new();
   public float OriginRotInterpSpeed;
-  public FVector StrafeLeftAdjustment;
-  public FVector StrafeRightAdjustment;
+  public FVector StrafeLeftAdjustment = new();
+  public FVector StrafeRightAdjustment = new();
   public float StrafeOffsetScalingThreshold;
   public float StrafeOffsetInterpSpeedIn;
   public float StrafeOffsetInterpSpeedOut;
-  public FVector LastStrafeOffset;
-  public FVector RunFwdAdjustment;
-  public FVector RunBackAdjustment;
+  public FVector LastStrafeOffset = new();
+  public FVector RunFwdAdjustment = new();
+  public FVector RunBackAdjustment = new();
   public float RunOffsetScalingThreshold;
   public float RunOffsetInterpSpeedIn;
   public float RunOffsetInterpSpeedOut;
-  public FVector LastRunOffset;
-  public FVector WorstLocOffset;
-  public FVector TargetRelativeCameraOriginOffset;
-  public FViewOffsetData ViewOffset;
+  public FVector LastRunOffset = new();
+  public FVector WorstLocOffset = new();
+  public FVector TargetRelativeCameraOriginOffset = new();
+  public FViewOffsetData ViewOffset = new();
   public FViewOffsetData[] ViewOffset_ViewportAdjustments = new FViewOffsetData[6];
   public float DOF_FalloffExponent;
   public float DOF_BlurKernelSize;
@@ -1012,10 +1012,10 @@ public class UGameThirdPersonCameraMode : UObject
   public float LastDOFRadius;
   public float LastDOFDistance;
   public float DOFDistanceInterpSpeed;
-  public FVector DOFTraceExtent;
+  public FVector DOFTraceExtent = new();
   public float DOF_RadiusFalloff;
-  public FVector2D DOF_RadiusRange;
-  public FVector2D DOF_RadiusDistRange;
+  public FVector2D DOF_RadiusRange = new();
+  public FVector2D DOF_RadiusDistRange = new();
   public float ViewOffsetInterp;
 }
 
@@ -1075,8 +1075,8 @@ public class AMobileHUD : AGameHUD
   public UTexture2D FireZoneBackground;
   public UTexture2D MoveZoneBackground;
   public UTexture2D SteerZoneBackground;
-  public FColor ZoneTileColor;
-  public FColor ZoneTextColor;
+  public FColor ZoneTileColor = new();
+  public FColor ZoneTextColor = new();
   public UTexture2D AnalogHat;
   public List<FMobileInputZone> MobileInputZones;
   public int MobileInputConfig;
@@ -1085,8 +1085,8 @@ public class AMobileHUD : AGameHUD
 
 public class UNavMeshGoal_OutOfViewFrom : UNavMeshPathGoalEvaluator
 {
-  public FPointer GoalPoly;
-  public FVector OutOfViewLocation;
+  public FPointer GoalPoly = new();
+  public FVector OutOfViewLocation = new();
   public bool bShowDebug;
 }
 
@@ -1121,7 +1121,7 @@ public class USeqAct_GameCrowdPopulationManagerToggle : USequenceAction
   public bool bIndividualSpawner;
   public int MaxAgents;
   public float SpawnRate;
-  public ULightComponent.FLightingChannelContainer AgentLightingChannel;
+  public ULightComponent.FLightingChannelContainer AgentLightingChannel = new();
   public float MaxSpawnDist;
   public float MinBehindSpawnDist;
   public List<AGameCrowdDestination> PotentialSpawnPoints;

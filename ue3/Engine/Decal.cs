@@ -4,7 +4,7 @@ public partial class UDecalComponent
 {
   public partial class FStaticReceiverData
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
       throw new NotImplementedException();
     }

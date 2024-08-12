@@ -2,15 +2,15 @@
 
 public partial class UComponent
 {
-  public override void Serialise(FArchive archive)
+  public override void Serialise(FArchive Archive)
   {
-    archive.Serialise(ref TemplateOwnerClass);
+    Archive.Serialise(ref TemplateOwnerClass);
 
     if (IsTemplate(EObjectFlags.RF_ClassDefaultObject))
     {
-      archive.Serialise(ref TemplateName);
+      Archive.Serialise(ref TemplateName);
     }
 
-    base.Serialise(archive);
+    base.Serialise(Archive);
   }
 }

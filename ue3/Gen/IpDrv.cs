@@ -214,16 +214,16 @@ public class AInternetLink : AInfo
   public ELineMode InLineMode;
   public ELineMode OutLineMode;
   public EReceiveMode ReceiveMode;
-  public FPointer Socket;
+  public FPointer Socket = new();
   public int Port;
-  public FPointer RemoteSocket;
-  public FPointer PrivateResolveInfo;
+  public FPointer RemoteSocket = new();
+  public FPointer PrivateResolveInfo = new();
   public int DataPending;
 }
 
 public class UMCPBase : UObject
 {
-  public FPointer VfTable_FTickableObject;
+  public FPointer VfTable_FTickableObject = new();
 }
 
 public class UMeshBeacon : UObject
@@ -239,12 +239,12 @@ public class UMeshBeacon : UObject
   {
     public int TeamNum;
     public int Skill;
-    public UOnlineSubsystem.FUniqueNetId NetId;
+    public UOnlineSubsystem.FUniqueNetId NetId = new();
   }
 
-  public FPointer VfTable_FTickableObject;
+  public FPointer VfTable_FTickableObject = new();
   public int MeshBeaconPort;
-  public FPointer Socket;
+  public FPointer Socket = new();
   public bool bIsInTick;
   public bool bWantsDeferredDestroy;
   public bool bShouldTick;
@@ -264,7 +264,7 @@ public class UMeshBeaconClient : UMeshBeacon
 {
   public class FClientConnectionRequest
   {
-    public UOnlineSubsystem.FUniqueNetId PlayerNetId;
+    public UOnlineSubsystem.FUniqueNetId PlayerNetId = new();
     public ENATType NatType;
     public bool bCanHostVs;
     public float GoodHostRatio;
@@ -282,9 +282,9 @@ public class UMeshBeaconClient : UMeshBeacon
     public float ElapsedTestTime;
   }
 
-  public UOnlineGameSearch.FOnlineGameSearchResult HostPendingRequest;
-  public FClientConnectionRequest ClientPendingRequest;
-  public FClientBandwidthTestData CurrentBandwidthTest;
+  public UOnlineGameSearch.FOnlineGameSearchResult HostPendingRequest = new();
+  public FClientConnectionRequest ClientPendingRequest = new();
+  public FClientBandwidthTestData CurrentBandwidthTest = new();
   public EMeshBeaconClientState ClientBeaconState;
   public EMeshBeaconPacketType ClientBeaconRequestType;
   public float ConnectionRequestTimeout;
@@ -308,18 +308,18 @@ public class UMeshBeaconHost : UMeshBeacon
     public EMeshBeaconBandwidthTestType TestType;
     public int BytesTotalNeeded;
     public int BytesReceived;
-    public double RequestTestStartTime;
-    public double TestStartTime;
-    public UMeshBeacon.FConnectionBandwidthStats BandwidthStats;
+    public double RequestTestStartTime = new();
+    public double TestStartTime = new();
+    public UMeshBeacon.FConnectionBandwidthStats BandwidthStats = new();
   }
 
   public class FClientMeshBeaconConnection
   {
-    public UOnlineSubsystem.FUniqueNetId PlayerNetId;
+    public UOnlineSubsystem.FUniqueNetId PlayerNetId = new();
     public float ElapsedHeartbeatTime;
-    public UObject.FPointer Socket;
+    public UObject.FPointer Socket = new();
     public bool bConnectionAccepted;
-    public UMeshBeaconHost.FClientConnectionBandwidthTestData BandwidthTest;
+    public UMeshBeaconHost.FClientConnectionBandwidthTestData BandwidthTest = new();
     public ENATType NatType;
     public bool bCanHostVs;
     public float GoodHostRatio;
@@ -329,7 +329,7 @@ public class UMeshBeaconHost : UMeshBeacon
 
   public List<FClientMeshBeaconConnection> ClientConnections;
   public List<UOnlineSubsystem.FUniqueNetId> PendingPlayerConnections;
-  public UOnlineSubsystem.FUniqueNetId OwningPlayerId;
+  public UOnlineSubsystem.FUniqueNetId OwningPlayerId = new();
   public bool bAllowBandwidthTesting;
   public int ConnectionBacklog;
   public FScriptDelegate __OnReceivedClientConnectionRequest__Delegate;
@@ -376,8 +376,8 @@ public class UOnlineGameInterfaceImpl : UObject
   public int LanPacketPlatformMask;
   public float LanQueryTimeLeft;
   public float LanQueryTimeout;
-  public FPointer LanBeacon;
-  public FPointer SessionInfo;
+  public FPointer LanBeacon = new();
+  public FPointer SessionInfo = new();
   public FScriptDelegate __OnFindOnlineGamesComplete__Delegate;
   public FScriptDelegate __OnCreateOnlineGameComplete__Delegate;
   public FScriptDelegate __OnUpdateOnlineGameComplete__Delegate;
@@ -402,7 +402,7 @@ public class UOnlineNewsInterfaceMcp : UMCPBase
     public string NewsItem;
     public float TimeOut;
     public bool bIsUnicode;
-    public UObject.FPointer HttpDownloader;
+    public UObject.FPointer HttpDownloader = new();
   }
 
   public List<FNewsCacheEntry> NewsItems;
@@ -413,7 +413,7 @@ public class UOnlineNewsInterfaceMcp : UMCPBase
 
 public class UOnlineSubsystemCommonImpl : UOnlineSubsystem
 {
-  public FPointer VoiceEngine;
+  public FPointer VoiceEngine = new();
   public int MaxLocalTalkers;
   public int MaxRemoteTalkers;
   public bool bIsUsingSpeechRecognition;
@@ -424,7 +424,7 @@ public class UOnlineTitleFileDownloadMcp : UMCPBase
 {
   public List<FScriptDelegate> ReadTitleFileCompleteDelegates;
   public List<UOnlineSubsystem.FTitleFile> TitleFiles;
-  public FPointer HttpDownloader;
+  public FPointer HttpDownloader = new();
   public int CurrentIndex;
   public string BaseUrl;
   public float TimeOut;
@@ -435,24 +435,24 @@ public class UPartyBeacon : UObject
 {
   public class FPlayerReservation
   {
-    public UOnlineSubsystem.FUniqueNetId NetId;
+    public UOnlineSubsystem.FUniqueNetId NetId = new();
     public int Skill;
     public int XpLevel;
-    public double Mu;
-    public double Sigma;
+    public double Mu = new();
+    public double Sigma = new();
     public float ElapsedSessionTime;
   }
 
   public class FPartyReservation
   {
     public int TeamNum;
-    public UOnlineSubsystem.FUniqueNetId PartyLeader;
+    public UOnlineSubsystem.FUniqueNetId PartyLeader = new();
     public List<UPartyBeacon.FPlayerReservation> PartyMembers;
   }
 
-  public FPointer VfTable_FTickableObject;
+  public FPointer VfTable_FTickableObject = new();
   public int PartyBeaconPort;
-  public FPointer Socket;
+  public FPointer Socket = new();
   public bool bIsInTick;
   public bool bWantsDeferredDestroy;
   public bool bShouldTick;
@@ -464,8 +464,8 @@ public class UPartyBeacon : UObject
 
 public class UPartyBeaconClient : UPartyBeacon
 {
-  public UOnlineGameSearch.FOnlineGameSearchResult HostPendingRequest;
-  public FPartyReservation PendingRequest;
+  public UOnlineGameSearch.FOnlineGameSearchResult HostPendingRequest = new();
+  public FPartyReservation PendingRequest = new();
   public EPartyBeaconClientState ClientBeaconState;
   public EPartyBeaconClientRequest ClientBeaconRequestType;
   public float ReservationRequestTimeout;
@@ -484,9 +484,9 @@ public class UPartyBeaconHost : UPartyBeacon
 {
   public class FClientBeaconConnection
   {
-    public UOnlineSubsystem.FUniqueNetId PartyLeader;
+    public UOnlineSubsystem.FUniqueNetId PartyLeader = new();
     public float ElapsedHeartbeatTime;
-    public UObject.FPointer Socket;
+    public UObject.FPointer Socket = new();
   }
 
   public List<FClientBeaconConnection> Clients;
@@ -508,7 +508,7 @@ public class UPartyBeaconHost : UPartyBeacon
 public class ATcpLink : AInternetLink
 {
   public ELinkState LinkState;
-  public FIpAddr RemoteAddr;
+  public FIpAddr RemoteAddr = new();
   public UClass AcceptClass;
   public List<byte> SendFIFO;
   public string RecvBuf;
@@ -537,14 +537,14 @@ public class UWebRequest : UObject
   public int ContentLength;
   public string ContentType;
   public ERequestType RequestType;
-  public FMap_Mirror HeaderMap;
-  public FMap_Mirror VariableMap;
+  public FMap_Mirror HeaderMap = new();
+  public FMap_Mirror VariableMap = new();
 }
 
 public class UWebResponse : UObject
 {
   public List<string> headers;
-  public FMap_Mirror ReplacementMap;
+  public FMap_Mirror ReplacementMap = new();
   public string IncludePath;
   public string CharSet;
   public AWebConnection Connection;

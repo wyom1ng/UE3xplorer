@@ -117,9 +117,9 @@ public partial class UObject : ISerialisable
   public class FInterpCurvePointVector2D
   {
     public float InVal;
-    public UObject.FVector2D OutVal;
-    public UObject.FVector2D ArriveTangent;
-    public UObject.FVector2D LeaveTangent;
+    public UObject.FVector2D OutVal = new();
+    public UObject.FVector2D ArriveTangent = new();
+    public UObject.FVector2D LeaveTangent = new();
     public EInterpCurveMode InterpMode;
   }
 
@@ -132,9 +132,9 @@ public partial class UObject : ISerialisable
   public class FInterpCurvePointVector
   {
     public float InVal;
-    public UObject.FVector OutVal;
-    public UObject.FVector ArriveTangent;
-    public UObject.FVector LeaveTangent;
+    public UObject.FVector OutVal = new();
+    public UObject.FVector ArriveTangent = new();
+    public UObject.FVector LeaveTangent = new();
     public EInterpCurveMode InterpMode;
   }
 
@@ -147,9 +147,9 @@ public partial class UObject : ISerialisable
   public class FInterpCurvePointTwoVectors
   {
     public float InVal;
-    public UObject.FTwoVectors OutVal;
-    public UObject.FTwoVectors ArriveTangent;
-    public UObject.FTwoVectors LeaveTangent;
+    public UObject.FTwoVectors OutVal = new();
+    public UObject.FTwoVectors ArriveTangent = new();
+    public UObject.FTwoVectors LeaveTangent = new();
     public EInterpCurveMode InterpMode;
   }
 
@@ -162,9 +162,9 @@ public partial class UObject : ISerialisable
   public class FInterpCurvePointQuat
   {
     public float InVal;
-    public UObject.FQuat OutVal;
-    public UObject.FQuat ArriveTangent;
-    public UObject.FQuat LeaveTangent;
+    public UObject.FQuat OutVal = new();
+    public UObject.FQuat ArriveTangent = new();
+    public UObject.FQuat LeaveTangent = new();
     public EInterpCurveMode InterpMode;
   }
 
@@ -177,9 +177,9 @@ public partial class UObject : ISerialisable
   public class FInterpCurvePointLinearColor
   {
     public float InVal;
-    public UObject.FLinearColor OutVal;
-    public UObject.FLinearColor ArriveTangent;
-    public UObject.FLinearColor LeaveTangent;
+    public UObject.FLinearColor OutVal = new();
+    public UObject.FLinearColor ArriveTangent = new();
+    public UObject.FLinearColor LeaveTangent = new();
     public EInterpCurveMode InterpMode;
   }
 
@@ -207,14 +207,14 @@ public partial class UObject : ISerialisable
 
   public class FOctreeElementId
   {
-    public UObject.FPointer Node;
+    public UObject.FPointer Node = new();
     public int ElementIndex;
   }
 
   public class FBoneAtom
   {
-    public UObject.FQuat Rotation;
-    public UObject.FVector Translation;
+    public UObject.FQuat Rotation = new();
+    public UObject.FVector Translation = new();
     public float Scale;
   }
 
@@ -242,7 +242,7 @@ public partial class UObject : ISerialisable
 
   public class FBitArray_Mirror
   {
-    public UObject.FPointer IndirectData;
+    public UObject.FPointer IndirectData = new();
     public int[] InlineData = new int[4];
     public int NumBits;
     public int MaxBits;
@@ -251,32 +251,32 @@ public partial class UObject : ISerialisable
   public class FSparseArray_Mirror
   {
     public List<int> Elements;
-    public UObject.FBitArray_Mirror AllocationFlags;
+    public UObject.FBitArray_Mirror AllocationFlags = new();
     public int FirstFreeIndex;
     public int NumFreeIndices;
   }
 
   public class FSet_Mirror
   {
-    public UObject.FSparseArray_Mirror Elements;
-    public UObject.FPointer Hash;
+    public UObject.FSparseArray_Mirror Elements = new();
+    public UObject.FPointer Hash = new();
     public int InlineHash;
     public int HashSize;
   }
 
   public class FMap_Mirror
   {
-    public UObject.FSet_Mirror Pairs;
+    public UObject.FSet_Mirror Pairs = new();
   }
 
   public class FMultiMap_Mirror
   {
-    public UObject.FSet_Mirror Pairs;
+    public UObject.FSet_Mirror Pairs = new();
   }
 
   public partial class FUntypedBulkData_Mirror : ISerialisable
   {
-    public UObject.FPointer VfTable;
+    public UObject.FPointer VfTable = new();
     public int BulkDataFlags;
     public int ElementCount;
     public int BulkDataOffsetInFile;
@@ -285,9 +285,9 @@ public partial class UObject : ISerialisable
     public int SavedElementCount;
     public int SavedBulkDataOffsetInFile;
     public int SavedBulkDataSizeOnDisk;
-    public List<byte> BulkData;
+    public byte[] BulkData;
     public int LockStatus;
-    public UObject.FPointer AttachedAr;
+    public UObject.FPointer AttachedAr = new();
     public int bShouldFreeOnEmpty;
   }
 
@@ -298,8 +298,8 @@ public partial class UObject : ISerialisable
 
   public class FFColorVertexBuffer_Mirror
   {
-    public UObject.FPointer VfTable;
-    public UObject.FPointer VertexData;
+    public UObject.FPointer VfTable = new();
+    public UObject.FPointer VertexData = new();
     public int Data;
     public int Stride;
     public int NumVertices;
@@ -307,22 +307,22 @@ public partial class UObject : ISerialisable
 
   public class FIndirectArray_Mirror
   {
-    public UObject.FPointer Data;
+    public UObject.FPointer Data = new();
     public int ArrayNum;
     public int ArrayMax;
   }
 
   public class FArray_Mirror
   {
-    public UObject.FPointer Data;
+    public UObject.FPointer Data = new();
     public int ArrayNum;
     public int ArrayMax;
   }
 
   public class FInlinePointerArray_Mirror
   {
-    public UObject.FPointer InlineData;
-    public UObject.FArray_Mirror SecondaryData;
+    public UObject.FPointer InlineData = new();
+    public UObject.FArray_Mirror SecondaryData = new();
   }
 
   public partial class FGuid : ISerialisable
@@ -358,8 +358,8 @@ public partial class UObject : ISerialisable
 
   public partial class FBox : ISerialisable
   {
-    public UObject.FVector Min;
-    public UObject.FVector Max;
+    public UObject.FVector Min = new();
+    public UObject.FVector Max = new();
     public byte IsValid;
   }
 
@@ -379,8 +379,8 @@ public partial class UObject : ISerialisable
 
   public partial class FTwoVectors : ISerialisable
   {
-    public UObject.FVector v1;
-    public UObject.FVector v2;
+    public UObject.FVector v1 = new();
+    public UObject.FVector v2 = new();
   }
 
   public partial class FPlane : FVector
@@ -417,15 +417,15 @@ public partial class UObject : ISerialisable
 
   public class FSHVectorRGB
   {
-    public UObject.FSHVector R;
-    public UObject.FSHVector G;
-    public UObject.FSHVector B;
+    public UObject.FSHVector R = new();
+    public UObject.FSHVector G = new();
+    public UObject.FSHVector B = new();
   }
 
   public class FTPOV
   {
-    public UObject.FVector Location;
-    public UObject.FRotator Rotation;
+    public UObject.FVector Location = new();
+    public UObject.FRotator Rotation = new();
     public float FOV;
   }
 
@@ -441,17 +441,17 @@ public partial class UObject : ISerialisable
 
   public partial class FBoxSphereBounds : ISerialisable
   {
-    public UObject.FVector Origin;
-    public UObject.FVector BoxExtent;
+    public UObject.FVector Origin = new();
+    public UObject.FVector BoxExtent = new();
     public float SphereRadius;
   }
 
   public partial class FMatrix : ISerialisable
   {
-    public UObject.FPlane XPlane;
-    public UObject.FPlane YPlane;
-    public UObject.FPlane ZPlane;
-    public UObject.FPlane WPlane;
+    public UObject.FPlane XPlane = new();
+    public UObject.FPlane YPlane = new();
+    public UObject.FPlane ZPlane = new();
+    public UObject.FPlane WPlane = new();
   }
 
   public class FCylinder
@@ -473,7 +473,7 @@ public partial class UObject : ISerialisable
 
   public partial class FSphere : ISerialisable
   {
-    public UObject.FVector Center;
+    public UObject.FVector Center = new();
     public float W;
   }
 
@@ -486,9 +486,13 @@ public partial class UObject : ISerialisable
 
   public partial class FQuantizedSHVectorRGB : ISerialisable
   {
-    public UObject.FQuantizedSHVector B;
-    public UObject.FQuantizedSHVector G;
-    public UObject.FQuantizedSHVector R;
+    public UObject.FQuantizedSHVector B = new();
+    public UObject.FQuantizedSHVector G = new();
+    public UObject.FQuantizedSHVector R = new();
+  }
+
+  public partial class FByteBulkData : FUntypedBulkData_Mirror
+  {
   }
 
   public partial class FWordBulkData : FUntypedBulkData_Mirror
@@ -512,7 +516,7 @@ public partial class UObject : ISerialisable
 
   public partial class FGuidPair : ISerialisable
   {
-    public UObject.FGuid Guid;
+    public UObject.FGuid Guid = new();
     public uint RefId;
   }
 
@@ -551,7 +555,7 @@ public partial class UObject : ISerialisable
     public bool bUsesSceneDepth;
     public List<string> CompileErrors;
     public uint DummyDroppedFallbackComponents;
-    public UObject.FGuid Id;
+    public UObject.FGuid Id = new();
     public int MaxTextureDependencyLength;
     public uint NumUserTexCoords;
     public Dictionary<UMaterialExpression, int> TextureDependencyLengthMap;
@@ -566,12 +570,12 @@ public partial class UObject : ISerialisable
     public UMaterial Material;
   }
 
-  public FPointer VfTableObject;
+  public FPointer VfTableObject = new();
   public int ObjectInternalInteger;
-  public ulong ObjectFlags;
+  public ulong ObjectFlags = new();
   public UObject HashNext;
   public UObject HashOuterNext;
-  public FStateFrame StateFrame;
+  public FStateFrame StateFrame = new();
   public ULinker Linker;
   public int LinkerIndex;
   public int NetIndex;
@@ -593,7 +597,7 @@ public class UInterface : UObject
 
 public class USubsystem : UObject
 {
-  public FPointer VfTable_FExec;
+  public FPointer VfTable_FExec = new();
 }
 
 public class UCommandlet : UObject
@@ -617,7 +621,7 @@ public class UDistributionFloat : UComponent
     public UDistributionFloat Distribution;
   }
 
-  public FPointer VfTable_FCurveEdInterface;
+  public FPointer VfTable_FCurveEdInterface = new();
   public bool bCanBeBaked;
   public bool bIsDirty;
 }
@@ -629,7 +633,7 @@ public class UDistributionVector : UComponent
     public UDistributionVector Distribution;
   }
 
-  public FPointer VfTable_FCurveEdInterface;
+  public FPointer VfTable_FCurveEdInterface = new();
   public bool bCanBeBaked;
   public bool bIsDirty;
 }
@@ -685,7 +689,7 @@ public partial class UPackage : UObject
   public FName FolderName;
   public FName ForcedExportBasePackageName;
   public List<int> GenerationNetObjectCount;
-  public FGuid Guid;
+  public FGuid Guid = new();
   public List<FLevelGuids> ImportGuids;
   public float LoadTime;
   public List<UObject> NetObjects;
@@ -713,7 +717,7 @@ public partial class ULinker : UObject
   {
     public string PackageName;
     public string PackagePath;
-    public ulong FileSize;
+    public ulong FileSize = new();
     public List<string> AdditionalPackagesToCook;
     public List<ULinker.FCompressedChunk> CompressedChunks;
     public uint CompressionFlags;
@@ -728,7 +732,7 @@ public partial class ULinker : UObject
     public ushort FileVersionLicensee;
     public string FolderName;
     public List<ULinker.FGenerationInfo> Generations;
-    public UObject.FGuid Guid;
+    public UObject.FGuid Guid = new();
     public int ImportCount;
     public int ImportExportGuidsOffset;
     public int ImportGuidsCount;
@@ -761,11 +765,11 @@ public partial class ULinker : UObject
     public int ClassIndex;
     public uint ExportFlags;
     public List<int> GenerationNetObjectCount;
-    public ulong ObjectFlags;
+    public ulong ObjectFlags = new();
     public FName ObjectName;
     public int OuterIndex;
     public uint PackageFlags;
-    public UObject.FGuid PackageGuid;
+    public UObject.FGuid PackageGuid = new();
     public int ScriptSerializationEndOffset;
     public int ScriptSerializationStartOffset;
     public int SerialOffset;
@@ -782,9 +786,9 @@ public partial class ULinker : UObject
   public List<FObjectImport> ImportMap;
   public UPackage LinkerRoot;
   public List<FName> NameMap;
-  public FPointer PrecachedBuffer;
+  public FPointer PrecachedBuffer = new();
   public int PrecachedBufferSize;
-  public FPackageFileSummary Summary;
+  public FPackageFileSummary Summary = new();
 }
 
 public partial class UField : UObject
@@ -808,7 +812,7 @@ public partial class UProperty : UField
   public int ArrayDim;
   public FName ArraySizeEnum;
   public FName Category;
-  public ulong PropertyFlags;
+  public ulong PropertyFlags = new();
   public ushort RepOffset;
 }
 

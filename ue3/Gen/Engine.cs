@@ -2567,17 +2567,17 @@ public partial class AActor : UObject
 {
   public class FRigidBodyState
   {
-    public UObject.FVector Position;
-    public UObject.FQuat Quaternion;
-    public UObject.FVector LinVel;
-    public UObject.FVector AngVel;
+    public UObject.FVector Position = new();
+    public UObject.FQuat Quaternion = new();
+    public UObject.FVector LinVel = new();
+    public UObject.FVector AngVel = new();
     public byte bNewData;
   }
 
   public class FRigidBodyContactInfo
   {
-    public UObject.FVector ContactPosition;
-    public UObject.FVector ContactNormal;
+    public UObject.FVector ContactPosition = new();
+    public UObject.FVector ContactNormal = new();
     public float ContactPenetration;
     public UObject.FVector[] ContactVelocity = new UObject.FVector[2];
     public UPhysicalMaterial[] PhysMaterial = new UPhysicalMaterial[2];
@@ -2586,14 +2586,14 @@ public partial class AActor : UObject
   public class FCollisionImpactData
   {
     public List<AActor.FRigidBodyContactInfo> ContactInfos;
-    public UObject.FVector TotalNormalForceVector;
-    public UObject.FVector TotalFrictionForceVector;
+    public UObject.FVector TotalNormalForceVector = new();
+    public UObject.FVector TotalFrictionForceVector = new();
   }
 
   public class FReplicatedHitImpulse
   {
-    public UObject.FVector AppliedImpulse;
-    public UObject.FVector HitLocation;
+    public UObject.FVector AppliedImpulse = new();
+    public UObject.FVector HitLocation = new();
     public FName BoneName;
     public byte ImpulseCount;
     public bool bRadialImpulse;
@@ -2610,22 +2610,22 @@ public partial class AActor : UObject
   public partial class FActorReference : ISerialisable
   {
     public AActor Actor;
-    public UObject.FGuid Guid;
+    public UObject.FGuid Guid = new();
   }
 
   public class FNavReference
   {
     public ANavigationPoint Nav;
-    public UObject.FGuid Guid;
+    public UObject.FGuid Guid = new();
   }
 
   public class FBasedPosition
   {
     public AActor Base;
-    public UObject.FVector Position;
-    public UObject.FVector CachedBaseLocation;
-    public UObject.FRotator CachedBaseRotation;
-    public UObject.FVector CachedTransPosition;
+    public UObject.FVector Position = new();
+    public UObject.FVector CachedBaseLocation = new();
+    public UObject.FRotator CachedBaseRotation = new();
+    public UObject.FVector CachedTransPosition = new();
   }
 
   public class FTimerData
@@ -2643,7 +2643,7 @@ public partial class AActor : UObject
   {
     public string PropertyName;
     public float RelevantDelayTime;
-    public UObject.FMap_Mirror LastUpdateInfo;
+    public UObject.FMap_Mirror LastUpdateInfo = new();
   }
 
   public class FTraceHitInfo
@@ -2659,11 +2659,11 @@ public partial class AActor : UObject
   public class FImpactInfo
   {
     public AActor HitActor;
-    public UObject.FVector HitLocation;
-    public UObject.FVector HitNormal;
-    public UObject.FVector RayDir;
-    public UObject.FVector StartTrace;
-    public AActor.FTraceHitInfo HitInfo;
+    public UObject.FVector HitLocation = new();
+    public UObject.FVector HitNormal = new();
+    public UObject.FVector RayDir = new();
+    public UObject.FVector StartTrace = new();
+    public AActor.FTraceHitInfo HitInfo = new();
   }
 
   public class FAnimSlotInfo
@@ -2680,13 +2680,13 @@ public partial class AActor : UObject
 
   public List<UActorComponent> Components;
   public List<UActorComponent> AllComponents;
-  public FVector Location;
-  public FRotator Rotation;
+  public FVector Location = new();
+  public FRotator Rotation = new();
   public float DrawScale;
-  public FVector DrawScale3D;
-  public FVector PrePivot;
-  public FColor EditorIconColor;
-  public FRenderCommandFence DetachFence;
+  public FVector DrawScale3D = new();
+  public FVector PrePivot = new();
+  public FColor EditorIconColor = new();
+  public FRenderCommandFence DetachFence = new();
   public float CustomTimeDilation;
   public EPhysics Physics;
   public ENetRole RemoteRole;
@@ -2830,23 +2830,23 @@ public partial class AActor : UObject
   public FName Tag;
   public FName InitialState;
   public FName Group;
-  public ulong HiddenEditorViews;
+  public ulong HiddenEditorViews = new();
   public List<AActor> Touching;
   public List<AActor> Children;
   public float LatentFloat;
   public UAnimNodeSequence LatentSeqNode;
   public APhysicsVolume PhysicsVolume;
-  public FVector Velocity;
-  public FVector Acceleration;
-  public FVector AngularVelocity;
+  public FVector Velocity = new();
+  public FVector Acceleration = new();
+  public FVector AngularVelocity = new();
   public USkeletalMeshComponent BaseSkelComponent;
   public FName BaseBoneName;
   public List<AActor> Attached;
-  public FVector RelativeLocation;
-  public FRotator RelativeRotation;
+  public FVector RelativeLocation = new();
+  public FRotator RelativeRotation = new();
   public UPrimitiveComponent CollisionComponent;
   public int OverlapTag;
-  public FRotator RotationRate;
+  public FRotator RotationRate = new();
   public AActor PendingTouch;
   public float MaxTickFreqWhenNotRendered;
   public UClass MessageClass;
@@ -2900,13 +2900,13 @@ public class USettings : UObject
   {
     public ESettingsDataType Type;
     public int Value1;
-    public UObject.FPointer Value2;
+    public UObject.FPointer Value2 = new();
   }
 
   public class FSettingsProperty
   {
     public int PropertyId;
-    public USettings.FSettingsData Data;
+    public USettings.FSettingsData Data = new();
     public EOnlineDataAdvertisementType AdvertisementType;
   }
 
@@ -2963,14 +2963,14 @@ public class UOnlineSubsystem : UObject
 {
   public class FFriendsQuery
   {
-    public UOnlineSubsystem.FUniqueNetId UniqueId;
+    public UOnlineSubsystem.FUniqueNetId UniqueId = new();
     public bool bIsFriend;
   }
 
   public class FOnlineFriend
   {
-    public UOnlineSubsystem.FUniqueNetId UniqueId;
-    public ulong SessionId;
+    public UOnlineSubsystem.FUniqueNetId UniqueId = new();
+    public ulong SessionId = new();
     public string NickName;
     public string PresenceInfo;
     public EOnlineFriendState FriendState;
@@ -2994,12 +2994,12 @@ public class UOnlineSubsystem : UObject
 
   public class FOnlineRegistrant
   {
-    public UOnlineSubsystem.FUniqueNetId PlayerNetId;
+    public UOnlineSubsystem.FUniqueNetId PlayerNetId = new();
   }
 
   public class FOnlineArbitrationRegistrant : FOnlineRegistrant
   {
-    public ulong MachineId;
+    public ulong MachineId = new();
     public int Trustworthiness;
   }
 
@@ -3012,7 +3012,7 @@ public class UOnlineSubsystem : UObject
 
   public class FOnlinePlayerScore
   {
-    public UOnlineSubsystem.FUniqueNetId PlayerID;
+    public UOnlineSubsystem.FUniqueNetId PlayerID = new();
     public int TeamID;
     public int Score;
   }
@@ -3029,7 +3029,7 @@ public class UOnlineSubsystem : UObject
 
   public class FRemoteTalker
   {
-    public UOnlineSubsystem.FUniqueNetId TalkerId;
+    public UOnlineSubsystem.FUniqueNetId TalkerId = new();
     public float LastNotificationTime;
     public bool bWasTalking;
     public bool bIsTalking;
@@ -3038,7 +3038,7 @@ public class UOnlineSubsystem : UObject
 
   public class FOnlineFriendMessage
   {
-    public UOnlineSubsystem.FUniqueNetId SendingPlayerId;
+    public UOnlineSubsystem.FUniqueNetId SendingPlayerId = new();
     public string SendingPlayerNick;
     public bool bIsFriendInvite;
     public bool bIsGameInvite;
@@ -3072,7 +3072,7 @@ public class UOnlineSubsystem : UObject
     public int FileId;
     public int ContentType;
     public int FileSize;
-    public UOnlineSubsystem.FUniqueNetId Owner;
+    public UOnlineSubsystem.FUniqueNetId Owner = new();
     public int DownloadCount;
     public float AverageRating;
     public int RatingCount;
@@ -3089,7 +3089,7 @@ public class UOnlineSubsystem : UObject
   public class FNamedSession
   {
     public FName SessionName;
-    public UObject.FPointer SessionInfo;
+    public UObject.FPointer SessionInfo = new();
     public UOnlineGameSettings GameSettings;
     public List<UOnlineSubsystem.FOnlineRegistrant> Registrants;
     public List<UOnlineSubsystem.FOnlineArbitrationRegistrant> ArbitrationRegistrants;
@@ -3097,7 +3097,7 @@ public class UOnlineSubsystem : UObject
 
   public class FUniqueNetId
   {
-    public ulong Uid;
+    public ulong Uid = new();
   }
 
   public class FAchievementDetails
@@ -3115,7 +3115,7 @@ public class UOnlineSubsystem : UObject
 
   public class FOnlinePartyMember
   {
-    public UOnlineSubsystem.FUniqueNetId UniqueId;
+    public UOnlineSubsystem.FUniqueNetId UniqueId = new();
     public string NickName;
     public byte LocalUserNum;
     public ENATType NatType;
@@ -3124,12 +3124,12 @@ public class UOnlineSubsystem : UObject
     public bool bIsInPartyVoice;
     public bool bIsTalking;
     public bool bIsInGameSession;
-    public UObject.FPointer SessionInfo;
-    public ulong Data1;
-    public ulong Data2;
+    public UObject.FPointer SessionInfo = new();
+    public ulong Data1 = new();
+    public ulong Data2 = new();
   }
 
-  public FPointer VfTable_FTickableObject;
+  public FPointer VfTable_FTickableObject = new();
   public FScriptInterface AccountInterface;
   public FScriptInterface PlayerInterface;
   public FScriptInterface PlayerInterfaceEx;
@@ -3171,7 +3171,7 @@ public class AAccessControl : AInfo
 
 public class UActorComponent : UComponent
 {
-  public FPointer Scene;
+  public FPointer Scene = new();
   public AActor Owner;
   public bool bAttached;
   public bool bTickInEditor;
@@ -3262,7 +3262,7 @@ public class UActorFactoryDominantDirectionalLightMovable : UActorFactory
 public class UActorFactoryDynamicSM : UActorFactory
 {
   public UStaticMesh StaticMesh;
-  public FVector DrawScale3D;
+  public FVector DrawScale3D = new();
   public bool bNoEncroachCheck;
   public bool bNotifyRigidBodyCollision;
   public bool bBlockRigidBody;
@@ -3293,13 +3293,13 @@ public class UActorFactoryFogVolumeSphericalDensityInfo : UActorFactoryFogVolume
 public class UActorFactoryFracturedStaticMesh : UActorFactory
 {
   public UFracturedStaticMesh FracturedStaticMesh;
-  public FVector DrawScale3D;
+  public FVector DrawScale3D = new();
 }
 
 public class UActorFactoryStaticMesh : UActorFactory
 {
   public UStaticMesh StaticMesh;
-  public FVector DrawScale3D;
+  public FVector DrawScale3D = new();
 }
 
 public class UActorFactoryInteractiveFoliage : UActorFactoryStaticMesh
@@ -3332,14 +3332,14 @@ public class UActorFactoryPhysicsAsset : UActorFactory
   public bool bNotifyRigidBodyCollision;
   public bool bUseCompartment;
   public bool bCastDynamicShadow;
-  public FVector InitialVelocity;
-  public FVector DrawScale3D;
+  public FVector InitialVelocity = new();
+  public FVector DrawScale3D = new();
 }
 
 public class UActorFactoryPhysXDestructible : UActorFactory
 {
   public UPhysXDestructible PhysXDestructible;
-  public FVector DrawScale3D;
+  public FVector DrawScale3D = new();
 }
 
 public class UActorFactoryPlayerStart : UActorFactory
@@ -3388,10 +3388,10 @@ public class UPrimitiveComponent : UActorComponent
     public bool bUseScreenDoorFade;
   }
 
-  public FPointer SceneInfo;
+  public FPointer SceneInfo = new();
   public int DetachFence;
   public float LocalToWorldDeterminant;
-  public FMatrix LocalToWorld;
+  public FMatrix LocalToWorld = new();
   public int MotionBlurInfoIndex;
   public List<FPointer> DecalList;
   public List<UDecalComponent> DecalsToReattach;
@@ -3399,7 +3399,7 @@ public class UPrimitiveComponent : UActorComponent
   public UPrimitiveComponent ShadowParent;
   public UPrimitiveComponent ReplacementPrimitive;
   public UFogVolumeDensityComponent FogVolumeComponent;
-  public FBoxSphereBounds Bounds;
+  public FBoxSphereBounds Bounds = new();
   public ULightEnvironmentComponent LightEnvironment;
   public ULightEnvironmentComponent PreviousLightEnvironment;
   public float MinDrawDistance;
@@ -3485,15 +3485,15 @@ public class UPrimitiveComponent : UActorComponent
   public float OutlineWidth;
   public FName AttachedSocketName;
   public int TranslucencySortPriority;
-  public ULightComponent.FLightingChannelContainer LightingChannels;
-  public FRBCollisionChannelContainer RBCollideWithChannels;
+  public ULightComponent.FLightingChannelContainer LightingChannels = new();
+  public FRBCollisionChannelContainer RBCollideWithChannels = new();
   public UPhysicalMaterial PhysMaterialOverride;
   public URB_BodyInstance BodyInstance;
-  public FMatrix CachedParentToWorld;
-  public FVector Translation;
-  public FRotator Rotation;
+  public FMatrix CachedParentToWorld = new();
+  public FVector Translation = new();
+  public FRotator Rotation = new();
   public float Scale;
-  public FVector Scale3D;
+  public FVector Scale3D = new();
   public float BoundsScale;
   public float LastSubmitTime;
   public float LastRenderTime;
@@ -3508,7 +3508,7 @@ public class UActorFactoryRigidBody : UActorFactoryDynamicSM
   public bool bDamageAppliesImpulse;
   public bool bLocalSpaceInitialVelocity;
   public bool bEnableStayUprightSpring;
-  public FVector InitialVelocity;
+  public FVector InitialVelocity = new();
   public UDistributionVector AdditionalVelocity;
   public UDistributionVector InitialAngularVelocity;
   public ERBCollisionChannel RBChannel;
@@ -3548,7 +3548,7 @@ public class AController : AActor
     public AActor Destination;
   }
 
-  public FPointer VfTable_IInterface_NavigationHandle;
+  public FPointer VfTable_IInterface_NavigationHandle = new();
   public APawn Pawn;
   public APlayerReplicationInfo PlayerReplicationInfo;
   public int PlayerNum;
@@ -3579,19 +3579,19 @@ public class AController : AActor
   public float MinHitWall;
   public UClass NavigationHandleClass;
   public UNavigationHandle NavigationHandle;
-  public FVector OverrideSearchStart;
+  public FVector OverrideSearchStart = new();
   public float MoveTimer;
   public AActor MoveTarget;
-  public FBasedPosition DestinationPosition;
-  public FBasedPosition FocalPosition;
+  public FBasedPosition DestinationPosition = new();
+  public FBasedPosition FocalPosition = new();
   public AActor Focus;
   public AActor[] GoalList = new AActor[4];
-  public FBasedPosition AdjustPosition;
+  public FBasedPosition AdjustPosition = new();
   public ANavigationPoint StartSpot;
   public List<ANavigationPoint> RouteCache;
   public UReachSpec CurrentPath;
   public UReachSpec NextRoutePath;
-  public FVector CurrentPathDir;
+  public FVector CurrentPathDir = new();
   public AActor RouteGoal;
   public float RouteDist;
   public float LastRouteFind;
@@ -3599,13 +3599,13 @@ public class AController : AActor
   public AActor FailedMoveTarget;
   public int MoveFailureCount;
   public float GroundPitchTime;
-  public FVector ViewX;
-  public FVector ViewY;
-  public FVector ViewZ;
+  public FVector ViewX = new();
+  public FVector ViewY = new();
+  public FVector ViewZ = new();
   public APawn ShotTarget;
   public AActor LastFailedReach;
   public float FailedReachTime;
-  public FVector FailedReachLocation;
+  public FVector FailedReachLocation = new();
   public float SightCounter;
   public float SightCounterInterval;
   public float InUseNodeCostMultiplier;
@@ -3614,8 +3614,8 @@ public class AController : AActor
   public APawn Enemy;
   public List<FVisiblePortalInfo> VisiblePortals;
   public float LaneOffset;
-  public FRotator OldBasedRotation;
-  public FVector NavMeshPath_SearchExtent_Modifier;
+  public FRotator OldBasedRotation = new();
+  public FVector NavMeshPath_SearchExtent_Modifier = new();
   public APawn KillCamViewPawn;
   public AController KillMeC;
 }
@@ -3624,7 +3624,7 @@ public class UCylinderComponent : UPrimitiveComponent
 {
   public float CollisionHeight;
   public float CollisionRadius;
-  public FColor CylinderColor;
+  public FColor CylinderColor = new();
   public bool bDrawBoundingBox;
   public bool bDrawNonColliding;
   public bool bAlwaysRenderIfSelected;
@@ -3653,11 +3653,11 @@ public class UDOFEffect : UPostProcessEffect
   public float BlurKernelSize;
   public float MaxNearBlurAmount;
   public float MaxFarBlurAmount;
-  public FColor ModulateBlurColor;
+  public FColor ModulateBlurColor = new();
   public EFocusType FocusType;
   public float FocusInnerRadius;
   public float FocusDistance;
-  public FVector FocusPosition;
+  public FVector FocusPosition = new();
 }
 
 public class ACamera : AActor
@@ -3673,14 +3673,14 @@ public class ACamera : AActor
   public class FTCameraCache
   {
     public float TimeStamp;
-    public UObject.FTPOV POV;
+    public UObject.FTPOV POV = new();
   }
 
   public class FTViewTarget
   {
     public AActor Target;
     public AController Controller;
-    public UObject.FTPOV POV;
+    public UObject.FTPOV POV = new();
     public float AspectRatio;
     public APlayerReplicationInfo PRI;
   }
@@ -3697,25 +3697,25 @@ public class ACamera : AActor
   public float ConstrainedAspectRatio;
   public float DefaultAspectRatio;
   public float NearPlane;
-  public FColor FadeColor;
+  public FColor FadeColor = new();
   public float FadeAmount;
   public float CamOverridePostProcessAlpha;
-  public APostProcessVolume.FPostProcessSettings CamPostProcessSettings;
-  public FVector ColorScale;
-  public FVector DesiredColorScale;
-  public FVector OriginalColorScale;
+  public APostProcessVolume.FPostProcessSettings CamPostProcessSettings = new();
+  public FVector ColorScale = new();
+  public FVector DesiredColorScale = new();
+  public FVector OriginalColorScale = new();
   public float ColorScaleInterpDuration;
   public float ColorScaleInterpStartTime;
-  public FTCameraCache CameraCache;
-  public FTCameraCache LastFrameCameraCache;
-  public FTViewTarget ViewTarget;
-  public FTViewTarget PendingViewTarget;
+  public FTCameraCache CameraCache = new();
+  public FTCameraCache LastFrameCameraCache = new();
+  public FTViewTarget ViewTarget = new();
+  public FTViewTarget PendingViewTarget = new();
   public float BlendTimeToGo;
-  public FViewTargetTransitionParams BlendParams;
+  public FViewTargetTransitionParams BlendParams = new();
   public List<UCameraModifier> ModifierList;
   public float FreeCamDistance;
-  public FVector FreeCamOffset;
-  public FVector2D FadeAlpha;
+  public FVector FreeCamOffset = new();
+  public FVector2D FadeAlpha = new();
   public float FadeTime;
   public float FadeTimeRemaining;
   public float FadeDelay;
@@ -3737,7 +3737,7 @@ public class USequenceObject : UObject
   public string ObjName;
   public string ObjCategory;
   public List<string> ObjRemoveInProject;
-  public FColor ObjColor;
+  public FColor ObjColor = new();
   public string ObjComment;
   public bool bDeletable;
   public bool bDrawFirst;
@@ -3895,19 +3895,19 @@ public class UOnlineGameSearch : USettings
   public class FOnlineGameSearchResult
   {
     public UOnlineGameSettings GameSettings;
-    public UObject.FPointer PlatformData;
+    public UObject.FPointer PlatformData = new();
   }
 
   public int MaxSearchResults;
-  public FLocalizedStringSetting Query;
+  public FLocalizedStringSetting Query = new();
   public bool bIsLanQuery;
   public bool bUsesArbitration;
   public bool bIsSearchInProgress;
   public UClass GameSettingsClass;
   public List<FOnlineGameSearchResult> Results;
-  public FOverrideSkill ManualSkillOverride;
+  public FOverrideSkill ManualSkillOverride = new();
   public List<FNamedObjectProperty> NamedProperties;
-  public FOnlineGameSearchQuery FilterQuery;
+  public FOnlineGameSearchQuery FilterQuery = new();
   public string AdditionalSearchCriteria;
   public int PingBucketSize;
 }
@@ -3934,9 +3934,9 @@ public class USkeletalMeshComponent : UMeshComponent
   {
     public UActorComponent Component;
     public FName BoneName;
-    public UObject.FVector RelativeLocation;
-    public UObject.FRotator RelativeRotation;
-    public UObject.FVector RelativeScale;
+    public UObject.FVector RelativeLocation = new();
+    public UObject.FRotator RelativeRotation = new();
+    public UObject.FVector RelativeScale = new();
   }
 
   public USkeletalMesh SkeletalMesh;
@@ -3946,11 +3946,11 @@ public class USkeletalMeshComponent : UMeshComponent
   public List<UAnimNode> AnimTickArray;
   public UPhysicsAsset PhysicsAsset;
   public UPhysicsAssetInstance PhysicsAssetInstance;
-  public FPointer ApexClothing;
+  public FPointer ApexClothing = new();
   public float PhysicsWeight;
   public float GlobalAnimRateScale;
-  public FPointer MeshObject;
-  public FColor WireframeColor;
+  public FPointer MeshObject = new();
+  public FColor WireframeColor = new();
   public List<UAnimNode.FBoneTransform> SpaceBases;
   public List<FBoneAtom> LocalAtoms;
   public List<FBoneAtom> CachedLocalAtoms;
@@ -4018,7 +4018,7 @@ public class USkeletalMeshComponent : UMeshComponent
   public bool bPauseAnims;
   public bool bChartDistanceFactor;
   public bool bEnableLineCheckWithBounds;
-  public FVector LineCheckBoundsScale;
+  public FVector LineCheckBoundsScale = new();
   public bool bEnableClothSimulation;
   public bool bDisableClothCollision;
   public bool bClothFrozen;
@@ -4042,20 +4042,20 @@ public class USkeletalMeshComponent : UMeshComponent
   public EInstanceWeightUsage InstanceWeightUsage;
   public int InstanceWeightIdx;
   public List<FBonePair> InstanceVertexWeightBones;
-  public FVector FrozenLocalToWorldPos;
-  public FRotator FrozenLocalToWorldRot;
-  public FVector ClothExternalForce;
-  public FVector ClothWind;
-  public FVector ClothBaseVelClampRange;
+  public FVector FrozenLocalToWorldPos = new();
+  public FRotator FrozenLocalToWorldRot = new();
+  public FVector ClothExternalForce = new();
+  public FVector ClothWind = new();
+  public FVector ClothBaseVelClampRange = new();
   public float ClothBlendWeight;
   public float ClothDynamicBlendWeight;
   public float ClothBlendMinDistanceFactor;
   public float ClothBlendMaxDistanceFactor;
-  public FVector MinPosDampRange;
-  public FVector MaxPosDampRange;
-  public FVector MinPosDampScale;
-  public FVector MaxPosDampScale;
-  public FPointer ClothSim;
+  public FVector MinPosDampRange = new();
+  public FVector MaxPosDampRange = new();
+  public FVector MinPosDampScale = new();
+  public FVector MaxPosDampScale = new();
+  public FPointer ClothSim = new();
   public int SceneIndex;
   public List<FVector> ClothMeshPosData;
   public List<FVector> ClothMeshNormalData;
@@ -4069,14 +4069,14 @@ public class USkeletalMeshComponent : UMeshComponent
   public List<int> ClothMeshWeldedIndexData;
   public int ClothDirtyBufferFlag;
   public ERBCollisionChannel ClothRBChannel;
-  public FRBCollisionChannelContainer ClothRBCollideWithChannels;
+  public FRBCollisionChannelContainer ClothRBCollideWithChannels = new();
   public float ClothForceScale;
   public float ClothImpulseScale;
   public float ClothAttachmentTearFactor;
   public bool bClothUseCompartment;
   public float MinDistanceForClothReset;
-  public FVector LastClothLocation;
-  public FPointer SoftBodySim;
+  public FVector LastClothLocation = new();
+  public FPointer SoftBodySim = new();
   public int SoftBodySceneIndex;
   public bool bEnableSoftBodySimulation;
   public List<FVector> SoftBodyTetraPosData;
@@ -4089,13 +4089,13 @@ public class USkeletalMeshComponent : UMeshComponent
   public bool bSoftBodyAwakeOnStartup;
   public bool bSoftBodyUseCompartment;
   public ERBCollisionChannel SoftBodyRBChannel;
-  public FRBCollisionChannelContainer SoftBodyRBCollideWithChannels;
-  public FPointer SoftBodyASVPlane;
+  public FRBCollisionChannelContainer SoftBodyRBCollideWithChannels = new();
+  public FPointer SoftBodyASVPlane = new();
   public UMaterial LimitMaterial;
-  public FBoneAtom RootMotionDelta;
-  public FVector RootMotionVelocity;
-  public FVector RootBoneTranslation;
-  public FVector RootMotionAccelScale;
+  public FBoneAtom RootMotionDelta = new();
+  public FVector RootMotionVelocity = new();
+  public FVector RootBoneTranslation = new();
+  public FVector RootMotionAccelScale = new();
   public ERootMotionMode RootMotionMode;
   public ERootMotionMode PreviousRMM;
   public ERootMotionMode PendingRMM;
@@ -4103,10 +4103,10 @@ public class USkeletalMeshComponent : UMeshComponent
   public int bRMMOneFrameDelay;
   public ERootMotionRotationMode RootMotionRotationMode;
   public EFaceFXBlendMode FaceFXBlendMode;
-  public FPointer FaceFXActorInstance;
+  public FPointer FaceFXActorInstance = new();
   public UAudioComponent CachedFaceFXAudioComp;
   public List<byte> BoneVisibility;
-  public FBoneAtom LocalToWorldBoneAtom;
+  public FBoneAtom LocalToWorldBoneAtom = new();
   public float ProgressiveDrawingFraction;
   public int UpdateRBBoneSkipCount;
   public bool bForceBlendInPhysics;
@@ -4114,7 +4114,7 @@ public class USkeletalMeshComponent : UMeshComponent
   public bool bUseParentLocalToWorld;
   public bool bConsiderOwnerBound;
   public bool bConsiderOwnerOriginForLocalToWorld;
-  public FBox RootAdjustedLocalBoundingBox;
+  public FBox RootAdjustedLocalBoundingBox = new();
 }
 
 public class APlayerController : AController
@@ -4142,12 +4142,12 @@ public class APlayerController : AController
   public class FDebugTextInfo
   {
     public AActor SrcActor;
-    public UObject.FVector SrcActorOffset;
-    public UObject.FVector SrcActorDesiredOffset;
+    public UObject.FVector SrcActorOffset = new();
+    public UObject.FVector SrcActorDesiredOffset = new();
     public string DebugText;
     public float TimeRemaining;
     public float Duration;
-    public UObject.FColor TextColor;
+    public UObject.FColor TextColor = new();
     public bool bAbsoluteLocation;
   }
 
@@ -4162,10 +4162,10 @@ public class APlayerController : AController
   {
     public float TimeStamp;
     public EPhysics newPhysics;
-    public UObject.FVector NewLoc;
-    public UObject.FVector NewVel;
+    public UObject.FVector NewLoc = new();
+    public UObject.FVector NewVel = new();
     public AActor NewBase;
-    public UObject.FVector NewFloor;
+    public UObject.FVector NewFloor = new();
     public byte bAckGoodMove;
     public bool bRequestResend;
   }
@@ -4230,15 +4230,15 @@ public class APlayerController : AController
   public float LODDistanceFactor;
   public AActor PrevViewTarget;
   public int TargetViewRotationForRep;
-  public FRotator TargetViewRotation;
+  public FRotator TargetViewRotation = new();
   public float TargetEyeHeight;
-  public FRotator BlendedTargetViewRotation;
+  public FRotator BlendedTargetViewRotation = new();
   public AHUD myHUD;
   public UClass SavedMoveClass;
   public USavedMove SavedMoves;
   public USavedMove FreeMoves;
   public USavedMove PendingMove;
-  public FVector LastAckedAccel;
+  public FVector LastAckedAccel = new();
   public float CurrentTimeStamp;
   public float LastUpdateTime;
   public float ServerTimeStamp;
@@ -4250,15 +4250,15 @@ public class APlayerController : AController
   public float DynamicPingThreshold;
   public float LastPingUpdate;
   public float LastSpeedHackLog;
-  public FClientAdjustment PendingAdjustment;
+  public FClientAdjustment PendingAdjustment = new();
   public string QuickSaveString;
   public int GroundPitch;
-  public FVector OldFloor;
+  public FVector OldFloor = new();
   public ACheatManager CheatManager;
   public UClass CheatClass;
   public UPlayerInput PlayerInput;
   public UClass InputClass;
-  public FVector FailedPathStart;
+  public FVector FailedPathStart = new();
   public UCylinderComponent CylinderComponent;
   public string ForceFeedbackManagerClassName;
   public UForceFeedbackManager ForceFeedbackManager;
@@ -4286,13 +4286,13 @@ public class APlayerController : AController
   public List<FReusableSound> ReusableSounds;
   public List<AActor> HiddenActors;
   public float LastSpectatorStateSynchTime;
-  public FRotator BlendedKillCamViewRotation;
+  public FRotator BlendedKillCamViewRotation = new();
   public float KillCamStartTime;
   public float KillCamEndTime;
   public float WorldKillCamStartTime;
   public float WorldKillCamEndTime;
   public int LatestSentRotation;
-  public FRotator RotationVelocity;
+  public FRotator RotationVelocity = new();
   public int VeryShortAdjustCount;
   public int ShortAdjustCount;
   public int AdjustCount;
@@ -4310,11 +4310,11 @@ public class AAdmin : APlayerController
 
 public class UReachSpec : UObject
 {
-  public FPointer NavOctreeObject;
+  public FPointer NavOctreeObject = new();
   public int Distance;
-  public FVector Direction;
+  public FVector Direction = new();
   public ANavigationPoint Start;
-  public AActor.FActorReference End;
+  public AActor.FActorReference End = new();
   public int CollisionRadius;
   public int CollisionHeight;
   public int reachFlags;
@@ -4353,9 +4353,9 @@ public class ANavigationPoint : AActor
 {
   public class FNavigationOctreeObject
   {
-    public UObject.FBox BoundingBox;
-    public UObject.FVector BoxCenter;
-    public UObject.FPointer OctreeNode;
+    public UObject.FBox BoundingBox = new();
+    public UObject.FVector BoxCenter = new();
+    public UObject.FPointer OctreeNode = new();
     public UObject Owner;
     public byte OwnerType;
   }
@@ -4403,7 +4403,7 @@ public class ANavigationPoint : AActor
   public bool bPreferredVehiclePath;
   public bool bHasCrossLevelPaths;
   public bool bShouldSaveForCheckpoint;
-  public FNavigationOctreeObject NavOctreeObject;
+  public FNavigationOctreeObject NavOctreeObject = new();
   public List<UReachSpec> PathList;
   public List<FActorReference> EditorProscribedPaths;
   public List<FActorReference> EditorForcedPaths;
@@ -4423,8 +4423,8 @@ public class ANavigationPoint : AActor
   public float InventoryDist;
   public float LastDetourWeight;
   public UCylinderComponent CylinderComponent;
-  public FCylinder MaxPathSize;
-  public FGuid NavGuid;
+  public FCylinder MaxPathSize = new();
+  public FGuid NavGuid = new();
   public USpriteComponent GoodSprite;
   public USpriteComponent BadSprite;
   public int NetworkID;
@@ -4436,20 +4436,20 @@ public partial class APylon : ANavigationPoint
 {
   public partial class FPolyReference : ISerialisable
   {
-    public AActor.FActorReference OwningPylon;
+    public AActor.FActorReference OwningPylon = new();
     public int PolyId;
-    public UObject.FPointer CachedPoly;
+    public UObject.FPointer CachedPoly = new();
   }
 
-  public FPointer VfTable_IEditorLinkSelectionInterface;
-  public FPointer NavMeshPtr;
-  public FPointer ObstacleMesh;
-  public FPointer DynamicObstacleMesh;
-  public FPointer WorkingSetPtr;
-  public FPointer PathObjectsThatAffectThisPylon;
+  public FPointer VfTable_IEditorLinkSelectionInterface = new();
+  public FPointer NavMeshPtr = new();
+  public FPointer ObstacleMesh = new();
+  public FPointer DynamicObstacleMesh = new();
+  public FPointer WorkingSetPtr = new();
+  public FPointer PathObjectsThatAffectThisPylon = new();
   public List<FVector> NextPassSeedList;
-  public FOctreeElementId OctreeId;
-  public FPointer OctreeIWasAddedTo;
+  public FOctreeElementId OctreeId = new();
+  public FPointer OctreeIWasAddedTo = new();
   public APylon NextPylon;
   public List<AVolume> ExpansionVolumes;
   public float ExpansionRadius;
@@ -4466,7 +4466,7 @@ public partial class APylon : ANavigationPoint
   public bool bBuildThisPylon;
   public bool bDisabled;
   public bool bForceObstacleMeshCollision;
-  public FVector ExpansionSphereCenter;
+  public FVector ExpansionSphereCenter = new();
   public UNavMeshRenderingComponent RenderingComp;
   public USpriteComponent BrokenSprite;
   public List<APylon> ImposterPylons;
@@ -4483,7 +4483,7 @@ public class AAISwitchablePylon : APylon
 
 public class UAmbientOcclusionEffect : UPostProcessEffect
 {
-  public FLinearColor OcclusionColor;
+  public FLinearColor OcclusionColor = new();
   public float OcclusionPower;
   public float OcclusionScale;
   public float OcclusionBias;
@@ -4519,9 +4519,9 @@ public partial class UBrushComponent : UPrimitiveComponent
   }
 
   public UModel Brush;
-  public UKMeshProps.FKAggregateGeom BrushAggGeom;
-  public FPointer BrushPhysDesc;
-  public URB_BodySetup.FKCachedConvexData CachedPhysBrushData;
+  public UKMeshProps.FKAggregateGeom BrushAggGeom = new();
+  public FPointer BrushPhysDesc = new();
+  public URB_BodySetup.FKCachedConvexData CachedPhysBrushData = new();
   public int CachedPhysBrushDataVersion;
   public bool bBlockComplexCollisionTrace;
 }
@@ -4536,7 +4536,7 @@ public class ABrush : AActor
   }
 
   public ECsgOper CsgOper;
-  public FColor BrushColor;
+  public FColor BrushColor = new();
   public int PolyFlags;
   public bool bColored;
   public bool bSolidWhenSelected;
@@ -4581,7 +4581,7 @@ public class AReverbVolume : AVolume
     public ReverbPreset ReverbType;
     public float Volume;
     public float FadeTime;
-    public AReverbVolume.FAudioReverbEffect CustomReverbEffect;
+    public AReverbVolume.FAudioReverbEffect CustomReverbEffect = new();
   }
 
   public class FInteriorSettings
@@ -4598,8 +4598,8 @@ public class AReverbVolume : AVolume
   }
 
   public float Priority;
-  public FReverbSettings Settings;
-  public FInteriorSettings AmbientZoneSettings;
+  public FReverbSettings Settings = new();
+  public FInteriorSettings AmbientZoneSettings = new();
   public AReverbVolume NextLowerPriorityVolume;
 }
 
@@ -4638,12 +4638,12 @@ public class UAudioComponent : UActorComponent
   public List<FPointer> WaveInstances;
   public List<byte> SoundNodeData;
   public Dictionary<byte, byte> SoundNodeOffsetMap;
-  public FMultiMap_Mirror SoundNodeResetWaveMap;
-  public FPointer Listener;
+  public FMultiMap_Mirror SoundNodeResetWaveMap = new();
+  public FPointer Listener = new();
   public float PlaybackTime;
   public APortalVolume PortalVolume;
-  public FVector Location;
-  public FVector ComponentLocation;
+  public FVector Location = new();
+  public FVector ComponentLocation = new();
   public AActor LastOwner;
   public float SubtitlePriority;
   public float FadeInStartTime;
@@ -4657,7 +4657,7 @@ public class UAudioComponent : UActorComponent
   public float AdjustVolumeTargetVolume;
   public float CurrAdjustVolumeTargetVolume;
   public USoundNode CurrentNotifyBufferFinishedHook;
-  public FVector CurrentLocation;
+  public FVector CurrentLocation = new();
   public float CurrentVolume;
   public float CurrentPitch;
   public float CurrentHighFrequencyGain;
@@ -4668,13 +4668,13 @@ public class UAudioComponent : UActorComponent
   public float CurrentHighFrequencyGainMultiplier;
   public float CurrentVoiceCenterChannelVolume;
   public float CurrentVoiceRadioVolume;
-  public double LastUpdateTime;
+  public double LastUpdateTime = new();
   public float SourceInteriorVolume;
   public float SourceInteriorLPF;
   public float CurrentInteriorVolume;
   public float CurrentInteriorLPF;
-  public FVector LastLocation;
-  public AReverbVolume.FInteriorSettings LastInteriorSettings;
+  public FVector LastLocation = new();
+  public AReverbVolume.FInteriorSettings LastInteriorSettings = new();
   public int LastReverbVolumeIndex;
   public float VolumeMultiplier;
   public float PitchMultiplier;
@@ -4753,10 +4753,10 @@ public class USoundNodeAttenuation : USoundNode
   public float RadiusMax;
   public float LPFRadiusMin;
   public float LPFRadiusMax;
-  public UDistributionFloat.FRawDistributionFloat MinRadius;
-  public UDistributionFloat.FRawDistributionFloat MaxRadius;
-  public UDistributionFloat.FRawDistributionFloat LPFMinRadius;
-  public UDistributionFloat.FRawDistributionFloat LPFMaxRadius;
+  public UDistributionFloat.FRawDistributionFloat MinRadius = new();
+  public UDistributionFloat.FRawDistributionFloat MaxRadius = new();
+  public UDistributionFloat.FRawDistributionFloat LPFMinRadius = new();
+  public UDistributionFloat.FRawDistributionFloat LPFMaxRadius = new();
 }
 
 public class USoundNodeAmbient : USoundNode
@@ -4785,12 +4785,12 @@ public class USoundNodeAmbient : USoundNode
   public float VolumeMax;
   public List<FAmbientSoundSlot> SoundSlots;
   public USoundNodeWave Wave;
-  public UDistributionFloat.FRawDistributionFloat MinRadius;
-  public UDistributionFloat.FRawDistributionFloat MaxRadius;
-  public UDistributionFloat.FRawDistributionFloat LPFMinRadius;
-  public UDistributionFloat.FRawDistributionFloat LPFMaxRadius;
-  public UDistributionFloat.FRawDistributionFloat PitchModulation;
-  public UDistributionFloat.FRawDistributionFloat VolumeModulation;
+  public UDistributionFloat.FRawDistributionFloat MinRadius = new();
+  public UDistributionFloat.FRawDistributionFloat MaxRadius = new();
+  public UDistributionFloat.FRawDistributionFloat LPFMinRadius = new();
+  public UDistributionFloat.FRawDistributionFloat LPFMaxRadius = new();
+  public UDistributionFloat.FRawDistributionFloat PitchModulation = new();
+  public UDistributionFloat.FRawDistributionFloat VolumeModulation = new();
 }
 
 public class AAmbientSoundSimple : AAmbientSound
@@ -4804,7 +4804,7 @@ public class USoundNodeAmbientNonLoop : USoundNodeAmbient
 {
   public float DelayMin;
   public float DelayMax;
-  public UDistributionFloat.FRawDistributionFloat DelayTime;
+  public UDistributionFloat.FRawDistributionFloat DelayTime = new();
 }
 
 public class AAmbientSoundNonLoop : AAmbientSoundSimple
@@ -4909,8 +4909,8 @@ public partial class UAnimSequence : UObject
   public AnimationKeyFormat KeyEncodingFormat;
   public List<int> CompressedTrackOffsets;
   public List<byte> CompressedByteStream;
-  public FPointer TranslationCodec;
-  public FPointer RotationCodec;
+  public FPointer TranslationCodec = new();
+  public FPointer RotationCodec = new();
   public List<FBoneAtom> AdditiveRefPose;
   public List<FRawAnimSequenceTrack> AdditiveBasePose;
   public FName AdditiveRefName;
@@ -5009,11 +5009,11 @@ public class UAnimNode : UAnimObject
   public int NodeCachedAtomsTag;
   public float NodeTotalWeight;
   public float TotalWeightAccumulator;
-  public FInlinePointerArray_Mirror ParentNodes;
+  public FInlinePointerArray_Mirror ParentNodes = new();
   public FName NodeName;
   public List<FBoneAtom> CachedBoneAtoms;
   public byte CachedNumDesiredBones;
-  public FBoneAtom CachedRootMotionDelta;
+  public FBoneAtom CachedRootMotionDelta = new();
   public int bCachedHasRootMotion;
   public List<FCurveKey> CachedCurveKeys;
   public int SearchTag;
@@ -5031,7 +5031,7 @@ public class UAnimNodeBlendBase : UAnimNode
     public float TotalWeight;
     public float BlendWeight;
     public int bHasRootMotion;
-    public UObject.FBoneAtom RootMotion;
+    public UObject.FBoneAtom RootMotion = new();
     public bool bMirrorSkeleton;
     public bool bIsAdditive;
     public int DrawY;
@@ -5055,8 +5055,8 @@ public class UAnimNode_MultiBlendPerBone : UAnimNodeBlendBase
 
   public class FWeightRule
   {
-    public UAnimNode_MultiBlendPerBone.FWeightNodeRule FirstNode;
-    public UAnimNode_MultiBlendPerBone.FWeightNodeRule SecondNode;
+    public UAnimNode_MultiBlendPerBone.FWeightNodeRule FirstNode = new();
+    public UAnimNode_MultiBlendPerBone.FWeightNodeRule SecondNode = new();
   }
 
   public class FBranchInfo
@@ -5101,29 +5101,29 @@ public partial class UAnimNodeAimOffset : UAnimNodeBlendBase
 {
   public partial class FAimTransform : ISerialisable
   {
-    public UObject.FQuat Quaternion;
-    public UObject.FVector Translation;
+    public UObject.FQuat Quaternion = new();
+    public UObject.FVector Translation = new();
   }
 
   public partial class FAimComponent : ISerialisable
   {
     public FName BoneName;
-    public UAnimNodeAimOffset.FAimTransform LU;
-    public UAnimNodeAimOffset.FAimTransform LC;
-    public UAnimNodeAimOffset.FAimTransform LD;
-    public UAnimNodeAimOffset.FAimTransform CU;
-    public UAnimNodeAimOffset.FAimTransform CC;
-    public UAnimNodeAimOffset.FAimTransform CD;
-    public UAnimNodeAimOffset.FAimTransform RU;
-    public UAnimNodeAimOffset.FAimTransform RC;
-    public UAnimNodeAimOffset.FAimTransform RD;
+    public UAnimNodeAimOffset.FAimTransform LU = new();
+    public UAnimNodeAimOffset.FAimTransform LC = new();
+    public UAnimNodeAimOffset.FAimTransform LD = new();
+    public UAnimNodeAimOffset.FAimTransform CU = new();
+    public UAnimNodeAimOffset.FAimTransform CC = new();
+    public UAnimNodeAimOffset.FAimTransform CD = new();
+    public UAnimNodeAimOffset.FAimTransform RU = new();
+    public UAnimNodeAimOffset.FAimTransform RC = new();
+    public UAnimNodeAimOffset.FAimTransform RD = new();
   }
 
   public partial class FAimOffsetProfile : ISerialisable
   {
     public FName ProfileName;
-    public UObject.FVector2D HorizontalRange;
-    public UObject.FVector2D VerticalRange;
+    public UObject.FVector2D HorizontalRange = new();
+    public UObject.FVector2D VerticalRange = new();
     public List<UAnimNodeAimOffset.FAimComponent> AimComponents;
     public FName AnimName_LU;
     public FName AnimName_LC;
@@ -5136,8 +5136,8 @@ public partial class UAnimNodeAimOffset : UAnimNodeBlendBase
     public FName AnimName_RD;
   }
 
-  public FVector2D Aim;
-  public FVector2D AngleOffset;
+  public FVector2D Aim = new();
+  public FVector2D AngleOffset = new();
   public bool bForceAimDir;
   public bool bBakeFromAnimations;
   public bool bPassThroughWhenNotRendered;
@@ -5189,9 +5189,9 @@ public class UAnimNodeBlendByProperty : UAnimNodeBlendList
   public bool bUseSpecificBlendTimes;
   public bool bSynchronizeNodesInEditor;
   public FName CachedPropertyName;
-  public FPointer CachedFloatProperty;
-  public FPointer CachedBoolProperty;
-  public FPointer CachedByteProperty;
+  public FPointer CachedFloatProperty = new();
+  public FPointer CachedBoolProperty = new();
+  public FPointer CachedByteProperty = new();
   public AActor CachedOwner;
   public float BlendTime;
   public float FloatPropMin;
@@ -5219,7 +5219,7 @@ public class UAnimNodeBlendDirectional : UAnimNodeBlendBase
   public float DirDegreesPerSecond;
   public float DirAngle;
   public int SingleAnimAtOrAboveLOD;
-  public FRotator RotationOffset;
+  public FRotator RotationOffset = new();
 }
 
 public class UAnimNodeBlendMultiBone : UAnimNodeBlendBase
@@ -5312,7 +5312,7 @@ public class UAnimNodeRandom : UAnimNodeBlendList
     public byte LoopCountMin;
     public byte LoopCountMax;
     public float BlendInTime;
-    public UObject.FVector2D PlayRateRange;
+    public UObject.FVector2D PlayRateRange = new();
     public bool bStillFrame;
     public byte LoopCount;
   }
@@ -5344,7 +5344,7 @@ public class UAnimNodeSequenceBlendBase : UAnimNodeSequence
   public class FAnimBlendInfo
   {
     public FName AnimName;
-    public UAnimNodeSequenceBlendBase.FAnimInfo AnimInfo;
+    public UAnimNodeSequenceBlendBase.FAnimInfo AnimInfo = new();
     public float Weight;
   }
 
@@ -5353,11 +5353,11 @@ public class UAnimNodeSequenceBlendBase : UAnimNodeSequence
 
 public class UAnimNodeSequenceBlendByAim : UAnimNodeSequenceBlendBase
 {
-  public FVector2D Aim;
-  public FVector2D PreviousAim;
-  public FVector2D HorizontalRange;
-  public FVector2D VerticalRange;
-  public FVector2D AngleOffset;
+  public FVector2D Aim = new();
+  public FVector2D PreviousAim = new();
+  public FVector2D HorizontalRange = new();
+  public FVector2D VerticalRange = new();
+  public FVector2D AngleOffset = new();
   public FName AnimName_LU;
   public FName AnimName_LC;
   public FName AnimName_LD;
@@ -5399,7 +5399,7 @@ public class UAnimNodeSynch : UAnimNodeBlendBase
 
 public class UAnimNotify : UObject
 {
-  public FColor NotifyColor;
+  public FColor NotifyColor = new();
 }
 
 public class UAnimNotify_CameraEffect : UAnimNotify
@@ -5478,24 +5478,24 @@ public class UAnimNotify_Trails : UAnimNotify
 {
   public class FTrailSocketSamplePoint
   {
-    public UObject.FVector Position;
-    public UObject.FVector Velocity;
+    public UObject.FVector Position = new();
+    public UObject.FVector Velocity = new();
   }
 
   public class FTrailSamplePoint
   {
     public float RelativeTime;
-    public UAnimNotify_Trails.FTrailSocketSamplePoint FirstEdgeSample;
-    public UAnimNotify_Trails.FTrailSocketSamplePoint SecondEdgeSample;
-    public UAnimNotify_Trails.FTrailSocketSamplePoint ControlPointSample;
+    public UAnimNotify_Trails.FTrailSocketSamplePoint FirstEdgeSample = new();
+    public UAnimNotify_Trails.FTrailSocketSamplePoint SecondEdgeSample = new();
+    public UAnimNotify_Trails.FTrailSocketSamplePoint ControlPointSample = new();
   }
 
   public class FTrailSample
   {
     public float RelativeTime;
-    public UObject.FVector FirstEdgeSample;
-    public UObject.FVector SecondEdgeSample;
-    public UObject.FVector ControlPointSample;
+    public UObject.FVector FirstEdgeSample = new();
+    public UObject.FVector SecondEdgeSample = new();
+    public UObject.FVector ControlPointSample = new();
   }
 
   public UParticleSystem PSTemplate;
@@ -5520,10 +5520,10 @@ public class UAnimNotify_Trails : UAnimNotify
 public class UAnimNotify_ViewShake : UAnimNotify_Scripted
 {
   public float Duration;
-  public FVector RotAmplitude;
-  public FVector RotFrequency;
-  public FVector LocAmplitude;
-  public FVector LocFrequency;
+  public FVector RotAmplitude = new();
+  public FVector RotFrequency = new();
+  public FVector LocAmplitude = new();
+  public FVector LocFrequency = new();
   public float FOVAmplitude;
   public float FOVFrequency;
   public bool bDoControllerVibration;
@@ -5537,7 +5537,7 @@ public class UAnimSet : UObject
 {
   public class FAnimSetMeshLinkup
   {
-    public ulong SkelMeshLinkupRUID;
+    public ulong SkelMeshLinkupRUID = new();
     public List<int> BoneToTrackTable;
     public List<byte> BoneUseAnimTranslation;
     public List<byte> ForceUseMeshTranslation;
@@ -5617,9 +5617,9 @@ public class UAnimTree : UAnimNodeBlendBase
   public List<FPreviewAnimSetsStruct> PreviewAnimSetList;
   public int PreviewAnimSetListIndex;
   public int PreviewAnimSetIndex;
-  public FVector PreviewCamPos;
-  public FRotator PreviewCamRot;
-  public FVector PreviewFloorPos;
+  public FVector PreviewCamPos = new();
+  public FRotator PreviewCamRot = new();
+  public FVector PreviewFloorPos = new();
   public int PreviewFloorYaw;
 }
 
@@ -5630,7 +5630,7 @@ public class UApexAsset : UObject
 
 public class UApexClothingAsset : UApexAsset
 {
-  public FPointer MApexAsset;
+  public FPointer MApexAsset = new();
   public List<UMaterialInterface> Materials;
   public UApexGenericAsset ApexClothingLibrary;
   public bool bUseHardwareCloth;
@@ -5648,10 +5648,10 @@ public class UApexClothingAsset : UApexAsset
 
 public class UApexComponentBase : UMeshComponent
 {
-  public FPointer ComponentBaseResources;
-  public FRenderCommandFence_Mirror ReleaseResourcesFence;
+  public FPointer ComponentBaseResources = new();
+  public FRenderCommandFence_Mirror ReleaseResourcesFence = new();
   public UApexAsset Asset;
-  public FColor WireframeColor;
+  public FColor WireframeColor = new();
   public bool bAssetChanged;
 }
 
@@ -5706,16 +5706,16 @@ public partial class ULightComponent : UActorComponent
     public List<UObject.FPlane> Planes;
   }
 
-  public FPointer SceneInfo;
-  public FMatrix WorldToLight;
-  public FMatrix LightToWorld;
-  public FGuid LightGuid;
-  public FGuid LightmapGuid;
+  public FPointer SceneInfo = new();
+  public FMatrix WorldToLight = new();
+  public FMatrix LightToWorld = new();
+  public FGuid LightGuid = new();
+  public FGuid LightmapGuid = new();
   public float Brightness;
-  public FColor LightColor;
+  public FColor LightColor = new();
   public ULightFunction Function;
   public float LightEnv_BouncedLightBrightness;
-  public FColor LightEnv_BouncedModulationColor;
+  public FColor LightEnv_BouncedModulationColor = new();
   public bool bEnabled;
   public bool CastShadows;
   public bool CastStaticShadows;
@@ -5735,14 +5735,14 @@ public partial class ULightComponent : UActorComponent
   public bool bPrecomputedLightingIsValid;
   public ULightEnvironmentComponent LightEnvironment;
   public List<FName> OtherLevelsToAffect;
-  public FLightingChannelContainer LightingChannels;
+  public FLightingChannelContainer LightingChannels = new();
   public List<ABrush> InclusionVolumes;
   public List<ABrush> ExclusionVolumes;
   public List<FConvexVolume> InclusionConvexVolumes;
   public List<FConvexVolume> ExclusionConvexVolumes;
   public ELightAffectsClassification LightAffectsClassification;
   public ELightShadowMode LightShadowMode;
-  public FLinearColor ModShadowColor;
+  public FLinearColor ModShadowColor = new();
   public float ModShadowFadeoutTime;
   public float ModShadowFadeoutExponent;
   public int LightListIndex;
@@ -5755,21 +5755,21 @@ public partial class ULightComponent : UActorComponent
   public float BloomScale;
   public float BloomThreshold;
   public float BloomScreenBlendThreshold;
-  public FColor BloomTint;
+  public FColor BloomTint = new();
   public float RadialBlurPercent;
   public float OcclusionMaskDarkness;
 }
 
 public class UDynamicLightEnvironmentComponent : ULightEnvironmentComponent
 {
-  public FPointer State;
+  public FPointer State = new();
   public float InvisibleUpdateTime;
   public float MinTimeBetweenFullUpdates;
   public float ShadowInterpolationSpeed;
   public int NumVolumeVisibilitySamples;
-  public FLinearColor AmbientShadowColor;
-  public FVector AmbientShadowSourceDirection;
-  public FLinearColor AmbientGlow;
+  public FLinearColor AmbientShadowColor = new();
+  public FVector AmbientShadowSourceDirection = new();
+  public FLinearColor AmbientGlow = new();
   public float LightDesaturation;
   public float LightDistance;
   public float ShadowDistance;
@@ -5787,7 +5787,7 @@ public class UDynamicLightEnvironmentComponent : ULightEnvironmentComponent
   public bool bOverrideOwnerLightingChannels;
   public float ModShadowFadeoutTime;
   public float ModShadowFadeoutExponent;
-  public FLinearColor MaxModulatedShadowColor;
+  public FLinearColor MaxModulatedShadowColor = new();
   public float IndirectLightingIntense;
   public float DominantShadowTransitionStartDistance;
   public float DominantShadowTransitionEndDistance;
@@ -5799,8 +5799,8 @@ public class UDynamicLightEnvironmentComponent : ULightEnvironmentComponent
   public EDynamicLightEnvironmentBoundsMethod BoundsMethod;
   public float BouncedLightingFactor;
   public float MinShadowAngle;
-  public FBoxSphereBounds OverriddenBounds;
-  public ULightComponent.FLightingChannelContainer OverriddenLightingChannels;
+  public FBoxSphereBounds OverriddenBounds = new();
+  public ULightComponent.FLightingChannelContainer OverriddenLightingChannels = new();
   public List<ULightComponent> OverriddenLightComponents;
 }
 
@@ -5810,8 +5810,8 @@ public class UApexStaticComponent : UApexComponentBase
 
 public class UApexStaticDestructibleComponent : UApexStaticComponent
 {
-  public FPointer ApexDestructibleActor;
-  public FPointer ApexDestructiblePreview;
+  public FPointer ApexDestructibleActor = new();
+  public FPointer ApexDestructiblePreview = new();
 }
 
 public class AApexDestructibleActor : AActor
@@ -5863,37 +5863,37 @@ public class UApexDestructibleAsset : UApexAsset
     public float DebrisLifetimeMax;
     public float DebrisMaxSeparationMin;
     public float DebrisMaxSeparationMax;
-    public UObject.FBox ValidBounds;
+    public UObject.FBox ValidBounds = new();
     public float MaxChunkSpeed;
     public float MassScaleExponent;
-    public UApexDestructibleAsset.FNxDestructibleParametersFlag Flags;
+    public UApexDestructibleAsset.FNxDestructibleParametersFlag Flags = new();
     public float GrbVolumeLimit;
     public float GrbParticleSpacing;
     public float FractureImpulseScale;
     public List<UApexDestructibleAsset.FNxDestructibleDepthParameters> DepthParameters;
   }
 
-  public FPointer MApexAsset;
+  public FPointer MApexAsset = new();
   public List<UMaterialInterface> Materials;
   public string CrumbleEmitterName;
   public string DustEmitterName;
   public bool bDynamic;
-  public FNxDestructibleParameters DestructibleParameters;
+  public FNxDestructibleParameters DestructibleParameters = new();
 }
 
 public class UApexDynamicComponent : UApexComponentBase
 {
-  public FPointer ComponentDynamicResources;
+  public FPointer ComponentDynamicResources = new();
 }
 
 public class UApexGenericAsset : UApexAsset
 {
-  public FPointer MApexAsset;
+  public FPointer MApexAsset = new();
 }
 
 public class UArrowComponent : UPrimitiveComponent
 {
-  public FColor ArrowColor;
+  public FColor ArrowColor = new();
   public float ArrowSize;
   public bool bTreatAsASprite;
 }
@@ -5903,10 +5903,10 @@ public class UAudioDevice : USubsystem
   public class FListener
   {
     public APortalVolume PortalVolume;
-    public UObject.FVector Location;
-    public UObject.FVector Up;
-    public UObject.FVector Right;
-    public UObject.FVector Front;
+    public UObject.FVector Location = new();
+    public UObject.FVector Up = new();
+    public UObject.FVector Right = new();
+    public UObject.FVector Front = new();
   }
 
   public class FAudioClassInfo
@@ -5922,7 +5922,7 @@ public class UAudioDevice : USubsystem
   public float LowPassFilterResonance;
   public float MinCompressedDurationEditor;
   public float MinCompressedDurationGame;
-  public FPointer CommonAudioPool;
+  public FPointer CommonAudioPool = new();
   public int CommonAudioPoolFreeBytes;
   public List<UAudioComponent> AudioComponents;
   public List<FPointer> Sources;
@@ -5930,32 +5930,32 @@ public class UAudioDevice : USubsystem
   public Dictionary<byte, byte> WaveInstanceSourceMap;
   public bool bGameWasTicking;
   public List<FListener> Listeners;
-  public ulong CurrentTick;
+  public ulong CurrentTick = new();
   public Dictionary<byte, byte> SoundClasses;
   public Dictionary<byte, byte> SourceSoundClasses;
   public Dictionary<byte, byte> CurrentSoundClasses;
   public Dictionary<byte, byte> DestinationSoundClasses;
   public Dictionary<byte, byte> SoundModes;
-  public FPointer Effects;
+  public FPointer Effects = new();
   public FName BaseSoundModeName;
   public USoundMode CurrentMode;
-  public double SoundModeStartTime;
-  public double SoundModeFadeInStartTime;
-  public double SoundModeFadeInEndTime;
-  public double SoundModeEndTime;
+  public double SoundModeStartTime = new();
+  public double SoundModeFadeInStartTime = new();
+  public double SoundModeFadeInEndTime = new();
+  public double SoundModeEndTime = new();
   public int ListenerVolumeIndex;
-  public AReverbVolume.FInteriorSettings ListenerInteriorSettings;
-  public double InteriorStartTime;
-  public double InteriorEndTime;
-  public double ExteriorEndTime;
-  public double InteriorLPFEndTime;
-  public double ExteriorLPFEndTime;
+  public AReverbVolume.FInteriorSettings ListenerInteriorSettings = new();
+  public double InteriorStartTime = new();
+  public double InteriorEndTime = new();
+  public double ExteriorEndTime = new();
+  public double InteriorLPFEndTime = new();
+  public double ExteriorLPFEndTime = new();
   public float InteriorVolumeInterp;
   public float InteriorLPFInterp;
   public float ExteriorVolumeInterp;
   public float ExteriorLPFInterp;
   public UAudioComponent TestAudioComponent;
-  public FPointer TextToSpeech;
+  public FPointer TextToSpeech = new();
   public EDebugState DebugState;
   public float TransientMasterVolume;
   public float LastUpdateTime;
@@ -6020,14 +6020,14 @@ public class UBlurEffect : UPostProcessEffect
 
 public class UBookMark : UObject
 {
-  public FVector Location;
-  public FRotator Rotation;
+  public FVector Location = new();
+  public FRotator Rotation = new();
 }
 
 public class UBookMark2D : UObject
 {
   public float Zoom2D;
-  public FIntPoint Location;
+  public FIntPoint Location = new();
 }
 
 public class ABroadcastHandler : AInfo
@@ -6048,11 +6048,11 @@ public class ACameraActor : AActor
   public float FOVAngle;
   public float NearPlane;
   public float CamOverridePostProcessAlpha;
-  public APostProcessVolume.FPostProcessSettings CamOverridePostProcess;
+  public APostProcessVolume.FPostProcessSettings CamOverridePostProcess = new();
   public UDrawFrustumComponent DrawFrustum;
   public UStaticMeshComponent MeshComp;
-  public FVector InitialLocation;
-  public FRotator InitialRotation;
+  public FVector InitialLocation = new();
+  public FRotator InitialRotation = new();
   public float TargetScore;
   public int InterpolatingStartCounter;
 }
@@ -6061,8 +6061,8 @@ public class UCameraAnim : UObject
 {
   public UInterpGroup CameraInterpGroup;
   public float AnimLength;
-  public FBox BoundingBox;
-  public APostProcessVolume.FPostProcessSettings BasePPSettings;
+  public FBox BoundingBox = new();
+  public APostProcessVolume.FPostProcessSettings BasePPSettings = new();
   public float BasePPSettingsAlpha;
   public float BaseFOV;
 }
@@ -6097,8 +6097,8 @@ public class UCameraAnimInst : UObject
   public UInterpTrackInstMove MoveInst;
   public UAnimNodeSequence SourceAnimNode;
   public ECameraAnimPlaySpace PlaySpace;
-  public FMatrix UserPlaySpaceMatrix;
-  public APostProcessVolume.FPostProcessSettings LastPPSettings;
+  public FMatrix UserPlaySpaceMatrix = new();
+  public APostProcessVolume.FPostProcessSettings LastPPSettings = new();
   public float LastPPSettingsAlpha;
 }
 
@@ -6124,16 +6124,16 @@ public class UCameraShake : UObject
 {
   public class FROscillator
   {
-    public UCameraShake.FFOscillator Pitch;
-    public UCameraShake.FFOscillator Yaw;
-    public UCameraShake.FFOscillator Roll;
+    public UCameraShake.FFOscillator Pitch = new();
+    public UCameraShake.FFOscillator Yaw = new();
+    public UCameraShake.FFOscillator Roll = new();
   }
 
   public class FVOscillator
   {
-    public UCameraShake.FFOscillator X;
-    public UCameraShake.FFOscillator Y;
-    public UCameraShake.FFOscillator Z;
+    public UCameraShake.FFOscillator X = new();
+    public UCameraShake.FFOscillator Y = new();
+    public UCameraShake.FFOscillator Z = new();
   }
 
   public class FFOscillator
@@ -6148,9 +6148,9 @@ public class UCameraShake : UObject
   public float OscillationDuration;
   public float OscillationBlendInTime;
   public float OscillationBlendOutTime;
-  public FROscillator RotOscillation;
-  public FVOscillator LocOscillation;
-  public FFOscillator FOVOscillation;
+  public FROscillator RotOscillation = new();
+  public FVOscillator LocOscillation = new();
+  public FFOscillator FOVOscillation = new();
   public UCameraAnim Anim;
   public float AnimPlayRate;
   public float AnimScale;
@@ -6169,13 +6169,13 @@ public class UCameraModifier_CameraShake : UCameraModifier
     public float CurrentBlendInTime;
     public bool bBlendingOut;
     public float CurrentBlendOutTime;
-    public UObject.FVector LocSinOffset;
-    public UObject.FVector RotSinOffset;
+    public UObject.FVector LocSinOffset = new();
+    public UObject.FVector RotSinOffset = new();
     public float FOVSinOffset;
     public float Scale;
     public UCameraAnimInst AnimInst;
     public ECameraAnimPlaySpace PlaySpace;
-    public UObject.FMatrix UserPlaySpaceMatrix;
+    public UObject.FMatrix UserPlaySpaceMatrix = new();
   }
 
   public List<FCameraShakeInstance> ActiveShakes;
@@ -6200,7 +6200,7 @@ public class UFontImportOptions : UObject
     public string CharsFileWildcard;
     public bool bCreatePrintableOnly;
     public bool bIncludeASCIIRange;
-    public UObject.FLinearColor ForegroundColor;
+    public UObject.FLinearColor ForegroundColor = new();
     public bool bEnableDropShadow;
     public int TexturePageWidth;
     public int TexturePageMaxHeight;
@@ -6217,7 +6217,7 @@ public class UFontImportOptions : UObject
     public float DistanceFieldScanRadiusScale;
   }
 
-  public FFontImportOptionsData Data;
+  public FFontImportOptionsData Data = new();
 }
 
 public partial class UFont : UObject
@@ -6241,7 +6241,7 @@ public partial class UFont : UObject
   public float Descent;
   public float Leading;
   public int Kerning;
-  public UFontImportOptions.FFontImportOptionsData ImportOptions;
+  public UFontImportOptions.FFontImportOptionsData ImportOptions = new();
   public int NumCharacters;
   public List<int> MaxCharHeight;
   public float ScalingFactor;
@@ -6300,7 +6300,7 @@ public partial class UTexture : USurface
   public bool bUseCinematicMipLevels;
   public float[] UnpackMin = new float[4];
   public float[] UnpackMax = new float[4];
-  public FUntypedBulkData_Mirror SourceArt;
+  public FByteBulkData SourceArt = new();
   public TextureCompressionSettings CompressionSettings;
   public TextureFilter Filter;
   public TextureGroup LODGroup;
@@ -6310,8 +6310,8 @@ public partial class UTexture : USurface
   public int NumCinematicMipLevels;
   public string SourceFilePath;
   public string SourceFileTimestamp;
-  public FPointer Resource;
-  public FGuid LightingGuid;
+  public FPointer Resource = new();
+  public FGuid LightingGuid = new();
   public float AdjustBrightness;
   public float AdjustBrightnessCurve;
   public float AdjustVibrance;
@@ -6323,18 +6323,18 @@ public partial class UTexture : USurface
 
 public partial class UTexture2D : UTexture
 {
-  public class FTexture2DMipMap
+  public partial class FTexture2DMipMap : ISerialisable
   {
-    public UObject.FUntypedBulkData_Mirror Data;
+    public UObject.FByteBulkData Data = new();
     public int SizeX;
     public int SizeY;
   }
 
   public class FTextureLinkedListMirror
   {
-    public UObject.FPointer Element;
-    public UObject.FPointer Next;
-    public UObject.FPointer PrevLink;
+    public UObject.FPointer Element = new();
+    public UObject.FPointer Next = new();
+    public UObject.FPointer PrevLink = new();
   }
 
   public List<FTexture2DMipMap> Mips;
@@ -6354,14 +6354,14 @@ public partial class UTexture2D : UTexture
   public bool bHasBeenPaintedInEditor;
   public float ForceMipLevelsToBeResidentTimestamp;
   public FName TextureFileCacheName;
-  public FGuid TextureFileCacheGuid;
+  public FGuid TextureFileCacheGuid = new();
   public int RequestedMips;
   public int ResidentMips;
-  public FThreadSafeCounter PendingMipChangeRequestStatus;
+  public FThreadSafeCounter PendingMipChangeRequestStatus = new();
   public List<byte> SystemMemoryData;
-  public FTextureLinkedListMirror StreamableTexturesLink;
+  public FTextureLinkedListMirror StreamableTexturesLink = new();
   public int MipTailBaseIdx;
-  public FPointer ResourceMem;
+  public FPointer ResourceMem = new();
   public int FirstResourceMemMip;
   public float Timer;
 }
@@ -6380,16 +6380,16 @@ public class UCanvas : UObject
   public class FDepthFieldGlowInfo
   {
     public bool bEnableGlow;
-    public UObject.FLinearColor GlowColor;
-    public UObject.FVector2D GlowOuterRadius;
-    public UObject.FVector2D GlowInnerRadius;
+    public UObject.FLinearColor GlowColor = new();
+    public UObject.FVector2D GlowOuterRadius = new();
+    public UObject.FVector2D GlowInnerRadius = new();
   }
 
   public class FFontRenderInfo
   {
     public bool bClipText;
     public bool bEnableShadow;
-    public UCanvas.FDepthFieldGlowInfo GlowInfo;
+    public UCanvas.FDepthFieldGlowInfo GlowInfo = new();
   }
 
   public UFont Font;
@@ -6401,14 +6401,14 @@ public class UCanvas : UObject
   public float CurY;
   public float CurZ;
   public float CurYL;
-  public FColor DrawColor;
+  public FColor DrawColor = new();
   public bool bCenter;
   public bool bNoSmooth;
   public int SizeX;
   public int SizeY;
-  public FPointer Canvas;
-  public FPointer SceneView;
-  public FPlane ColorModulate;
+  public FPointer Canvas = new();
+  public FPointer SceneView = new();
+  public FPlane ColorModulate = new();
   public UTexture2D DefaultTexture;
 }
 
@@ -6442,7 +6442,7 @@ public class UCodecMovieFallback : UCodecMovie
 
 public class AColorScaleVolume : AVolume
 {
-  public FVector ColorScale;
+  public FVector ColorScale = new();
   public float InterpTime;
 }
 
@@ -6481,9 +6481,9 @@ public class AWorldInfo : AZoneInfo
 
   public class FScreenMessageString
   {
-    public ulong Key;
+    public ulong Key = new();
     public string ScreenMessage;
-    public UObject.FColor DisplayColor;
+    public UObject.FColor DisplayColor = new();
     public float TimeToDisplay;
     public float CurrentTimeDisplayed;
   }
@@ -6492,7 +6492,7 @@ public class AWorldInfo : AZoneInfo
   {
     public float StaticLightingLevelScale;
     public int NumIndirectLightingBounces;
-    public UObject.FColor EnvironmentColor;
+    public UObject.FColor EnvironmentColor = new();
     public float EnvironmentIntensity;
     public float EmissiveBoost;
     public float DiffuseBoost;
@@ -6524,8 +6524,8 @@ public class AWorldInfo : AZoneInfo
   {
     public APlayerController InViewer;
     public AActor Viewer;
-    public UObject.FVector ViewLocation;
-    public UObject.FVector ViewDir;
+    public UObject.FVector ViewLocation = new();
+    public UObject.FVector ViewDir = new();
   }
 
   public class FCompartmentRunList
@@ -6546,11 +6546,11 @@ public class AWorldInfo : AZoneInfo
 
   public class FPhysXSceneProperties
   {
-    public AWorldInfo.FPhysXSimulationProperties PrimaryScene;
-    public AWorldInfo.FPhysXSimulationProperties CompartmentRigidBody;
-    public AWorldInfo.FPhysXSimulationProperties CompartmentFluid;
-    public AWorldInfo.FPhysXSimulationProperties CompartmentCloth;
-    public AWorldInfo.FPhysXSimulationProperties CompartmentSoftBody;
+    public AWorldInfo.FPhysXSimulationProperties PrimaryScene = new();
+    public AWorldInfo.FPhysXSimulationProperties CompartmentRigidBody = new();
+    public AWorldInfo.FPhysXSimulationProperties CompartmentFluid = new();
+    public AWorldInfo.FPhysXSimulationProperties CompartmentCloth = new();
+    public AWorldInfo.FPhysXSimulationProperties CompartmentSoftBody = new();
   }
 
   public class FApexModuleDestructibleSettings
@@ -6572,10 +6572,10 @@ public class AWorldInfo : AZoneInfo
 
   public class FPhysXVerticalProperties
   {
-    public AWorldInfo.FPhysXEmitterVerticalProperties Emitters;
+    public AWorldInfo.FPhysXEmitterVerticalProperties Emitters = new();
   }
 
-  public APostProcessVolume.FPostProcessSettings DefaultPostProcessSettings;
+  public APostProcessVolume.FPostProcessSettings DefaultPostProcessSettings = new();
   public bool bUseForcePostProcessSettings;
   public bool bPersistPostProcessToNextLevel;
   public bool bMapNeedsLightingFullyRebuilt;
@@ -6613,16 +6613,16 @@ public class AWorldInfo : AZoneInfo
   public bool bUseGlobalIllumination;
   public bool bForceNoPrecomputedLighting;
   public bool bHaveActiveCrowd;
-  public APostProcessVolume.FPostProcessSettings ForcePostProcessSettings;
+  public APostProcessVolume.FPostProcessSettings ForcePostProcessSettings = new();
   public float SquintModeKernelSize;
   public APostProcessVolume HighestPriorityPostProcessVolume;
-  public AReverbVolume.FReverbSettings DefaultReverbSettings;
-  public AReverbVolume.FInteriorSettings DefaultAmbientZoneSettings;
+  public AReverbVolume.FReverbSettings DefaultReverbSettings = new();
+  public AReverbVolume.FInteriorSettings DefaultAmbientZoneSettings = new();
   public AReverbVolume HighestPriorityReverbVolume;
   public List<APortalVolume> PortalVolumes;
   public List<AEnvironmentVolume> EnvironmentVolumes;
   public List<ULevelStreaming> StreamingLevels;
-  public double LastTimeUnbuiltLightingWasEncountered;
+  public double LastTimeUnbuiltLightingWasEncountered = new();
   public UBookMark[] BookMarks = new UBookMark[10];
   public UKismetBookMark[] KismetBookMarks = new UKismetBookMark[10];
   public List<UClipPadEntry> ClipPadEntries;
@@ -6671,7 +6671,7 @@ public class AWorldInfo : AZoneInfo
   public string NextURL;
   public float NextSwitchCountdown;
   public int PackedLightAndShadowMapTextureSize;
-  public FVector DefaultColorScale;
+  public FVector DefaultColorScale = new();
   public List<UClass> GameTypesSupportedOnThisMap;
   public UClass GameTypeForPIE;
   public List<UObject> ClientDestroyedActorContent;
@@ -6679,8 +6679,8 @@ public class AWorldInfo : AZoneInfo
   public FName CommittedPersistentLevelName;
   public UObjectReferencer PersistentMapForcedObjects;
   public UAudioComponent MusicComp;
-  public UMusicTrackDataStructures.FMusicTrackStruct CurrentMusicTrack;
-  public UMusicTrackDataStructures.FMusicTrackStruct ReplicatedMusicTrack;
+  public UMusicTrackDataStructures.FMusicTrackStruct CurrentMusicTrack = new();
+  public UMusicTrackDataStructures.FMusicTrackStruct ReplicatedMusicTrack = new();
   public string Title;
   public string Author;
   public UMapInfo MyMapInfo;
@@ -6695,14 +6695,14 @@ public class AWorldInfo : AZoneInfo
   public UProcBuildingRuleset ProcBuildingRulesetOverride;
   public float MaxPhysicsDeltaTime;
   public int MaxPhysicsSubsteps;
-  public FPhysXSceneProperties PhysicsProperties;
+  public FPhysXSceneProperties PhysicsProperties = new();
   public List<FCompartmentRunList> CompartmentRunFrames;
   public float DefaultSkinWidth;
   public float ApexLODResourceBudget;
-  public FApexModuleDestructibleSettings DestructibleSettings;
+  public FApexModuleDestructibleSettings DestructibleSettings = new();
   public UPhysicsLODVerticalEmitter EmitterVertical;
   public UPhysicsLODVerticalDestructible DestructibleVertical;
-  public FPhysXVerticalProperties VerticalProperties;
+  public FPhysXVerticalProperties VerticalProperties = new();
   public float ChanceOfPhysicsChunkOverride;
   public float MaxExplosionChunkSize;
   public float MaxDamageChunkSize;
@@ -6715,12 +6715,12 @@ public class AWorldInfo : AZoneInfo
   public float CharacterShadowedIndirectBrightness;
   public float CharacterShadowedIndirectContrastFactor;
   public float CharacterLightingContrastFactor;
-  public FMap_Mirror ScreenMessages;
+  public FMap_Mirror ScreenMessages = new();
   public List<FScreenMessageString> PriorityScreenMessages;
   public List<APlayerReplicationInfo> MCPendingPRIs;
   public int MaxTrianglesPerLeaf;
   public ULightmassLevelSettings LMLevelSettings;
-  public FLightmassWorldInfoSettings LightmassSettings;
+  public FLightmassWorldInfoSettings LightmassSettings = new();
   public Dictionary<byte, byte> NavMeshPathConstraintCache;
   public Dictionary<byte, byte> NavMeshPathGoalEvaluatorCache;
   public ACrowdPopulationManagerBase PopulationManager;
@@ -6762,21 +6762,21 @@ public partial class UUIRoot : UObject
     public string StringValue;
     public USurface ImageValue;
     public List<int> ArrayValue;
-    public UUIRoot.FUIRangeData RangeValue;
-    public UOnlineSubsystem.FUniqueNetId NetIdValue;
-    public UUIRoot.FTextureCoordinates AtlasCoordinates;
+    public UUIRoot.FUIRangeData RangeValue = new();
+    public UOnlineSubsystem.FUniqueNetId NetIdValue = new();
+    public UUIRoot.FTextureCoordinates AtlasCoordinates = new();
   }
 
   public class FUIProviderFieldValue : FUIProviderScriptFieldValue
   {
-    public UObject.FPointer CustomStringNode;
+    public UObject.FPointer CustomStringNode = new();
   }
 
   public class FUIStyleReference
   {
     public FName DefaultStyleTag;
     public UClass RequiredStyleClass;
-    public UUIRoot.FSTYLE_ID AssignedStyleID;
+    public UUIRoot.FSTYLE_ID AssignedStyleID = new();
     public UUIStyle ResolvedStyle;
   }
 
@@ -6835,15 +6835,15 @@ public partial class UUIRoot : UObject
 
   public class FAutoSizeData
   {
-    public UUIRoot.FUIScreenValue_AutoSizeRegion Extent;
-    public UUIRoot.FAutoSizePadding Padding;
+    public UUIRoot.FUIScreenValue_AutoSizeRegion Extent = new();
+    public UUIRoot.FAutoSizePadding Padding = new();
     public bool bAutoSizeEnabled;
   }
 
   public class FUIRenderingSubregion
   {
-    public UUIRoot.FUIScreenValue_Extent ClampRegionSize;
-    public UUIRoot.FUIScreenValue_Extent ClampRegionOffset;
+    public UUIRoot.FUIScreenValue_Extent ClampRegionSize = new();
+    public UUIRoot.FUIScreenValue_Extent ClampRegionOffset = new();
     public EUIAlignment ClampRegionAlignment;
     public bool bSubregionEnabled;
   }
@@ -6899,7 +6899,7 @@ public partial class UUIRoot : UObject
   {
     public UUIObject OwnerWidget;
     public UUIObject[] TargetWidget = new UUIObject[4];
-    public UUIRoot.FUIScreenValue_DockPadding DockPadding;
+    public UUIRoot.FUIScreenValue_DockPadding DockPadding = new();
     public bool bLockWidthWhenDocked;
     public bool bLockHeightWhenDocked;
     public EUIWidgetFace[] TargetFace = new EUIWidgetFace[4];
@@ -6915,9 +6915,9 @@ public partial class UUIRoot : UObject
 
   public class FUIRotation
   {
-    public UObject.FRotator Rotation;
-    public UObject.FMatrix TransformMatrix;
-    public UUIRoot.FUIAnchorPosition AnchorPosition;
+    public UObject.FRotator Rotation = new();
+    public UObject.FMatrix TransformMatrix = new();
+    public UUIRoot.FUIAnchorPosition AnchorPosition = new();
     public ERotationAnchor AnchorType;
   }
 
@@ -6977,15 +6977,15 @@ public partial class UUIRoot : UObject
     public float DrawZ;
     public float DrawXL;
     public float DrawYL;
-    public UObject.FVector2D Scaling;
+    public UObject.FVector2D Scaling = new();
     public UFont DrawFont;
     public EUIAlignment[] TextAlignment = new EUIAlignment[2];
-    public UObject.FVector2D ImageExtent;
-    public UUIRoot.FTextureCoordinates DrawCoords;
-    public UObject.FVector2D SpacingAdjust;
+    public UObject.FVector2D ImageExtent = new();
+    public UUIRoot.FTextureCoordinates DrawCoords = new();
+    public UObject.FVector2D SpacingAdjust = new();
     public float ViewportHeight;
     public bool bUseOverrideColor;
-    public UObject.FLinearColor OverideDrawColor;
+    public UObject.FLinearColor OverideDrawColor = new();
   }
 
   public class FTextAutoScaleValue
@@ -6996,7 +6996,7 @@ public partial class UUIRoot : UObject
 
   public class FUIStyleOverride
   {
-    public UObject.FLinearColor DrawColor;
+    public UObject.FLinearColor DrawColor = new();
     public float Opacity;
     public float[] Padding = new float[2];
     public bool bOverrideDrawColor;
@@ -7007,11 +7007,11 @@ public partial class UUIRoot : UObject
   public class FUITextStyleOverride : FUIStyleOverride
   {
     public UFont DrawFont;
-    public UUIRoot.FUITextAttributes TextAttributes;
+    public UUIRoot.FUITextAttributes TextAttributes = new();
     public EUIAlignment[] TextAlignment = new EUIAlignment[2];
     public ETextClipMode ClipMode;
     public EUIAlignment ClipAlignment;
-    public UUIRoot.FTextAutoScaleValue AutoScaling;
+    public UUIRoot.FTextAutoScaleValue AutoScaling = new();
     public float[] DrawScale = new float[2];
     public float[] SpacingAdjust = new float[2];
     public bool bOverrideDrawFont;
@@ -7026,7 +7026,7 @@ public partial class UUIRoot : UObject
 
   public class FUIImageStyleOverride : FUIStyleOverride
   {
-    public UUIRoot.FTextureCoordinates Coordinates;
+    public UUIRoot.FTextureCoordinates Coordinates = new();
     public UUIRoot.FUIImageAdjustmentData[] Formatting = new UUIRoot.FUIImageAdjustmentData[2];
     public bool bOverrideCoordinates;
     public bool bOverrideFormatting;
@@ -7034,21 +7034,21 @@ public partial class UUIRoot : UObject
 
   public class FUICombinedStyleData
   {
-    public UObject.FLinearColor TextColor;
-    public UObject.FLinearColor ImageColor;
+    public UObject.FLinearColor TextColor = new();
+    public UObject.FLinearColor ImageColor = new();
     public float[] TextPadding = new float[2];
     public float[] ImagePadding = new float[2];
     public UFont DrawFont;
     public USurface FallbackImage;
-    public UUIRoot.FTextureCoordinates AtlasCoords;
-    public UUIRoot.FUITextAttributes TextAttributes;
+    public UUIRoot.FTextureCoordinates AtlasCoords = new();
+    public UUIRoot.FUITextAttributes TextAttributes = new();
     public EUIAlignment[] TextAlignment = new EUIAlignment[2];
     public ETextClipMode TextClipMode;
     public EUIAlignment TextClipAlignment;
     public UUIRoot.FUIImageAdjustmentData[] AdjustmentType = new UUIRoot.FUIImageAdjustmentData[2];
-    public UUIRoot.FTextAutoScaleValue TextAutoScaling;
-    public UObject.FVector2D TextScale;
-    public UObject.FVector2D TextSpacingAdjust;
+    public UUIRoot.FTextAutoScaleValue TextAutoScaling = new();
+    public UObject.FVector2D TextScale = new();
+    public UObject.FVector2D TextSpacingAdjust = new();
     public bool bInitialized;
   }
 
@@ -7060,33 +7060,33 @@ public partial class UUIRoot : UObject
       public List<UFont> InlineFontStack;
     }
 
-    public UUIRoot.FUICombinedStyleData CustomStyleData;
-    public UUIRoot.FUICombinedStyleData BaseStyleData;
+    public UUIRoot.FUICombinedStyleData CustomStyleData = new();
+    public UUIRoot.FUICombinedStyleData BaseStyleData = new();
     public List<FModifierData> ModifierStack;
     public UUIState CurrentMenuState;
   }
 
   public class FUIStringNode
   {
-    public UObject.FPointer VfTable;
+    public UObject.FPointer VfTable = new();
     public UUIDataStore NodeDataStore;
-    public UObject.FPointer ParentNode;
+    public UObject.FPointer ParentNode = new();
     public string SourceText;
-    public UObject.FVector2D Extent;
-    public UObject.FVector2D Scaling;
+    public UObject.FVector2D Extent = new();
+    public UObject.FVector2D Scaling = new();
     public bool bForceWrap;
   }
 
   public class FUIStringNode_Text : FUIStringNode
   {
     public string RenderedText;
-    public UUIRoot.FUICombinedStyleData NodeStyleParameters;
+    public UUIRoot.FUICombinedStyleData NodeStyleParameters = new();
   }
 
   public class FUIStringNode_Image : FUIStringNode
   {
-    public UObject.FVector2D ForcedExtent;
-    public UUIRoot.FTextureCoordinates TexCoords;
+    public UObject.FVector2D ForcedExtent = new();
+    public UUIRoot.FTextureCoordinates TexCoords = new();
     public UUITexture RenderedImage;
   }
 
@@ -7101,7 +7101,7 @@ public partial class UUIRoot : UObject
   public class FWrappedStringElement
   {
     public string Value;
-    public UObject.FVector2D LineExtent;
+    public UObject.FVector2D LineExtent = new();
   }
 
   public class FUIMouseCursor
@@ -7156,7 +7156,7 @@ public partial class UUIRoot : UObject
 
   public class FUIInputAliasMap
   {
-    public UObject.FMultiMap_Mirror InputAliasLookupTable;
+    public UObject.FMultiMap_Mirror InputAliasLookupTable = new();
   }
 
   public class FUIInputAliasStateMap
@@ -7230,7 +7230,7 @@ public class UConsole : UInteraction
   public List<FAutoCompleteCommand> ManualAutoCompleteList;
   public List<FAutoCompleteCommand> AutoCompleteList;
   public int AutoCompleteIndex;
-  public FAutoCompleteNode AutoCompleteTree;
+  public FAutoCompleteNode AutoCompleteTree = new();
   public List<int> AutoCompleteIndices;
 }
 
@@ -7245,10 +7245,10 @@ public class UUIAnimation : UUIRoot
   public class FUIAnimationRawData
   {
     public float DestAsFloat;
-    public UObject.FLinearColor DestAsColor;
-    public UObject.FRotator DestAsRotator;
-    public UObject.FVector DestAsVector;
-    public UUIAnimation.FUIAnimationNotify DestAsNotify;
+    public UObject.FLinearColor DestAsColor = new();
+    public UObject.FRotator DestAsRotator = new();
+    public UObject.FVector DestAsVector = new();
+    public UUIAnimation.FUIAnimationNotify DestAsNotify = new();
   }
 
   public class FUIAnimationKeyFrame
@@ -7256,7 +7256,7 @@ public class UUIAnimation : UUIRoot
     public float RemainingTime;
     public EUIAnimationInterpMode InterpMode;
     public float InterpExponent;
-    public UUIAnimation.FUIAnimationRawData Data;
+    public UUIAnimation.FUIAnimationRawData Data = new();
   }
 
   public class FUIAnimTrack
@@ -7278,7 +7278,7 @@ public class UUIAnimation : UUIRoot
 
 public class UUIScreenObject : UUIRoot
 {
-  public FUIScreenValue_Bounds Position;
+  public FUIScreenValue_Bounds Position = new();
   public float ZDepth;
   public bool bHidden;
   public bool bInitialized;
@@ -7336,30 +7336,30 @@ public class UUIComp_Event : UUIComponent
 
 public class UUIObject : UUIScreenObject
 {
-  public FWIDGET_ID WidgetID;
+  public FWIDGET_ID WidgetID = new();
   public FName WidgetTag;
   public UUIObject Owner;
   public UUIScene OwnerScene;
-  public FUIStyleReference PrimaryStyle;
+  public FUIStyleReference PrimaryStyle = new();
   public byte PlayerInputMask;
   public EUIPostProcessGroup MaskPostProcess;
-  public FUINavigationData NavigationTargets;
+  public FUINavigationData NavigationTargets = new();
   public int TabIndex;
-  public FUIDockingSet DockTargets;
+  public FUIDockingSet DockTargets = new();
   public float[] RenderBounds = new float[4];
   public FVector2D[] RenderBoundsVertices = new FVector2D[4];
-  public FUIRotation Rotation;
-  public FVector RenderOffset;
+  public FUIRotation Rotation = new();
+  public FVector RenderOffset = new();
   public int PrivateFlags;
-  public FUIDataStoreBinding ToolTip;
-  public FUIDataStoreBinding ContextMenuData;
+  public FUIDataStoreBinding ToolTip = new();
+  public FUIDataStoreBinding ContextMenuData = new();
   public UUIObject AnimationParent;
   public List<FScriptInterface> StyleSubscribers;
   public bool bEnableActiveCursorUpdates;
   public bool bSupportsPrimaryStyle;
   public bool bEnableSceneUpdateNotifications;
   public bool bDebugShowBounds;
-  public FColor DebugBoundsColor;
+  public FColor DebugBoundsColor = new();
   public FScriptDelegate __OnCreate__Delegate;
   public FScriptDelegate __OnPreSceneUpdate__Delegate;
   public FScriptDelegate __OnPostSceneUpdate__Delegate;
@@ -7420,7 +7420,7 @@ public class UUIComp_DrawComponents : UUIComponent
 
 public class UUIComp_DrawString : UUIComp_DrawComponents
 {
-  public FPointer VfTable_IUIStyleResolver;
+  public FPointer VfTable_IUIStyleResolver = new();
   public FScriptInterface SubscriberOwner;
   public FName StyleResolverTag;
   public UUIString ValueString;
@@ -7430,37 +7430,37 @@ public class UUIComp_DrawString : UUIComp_DrawComponents
   public bool bAllowBoundsAdjustment;
   public bool bRefreshString;
   public bool bReapplyFormatting;
-  public FVector2D DropShadowOffset;
-  public FLinearColor DropShadowColor;
+  public FVector2D DropShadowOffset = new();
+  public FLinearColor DropShadowColor = new();
   public UUIRoot.FAutoSizeData[] AutoSizeParameters = new UUIRoot.FAutoSizeData[2];
   public UUIRoot.FUIRenderingSubregion[] ClampRegion = new UUIRoot.FUIRenderingSubregion[2];
-  public UUIRoot.FUITextStyleOverride TextStyleCustomization;
-  public UUIRoot.FUIStyleReference StringStyle;
+  public UUIRoot.FUITextStyleOverride TextStyleCustomization = new();
+  public UUIRoot.FUIStyleReference StringStyle = new();
 }
 
 public class UUILabel : UUIObject
 {
-  public FPointer VfTable_IUIDataStoreSubscriber;
-  public FPointer VfTable_IUIStringRenderer;
-  public FUIDataStoreBinding DataSource;
+  public FPointer VfTable_IUIDataStoreSubscriber = new();
+  public FPointer VfTable_IUIStringRenderer = new();
+  public FUIDataStoreBinding DataSource = new();
   public UUIComp_DrawString StringRenderComponent;
   public UUIComp_DrawImage LabelBackground;
 }
 
 public class UUIComp_DrawImage : UUIComp_DrawComponents
 {
-  public FPointer VfTable_IUIStyleResolver;
-  public FPointer VfTable_ICustomPropertyItemHandler;
+  public FPointer VfTable_IUIStyleResolver = new();
+  public FPointer VfTable_ICustomPropertyItemHandler = new();
   public FName StyleResolverTag;
   public UUITexture ImageRef;
-  public UUIRoot.FUIImageStyleOverride StyleCustomization;
-  public UUIRoot.FUIStyleReference ImageStyle;
+  public UUIRoot.FUIImageStyleOverride StyleCustomization = new();
+  public UUIRoot.FUIStyleReference ImageStyle = new();
 }
 
 public class UUIImage : UUIObject
 {
-  public FPointer VfTable_IUIDataStorePublisher;
-  public FUIDataStoreBinding ImageDataSource;
+  public FPointer VfTable_IUIDataStorePublisher = new();
+  public FUIDataStoreBinding ImageDataSource = new();
   public UUIComp_DrawImage ImageComponent;
 }
 
@@ -7473,11 +7473,11 @@ public class UUIComp_DrawStringEditbox : UUIComp_DrawString
   }
 
   public string UserText;
-  public UUIRoot.FUIStringCaretParameters StringCaret;
-  public FUIStringSelectionRegion SelectionRegion;
-  public FLinearColor SelectionTextColor;
-  public FLinearColor SelectionBackgroundColor;
-  public FPointer CaretNode;
+  public UUIRoot.FUIStringCaretParameters StringCaret = new();
+  public FUIStringSelectionRegion SelectionRegion = new();
+  public FLinearColor SelectionTextColor = new();
+  public FLinearColor SelectionBackgroundColor = new();
+  public FPointer CaretNode = new();
   public int FirstCharacterPosition;
   public bool bRecalculateFirstCharacter;
   public float CaretOffset;
@@ -7485,8 +7485,8 @@ public class UUIComp_DrawStringEditbox : UUIComp_DrawString
 
 public class UUIEditBox : UUIObject
 {
-  public FPointer VfTable_IUIDataStorePublisher;
-  public FUIDataStoreBinding DataSource;
+  public FPointer VfTable_IUIDataStorePublisher = new();
+  public FUIDataStoreBinding DataSource = new();
   public UUIComp_DrawStringEditbox StringRenderComponent;
   public UUIComp_DrawImage BackgroundImageComponent;
   public string InitialValue;
@@ -7539,20 +7539,20 @@ public partial class ACoverLink : ANavigationPoint
 
   public class FDynamicLinkInfo
   {
-    public UObject.FVector LastTargetLocation;
-    public UObject.FVector LastSrcLocation;
+    public UObject.FVector LastTargetLocation = new();
+    public UObject.FVector LastSrcLocation = new();
   }
 
   public class FExposedLink
   {
-    public ACoverLink.FCoverReference TargetActor;
+    public ACoverLink.FCoverReference TargetActor = new();
     public byte ExposedScale;
   }
 
   public class FSlotMoveRef
   {
-    public APylon.FPolyReference Poly;
-    public AActor.FBasedPosition Dest;
+    public APylon.FPolyReference Poly = new();
+    public AActor.FBasedPosition Dest = new();
     public int Direction;
   }
 
@@ -7563,8 +7563,8 @@ public partial class ACoverLink : ANavigationPoint
     public ECoverType ForceCoverType;
     public ECoverType CoverType;
     public ECoverLocationDescription LocationDescription;
-    public UObject.FVector LocationOffset;
-    public UObject.FRotator RotationOffset;
+    public UObject.FVector LocationOffset = new();
+    public UObject.FRotator RotationOffset = new();
     public List<ECoverAction> Actions;
     public List<ACoverLink.FFireLink> FireLinks;
     public List<ACoverLink.FFireLink> RejectedFireLinks;
@@ -7615,9 +7615,9 @@ public partial class ACoverLink : ANavigationPoint
     public int LtSlotIdx;
     public int RtSlotIdx;
     public float LtToRtPct;
-    public UObject.FVector Location;
-    public UObject.FVector Normal;
-    public UObject.FVector Tangent;
+    public UObject.FVector Location = new();
+    public UObject.FVector Normal = new();
+    public UObject.FVector Tangent = new();
   }
 
   public bool GLOBAL_bUseSlotMarkers;
@@ -7640,15 +7640,15 @@ public partial class ACoverLink : ANavigationPoint
   public List<APawn> Claims;
   public float InvalidateDistance;
   public float MaxFireLinkDist;
-  public FVector CircularOrigin;
+  public FVector CircularOrigin = new();
   public float CircularRadius;
   public float AlignDist;
   public float AutoCoverSlotInterval;
   public float StandHeight;
   public float MidHeight;
-  public FVector StandingLeanOffset;
-  public FVector CrouchLeanOffset;
-  public FVector PopupOffset;
+  public FVector StandingLeanOffset = new();
+  public FVector CrouchLeanOffset = new();
+  public FVector PopupOffset = new();
   public float SlipDist;
   public float TurnDist;
   public float DangerScale;
@@ -7662,8 +7662,8 @@ public partial class UStaticMeshComponent : UMeshComponent
   {
     public List<UShadowMap2D> ShadowMaps;
     public List<UShadowMap1D> ShadowVertexBuffers;
-    public UEngineTypes.FLightMap LightMap;
-    public UStaticMesh.FColorVertexBuffer OverrideVertexColors;
+    public UEngineTypes.FLightMap LightMap = new();
+    public UStaticMesh.FColorVertexBuffer OverrideVertexColors = new();
   }
 
   public class FLODMaterialInfo
@@ -7674,7 +7674,7 @@ public partial class UStaticMeshComponent : UMeshComponent
   public int ForcedLodModel;
   public int PreviousLODLevel;
   public UStaticMesh StaticMesh;
-  public FColor WireframeColor;
+  public FColor WireframeColor = new();
   public bool bIgnoreInstanceForTextureStreaming;
   public bool bOverrideLightMapResolution;
   public bool bOverrideLightMapRes;
@@ -7688,7 +7688,7 @@ public partial class UStaticMeshComponent : UMeshComponent
   public List<FGuid> IrrelevantLights;
   public List<FStaticMeshComponentLODInfo> LODData;
   public List<FLODMaterialInfo> LODMaterials;
-  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
+  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings = new();
   public int StaticMeshComponentID;
 }
 
@@ -7712,7 +7712,7 @@ public class UCoverMeshComponent : UStaticMeshComponent
   }
 
   public List<FCoverMeshes> Meshes;
-  public FVector LocationOffset;
+  public FVector LocationOffset = new();
   public UStaticMesh AutoAdjustOn;
   public UStaticMesh AutoAdjustOff;
   public UStaticMesh Disabled;
@@ -7754,7 +7754,7 @@ public class UCoverSlipReachSpec : UForcedReachSpec
 
 public class ACrowdAgentBase : AActor
 {
-  public FPointer VfTable_IInterface_NavigationHandle;
+  public FPointer VfTable_IInterface_NavigationHandle = new();
 }
 
 public class ACrowdPopulationManagerBase : AActor
@@ -7808,8 +7808,8 @@ public class UCurrentGameDataStore : UUIDataStore_GameState
     public UClass TeamDataProviderClass;
   }
 
-  public FPointer VfTable_IUIListElementProvider;
-  public FGameDataProviderTypes ProviderTypes;
+  public FPointer VfTable_IUIListElementProvider = new();
+  public FGameDataProviderTypes ProviderTypes = new();
   public UGameInfoDataProvider GameData;
   public List<UPlayerDataProvider> PlayerData;
   public List<UTeamDataProvider> TeamData;
@@ -7826,7 +7826,7 @@ public class UUIPropertyDataProvider : UUIDataProvider
 
 public class UUIDynamicDataProvider : UUIPropertyDataProvider
 {
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public UClass DataClass;
   public UObject DataSource;
 }
@@ -7932,7 +7932,7 @@ public class AHUD : AActor
   public class FConsoleMessage
   {
     public string Text;
-    public UObject.FColor TextColor;
+    public UObject.FColor TextColor = new();
     public float MessageLife;
     public APlayerReplicationInfo PRI;
   }
@@ -7945,7 +7945,7 @@ public class AHUD : AActor
     public float EndOfLife;
     public float Lifetime;
     public float PosY;
-    public UObject.FColor DrawColor;
+    public UObject.FColor DrawColor = new();
     public int FontSize;
     public UFont StringFont;
     public float DX;
@@ -7959,15 +7959,15 @@ public class AHUD : AActor
   {
     public string MessageText;
     public UFont MessageFont;
-    public UObject.FVector2D MessageFontScale;
-    public UObject.FVector2D MessageOffset;
-    public UObject.FColor MessageColor;
+    public UObject.FVector2D MessageFontScale = new();
+    public UObject.FVector2D MessageOffset = new();
+    public UObject.FColor MessageColor = new();
     public float MessageEndTime;
   }
 
-  public FColor WhiteColor;
-  public FColor GreenColor;
-  public FColor RedColor;
+  public FColor WhiteColor = new();
+  public FColor GreenColor = new();
+  public FColor RedColor = new();
   public APlayerController PlayerOwner;
   public AScoreBoard ScoreBoard;
   public bool bLostFocusPaused;
@@ -7982,7 +7982,7 @@ public class AHUD : AActor
   public float HudCanvasScale;
   public List<AActor> PostRenderedActors;
   public List<FConsoleMessage> ConsoleMessages;
-  public FColor ConsoleColor;
+  public FColor ConsoleColor = new();
   public int ConsoleMessageCount;
   public int ConsoleFontSize;
   public int MessageFontOffset;
@@ -8099,15 +8099,15 @@ public partial class UDecalComponent : UPrimitiveComponent
   public class FDecalReceiver
   {
     public UPrimitiveComponent Component;
-    public UObject.FPointer RenderData;
+    public UObject.FPointer RenderData = new();
   }
 
   public class FDecalVertex
   {
-    public UObject.FVector2D LightMapCoordinate;
-    public UObject.FVector Position;
-    public UObject.FPackedNormal TangentX;
-    public UObject.FPackedNormal TangentZ;
+    public UObject.FVector2D LightMapCoordinate = new();
+    public UObject.FVector Position = new();
+    public UObject.FPackedNormal TangentX = new();
+    public UObject.FPackedNormal TangentZ = new();
   }
 
   public partial class FStaticReceiverData : ISerialisable
@@ -8116,7 +8116,7 @@ public partial class UDecalComponent : UPrimitiveComponent
     public int Data;
     public List<ushort> Indices;
     public int InstanceIndex;
-    public UEngineTypes.FLightMap LightMap1D;
+    public UEngineTypes.FLightMap LightMap1D = new();
     public uint NumTriangles;
     public List<UShadowMap1D> ShadowMap1D;
     public List<UDecalComponent.FDecalVertex> Vertices;
@@ -8133,12 +8133,12 @@ public partial class UDecalComponent : UPrimitiveComponent
   public float FieldOfView;
   public float NearPlane;
   public float FarPlane;
-  public FVector Location;
-  public FRotator Orientation;
-  public FVector HitLocation;
-  public FVector HitNormal;
-  public FVector HitTangent;
-  public FVector HitBinormal;
+  public FVector Location = new();
+  public FRotator Orientation = new();
+  public FVector HitLocation = new();
+  public FVector HitNormal = new();
+  public FVector HitTangent = new();
+  public FVector HitBinormal = new();
   public bool bNoClip;
   public bool bStaticDecal;
   public bool bProjectOnBackfaces;
@@ -8158,21 +8158,21 @@ public partial class UDecalComponent : UPrimitiveComponent
   public List<int> HitNodeIndices;
   public List<FDecalReceiver> DecalReceivers;
   public List<FStaticReceiverData> StaticReceivers;
-  public FPointer ReleaseResourcesFence;
+  public FPointer ReleaseResourcesFence = new();
   public List<FPlane> Planes;
   public float DepthBias;
   public float SlopeScaleDepthBias;
   public int SortOrder;
   public float BackfaceAngle;
-  public FVector2D BlendRange;
+  public FVector2D BlendRange = new();
   public EDecalTransform DecalTransform;
   public EFilterMode FilterMode;
   public List<AActor> Filter;
   public List<UPrimitiveComponent> ReceiverImages;
-  public FVector ParentRelativeLocation;
-  public FRotator ParentRelativeOrientation;
-  public FVector OriginalParentRelativeLocation;
-  public FVector OriginalParentRelativeOrientationVec;
+  public FVector ParentRelativeLocation = new();
+  public FRotator ParentRelativeOrientation = new();
+  public FVector OriginalParentRelativeLocation = new();
+  public FVector OriginalParentRelativeOrientationVec = new();
 }
 
 public class ADecalActorBase : AActor
@@ -8201,7 +8201,7 @@ public class ADecalManager : AActor
   public int MaxActiveDecals;
   public float DecalLifeSpan;
   public float DecalDepthBias;
-  public FVector2D DecalBlendRange;
+  public FVector2D DecalBlendRange = new();
   public List<FActiveDecalInfo> ActiveDecals;
 }
 
@@ -8224,7 +8224,7 @@ public partial class UMaterialInterface : USurface
   public class FStaticSwitchParameter
   {
     public bool bOverride;
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FGuid ExpressionGUID = new();
     public FName ParameterName;
     public bool Value;
   }
@@ -8234,7 +8234,7 @@ public partial class UMaterialInterface : USurface
     public uint A;
     public uint B;
     public bool bOverride;
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FGuid ExpressionGUID = new();
     public uint G;
     public FName ParameterName;
     public uint R;
@@ -8244,21 +8244,21 @@ public partial class UMaterialInterface : USurface
   {
     public bool bOverride;
     public byte CompressionSettings;
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FGuid ExpressionGUID = new();
     public FName ParameterName;
   }
 
   public class FStaticTerrainLayerWeightParameter
   {
     public bool bOverride;
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FGuid ExpressionGUID = new();
     public FName ParameterName;
     public int WeightmapIndex;
   }
 
   public partial class FStaticParameterSet : ISerialisable
   {
-    public UObject.FGuid BaseMaterialId;
+    public UObject.FGuid BaseMaterialId = new();
     public List<UMaterialInterface.FNormalParameter> NormalParameters;
     public List<UMaterialInterface.FStaticComponentMaskParameter> StaticComponentMaskParameters;
     public List<UMaterialInterface.FStaticSwitchParameter> StaticSwitchParameters;
@@ -8272,99 +8272,99 @@ public partial class UMaterialInterface : USurface
 
   public class FMaterialUniformExpressionRef
   {
-    public ulong Index;
+    public ulong Index = new();
   }
 
   public class FMaterialUniformExpressionAbs : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef X;
+    public UMaterialInterface.FMaterialUniformExpressionRef X = new();
   }
 
   public class FMaterialUniformExpressionCeil : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef X;
+    public UMaterialInterface.FMaterialUniformExpressionRef X = new();
   }
 
   public class FMaterialUniformExpressionClamp : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef Input;
-    public UMaterialInterface.FMaterialUniformExpressionRef Max;
-    public UMaterialInterface.FMaterialUniformExpressionRef Min;
+    public UMaterialInterface.FMaterialUniformExpressionRef Input = new();
+    public UMaterialInterface.FMaterialUniformExpressionRef Max = new();
+    public UMaterialInterface.FMaterialUniformExpressionRef Min = new();
   }
 
   public class FMaterialUniformExpressionFloor : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef X;
+    public UMaterialInterface.FMaterialUniformExpressionRef X = new();
   }
 
   public class FMaterialUniformExpressionFmod : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef A;
-    public UMaterialInterface.FMaterialUniformExpressionRef B;
+    public UMaterialInterface.FMaterialUniformExpressionRef A = new();
+    public UMaterialInterface.FMaterialUniformExpressionRef B = new();
   }
 
   public class FMaterialUniformExpressionFrac : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef X;
+    public UMaterialInterface.FMaterialUniformExpressionRef X = new();
   }
 
   public class FMaterialUniformExpressionMin : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef A;
-    public UMaterialInterface.FMaterialUniformExpressionRef B;
+    public UMaterialInterface.FMaterialUniformExpressionRef A = new();
+    public UMaterialInterface.FMaterialUniformExpressionRef B = new();
   }
 
   public class FMaterialUniformExpressionMax : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef A;
-    public UMaterialInterface.FMaterialUniformExpressionRef B;
+    public UMaterialInterface.FMaterialUniformExpressionRef A = new();
+    public UMaterialInterface.FMaterialUniformExpressionRef B = new();
   }
 
   public class FMaterialUniformExpressionSine : FMaterialUniformExpression
   {
     public bool bIsCosine;
-    public UMaterialInterface.FMaterialUniformExpressionRef X;
+    public UMaterialInterface.FMaterialUniformExpressionRef X = new();
   }
 
   public class FMaterialUniformExpressionSquareRoot : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef X;
+    public UMaterialInterface.FMaterialUniformExpressionRef X = new();
   }
 
   public class FMaterialUniformExpressionAppendVector : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef A;
-    public UMaterialInterface.FMaterialUniformExpressionRef B;
+    public UMaterialInterface.FMaterialUniformExpressionRef A = new();
+    public UMaterialInterface.FMaterialUniformExpressionRef B = new();
     public uint NumComponentsA;
   }
 
   public class FMaterialUniformExpressionVectorParameter : FMaterialUniformExpression
   {
-    public UObject.FLinearColor DefaultValue;
+    public UObject.FLinearColor DefaultValue = new();
     public FName ParameterName;
   }
 
   public class FMaterialUniformExpressionConstant : FMaterialUniformExpression
   {
-    public UObject.FLinearColor Value;
+    public UObject.FLinearColor Value = new();
     public byte ValueType;
   }
 
   public class FMaterialUniformExpressionFoldedMath : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef A;
-    public UMaterialInterface.FMaterialUniformExpressionRef B;
+    public UMaterialInterface.FMaterialUniformExpressionRef A = new();
+    public UMaterialInterface.FMaterialUniformExpressionRef B = new();
     public byte Op;
   }
 
   public class FMaterialUniformExpressionLength : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef X;
+    public UMaterialInterface.FMaterialUniformExpressionRef X = new();
   }
 
   public class FMaterialUniformExpressionPeriodic : FMaterialUniformExpression
   {
-    public UMaterialInterface.FMaterialUniformExpressionRef X;
+    public UMaterialInterface.FMaterialUniformExpressionRef X = new();
   }
 
   public class FMaterialUniformExpressionRealTime : FMaterialUniformExpression
@@ -8404,15 +8404,15 @@ public partial class UMaterialInterface : USurface
 
   public class FUniformExpressionSet
   {
-    public UMaterialInterface.FShaderFrequencyUniformExpressions PixelExpressions;
-    public UMaterialInterface.FShaderFrequencyUniformExpressions UniformCubeTextureExpressions;
-    public UMaterialInterface.FShaderFrequencyUniformExpressions VertexExpressions;
+    public UMaterialInterface.FShaderFrequencyUniformExpressions PixelExpressions = new();
+    public UMaterialInterface.FShaderFrequencyUniformExpressions UniformCubeTextureExpressions = new();
+    public UMaterialInterface.FShaderFrequencyUniformExpressions VertexExpressions = new();
   }
 
-  public FRenderCommandFence_Mirror ParentRefFence;
-  public FLightmassMaterialInterfaceSettings LightmassSettings;
+  public FRenderCommandFence_Mirror ParentRefFence = new();
+  public FLightmassMaterialInterfaceSettings LightmassSettings = new();
   public string PreviewMesh;
-  public FGuid LightingGuid;
+  public FGuid LightingGuid = new();
   public UTexture FlattenedTexture;
 }
 
@@ -8432,7 +8432,7 @@ public partial class UMaterial : UMaterialInterface
   public class FColorMaterialInput : FMaterialInput
   {
     public bool UseConstant;
-    public UObject.FColor Constant;
+    public UObject.FColor Constant = new();
   }
 
   public class FScalarMaterialInput : FMaterialInput
@@ -8444,7 +8444,7 @@ public partial class UMaterial : UMaterialInterface
   public class FVectorMaterialInput : FMaterialInput
   {
     public bool UseConstant;
-    public UObject.FVector Constant;
+    public UObject.FVector Constant = new();
   }
 
   public class FVector2MaterialInput : FMaterialInput
@@ -8460,24 +8460,24 @@ public partial class UMaterial : UMaterialInterface
   public int PhysMaterialMaskUVChannel;
   public UPhysicalMaterial BlackPhysicalMaterial;
   public UPhysicalMaterial WhitePhysicalMaterial;
-  public FColorMaterialInput DiffuseColor;
-  public FScalarMaterialInput DiffusePower;
-  public FColorMaterialInput SpecularColor;
-  public FScalarMaterialInput SpecularPower;
-  public FVectorMaterialInput Normal;
-  public FColorMaterialInput EmissiveColor;
-  public FScalarMaterialInput Opacity;
-  public FScalarMaterialInput OpacityMask;
+  public FColorMaterialInput DiffuseColor = new();
+  public FScalarMaterialInput DiffusePower = new();
+  public FColorMaterialInput SpecularColor = new();
+  public FScalarMaterialInput SpecularPower = new();
+  public FVectorMaterialInput Normal = new();
+  public FColorMaterialInput EmissiveColor = new();
+  public FScalarMaterialInput Opacity = new();
+  public FScalarMaterialInput OpacityMask = new();
   public float OpacityMaskClipValue;
-  public FVector2MaterialInput Distortion;
+  public FVector2MaterialInput Distortion = new();
   public EBlendMode BlendMode;
   public EMaterialLightingModel LightingModel;
-  public FColorMaterialInput CustomLighting;
-  public FColorMaterialInput CustomSkylightDiffuse;
-  public FVectorMaterialInput AnisotropicDirection;
-  public FScalarMaterialInput TwoSidedLightingMask;
-  public FColorMaterialInput TwoSidedLightingColor;
-  public FVectorMaterialInput WorldPositionOffset;
+  public FColorMaterialInput CustomLighting = new();
+  public FColorMaterialInput CustomSkylightDiffuse = new();
+  public FVectorMaterialInput AnisotropicDirection = new();
+  public FScalarMaterialInput TwoSidedLightingMask = new();
+  public FColorMaterialInput TwoSidedLightingColor = new();
+  public FVectorMaterialInput WorldPositionOffset = new();
   public bool EnableSkinSubsurfaceScattering;
   public bool TwoSided;
   public bool TwoSidedSeparatePass;
@@ -8549,7 +8549,7 @@ public class APhysicsVolume : AVolume
     public bool bPainCausing;
   }
 
-  public FVector ZoneVelocity;
+  public FVector ZoneVelocity = new();
   public bool bVelocityAffectsWalking;
   public bool bPainCausing;
   public bool bAIShouldIgnorePain;
@@ -8597,7 +8597,7 @@ public class UDirectionalLightComponent : ULightComponent
   public float WholeSceneDynamicShadowRadius;
   public int NumWholeSceneDynamicShadowCascades;
   public float CascadeDistributionExponent;
-  public UEngineTypes.FLightmassDirectionalLightSettings LightmassSettings;
+  public UEngineTypes.FLightmassDirectionalLightSettings LightmassSettings = new();
 }
 
 public class ADirectionalLight : ALight
@@ -8615,7 +8615,7 @@ public class UDistributionFloatConstant : UDistributionFloat
 
 public class UDistributionFloatConstantCurve : UDistributionFloat
 {
-  public FInterpCurveFloat ConstantCurve;
+  public FInterpCurveFloat ConstantCurve = new();
 }
 
 public class UDistributionFloatParameterBase : UDistributionFloatConstant
@@ -8638,19 +8638,19 @@ public class UDistributionFloatSoundParameter : UDistributionFloatParameterBase
 
 public class UDistributionFloatUniformCurve : UDistributionFloat
 {
-  public FInterpCurveVector2D ConstantCurve;
+  public FInterpCurveVector2D ConstantCurve = new();
 }
 
 public class UDistributionVectorConstant : UDistributionVector
 {
-  public FVector Constant;
+  public FVector Constant = new();
   public bool bLockAxes;
   public EDistributionVectorLockFlags LockedAxes;
 }
 
 public class UDistributionVectorConstantCurve : UDistributionVector
 {
-  public FInterpCurveVector ConstantCurve;
+  public FInterpCurveVector ConstantCurve = new();
   public bool bLockAxes;
   public EDistributionVectorLockFlags LockedAxes;
 }
@@ -8658,10 +8658,10 @@ public class UDistributionVectorConstantCurve : UDistributionVector
 public class UDistributionVectorParameterBase : UDistributionVectorConstant
 {
   public FName ParameterName;
-  public FVector MinInput;
-  public FVector MaxInput;
-  public FVector MinOutput;
-  public FVector MaxOutput;
+  public FVector MinInput = new();
+  public FVector MaxInput = new();
+  public FVector MinOutput = new();
+  public FVector MaxOutput = new();
   public DistributionParamMode[] ParamModes = new DistributionParamMode[3];
 }
 
@@ -8671,8 +8671,8 @@ public class UDistributionVectorParticleParameter : UDistributionVectorParameter
 
 public class UDistributionVectorUniform : UDistributionVector
 {
-  public FVector Max;
-  public FVector Min;
+  public FVector Max = new();
+  public FVector Min = new();
   public bool bLockAxes;
   public bool bUseExtremes;
   public EDistributionVectorLockFlags LockedAxes;
@@ -8681,7 +8681,7 @@ public class UDistributionVectorUniform : UDistributionVector
 
 public class UDistributionVectorUniformCurve : UDistributionVector
 {
-  public FInterpCurveTwoVectors ConstantCurve;
+  public FInterpCurveTwoVectors ConstantCurve = new();
   public bool bLockAxes1;
   public bool bLockAxes2;
   public bool bUseExtremes;
@@ -8729,7 +8729,7 @@ public class UDOFBloomMotionBlurEffect : UDOFAndBloomEffect
 
 public partial class UDominantDirectionalLightComponent : UDirectionalLightComponent
 {
-  public UEngineTypes.FDominantShadowInfo DominantLightShadowInfo;
+  public UEngineTypes.FDominantShadowInfo DominantLightShadowInfo = new();
   public List<ushort> DominantLightShadowMap;
 }
 
@@ -8748,10 +8748,10 @@ public class UPointLightComponent : ULightComponent
   public float FalloffExponent;
   public float ShadowFalloffExponent;
   public float MinShadowFalloffRadius;
-  public FMatrix CachedParentToWorld;
-  public FVector Translation;
+  public FMatrix CachedParentToWorld = new();
+  public FVector Translation = new();
   public UDrawLightRadiusComponent PreviewLightRadius;
-  public UEngineTypes.FLightmassPointLightSettings LightmassSettings;
+  public UEngineTypes.FLightmassPointLightSettings LightmassSettings = new();
   public UDrawLightRadiusComponent PreviewLightSourceRadius;
 }
 
@@ -8773,7 +8773,7 @@ public class USpotLightComponent : UPointLightComponent
   public float OuterConeAngle;
   public UDrawLightConeComponent PreviewInnerCone;
   public UDrawLightConeComponent PreviewOuterCone;
-  public FRotator Rotation;
+  public FRotator Rotation = new();
 }
 
 public class ASpotLight : ALight
@@ -8782,7 +8782,7 @@ public class ASpotLight : ALight
 
 public partial class UDominantSpotLightComponent : USpotLightComponent
 {
-  public UEngineTypes.FDominantShadowInfo DominantLightShadowInfo;
+  public UEngineTypes.FDominantShadowInfo DominantLightShadowInfo = new();
   public List<ushort> DominantLightShadowMap;
 }
 
@@ -8804,9 +8804,9 @@ public class ADoorMarker : ANavigationPoint
 
 public class UDrawBoxComponent : UPrimitiveComponent
 {
-  public FColor BoxColor;
+  public FColor BoxColor = new();
   public UMaterial BoxMaterial;
-  public FVector BoxExtent;
+  public FVector BoxExtent = new();
   public bool bDrawWireBox;
   public bool bDrawLitBox;
 }
@@ -8818,7 +8818,7 @@ public partial class UDrawBSPTreeComponent : UPrimitiveComponent
 
 public class UDrawCapsuleComponent : UPrimitiveComponent
 {
-  public FColor CapsuleColor;
+  public FColor CapsuleColor = new();
   public UMaterial CapsuleMaterial;
   public float CapsuleHeight;
   public float CapsuleRadius;
@@ -8828,7 +8828,7 @@ public class UDrawCapsuleComponent : UPrimitiveComponent
 
 public class UDrawConeComponent : UPrimitiveComponent
 {
-  public FColor ConeColor;
+  public FColor ConeColor = new();
   public float ConeRadius;
   public float ConeAngle;
   public int ConeSides;
@@ -8836,7 +8836,7 @@ public class UDrawConeComponent : UPrimitiveComponent
 
 public class UDrawCylinderComponent : UPrimitiveComponent
 {
-  public FColor CylinderColor;
+  public FColor CylinderColor = new();
   public UMaterial CylinderMaterial;
   public float CylinderRadius;
   public float CylinderTopRadius;
@@ -8849,7 +8849,7 @@ public class UDrawCylinderComponent : UPrimitiveComponent
 
 public class UDrawFrustumComponent : UPrimitiveComponent
 {
-  public FColor FrustumColor;
+  public FColor FrustumColor = new();
   public float FrustumAngle;
   public float FrustumAspectRatio;
   public float FrustumStartDist;
@@ -8863,7 +8863,7 @@ public class UDrawLightConeComponent : UDrawConeComponent
 
 public class UDrawSphereComponent : UPrimitiveComponent
 {
-  public FColor SphereColor;
+  public FColor SphereColor = new();
   public UMaterial SphereMaterial;
   public float SphereRadius;
   public int SphereSides;
@@ -8907,8 +8907,8 @@ public class ADynamicBlockingVolume : ABlockingVolume
 {
   public class FCheckpointRecord
   {
-    public UObject.FVector Location;
-    public UObject.FRotator Rotation;
+    public UObject.FVector Location = new();
+    public UObject.FRotator Rotation = new();
     public bool bCollideActors;
     public bool bBlockActors;
     public bool bNeedsReplication;
@@ -8940,11 +8940,11 @@ public class ADynamicSMActor : AActor
   public bool bForceStaticDecals;
   public bool bPawnCanBaseOn;
   public bool bSafeBaseIfAsleep;
-  public FVector ReplicatedMeshTranslation;
-  public FRotator ReplicatedMeshRotation;
-  public FVector ReplicatedMeshScale3D;
-  public FVector InitialLocation;
-  public FRotator InitialRotation;
+  public FVector ReplicatedMeshTranslation = new();
+  public FRotator ReplicatedMeshRotation = new();
+  public FVector ReplicatedMeshScale3D = new();
+  public FVector InitialLocation = new();
+  public FRotator InitialRotation = new();
 }
 
 public class ADynamicSMActor_Spawnable : ADynamicSMActor
@@ -8962,7 +8962,7 @@ public class ADynamicTriggerVolume : ATriggerVolume
 
 public class UEdCoordSystem : UObject
 {
-  public FMatrix M;
+  public FMatrix M = new();
   public string Desc;
 }
 
@@ -8977,8 +8977,8 @@ public class UParticleSystemComponent : UPrimitiveComponent
     public FName Name;
     public EParticleSysParamType ParamType;
     public float Scalar;
-    public UObject.FVector Vector;
-    public UObject.FColor Color;
+    public UObject.FVector Vector = new();
+    public UObject.FColor Color = new();
     public AActor Actor;
     public UMaterialInterface Material;
   }
@@ -8988,9 +8988,9 @@ public class UParticleSystemComponent : UPrimitiveComponent
     public int Type;
     public FName EventName;
     public float EmitterTime;
-    public UObject.FVector Location;
-    public UObject.FVector Direction;
-    public UObject.FVector Velocity;
+    public UObject.FVector Location = new();
+    public UObject.FVector Direction = new();
+    public UObject.FVector Velocity = new();
   }
 
   public class FParticleEventSpawnData : FParticleEventData
@@ -9005,7 +9005,7 @@ public class UParticleSystemComponent : UPrimitiveComponent
   public class FParticleEventCollideData : FParticleEventData
   {
     public float ParticleTime;
-    public UObject.FVector Normal;
+    public UObject.FVector Normal = new();
     public float Time;
     public int Item;
     public FName BoneName;
@@ -9014,7 +9014,7 @@ public class UParticleSystemComponent : UPrimitiveComponent
   public class FParticleEventKismetData : FParticleEventData
   {
     public bool UsePSysCompLocation;
-    public UObject.FVector Normal;
+    public UObject.FVector Normal = new();
   }
 
   public class FParticleEmitterInstance
@@ -9023,12 +9023,12 @@ public class UParticleSystemComponent : UPrimitiveComponent
 
   public class FParticleEmitterInstanceMotionBlurInfo
   {
-    public UObject.FMap_Mirror ParticleMBInfoMap;
+    public UObject.FMap_Mirror ParticleMBInfoMap = new();
   }
 
   public class FViewParticleEmitterInstanceMotionBlurInfo
   {
-    public UObject.FMap_Mirror EmitterInstanceMBInfoMap;
+    public UObject.FMap_Mirror EmitterInstanceMBInfoMap = new();
   }
 
   public UParticleSystem Template;
@@ -9061,8 +9061,8 @@ public class UParticleSystemComponent : UPrimitiveComponent
   public bool bForceLODUpdateByDistance;
   public bool bForceUpdateWhenNotRendered;
   public List<FParticleSysParam> InstanceParameters;
-  public FVector OldPosition;
-  public FVector PartSysVelocity;
+  public FVector OldPosition = new();
+  public FVector PartSysVelocity = new();
   public float WarmupTime;
   public int LODLevel;
   public float SecondsBeforeInactive;
@@ -9081,7 +9081,7 @@ public class UParticleSystemComponent : UPrimitiveComponent
   public List<FParticleEventDeathData> DeathEvents;
   public List<FParticleEventCollideData> CollisionEvents;
   public List<FParticleEventKismetData> KismetEvents;
-  public FPointer ReleaseResourcesFence;
+  public FPointer ReleaseResourcesFence = new();
   public float CustomTimeDilation;
   public float EmitterDelay;
   public float TickTime;
@@ -9101,8 +9101,8 @@ public class AEmitter : AActor
   public bool bPostUpdateTickGroup;
   public bool bCurrentlyActive;
   public bool bForceUpdateLastRenderTime;
-  public FVector InitialLocation;
-  public FRotator InitialRotation;
+  public FVector InitialLocation = new();
+  public FRotator InitialRotation = new();
 }
 
 public class AEmitterCameraLensEffectBase : AEmitter
@@ -9121,8 +9121,8 @@ public class AEmitterPool : AActor
   {
     public UParticleSystemComponent PSC;
     public AActor Base;
-    public UObject.FVector RelativeLocation;
-    public UObject.FRotator RelativeRotation;
+    public UObject.FVector RelativeLocation = new();
+    public UObject.FRotator RelativeRotation = new();
     public bool bInheritBaseScale;
   }
 
@@ -9151,7 +9151,7 @@ public class UEngine : USubsystem
   public class FStatColorMapEntry
   {
     public float In;
-    public UObject.FColor Out;
+    public UObject.FColor Out = new();
   }
 
   public class FStatColorMapping
@@ -9163,8 +9163,8 @@ public class UEngine : USubsystem
 
   public class FDropNoteInfo
   {
-    public UObject.FVector Location;
-    public UObject.FRotator Rotation;
+    public UObject.FVector Location = new();
+    public UObject.FRotator Rotation = new();
     public string Comment;
   }
 
@@ -9289,7 +9289,7 @@ public class UEngine : USubsystem
   public bool bDisableAILogging;
   public bool bNoWantTick;
   public float MaxRMSDForCombiningMappings;
-  public FLinearColor LightingOnlyBrightness;
+  public FLinearColor LightingOnlyBrightness = new();
   public List<FColor> LightComplexityColors;
   public List<FLinearColor> ShaderComplexityColors;
   public float MaxPixelShaderAdditiveComplexityCount;
@@ -9301,8 +9301,8 @@ public class UEngine : USubsystem
   public float MaxLightMapDensity;
   public float RenderLightMapDensityGrayscaleScale;
   public float RenderLightMapDensityColorScale;
-  public FLinearColor LightMapDensityVertexMappedColor;
-  public FLinearColor LightMapDensitySelectedColor;
+  public FLinearColor LightMapDensityVertexMappedColor = new();
+  public FLinearColor LightMapDensitySelectedColor = new();
   public List<FStatColorMapping> StatColorMappings;
   public UMaterial EditorBrushMaterial;
   public string EditorBrushMaterialName;
@@ -9365,21 +9365,21 @@ public class UEngine : USubsystem
   public float MaxSmoothedFrameRate;
   public float MinSmoothedFrameRate;
   public UDebugManager DebugManager;
-  public FPointer RemoteControlExec;
-  public FPointer MobileMaterialEmulator;
-  public FColor C_WorldBox;
-  public FColor C_BrushWire;
-  public FColor C_AddWire;
-  public FColor C_SubtractWire;
-  public FColor C_SemiSolidWire;
-  public FColor C_NonSolidWire;
-  public FColor C_WireBackground;
-  public FColor C_ScaleBoxHi;
-  public FColor C_VolumeCollision;
-  public FColor C_BSPCollision;
-  public FColor C_OrthoBackground;
-  public FColor C_Volume;
-  public FColor C_BrushShape;
+  public FPointer RemoteControlExec = new();
+  public FPointer MobileMaterialEmulator = new();
+  public FColor C_WorldBox = new();
+  public FColor C_BrushWire = new();
+  public FColor C_AddWire = new();
+  public FColor C_SubtractWire = new();
+  public FColor C_SemiSolidWire = new();
+  public FColor C_NonSolidWire = new();
+  public FColor C_WireBackground = new();
+  public FColor C_ScaleBoxHi = new();
+  public FColor C_VolumeCollision = new();
+  public FColor C_BSPCollision = new();
+  public FColor C_OrthoBackground = new();
+  public FColor C_Volume = new();
+  public FColor C_BrushShape = new();
   public float StreamingDistanceFactor;
   public string ScoutClassName;
   public ETransitionType TransitionType;
@@ -9405,9 +9405,9 @@ public class UEngine : USubsystem
   public float NetClientTicksPerSecond;
   public float MaxTrackedOcclusionIncrement;
   public float TrackedOcclusionStepSize;
-  public FLinearColor DefaultSelectedMaterialColor;
-  public FLinearColor SelectedMaterialColor;
-  public FLinearColor UnselectedMaterialColor;
+  public FLinearColor DefaultSelectedMaterialColor = new();
+  public FLinearColor SelectedMaterialColor = new();
+  public FLinearColor UnselectedMaterialColor = new();
   public List<FName> IgnoreSimulatedFuncWarnings;
 }
 
@@ -9429,9 +9429,9 @@ public partial class UEngineTypes : UObject
 
   public class FDominantShadowInfo
   {
-    public UObject.FMatrix WorldToLight;
-    public UObject.FMatrix LightToWorld;
-    public UObject.FBox LightSpaceImportanceBounds;
+    public UObject.FMatrix WorldToLight = new();
+    public UObject.FMatrix LightToWorld = new();
+    public UObject.FBox LightSpaceImportanceBounds = new();
     public int ShadowMapSizeX;
     public int ShadowMapSizeY;
   }
@@ -9498,7 +9498,7 @@ public partial class UEngineTypes : UObject
   public class FRootMotionCurve
   {
     public FName AnimName;
-    public UObject.FInterpCurveVector Curve;
+    public UObject.FInterpCurveVector Curve = new();
     public float MaxCurveTime;
   }
 
@@ -9516,8 +9516,8 @@ public partial class UEngineTypes : UObject
 
   public class FVelocityObstacleStat
   {
-    public UObject.FVector Position;
-    public UObject.FVector Velocity;
+    public UObject.FVector Position = new();
+    public UObject.FVector Velocity = new();
     public float Radius;
     public int Priority;
   }
@@ -9532,29 +9532,29 @@ public partial class UEngineTypes : UObject
 
   public partial class FLightMap : ISerialisable
   {
-    public UObject.FVector2D CoordinateBias;
-    public UObject.FVector2D CoordinateScale;
-    public UEngineTypes.FQuantizedDirectionalLightSampleBulkData DirectionalSamples;
+    public UObject.FVector2D CoordinateBias = new();
+    public UObject.FVector2D CoordinateScale = new();
+    public UEngineTypes.FQuantizedDirectionalLightSampleBulkData DirectionalSamples = new();
     public List<UObject.FGuid> LightGuids;
     public uint LightMapType;
     public UObject Owner;
     public UObject.FVector4[] ScaleVectors = new UObject.FVector4[3];
-    public UEngineTypes.FQuantizedSimpleLightSampleBulkData SimpleSamples;
+    public UEngineTypes.FQuantizedSimpleLightSampleBulkData SimpleSamples = new();
     public ULightMapTexture2D[] Textures = new ULightMapTexture2D[3];
   }
 
   public class FBasedPosition
   {
     public AActor Base;
-    public UObject.FVector Position;
+    public UObject.FVector Position = new();
   }
 
 }
 
 public class AEnvironmentVolume : AVolume
 {
-  public FPointer VfTable_IInterface_NavMeshPathObstacle;
-  public FPointer VfTable_IInterface_NavMeshPathObject;
+  public FPointer VfTable_IInterface_NavMeshPathObstacle = new();
+  public FPointer VfTable_IInterface_NavMeshPathObject = new();
   public bool bSplitNavMesh;
 }
 
@@ -9566,9 +9566,9 @@ public class UExponentialHeightFogComponent : UActorComponent
   public float FogHeightFalloff;
   public float LightTerminatorAngle;
   public float OppositeLightBrightness;
-  public FColor OppositeLightColor;
+  public FColor OppositeLightColor = new();
   public float LightInscatteringBrightness;
-  public FColor LightInscatteringColor;
+  public FColor LightInscatteringColor = new();
 }
 
 public class AExponentialHeightFog : AInfo
@@ -9580,7 +9580,7 @@ public class AExponentialHeightFog : AInfo
 public class UFaceFXAnimSet : UObject
 {
   public UFaceFXAsset DefaultFaceFXAsset;
-  public FPointer InternalFaceFXAnimSet;
+  public FPointer InternalFaceFXAnimSet = new();
   public List<byte> RawFaceFXAnimSetBytes;
   public List<byte> RawFaceFXMiniSessionBytes;
   public List<USoundCue> ReferencedSoundCues;
@@ -9590,7 +9590,7 @@ public class UFaceFXAnimSet : UObject
 public class UFaceFXAsset : UObject
 {
   public USkeletalMesh DefaultSkelMesh;
-  public FPointer FaceFXActor;
+  public FPointer FaceFXActor = new();
   public List<byte> RawFaceFXActorBytes;
   public List<byte> RawFaceFXSessionBytes;
   public List<UMorphTargetSet> PreviewMorphSets;
@@ -9608,7 +9608,7 @@ public class ULocalMessage : UObject
   public bool bBeep;
   public bool bCountInstances;
   public float Lifetime;
-  public FColor DrawColor;
+  public FColor DrawColor = new();
   public float PosY;
   public int FontSize;
   public int HudDrawType;
@@ -9621,7 +9621,7 @@ public class UFailedConnect : ULocalMessage
 
 public class AFileWriter : AInfo
 {
-  public FPointer ArchivePtr;
+  public FPointer ArchivePtr = new();
   public string Filename;
   public FWFileType FileType;
   public bool bFlushEachWrite;
@@ -9679,12 +9679,12 @@ public partial class UFluidSurfaceComponent : UPrimitiveComponent
 {
   public class FLightMapRef
   {
-    public UObject.FPointer Reference;
+    public UObject.FPointer Reference = new();
   }
 
   public UMaterialInterface FluidMaterial;
   public int LightMapResolution;
-  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
+  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings = new();
   public bool EnableSimulation;
   public bool EnableDetail;
   public bool bPause;
@@ -9728,12 +9728,12 @@ public partial class UFluidSurfaceComponent : UPrimitiveComponent
   public float TestRippleAngle;
   public float DeactivationTimer;
   public float ViewDistance;
-  public FVector SimulationPosition;
-  public FVector DetailPosition;
+  public FVector SimulationPosition = new();
+  public FVector DetailPosition = new();
   public List<byte> ClampMap;
   public List<UShadowMap2D> ShadowMaps;
-  public UEngineTypes.FLightMap LightMap;
-  public FPointer FluidSimulation;
+  public UEngineTypes.FLightMap LightMap = new();
+  public FPointer FluidSimulation = new();
 }
 
 public class AFluidSurfaceActor : AActor
@@ -9752,8 +9752,8 @@ public class UFogVolumeDensityComponent : UActorComponent
   public UMaterialInterface DefaultFogVolumeMaterial;
   public bool bEnabled;
   public bool bAffectsTranslucency;
-  public FLinearColor SimpleLightColor;
-  public FLinearColor ApproxFogLightColor;
+  public FLinearColor SimpleLightColor = new();
+  public FLinearColor ApproxFogLightColor = new();
   public float StartDistance;
   public List<AActor> FogVolumeActors;
 }
@@ -9761,9 +9761,9 @@ public class UFogVolumeDensityComponent : UActorComponent
 public class UFogVolumeConeDensityComponent : UFogVolumeDensityComponent
 {
   public float MaxDensity;
-  public FVector ConeVertex;
+  public FVector ConeVertex = new();
   public float ConeRadius;
-  public FVector ConeAxis;
+  public FVector ConeAxis = new();
   public float ConeMaxAngle;
   public UDrawLightConeComponent PreviewCone;
 }
@@ -9796,7 +9796,7 @@ public class AFogVolumeConstantDensityInfo : AFogVolumeDensityInfo
 public class UFogVolumeLinearHalfspaceDensityComponent : UFogVolumeDensityComponent
 {
   public float PlaneDistanceFactor;
-  public FPlane HalfspacePlane;
+  public FPlane HalfspacePlane = new();
 }
 
 public class AFogVolumeLinearHalfspaceDensityInfo : AFogVolumeDensityInfo
@@ -9806,7 +9806,7 @@ public class AFogVolumeLinearHalfspaceDensityInfo : AFogVolumeDensityInfo
 public class UFogVolumeSphericalDensityComponent : UFogVolumeDensityComponent
 {
   public float MaxDensity;
-  public FVector SphereCenter;
+  public FVector SphereCenter = new();
   public float SphereRadius;
   public UDrawLightRadiusComponent PreviewSphereRadius;
 }
@@ -9819,10 +9819,10 @@ public class UFoliageComponent : UPrimitiveComponent
 {
   public class FFoliageInstanceBase
   {
-    public UObject.FVector Location;
-    public UObject.FVector XAxis;
-    public UObject.FVector YAxis;
-    public UObject.FVector ZAxis;
+    public UObject.FVector Location = new();
+    public UObject.FVector XAxis = new();
+    public UObject.FVector YAxis = new();
+    public UObject.FVector ZAxis = new();
     public float DistanceFactorSquared;
   }
 
@@ -9841,10 +9841,10 @@ public class UFoliageComponent : UPrimitiveComponent
   public float MaxDrawRadius;
   public float MinTransitionRadius;
   public float MinThinningRadius;
-  public FVector MinScale;
-  public FVector MaxScale;
+  public FVector MinScale = new();
+  public FVector MaxScale = new();
   public float SwayScale;
-  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
+  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings = new();
 }
 
 public class AFoliageFactory : AVolume
@@ -9856,8 +9856,8 @@ public class AFoliageFactory : AVolume
     public float MaxDrawRadius;
     public float MinTransitionRadius;
     public float MinThinningRadius;
-    public UObject.FVector MinScale;
-    public UObject.FVector MaxScale;
+    public UObject.FVector MinScale = new();
+    public UObject.FVector MaxScale = new();
     public float MinUniformScale;
     public float MaxUniformScale;
     public float SwayScale;
@@ -9866,7 +9866,7 @@ public class AFoliageFactory : AVolume
     public bool bCreateInstancesOnBSP;
     public bool bCreateInstancesOnStaticMeshes;
     public bool bCreateInstancesOnTerrain;
-    public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
+    public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings = new();
     public UFoliageComponent Component;
   }
 
@@ -9926,8 +9926,8 @@ public class UForceFieldShapeSphere : UForceFieldShape
 
 public class UFracturedBaseComponent : UStaticMeshComponent
 {
-  public FPointer ComponentBaseResources;
-  public FRenderCommandFence_Mirror ReleaseResourcesFence;
+  public FPointer ComponentBaseResources = new();
+  public FRenderCommandFence_Mirror ReleaseResourcesFence = new();
   public List<byte> VisibleFragments;
   public bool bVisibilityHasChanged;
   public bool bVisibilityReset;
@@ -9941,7 +9941,7 @@ public class UFracturedBaseComponent : UStaticMeshComponent
 
 public class UFracturedSkinnedMeshComponent : UFracturedBaseComponent
 {
-  public FPointer ComponentSkinResources;
+  public FPointer ComponentSkinResources = new();
   public List<FMatrix> FragmentTransforms;
   public List<UFracturedStaticMeshComponent> DependentComponents;
   public bool bBecameVisible;
@@ -9957,7 +9957,7 @@ public class UFracturedStaticMeshComponent : UFracturedBaseComponent
   }
 
   public List<byte> FragmentNeighborsVisible;
-  public FBox VisibleBox;
+  public FBox VisibleBox = new();
   public bool bUseSkinnedRendering;
   public bool bUseVisibleVertsForBounds;
   public bool bTopFragmentsRootNonDestroyable;
@@ -9974,8 +9974,8 @@ public class AFracturedStaticMeshActor : AActor
   public class FDeferredPartToSpawn
   {
     public int ChunkIndex;
-    public UObject.FVector InitialVel;
-    public UObject.FVector InitialAngVel;
+    public UObject.FVector InitialVel = new();
+    public UObject.FVector InitialAngVel = new();
     public float RelativeScale;
     public bool bExplosion;
   }
@@ -9992,7 +9992,7 @@ public class AFracturedStaticMeshActor : AActor
   public float FractureCullMinDistance;
   public float FractureCullMaxDistance;
   public List<FDeferredPartToSpawn> DeferredPartsToSpawn;
-  public FPhysEffectInfo PartImpactEffect;
+  public FPhysEffectInfo PartImpactEffect = new();
   public USoundCue ExplosionFractureSound;
   public USoundCue SingleChunkFractureSound;
   public UMaterialInterface MI_LoseChunkPreviousMaterial;
@@ -10013,7 +10013,7 @@ public class AFracturedStaticMeshPart : AFracturedStaticMeshActor
   public int PartPoolIndex;
   public float FracPartGravScale;
   public ERBCollisionChannel AsleepRBChannel;
-  public FVector OldVelocity;
+  public FVector OldVelocity = new();
   public float CurrentVibrationLevel;
   public float LastImpactSoundTime;
 }
@@ -10044,7 +10044,7 @@ public class UGameEngine : UEngine
   public class FNamedNetDriver
   {
     public FName NetDriverName;
-    public UObject.FPointer NetDriver;
+    public UObject.FPointer NetDriver = new();
   }
 
   public class FLevelStreamingStatus
@@ -10077,8 +10077,8 @@ public class UGameEngine : UEngine
 
   public UPendingLevel GPendingLevel;
   public string PendingLevelPlayerControllerClassName;
-  public FURL LastURL;
-  public FURL LastRemoteURL;
+  public FURL LastURL = new();
+  public FURL LastRemoteURL = new();
   public List<string> ServerActors;
   public string TravelURL;
   public byte TravelType;
@@ -10275,7 +10275,7 @@ public class UGameplayEvents : UObject
   {
     public int TeamIndex;
     public string TeamName;
-    public UObject.FColor TeamColor;
+    public UObject.FColor TeamColor = new();
     public int MaxSize;
   }
 
@@ -10283,7 +10283,7 @@ public class UGameplayEvents : UObject
   {
     public string ControllerName;
     public string PlayerName;
-    public UOnlineSubsystem.FUniqueNetId UniqueId;
+    public UOnlineSubsystem.FUniqueNetId UniqueId = new();
     public string UniqueIdHash;
     public bool bIsBot;
     public byte TeamIndex;
@@ -10317,10 +10317,10 @@ public class UGameplayEvents : UObject
     public string PawnClassName;
   }
 
-  public FPointer Archive;
+  public FPointer Archive = new();
   public string StatsFileName;
-  public FGameplayEventsHeader Header;
-  public FGameSessionInformation CurrentSessionInfo;
+  public FGameplayEventsHeader Header = new();
+  public FGameSessionInformation CurrentSessionInfo = new();
   public List<FPlayerInformationNew> PlayerList;
   public List<FTeamInformation> TeamList;
   public List<FGameplayEventMetaData> SupportedEvents;
@@ -10364,16 +10364,16 @@ public class AGameReplicationInfo : AReplicationInfo
 
 public class UUISceneClient : UUIRoot
 {
-  public FPointer VfTable_FExec;
-  public FPointer RenderViewport;
+  public FPointer VfTable_FExec = new();
+  public FPointer RenderViewport = new();
   public UUISkin ActiveSkin;
-  public FIntPoint MousePosition;
+  public FIntPoint MousePosition = new();
   public UUIObject ActiveControl;
   public UDataStoreClient DataStoreManager;
   public UMaterialInstanceConstant OpacityParameter;
   public FName OpacityParameterName;
-  public FMatrix CanvasToScreen;
-  public FMatrix InvCanvasToScreen;
+  public FMatrix CanvasToScreen = new();
+  public FMatrix InvCanvasToScreen = new();
   public UPostProcessChain UIScenePostProcess;
   public bool bEnablePostProcess;
 }
@@ -10407,10 +10407,10 @@ public class UGameUISceneClient : UUISceneClient
   public bool bBlockSceneUpdates;
   public bool bBlockUpdatesAfterStackModification;
   public float LatestDeltaTime;
-  public double DoubleClickStartTime;
-  public FIntPoint DoubleClickStartPosition;
+  public double DoubleClickStartTime = new();
+  public FIntPoint DoubleClickStartPosition = new();
   public UTexture[] DefaultUITexture = new UTexture[3];
-  public FMap_Mirror InitialPressedKeys;
+  public FMap_Mirror InitialPressedKeys = new();
   public UClass MessageBoxClass;
   public float OverlaySceneAlphaModulation;
   public UUIScreenObject DebugTarget;
@@ -10443,8 +10443,8 @@ public class UGameViewportClient : UObject
 
   public class FShowFlags_Mirror
   {
-    public ulong flags0;
-    public ulong flags1;
+    public ulong flags0 = new();
+    public ulong flags1 = new();
   }
 
   public class FExportShowFlags_Mirror : FShowFlags_Mirror
@@ -10459,15 +10459,15 @@ public class UGameViewportClient : UObject
     public float RecommendedPercentY;
   }
 
-  public FPointer VfTable_FViewportClient;
-  public FPointer VfTable_FExec;
-  public FPointer Viewport;
-  public FPointer ViewportFrame;
+  public FPointer VfTable_FViewportClient = new();
+  public FPointer VfTable_FExec = new();
+  public FPointer Viewport = new();
+  public FPointer ViewportFrame = new();
   public List<UInteraction> GlobalInteractions;
   public UClass UIControllerClass;
   public UUIInteraction UIController;
   public UConsole ViewportConsole;
-  public FExportShowFlags_Mirror ShowFlags;
+  public FExportShowFlags_Mirror ShowFlags = new();
   public string LoadingMessage;
   public string SavingMessage;
   public string ConnectingMessage;
@@ -10482,7 +10482,7 @@ public class UGameViewportClient : UObject
   public bool bDisableWorldRendering;
   public bool bCapturedWorldRendering;
   public bool bDebugNoGFxUI;
-  public FTitleSafeZoneArea TitleSafeZone;
+  public FTitleSafeZoneArea TitleSafeZone = new();
   public List<FSplitscreenData> SplitscreenInfo;
   public ESplitScreenType DesiredSplitscreenType;
   public ESplitScreenType ActiveSplitscreenType;
@@ -10492,7 +10492,7 @@ public class UGameViewportClient : UObject
   public float ProgressTimeOut;
   public float ProgressFadeTime;
   public List<FDebugDisplayProperty> DebugProperties;
-  public FPointer ScaleformInteraction;
+  public FPointer ScaleformInteraction = new();
   public FScriptDelegate __HandleInputKey__Delegate;
   public FScriptDelegate __HandleInputAxis__Delegate;
   public FScriptDelegate __HandleInputChar__Delegate;
@@ -10504,7 +10504,7 @@ public class AGeneratedMeshAreaLight : ASpotLight
 
 public class UGenericParamListStatEntry : UObject
 {
-  public FPointer StatEvent;
+  public FPointer StatEvent = new();
   public UGameplayEventsWriter Writer;
 }
 
@@ -10538,7 +10538,7 @@ public class UHeightFogComponent : UActorComponent
   public float Height;
   public float Density;
   public float LightBrightness;
-  public FColor LightColor;
+  public FColor LightColor = new();
   public float ExtinctionDistance;
   public float StartDistance;
 }
@@ -10566,15 +10566,15 @@ public class UInstancedStaticMeshComponent : UStaticMeshComponent
 {
   public class FInstancedStaticMeshInstanceData
   {
-    public UObject.FMatrix Transform;
-    public UObject.FVector2D LightmapUVBias;
-    public UObject.FVector2D ShadowmapUVBias;
+    public UObject.FMatrix Transform = new();
+    public UObject.FVector2D LightmapUVBias = new();
+    public UObject.FVector2D ShadowmapUVBias = new();
   }
 
   public class FInstancedStaticMeshMappingInfo
   {
-    public UObject.FPointer Mapping;
-    public UObject.FPointer LightMap;
+    public UObject.FPointer Mapping = new();
+    public UObject.FPointer LightMap = new();
     public UTexture2D LightmapTexture;
     public UShadowMap2D ShadowmapTexture;
   }
@@ -10599,16 +10599,16 @@ public class AStaticMeshActor : AStaticMeshActorBase
 
 public class UInteractiveFoliageComponent : UStaticMeshComponent
 {
-  public FPointer FoliageSceneProxy;
+  public FPointer FoliageSceneProxy = new();
 }
 
 public class AInteractiveFoliageActor : AStaticMeshActor
 {
   public UCylinderComponent CylinderComponent;
-  public FVector TouchingActorEntryPosition;
-  public FVector FoliageVelocity;
-  public FVector FoliageForce;
-  public FVector FoliagePosition;
+  public FVector TouchingActorEntryPosition = new();
+  public FVector FoliageVelocity = new();
+  public FVector FoliageForce = new();
+  public FVector FoliagePosition = new();
   public float FoliageDamageImpulseScale;
   public float FoliageTouchImpulseScale;
   public float FoliageStiffness;
@@ -10644,8 +10644,8 @@ public class AInterpActor : ADynamicSMActor
 {
   public class FCheckpointRecord
   {
-    public UObject.FVector Location;
-    public UObject.FRotator Rotation;
+    public UObject.FVector Location = new();
+    public UObject.FRotator Rotation = new();
     public ECollisionType CollisionType;
     public bool bHidden;
     public bool bIsShutdown;
@@ -10690,7 +10690,7 @@ public class UInterpCurveEdSetup : UObject
   public class FCurveEdEntry
   {
     public UObject CurveObject;
-    public UObject.FColor CurveColor;
+    public UObject.FColor CurveColor = new();
     public string CurveName;
     public int bHideCurve;
     public int bColorCurve;
@@ -10760,10 +10760,10 @@ public class UInterpGroup : UObject
     public float UnsnappedPosition;
   }
 
-  public FPointer VfTable_FInterpEdInputInterface;
+  public FPointer VfTable_FInterpEdInputInterface = new();
   public List<UInterpTrack> InterpTracks;
   public FName GroupName;
-  public FColor GroupColor;
+  public FColor GroupColor = new();
   public List<UAnimSet> GroupAnimSets;
   public bool bCollapsed;
   public bool bVisible;
@@ -10805,8 +10805,8 @@ public class UInterpGroupInstDirector : UInterpGroupInst
 
 public class UInterpTrack : UObject
 {
-  public FPointer VfTable_FInterpEdInputInterface;
-  public FPointer CurveEdVTable;
+  public FPointer VfTable_FInterpEdInputInterface = new();
+  public FPointer CurveEdVTable = new();
   public UClass TrackInstClass;
   public ETrackActiveCondition ActiveCondition;
   public string TrackTitle;
@@ -10821,7 +10821,7 @@ public class UInterpTrack : UObject
 
 public class UInterpTrackFloatBase : UInterpTrack
 {
-  public FInterpCurveFloat FloatTrack;
+  public FInterpCurveFloat FloatTrack = new();
   public float CurveTension;
 }
 
@@ -10845,7 +10845,7 @@ public class UInterpTrackAnimControl : UInterpTrackFloatBase
 
 public class UInterpTrackVectorBase : UInterpTrack
 {
-  public FInterpCurveVector VectorTrack;
+  public FInterpCurveVector VectorTrack = new();
   public float CurveTension;
 }
 
@@ -10965,14 +10965,14 @@ public class UInterpTrackInstProperty : UInterpTrackInst
 
 public class UInterpTrackInstBoolProp : UInterpTrackInstProperty
 {
-  public FPointer BoolProp;
+  public FPointer BoolProp = new();
   public bool ResetBool;
 }
 
 public class UInterpTrackInstColorProp : UInterpTrackInstProperty
 {
-  public FPointer ColorProp;
-  public FColor ResetColor;
+  public FPointer ColorProp = new();
+  public FColor ResetColor = new();
 }
 
 public class UInterpTrackInstColorScale : UInterpTrackInst
@@ -11018,14 +11018,14 @@ public class UInterpTrackInstFloatParticleParam : UInterpTrackInst
 
 public class UInterpTrackInstFloatProp : UInterpTrackInstProperty
 {
-  public FPointer FloatProp;
+  public FPointer FloatProp = new();
   public float ResetFloat;
 }
 
 public class UInterpTrackInstLinearColorProp : UInterpTrackInstProperty
 {
-  public FPointer ColorProp;
-  public FLinearColor ResetColor;
+  public FPointer ColorProp = new();
+  public FLinearColor ResetColor = new();
 }
 
 public class UInterpTrackInstMorphWeight : UInterpTrackInst
@@ -11034,10 +11034,10 @@ public class UInterpTrackInstMorphWeight : UInterpTrackInst
 
 public class UInterpTrackInstMove : UInterpTrackInst
 {
-  public FVector ResetLocation;
-  public FRotator ResetRotation;
-  public FMatrix InitialTM;
-  public FQuat InitialQuat;
+  public FVector ResetLocation = new();
+  public FRotator ResetRotation = new();
+  public FMatrix InitialTM = new();
+  public FQuat InitialQuat = new();
 }
 
 public class UInterpTrackInstParticleReplay : UInterpTrackInst
@@ -11097,8 +11097,8 @@ public class UInterpTrackInstVectorMaterialParam : UInterpTrackInst
 
 public class UInterpTrackInstVectorProp : UInterpTrackInstProperty
 {
-  public FPointer VectorProp;
-  public FVector ResetVector;
+  public FPointer VectorProp = new();
+  public FVector ResetVector = new();
 }
 
 public class UInterpTrackVisibility : UInterpTrack
@@ -11124,7 +11124,7 @@ public class UInterpTrackInstVisibility : UInterpTrackInst
 
 public class UInterpTrackLinearColorBase : UInterpTrack
 {
-  public FInterpCurveLinearColor LinearColorTrack;
+  public FInterpCurveLinearColor LinearColorTrack = new();
   public float CurveTension;
 }
 
@@ -11151,9 +11151,9 @@ public class UInterpTrackMove : UInterpTrack
     public List<UInterpTrackMove.FInterpLookupPoint> Points;
   }
 
-  public FInterpCurveVector PosTrack;
-  public FInterpCurveVector EulerTrack;
-  public FInterpLookupTrack LookupTrack;
+  public FInterpCurveVector PosTrack = new();
+  public FInterpCurveVector EulerTrack = new();
+  public FInterpLookupTrack LookupTrack = new();
   public FName LookAtGroupName;
   public float LinCurveTension;
   public float AngCurveTension;
@@ -11264,17 +11264,17 @@ public class AKActor : ADynamicSMActor
   public UAudioComponent ImpactSoundComponent;
   public UAudioComponent ImpactSoundComponent2;
   public float LastImpactTime;
-  public FPhysEffectInfo ImpactEffectInfo;
+  public FPhysEffectInfo ImpactEffectInfo = new();
   public UParticleSystemComponent SlideEffectComponent;
   public UAudioComponent SlideSoundComponent;
   public float LastSlideTime;
-  public FPhysEffectInfo SlideEffectInfo;
+  public FPhysEffectInfo SlideEffectInfo = new();
   public float StayUprightTorqueFactor;
   public float StayUprightMaxTorque;
   public float MaxPhysicsVelocity;
-  public FRigidBodyState RBState;
+  public FRigidBodyState RBState = new();
   public float AngErrorAccumulator;
-  public FVector ReplicatedDrawScale3D;
+  public FVector ReplicatedDrawScale3D = new();
 }
 
 public class AKActorFromStatic : AKActor
@@ -11312,7 +11312,7 @@ public class UKMeshProps : UObject
 {
   public class FKSphereElem
   {
-    public UObject.FMatrix TM;
+    public UObject.FMatrix TM = new();
     public float Radius;
     public bool bNoRBCollision;
     public bool bPerPolyShape;
@@ -11320,7 +11320,7 @@ public class UKMeshProps : UObject
 
   public class FKBoxElem
   {
-    public UObject.FMatrix TM;
+    public UObject.FMatrix TM = new();
     public float X;
     public float Y;
     public float Z;
@@ -11330,7 +11330,7 @@ public class UKMeshProps : UObject
 
   public class FKSphylElem
   {
-    public UObject.FMatrix TM;
+    public UObject.FMatrix TM = new();
     public float Radius;
     public float Length;
     public bool bNoRBCollision;
@@ -11345,7 +11345,7 @@ public class UKMeshProps : UObject
     public List<UObject.FVector> EdgeDirections;
     public List<UObject.FVector> FaceNormalDirections;
     public List<UObject.FPlane> FacePlaneData;
-    public UObject.FBox ElemBox;
+    public UObject.FBox ElemBox = new();
   }
 
   public class FKAggregateGeom
@@ -11354,12 +11354,12 @@ public class UKMeshProps : UObject
     public List<UKMeshProps.FKBoxElem> BoxElems;
     public List<UKMeshProps.FKSphylElem> SphylElems;
     public List<UKMeshProps.FKConvexElem> ConvexElems;
-    public UObject.FPointer RenderInfo;
+    public UObject.FPointer RenderInfo = new();
     public bool bSkipCloseAndParallelChecks;
   }
 
-  public FVector COMNudge;
-  public FKAggregateGeom AggGeom;
+  public FVector COMNudge = new();
+  public FKAggregateGeom AggGeom = new();
 }
 
 public class ULadderReachSpec : UReachSpec
@@ -11368,9 +11368,9 @@ public class ULadderReachSpec : UReachSpec
 
 public class ALadderVolume : APhysicsVolume
 {
-  public FRotator WallDir;
-  public FVector LookDir;
-  public FVector ClimbDir;
+  public FRotator WallDir = new();
+  public FVector LookDir = new();
+  public FVector ClimbDir = new();
   public ALadder LadderList;
   public bool bNoPhysicalLadder;
   public bool bAutoPath;
@@ -11395,21 +11395,21 @@ public class ULensFlare : UObject
     public bool bUseSourceDistance;
     public bool bNormalizeRadialDistance;
     public bool bModulateColorBySource;
-    public UObject.FVector Size;
+    public UObject.FVector Size = new();
     public List<UMaterialInterface> LFMaterials;
-    public UDistributionFloat.FRawDistributionFloat LFMaterialIndex;
-    public UDistributionFloat.FRawDistributionFloat Scaling;
-    public UDistributionVector.FRawDistributionVector AxisScaling;
-    public UDistributionFloat.FRawDistributionFloat Rotation;
-    public UDistributionVector.FRawDistributionVector Color;
-    public UDistributionFloat.FRawDistributionFloat Alpha;
-    public UDistributionVector.FRawDistributionVector Offset;
-    public UDistributionVector.FRawDistributionVector DistMap_Scale;
-    public UDistributionVector.FRawDistributionVector DistMap_Color;
-    public UDistributionFloat.FRawDistributionFloat DistMap_Alpha;
+    public UDistributionFloat.FRawDistributionFloat LFMaterialIndex = new();
+    public UDistributionFloat.FRawDistributionFloat Scaling = new();
+    public UDistributionVector.FRawDistributionVector AxisScaling = new();
+    public UDistributionFloat.FRawDistributionFloat Rotation = new();
+    public UDistributionVector.FRawDistributionVector Color = new();
+    public UDistributionFloat.FRawDistributionFloat Alpha = new();
+    public UDistributionVector.FRawDistributionVector Offset = new();
+    public UDistributionVector.FRawDistributionVector DistMap_Scale = new();
+    public UDistributionVector.FRawDistributionVector DistMap_Color = new();
+    public UDistributionFloat.FRawDistributionFloat DistMap_Alpha = new();
   }
 
-  public FLensFlareElement SourceElement;
+  public FLensFlareElement SourceElement = new();
   public UStaticMesh SourceMesh;
   public ESceneDepthPriorityGroup SourceDPG;
   public ESceneDepthPriorityGroup ReflectionsDPG;
@@ -11418,14 +11418,14 @@ public class ULensFlare : UObject
   public float InnerCone;
   public float ConeFudgeFactor;
   public float Radius;
-  public UDistributionFloat.FRawDistributionFloat ScreenPercentageMap;
+  public UDistributionFloat.FRawDistributionFloat ScreenPercentageMap = new();
   public bool bUseFixedRelativeBoundingBox;
   public bool bRenderDebugLines;
   public bool ThumbnailImageOutOfDate;
-  public FBox FixedRelativeBoundingBox;
+  public FBox FixedRelativeBoundingBox = new();
   public UInterpCurveEdSetup CurveEdSetup;
   public int ReflectionCount;
-  public FRotator ThumbnailAngle;
+  public FRotator ThumbnailAngle = new();
   public float ThumbnailDistance;
   public UTexture2D ThumbnailImage;
 }
@@ -11455,10 +11455,10 @@ public class ULensFlareComponent : UPrimitiveComponent
   public float InnerCone;
   public float ConeFudgeFactor;
   public float Radius;
-  public FLinearColor SourceColor;
+  public FLinearColor SourceColor = new();
   public EDetailMode MaxDetailMode;
   public List<FLensFlareElementMaterials> Materials;
-  public FPointer ReleaseResourcesFence;
+  public FPointer ReleaseResourcesFence = new();
 }
 
 public class ALensFlareSource : AActor
@@ -11481,7 +11481,7 @@ public class ALevelGridVolume : AVolume
   public int[] Subdivisions = new int[3];
   public float LoadingDistance;
   public float KeepLoadedRange;
-  public UKMeshProps.FKConvexElem CellConvexElem;
+  public UKMeshProps.FKConvexElem CellConvexElem = new();
 }
 
 public class ULevelGridVolumeRenderingComponent : UPrimitiveComponent
@@ -11492,8 +11492,8 @@ public class ULevelStreaming : UObject
 {
   public FName PackageName;
   public ULevel LoadedLevel;
-  public FVector Offset;
-  public FVector OldOffset;
+  public FVector Offset = new();
+  public FVector OldOffset = new();
   public bool bIsVisible;
   public bool bHasLoadRequestPending;
   public bool bHasUnloadRequestPending;
@@ -11506,7 +11506,7 @@ public class ULevelStreaming : UObject
   public bool bShouldBlockOnLoad;
   public bool bDrawOnLevelStatusMap;
   public bool bIsRequestingUnloadAndRemoval;
-  public FColor DrawColor;
+  public FColor DrawColor = new();
   public List<ALevelStreamingVolume> EditorStreamingVolumes;
   public float MinTimeBetweenVolumeUnloadRequests;
   public float LastVolumeUnloadRequestTime;
@@ -11522,7 +11522,7 @@ public class ULevelStreamingAlwaysLoaded : ULevelStreaming
 
 public class ULevelStreamingDistance : ULevelStreaming
 {
-  public FVector Origin;
+  public FVector Origin = new();
   public float MaxDistance;
 }
 
@@ -11554,7 +11554,7 @@ public class ALiftCenter : ANavigationPoint
 {
   public AInterpActor MyLift;
   public float MaxDist2D;
-  public FVector LiftOffset;
+  public FVector LiftOffset = new();
   public bool bJumpLift;
   public float CollisionHeight;
   public ATrigger LiftTrigger;
@@ -11569,7 +11569,7 @@ public class ALiftExit : ANavigationPoint
 public class ULightFunction : UObject
 {
   public UMaterialInterface SourceMaterial;
-  public FVector Scale;
+  public FVector Scale = new();
 }
 
 public class ULightmappedSurfaceCollection : UObject
@@ -11589,7 +11589,7 @@ public class ALightmassImportanceVolume : AVolume
 public class ULightmassLevelSettings : UObject
 {
   public int NumIndirectLightingBounces;
-  public FColor EnvironmentColor;
+  public FColor EnvironmentColor = new();
   public float EnvironmentIntensity;
   public float EmissiveBoost;
   public float DiffuseBoost;
@@ -11605,7 +11605,7 @@ public class ULightmassLevelSettings : UObject
 
 public class ULightmassPrimitiveSettingsObject : UObject
 {
-  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
+  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings = new();
 }
 
 public class ALightVolume : AVolume
@@ -11614,8 +11614,8 @@ public class ALightVolume : AVolume
 
 public class ULineBatchComponent : UPrimitiveComponent
 {
-  public FPointer FPrimitiveDrawInterfaceVfTable;
-  public FPointer FPrimitiveDrawInterfaceView;
+  public FPointer FPrimitiveDrawInterfaceVfTable = new();
+  public FPointer FPrimitiveDrawInterfaceView = new();
   public List<FPointer> BatchedLines;
   public List<FPointer> BatchedPoints;
   public float DefaultLifeTime;
@@ -11623,7 +11623,7 @@ public class ULineBatchComponent : UPrimitiveComponent
 
 public class UPlayer : UObject
 {
-  public FPointer VfTable_FExec;
+  public FPointer VfTable_FExec = new();
   public APlayerController Actor;
   public int CurrentNetSpeed;
   public int ConfiguredInternetSpeed;
@@ -11638,19 +11638,19 @@ public class ULocalPlayer : UPlayer
 {
   public class FSynchronizedActorVisibilityHistory
   {
-    public UObject.FPointer State;
-    public UObject.FPointer CriticalSection;
+    public UObject.FPointer State = new();
+    public UObject.FPointer CriticalSection = new();
   }
 
   public class FSynchronizedPlayerZoneInfoHistory
   {
-    public UObject.FPointer PlayerZoneInfo;
-    public UObject.FPointer CriticalSection;
+    public UObject.FPointer PlayerZoneInfo = new();
+    public UObject.FPointer CriticalSection = new();
   }
 
   public class FCurrentPostProcessVolumeInfo
   {
-    public APostProcessVolume.FPostProcessSettings LastSettings;
+    public APostProcessVolume.FPostProcessSettings LastSettings = new();
     public APostProcessVolume LastVolumeUsed;
     public float BlendStartTime;
     public float LastBlendTime;
@@ -11658,17 +11658,17 @@ public class ULocalPlayer : UPlayer
 
   public int ControllerId;
   public UGameViewportClient ViewportClient;
-  public FVector2D Origin;
-  public FVector2D Size;
+  public FVector2D Origin = new();
+  public FVector2D Size = new();
   public UPostProcessChain PlayerPostProcess;
   public List<UPostProcessChain> PlayerPostProcessChains;
-  public FPointer ViewState;
-  public FSynchronizedActorVisibilityHistory ActorVisibilityHistory;
-  public FSynchronizedPlayerZoneInfoHistory PlayerZoneInfoHistory;
-  public FVector LastViewLocation;
-  public FCurrentPostProcessVolumeInfo CurrentPPInfo;
-  public FCurrentPostProcessVolumeInfo LevelPPInfo;
-  public APostProcessVolume.FPostProcessSettings OverridePPDeltaSettings;
+  public FPointer ViewState = new();
+  public FSynchronizedActorVisibilityHistory ActorVisibilityHistory = new();
+  public FSynchronizedPlayerZoneInfoHistory PlayerZoneInfoHistory = new();
+  public FVector LastViewLocation = new();
+  public FCurrentPostProcessVolumeInfo CurrentPPInfo = new();
+  public FCurrentPostProcessVolumeInfo LevelPPInfo = new();
+  public APostProcessVolume.FPostProcessSettings OverridePPDeltaSettings = new();
   public float OverridePPRecoveryTime;
   public float OverridePPStartTime;
   public float OverridePPEndTime;
@@ -11677,7 +11677,7 @@ public class ULocalPlayer : UPlayer
   public bool bRecoveryFromPostProcessOverride;
   public bool bWantToResetToMapDefaultPP;
   public bool bSentSplitJoin;
-  public APostProcessVolume.FPostProcessSettings PostProcessSettingsOverride;
+  public APostProcessVolume.FPostProcessSettings PostProcessSettingsOverride = new();
   public string LastMap;
 }
 
@@ -11730,25 +11730,25 @@ public class UMaterialExpression : UObject
 
 public class UMaterialExpressionAbs : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
 }
 
 public class UMaterialExpressionAdd : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionTextureSample : UMaterialExpression
 {
   public UTexture Texture;
-  public FExpressionInput Coordinates;
+  public FExpressionInput Coordinates = new();
 }
 
 public class UMaterialExpressionTextureSampleParameter : UMaterialExpressionTextureSample
 {
   public FName ParameterName;
-  public FGuid ExpressionGUID;
+  public FGuid ExpressionGUID = new();
 }
 
 public class UMaterialExpressionTextureSampleParameter2D : UMaterialExpressionTextureSampleParameter
@@ -11763,14 +11763,14 @@ public class UMaterialExpressionAntialiasedTextureMask : UMaterialExpressionText
 
 public class UMaterialExpressionAppendVector : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionBumpOffset : UMaterialExpression
 {
-  public FExpressionInput Coordinate;
-  public FExpressionInput Height;
+  public FExpressionInput Coordinate = new();
+  public FExpressionInput Height = new();
   public float HeightRatio;
   public float ReferencePlane;
 }
@@ -11785,14 +11785,14 @@ public class UMaterialExpressionCameraWorldPosition : UMaterialExpression
 
 public class UMaterialExpressionCeil : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
 }
 
 public class UMaterialExpressionClamp : UMaterialExpression
 {
-  public FExpressionInput Input;
-  public FExpressionInput Min;
-  public FExpressionInput Max;
+  public FExpressionInput Input = new();
+  public FExpressionInput Min = new();
+  public FExpressionInput Max = new();
 }
 
 public class UMaterialExpressionComment : UMaterialExpression
@@ -11806,7 +11806,7 @@ public class UMaterialExpressionComment : UMaterialExpression
 
 public class UMaterialExpressionComponentMask : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
   public bool R;
   public bool G;
   public bool B;
@@ -11848,28 +11848,28 @@ public class UMaterialExpressionConstant4Vector : UMaterialExpression
 
 public class UMaterialExpressionConstantBiasScale : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
   public float Bias;
   public float Scale;
 }
 
 public class UMaterialExpressionConstantClamp : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
   public float Min;
   public float Max;
 }
 
 public class UMaterialExpressionCosine : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
   public float Period;
 }
 
 public class UMaterialExpressionCrossProduct : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionCustom : UMaterialExpression
@@ -11877,7 +11877,7 @@ public class UMaterialExpressionCustom : UMaterialExpression
   public class FCustomInput
   {
     public string InputName;
-    public UMaterialExpression.FExpressionInput Input;
+    public UMaterialExpression.FExpressionInput Input = new();
   }
 
   public string Code;
@@ -11895,36 +11895,36 @@ public class UMaterialExpressionDepthBiasBlend : UMaterialExpressionTextureSampl
 {
   public bool bNormalize;
   public float BiasScale;
-  public FExpressionInput Bias;
+  public FExpressionInput Bias = new();
 }
 
 public class UMaterialExpressionDepthBiasedAlpha : UMaterialExpression
 {
   public bool bNormalize;
   public float BiasScale;
-  public FExpressionInput Alpha;
-  public FExpressionInput Bias;
+  public FExpressionInput Alpha = new();
+  public FExpressionInput Bias = new();
 }
 
 public class UMaterialExpressionDepthBiasedBlend : UMaterialExpression
 {
   public bool bNormalize;
   public float BiasScale;
-  public FExpressionInput RGB;
-  public FExpressionInput Alpha;
-  public FExpressionInput Bias;
+  public FExpressionInput RGB = new();
+  public FExpressionInput Alpha = new();
+  public FExpressionInput Bias = new();
 }
 
 public class UMaterialExpressionDeriveNormalZ : UMaterialExpression
 {
-  public FExpressionInput InXY;
+  public FExpressionInput InXY = new();
 }
 
 public class UMaterialExpressionDesaturation : UMaterialExpression
 {
-  public FExpressionInput Input;
-  public FExpressionInput Percent;
-  public FLinearColor LuminanceFactors;
+  public FExpressionInput Input = new();
+  public FExpressionInput Percent = new();
+  public FLinearColor LuminanceFactors = new();
 }
 
 public class UMaterialExpressionDestColor : UMaterialExpression
@@ -11938,20 +11938,20 @@ public class UMaterialExpressionDestDepth : UMaterialExpression
 
 public class UMaterialExpressionDistance : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionDivide : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionDotProduct : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionDynamicParameter : UMaterialExpression
@@ -11965,7 +11965,7 @@ public class UMaterialExpressionFlipBookSample : UMaterialExpressionTextureSampl
 
 public class UMaterialExpressionFloor : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
 }
 
 public class UMaterialExpressionFluidNormal : UMaterialExpression
@@ -11974,8 +11974,8 @@ public class UMaterialExpressionFluidNormal : UMaterialExpression
 
 public class UMaterialExpressionFmod : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionFoliageImpulseDirection : UMaterialExpression
@@ -11995,32 +11995,32 @@ public class UMaterialExpressionFontSample : UMaterialExpression
 public class UMaterialExpressionFontSampleParameter : UMaterialExpressionFontSample
 {
   public FName ParameterName;
-  public FGuid ExpressionGUID;
+  public FGuid ExpressionGUID = new();
 }
 
 public class UMaterialExpressionFrac : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
 }
 
 public class UMaterialExpressionFresnel : UMaterialExpression
 {
   public float Exponent;
-  public FExpressionInput Normal;
+  public FExpressionInput Normal = new();
 }
 
 public class UMaterialExpressionGlossinessToSpecularPower : UMaterialExpression
 {
-  public FExpressionInput Glossiness;
+  public FExpressionInput Glossiness = new();
 }
 
 public class UMaterialExpressionIf : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
-  public FExpressionInput AGreaterThanB;
-  public FExpressionInput AEqualsB;
-  public FExpressionInput ALessThanB;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
+  public FExpressionInput AGreaterThanB = new();
+  public FExpressionInput AEqualsB = new();
+  public FExpressionInput ALessThanB = new();
 }
 
 public class UMaterialExpressionLensFlareIntensity : UMaterialExpression
@@ -12049,8 +12049,8 @@ public class UMaterialExpressionLightmapUVs : UMaterialExpression
 
 public class UMaterialExpressionLightmassReplace : UMaterialExpression
 {
-  public FExpressionInput Realtime;
-  public FExpressionInput Lightmass;
+  public FExpressionInput Realtime = new();
+  public FExpressionInput Lightmass = new();
 }
 
 public class UMaterialExpressionLightVector : UMaterialExpression
@@ -12059,9 +12059,9 @@ public class UMaterialExpressionLightVector : UMaterialExpression
 
 public class UMaterialExpressionLinearInterpolate : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
-  public FExpressionInput Alpha;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
+  public FExpressionInput Alpha = new();
 }
 
 public class UMaterialExpressionMeshEmitterDynamicParameter : UMaterialExpressionDynamicParameter
@@ -12082,13 +12082,13 @@ public class UMaterialExpressionMeshSubUVBlend : UMaterialExpressionMeshSubUV
 
 public class UMaterialExpressionMultiply : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionNormalize : UMaterialExpression
 {
-  public FExpressionInput VectorInput;
+  public FExpressionInput VectorInput = new();
 }
 
 public class UMaterialExpressionObjectOrientation : UMaterialExpression
@@ -12109,13 +12109,13 @@ public class UMaterialExpressionOcclusionPercentage : UMaterialExpression
 
 public class UMaterialExpressionOneMinus : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
 }
 
 public class UMaterialExpressionPanner : UMaterialExpression
 {
-  public FExpressionInput Coordinate;
-  public FExpressionInput Time;
+  public FExpressionInput Coordinate = new();
+  public FExpressionInput Time = new();
   public float SpeedX;
   public float SpeedY;
 }
@@ -12123,7 +12123,7 @@ public class UMaterialExpressionPanner : UMaterialExpression
 public class UMaterialExpressionParameter : UMaterialExpression
 {
   public FName ParameterName;
-  public FGuid ExpressionGUID;
+  public FGuid ExpressionGUID = new();
 }
 
 public class UMaterialExpressionParticleMacroUV : UMaterialExpression
@@ -12138,8 +12138,8 @@ public class UMaterialExpressionParticleSubUV : UMaterialExpressionTextureSample
 public class UMaterialExpressionPBPhongCubeTextureSample : UMaterialExpression
 {
   public UTextureCube PBPhongCube;
-  public FExpressionInput Coordinates;
-  public FExpressionInput Glossiness;
+  public FExpressionInput Coordinates = new();
+  public FExpressionInput Glossiness = new();
 }
 
 public class UMaterialExpressionPerInstanceRandom : UMaterialExpression
@@ -12153,8 +12153,8 @@ public class UMaterialExpressionPixelDepth : UMaterialExpression
 
 public class UMaterialExpressionPower : UMaterialExpression
 {
-  public FExpressionInput Base;
-  public FExpressionInput Exponent;
+  public FExpressionInput Base = new();
+  public FExpressionInput Exponent = new();
 }
 
 public class UMaterialExpressionReflectionVector : UMaterialExpression
@@ -12163,15 +12163,15 @@ public class UMaterialExpressionReflectionVector : UMaterialExpression
 
 public class UMaterialExpressionRotateAboutAxis : UMaterialExpression
 {
-  public FExpressionInput NormalizedRotationAxisAndAngle;
-  public FExpressionInput PositionOnAxis;
-  public FExpressionInput Position;
+  public FExpressionInput NormalizedRotationAxisAndAngle = new();
+  public FExpressionInput PositionOnAxis = new();
+  public FExpressionInput Position = new();
 }
 
 public class UMaterialExpressionRotator : UMaterialExpression
 {
-  public FExpressionInput Coordinate;
-  public FExpressionInput Time;
+  public FExpressionInput Coordinate = new();
+  public FExpressionInput Time = new();
   public float CenterX;
   public float CenterY;
   public float Speed;
@@ -12184,13 +12184,13 @@ public class UMaterialExpressionScalarParameter : UMaterialExpressionParameter
 
 public class UMaterialExpressionSceneDepth : UMaterialExpression
 {
-  public FExpressionInput Coordinates;
+  public FExpressionInput Coordinates = new();
   public bool bNormalize;
 }
 
 public class UMaterialExpressionSceneTexture : UMaterialExpression
 {
-  public FExpressionInput Coordinates;
+  public FExpressionInput Coordinates = new();
   public ESceneTextureType SceneTextureType;
   public bool ScreenAlign;
 }
@@ -12202,46 +12202,46 @@ public class UMaterialExpressionScreenPosition : UMaterialExpression
 
 public class UMaterialExpressionSine : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
   public float Period;
 }
 
 public class UMaterialExpressionSphereMask : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
   public float AttenuationRadius;
   public float HardnessPercent;
 }
 
 public class UMaterialExpressionSquareRoot : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
 }
 
 public class UMaterialExpressionStaticComponentMaskParameter : UMaterialExpressionParameter
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
   public bool DefaultR;
   public bool DefaultG;
   public bool DefaultB;
   public bool DefaultA;
-  public FPointer InstanceOverride;
+  public FPointer InstanceOverride = new();
 }
 
 public class UMaterialExpressionStaticSwitchParameter : UMaterialExpressionParameter
 {
   public bool DefaultValue;
   public bool ExtendedCaptionDisplay;
-  public FExpressionInput A;
-  public FExpressionInput B;
-  public FPointer InstanceOverride;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
+  public FPointer InstanceOverride = new();
 }
 
 public class UMaterialExpressionSubtract : UMaterialExpression
 {
-  public FExpressionInput A;
-  public FExpressionInput B;
+  public FExpressionInput A = new();
+  public FExpressionInput B = new();
 }
 
 public class UMaterialExpressionTextureCoordinate : UMaterialExpression
@@ -12286,7 +12286,7 @@ public class UMaterialExpressionTextureSampleParameterMovie : UMaterialExpressio
 
 public class UMaterialExpressionTextureSampleParameterNormal : UMaterialExpressionTextureSampleParameter
 {
-  public FPointer InstanceOverride;
+  public FPointer InstanceOverride = new();
 }
 
 public class UMaterialExpressionTextureSampleParameterSubUV : UMaterialExpressionTextureSampleParameter2D
@@ -12300,14 +12300,14 @@ public class UMaterialExpressionTime : UMaterialExpression
 
 public class UMaterialExpressionTransform : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
   public EMaterialVectorCoordTransformSource TransformSourceType;
   public EMaterialVectorCoordTransform TransformType;
 }
 
 public class UMaterialExpressionTransformPosition : UMaterialExpression
 {
-  public FExpressionInput Input;
+  public FExpressionInput Input = new();
   public EMaterialPositionTransform TransformType;
 }
 
@@ -12317,7 +12317,7 @@ public class UMaterialExpressionTwoSidedSign : UMaterialExpression
 
 public class UMaterialExpressionVectorParameter : UMaterialExpressionParameter
 {
-  public FLinearColor DefaultValue;
+  public FLinearColor DefaultValue = new();
 }
 
 public class UMaterialExpressionVertexColor : UMaterialExpression
@@ -12352,7 +12352,7 @@ public partial class UMaterialInstance : UMaterialInterface
   public FPointer[] Resources = new FPointer[2];
   public List<UTexture> ReferencedTextures;
   public List<FGuid> ReferencedTextureGuids;
-  public FGuid ParentLightingGuid;
+  public FGuid ParentLightingGuid = new();
 }
 
 public class AMaterialInstanceActor : AActor
@@ -12367,28 +12367,28 @@ public class UMaterialInstanceConstant : UMaterialInstance
     public FName ParameterName;
     public UFont FontValue;
     public int FontPage;
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FGuid ExpressionGUID = new();
   }
 
   public class FScalarParameterValue
   {
     public FName ParameterName;
     public float ParameterValue;
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FGuid ExpressionGUID = new();
   }
 
   public class FTextureParameterValue
   {
     public FName ParameterName;
     public UTexture ParameterValue;
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FGuid ExpressionGUID = new();
   }
 
   public class FVectorParameterValue
   {
     public FName ParameterName;
-    public UObject.FLinearColor ParameterValue;
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FLinearColor ParameterValue = new();
+    public UObject.FGuid ExpressionGUID = new();
   }
 
   public List<FFontParameterValue> FontParameterValues;
@@ -12401,7 +12401,7 @@ public class UMaterialInstanceTimeVarying : UMaterialInstance
 {
   public class FParameterValueOverTime
   {
-    public UObject.FGuid ExpressionGUID;
+    public UObject.FGuid ExpressionGUID = new();
     public float StartTime;
     public FName ParameterName;
     public bool bLoop;
@@ -12421,7 +12421,7 @@ public class UMaterialInstanceTimeVarying : UMaterialInstance
   public class FScalarParameterValueOverTime : FParameterValueOverTime
   {
     public float ParameterValue;
-    public UObject.FInterpCurveFloat ParameterValueCurve;
+    public UObject.FInterpCurveFloat ParameterValueCurve = new();
   }
 
   public class FTextureParameterValueOverTime : FParameterValueOverTime
@@ -12431,8 +12431,8 @@ public class UMaterialInstanceTimeVarying : UMaterialInstance
 
   public class FVectorParameterValueOverTime : FParameterValueOverTime
   {
-    public UObject.FLinearColor ParameterValue;
-    public UObject.FInterpCurveVector ParameterValueCurve;
+    public UObject.FLinearColor ParameterValue = new();
+    public UObject.FInterpCurveVector ParameterValueCurve = new();
   }
 
   public bool bAutoActivateAll;
@@ -12470,15 +12470,15 @@ public class APawn : AActor
 
   public class FsLine2D
   {
-    public UObject.FVector2D Start;
-    public UObject.FVector2D End;
+    public UObject.FVector2D Start = new();
+    public UObject.FVector2D End = new();
   }
 
   public float MaxStepHeight;
   public float MaxJumpHeight;
   public float WalkableFloorZ;
   public float LedgeCheckThreshold;
-  public FVector PartialLedgeMoveDir;
+  public FVector PartialLedgeMoveDir = new();
   public AController Controller;
   public APawn NextPawn;
   public float NetRelevancyTime;
@@ -12584,7 +12584,7 @@ public class APawn : AActor
   public float LastValidAnchorTime;
   public float DestinationOffset;
   public float NextPathRadius;
-  public FVector SerpentineDir;
+  public FVector SerpentineDir = new();
   public float SerpentineDist;
   public float SerpentineTime;
   public float SpawnTime;
@@ -12604,7 +12604,7 @@ public class APawn : AActor
   public float AIMaxFallSpeedFactor;
   public float BaseEyeHeight;
   public float EyeHeight;
-  public FVector Floor;
+  public FVector Floor = new();
   public float SplashTime;
   public float OldZ;
   public APhysicsVolume HeadVolume;
@@ -12613,12 +12613,12 @@ public class APawn : AActor
   public float BreathTime;
   public float UnderWaterTime;
   public float LastPainTime;
-  public FVector RMVelocity;
-  public FVector noise1spot;
+  public FVector RMVelocity = new();
+  public FVector noise1spot = new();
   public float noise1time;
   public APawn noise1other;
   public float noise1loudness;
-  public FVector noise2spot;
+  public FVector noise2spot = new();
   public float noise2time;
   public APawn noise2other;
   public float noise2loudness;
@@ -12632,7 +12632,7 @@ public class APawn : AActor
   public FName WaterMovementState;
   public APlayerStart LastStartSpot;
   public float LastStartTime;
-  public FVector TearOffMomentum;
+  public FVector TearOffMomentum = new();
   public USkeletalMeshComponent Mesh;
   public UCylinderComponent CylinderComponent;
   public float RBPushRadius;
@@ -12644,12 +12644,12 @@ public class APawn : AActor
   public float ViewPitchMin;
   public float ViewPitchMax;
   public int AllowedYawError;
-  public FRotator DesiredRotation;
+  public FRotator DesiredRotation = new();
   public UClass InventoryManagerClass;
   public AInventoryManager InvManager;
   public AWeapon Weapon;
-  public FVector FlashLocation;
-  public FVector LastFiringFlashLocation;
+  public FVector FlashLocation = new();
+  public FVector LastFiringFlashLocation = new();
   public int ShotCount;
   public UPrimitiveComponent PreRagdollCollisionComponent;
   public URB_BodyInstance PhysicsPushBody;
@@ -12660,17 +12660,17 @@ public class APawn : AActor
   public UMaterialInstanceConstant MIC_PawnMat;
   public UMaterialInstanceConstant MIC_PawnHair;
   public List<FScalarParameterInterpStruct> ScalarParameterInterpArray;
-  public UEngineTypes.FRootMotionCurve RootMotionInterpCurve;
+  public UEngineTypes.FRootMotionCurve RootMotionInterpCurve = new();
   public float RootMotionInterpRate;
   public float RootMotionInterpCurrentTime;
-  public FVector RootMotionInterpCurveLastValue;
-  public FRotator KillCamViewRotation;
+  public FVector RootMotionInterpCurveLastValue = new();
+  public FRotator KillCamViewRotation = new();
   public int KillCamViewRotationYaw;
   public int KillCamViewRotationPitch;
-  public FVector SmoothAdjustLocation;
+  public FVector SmoothAdjustLocation = new();
   public FVector2D[] ProjectedLocation = new FVector2D[2];
   public float lasttime2DHitTest;
-  public FVector Hit2DWorldLoc;
+  public FVector Hit2DWorldLoc = new();
   public float Base2dPenetResi;
 }
 
@@ -12710,7 +12710,7 @@ public partial class UModelComponent : UPrimitiveComponent
   {
     public UModelComponent Component;
     public List<UObject.FGuid> IrrelevantLights;
-    public UEngineTypes.FLightMap LightMap;
+    public UEngineTypes.FLightMap LightMap = new();
     public UMaterialInterface Material;
     public List<ushort> Nodes;
     public List<UShadowMap2D> ShadowMaps;
@@ -12802,9 +12802,9 @@ public partial class UMorphTarget : UObject
 {
   public class FMorphTargetVertex
   {
-    public UObject.FVector PositionDelta;
+    public UObject.FVector PositionDelta = new();
     public ushort SourceIdx;
-    public UObject.FPackedNormal TangentZDelta;
+    public UObject.FPackedNormal TangentZDelta = new();
   }
 
   public class FMorphTargetLODModel
@@ -12822,7 +12822,7 @@ public class UMorphTargetSet : UObject
 {
   public List<UMorphTarget> Targets;
   public USkeletalMesh BaseSkelMesh;
-  public FArray_Mirror RawWedgePointIndices;
+  public FArray_Mirror RawWedgePointIndices = new();
 }
 
 public class UMorphWeightSequence : UObject
@@ -12870,14 +12870,14 @@ public class UNavigationHandle : UObject
 {
   public class FPolySegmentSpan
   {
-    public UObject.FPointer Poly;
-    public UObject.FVector P1;
-    public UObject.FVector P2;
+    public UObject.FPointer Poly = new();
+    public UObject.FVector P1 = new();
+    public UObject.FVector P2 = new();
   }
 
   public class FEdgePointer
   {
-    public UObject.FPointer Dummy;
+    public UObject.FPointer Dummy = new();
   }
 
   public class FPathStore
@@ -12887,25 +12887,25 @@ public class UNavigationHandle : UObject
 
   public class FNavMeshPathParams
   {
-    public UObject.FPointer Interface;
+    public UObject.FPointer Interface = new();
     public bool bCanMantle;
     public bool bNeedsMantleValidityTest;
     public bool bAbleToSearch;
-    public UObject.FVector SearchExtent;
+    public UObject.FVector SearchExtent = new();
     public float SearchLaneMultiplier;
-    public UObject.FVector SearchStart;
+    public UObject.FVector SearchStart = new();
     public float MaxDropHeight;
     public float MinWalkableZ;
     public float MaxHoverDistance;
   }
 
   public APylon AnchorPylon;
-  public FPointer AnchorPoly;
-  public FPathStore PathCache;
-  public FPointer BestUnfinishedPathPoint;
-  public FPointer CurrentEdge;
-  public FPointer SubGoal_DestPoly;
-  public AActor.FBasedPosition FinalDestination;
+  public FPointer AnchorPoly = new();
+  public FPathStore PathCache = new();
+  public FPointer BestUnfinishedPathPoint = new();
+  public FPointer CurrentEdge = new();
+  public FPointer SubGoal_DestPoly = new();
+  public AActor.FBasedPosition FinalDestination = new();
   public bool bSkipRouteCacheUpdates;
   public bool bUseORforEvaluateGoal;
   public bool bDebugConstraintsAndGoalEvals;
@@ -12913,7 +12913,7 @@ public class UNavigationHandle : UObject
   public bool bDebug_Breadcrumbs;
   public UNavMeshPathConstraint PathConstraintList;
   public UNavMeshPathGoalEvaluator PathGoalList;
-  public FNavMeshPathParams CachedPathParams;
+  public FNavMeshPathParams CachedPathParams = new();
   public EPathFindingError LastPathError;
   public float LastPathFailTime;
   public FVector[] Breadcrumbs = new FVector[10];
@@ -12942,21 +12942,21 @@ public class UNavMeshPathGoalEvaluator : UObject
 
 public class UNavMeshGoal_At : UNavMeshPathGoalEvaluator
 {
-  public FVector Goal;
+  public FVector Goal = new();
   public float GoalDist;
   public bool bKeepPartial;
   public bool bWeightPartialByDist;
   public bool bGoalInSamePolyAsAnchor;
   public float PartialDistSq;
-  public FPointer GoalPoly;
-  public FPointer PartialGoal;
+  public FPointer GoalPoly = new();
+  public FPointer PartialGoal = new();
 }
 
 public class UNavMeshGoal_ClosestActorInList : UNavMeshPathGoalEvaluator
 {
   public List<FBiasedGoalActor> GoalList;
-  public FMultiMap_Mirror PolyToGoalActorMap;
-  public FPointer CachedAnchorPoly;
+  public FMultiMap_Mirror PolyToGoalActorMap = new();
+  public FPointer CachedAnchorPoly = new();
 }
 
 public class UNavMeshGoal_Filter : UObject
@@ -12969,25 +12969,25 @@ public class UNavMeshGoal_Filter : UObject
 public class UNavMeshGoal_GenericFilterContainer : UNavMeshPathGoalEvaluator
 {
   public List<UNavMeshGoal_Filter> GoalFilters;
-  public FPointer SuccessfulGoal;
+  public FPointer SuccessfulGoal = new();
   public UNavigationHandle MyNavigationHandle;
 }
 
 public class UNavMeshGoal_Null : UNavMeshPathGoalEvaluator
 {
-  public FPointer PartialGoal;
+  public FPointer PartialGoal = new();
 }
 
 public class UNavMeshGoal_PolyEncompassesAI : UNavMeshPathGoalEvaluator
 {
-  public FVector OverrideExtentToCheck;
+  public FVector OverrideExtentToCheck = new();
 }
 
 public class UNavMeshGoal_Random : UNavMeshPathGoalEvaluator
 {
   public int MinDist;
   public float BestRating;
-  public FPointer PartialGoal;
+  public FPointer PartialGoal = new();
 }
 
 public class UNavMeshGoal_WithinDistanceEnvelope : UNavMeshPathGoalEvaluator
@@ -12995,7 +12995,7 @@ public class UNavMeshGoal_WithinDistanceEnvelope : UNavMeshPathGoalEvaluator
   public float MaxDistance;
   public float MinDistance;
   public float MinTraversalDist;
-  public FVector EnvelopeTestPoint;
+  public FVector EnvelopeTestPoint = new();
 }
 
 public class UNavMeshGoalFilter_MinPathDistance : UNavMeshGoal_Filter
@@ -13010,20 +13010,20 @@ public class UNavMeshGoalFilter_NotNearOtherAI : UNavMeshGoal_Filter
 
 public class UNavMeshGoalFilter_OutOfViewFrom : UNavMeshGoal_Filter
 {
-  public FPointer GoalPoly;
-  public FVector OutOfViewLocation;
+  public FPointer GoalPoly = new();
+  public FVector OutOfViewLocation = new();
 }
 
 public class UNavMeshGoalFilter_OutSideOfDotProductWedge : UNavMeshGoal_Filter
 {
-  public FVector Location;
-  public FVector Rotation;
+  public FVector Location = new();
+  public FVector Rotation = new();
   public float Epsilon;
 }
 
 public class UNavMeshGoalFilter_PolyEncompassesAI : UNavMeshGoal_Filter
 {
-  public FVector OverrideExtentToCheck;
+  public FVector OverrideExtentToCheck = new();
 }
 
 public class ANavMeshObstacle : AActor
@@ -13033,7 +13033,7 @@ public class ANavMeshObstacle : AActor
     public bool bEnabled;
   }
 
-  public FPointer VfTable_IInterface_NavMeshPathObstacle;
+  public FPointer VfTable_IInterface_NavMeshPathObstacle = new();
   public bool bEnabled;
   public bool bPreserveInternalGeo;
 }
@@ -13049,7 +13049,7 @@ public class UNavMeshPathConstraint : UObject
 
 public class UNavMeshPath_AlongLine : UNavMeshPathConstraint
 {
-  public FVector Direction;
+  public FVector Direction = new();
 }
 
 public class UNavMeshPath_EnforceTwoWayEdges : UNavMeshPathConstraint
@@ -13059,7 +13059,7 @@ public class UNavMeshPath_EnforceTwoWayEdges : UNavMeshPathConstraint
 public class UNavMeshPath_MinDistBetweenSpecsOfType : UNavMeshPathConstraint
 {
   public float MinDistBetweenEdgeTypes;
-  public FVector InitLocation;
+  public FVector InitLocation = new();
   public ENavMeshEdgeType EdgeType;
   public float Penalty;
 }
@@ -13072,7 +13072,7 @@ public class UNavMeshPath_SameCoverLink : UNavMeshPathConstraint
 public class UNavMeshPath_Toward : UNavMeshPathConstraint
 {
   public AActor GoalActor;
-  public FVector GoalPoint;
+  public FVector GoalPoint = new();
 }
 
 public class UNavMeshPath_WithinDistanceEnvelope : UNavMeshPathConstraint
@@ -13082,7 +13082,7 @@ public class UNavMeshPath_WithinDistanceEnvelope : UNavMeshPathConstraint
   public bool bSoft;
   public bool bOnlyThrowOutNodesThatLeaveEnvelope;
   public float SoftStartPenalty;
-  public FVector EnvelopeTestPoint;
+  public FVector EnvelopeTestPoint = new();
 }
 
 public class UNavMeshPath_WithinTraversalDist : UNavMeshPathConstraint
@@ -13105,13 +13105,13 @@ public class ANxForceField : AActor
 {
   public int ExcludeChannel;
   public bool bForceActive;
-  public UPrimitiveComponent.FRBCollisionChannelContainer CollideWithChannels;
+  public UPrimitiveComponent.FRBCollisionChannelContainer CollideWithChannels = new();
   public ERBCollisionChannel RBChannel;
-  public FPointer ForceField;
+  public FPointer ForceField = new();
   public List<FPointer> ConvexMeshes;
   public List<FPointer> ExclusionShapes;
   public List<FPointer> ExclusionShapePoses;
-  public FPointer U2NRotation;
+  public FPointer U2NRotation = new();
   public int SceneIndex;
 }
 
@@ -13127,7 +13127,7 @@ public class ANxCylindricalForceField : ANxForceField
   public float ForceHeight;
   public float HeightOffset;
   public bool UseSpecialRadialForce;
-  public FPointer Kernel;
+  public FPointer Kernel = new();
 }
 
 public class ANxCylindricalForceFieldCapsule : ANxCylindricalForceField
@@ -13143,20 +13143,20 @@ public class ANxForceFieldGeneric : ANxForceField
   public float RoughExtentY;
   public float RoughExtentZ;
   public FFG_ForceFieldCoordinates Coordinates;
-  public FVector Constant;
-  public FVector PositionMultiplierX;
-  public FVector PositionMultiplierY;
-  public FVector PositionMultiplierZ;
-  public FVector PositionTarget;
-  public FVector VelocityMultiplierX;
-  public FVector VelocityMultiplierY;
-  public FVector VelocityMultiplierZ;
-  public FVector VelocityTarget;
-  public FVector Noise;
-  public FVector FalloffLinear;
-  public FVector FalloffQuadratic;
+  public FVector Constant = new();
+  public FVector PositionMultiplierX = new();
+  public FVector PositionMultiplierY = new();
+  public FVector PositionMultiplierZ = new();
+  public FVector PositionTarget = new();
+  public FVector VelocityMultiplierX = new();
+  public FVector VelocityMultiplierY = new();
+  public FVector VelocityMultiplierZ = new();
+  public FVector VelocityTarget = new();
+  public FVector Noise = new();
+  public FVector FalloffLinear = new();
+  public FVector FalloffQuadratic = new();
   public float TorusRadius;
-  public FPointer LinearKernel;
+  public FPointer LinearKernel = new();
 }
 
 public class ANxForceFieldRadial : ANxForceField
@@ -13167,7 +13167,7 @@ public class ANxForceFieldRadial : ANxForceField
   public float ForceRadius;
   public float SelfRotationStrength;
   public ERadialImpulseFalloff ForceFalloff;
-  public FPointer Kernel;
+  public FPointer Kernel = new();
 }
 
 public class ANxForceFieldTornado : ANxForceField
@@ -13185,58 +13185,58 @@ public class ANxForceFieldTornado : ANxForceField
   public float HeightOffset;
   public bool BSpecialRadialForceMode;
   public float SelfRotationStrength;
-  public FPointer Kernel;
+  public FPointer Kernel = new();
 }
 
 public class ANxGenericForceField : ANxForceField
 {
   public FFG_ForceFieldCoordinates Coordinates;
-  public FVector Constant;
-  public FVector PositionMultiplierX;
-  public FVector PositionMultiplierY;
-  public FVector PositionMultiplierZ;
-  public FVector PositionTarget;
-  public FVector VelocityMultiplierX;
-  public FVector VelocityMultiplierY;
-  public FVector VelocityMultiplierZ;
-  public FVector VelocityTarget;
-  public FVector Noise;
-  public FVector FalloffLinear;
-  public FVector FalloffQuadratic;
+  public FVector Constant = new();
+  public FVector PositionMultiplierX = new();
+  public FVector PositionMultiplierY = new();
+  public FVector PositionMultiplierZ = new();
+  public FVector PositionTarget = new();
+  public FVector VelocityMultiplierX = new();
+  public FVector VelocityMultiplierY = new();
+  public FVector VelocityMultiplierZ = new();
+  public FVector VelocityTarget = new();
+  public FVector Noise = new();
+  public FVector FalloffLinear = new();
+  public FVector FalloffQuadratic = new();
   public float TorusRadius;
-  public FPointer LinearKernel;
+  public FPointer LinearKernel = new();
 }
 
 public class ANxGenericForceFieldBox : ANxGenericForceField
 {
   public UDrawBoxComponent RenderComponent;
-  public FVector BoxExtent;
+  public FVector BoxExtent = new();
 }
 
 public class ANxGenericForceFieldBrush : AVolume
 {
   public int ExcludeChannel;
-  public UPrimitiveComponent.FRBCollisionChannelContainer CollideWithChannels;
+  public UPrimitiveComponent.FRBCollisionChannelContainer CollideWithChannels = new();
   public ERBCollisionChannel RBChannel;
   public FFB_ForceFieldCoordinates Coordinates;
-  public FVector Constant;
-  public FVector PositionMultiplierX;
-  public FVector PositionMultiplierY;
-  public FVector PositionMultiplierZ;
-  public FVector PositionTarget;
-  public FVector VelocityMultiplierX;
-  public FVector VelocityMultiplierY;
-  public FVector VelocityMultiplierZ;
-  public FVector VelocityTarget;
-  public FVector Noise;
-  public FVector FalloffLinear;
-  public FVector FalloffQuadratic;
+  public FVector Constant = new();
+  public FVector PositionMultiplierX = new();
+  public FVector PositionMultiplierY = new();
+  public FVector PositionMultiplierZ = new();
+  public FVector PositionTarget = new();
+  public FVector VelocityMultiplierX = new();
+  public FVector VelocityMultiplierY = new();
+  public FVector VelocityMultiplierZ = new();
+  public FVector VelocityTarget = new();
+  public FVector Noise = new();
+  public FVector FalloffLinear = new();
+  public FVector FalloffQuadratic = new();
   public float TorusRadius;
-  public FPointer ForceField;
+  public FPointer ForceField = new();
   public List<FPointer> ConvexMeshes;
   public List<FPointer> ExclusionShapes;
   public List<FPointer> ExclusionShapePoses;
-  public FPointer LinearKernel;
+  public FPointer LinearKernel = new();
 }
 
 public class ANxGenericForceFieldCapsule : ANxGenericForceField
@@ -13252,13 +13252,13 @@ public class ANxRadialForceField : ANxForceField
   public float ForceStrength;
   public float ForceRadius;
   public ERadialImpulseFalloff ForceFalloff;
-  public FPointer LinearKernel;
+  public FPointer LinearKernel = new();
 }
 
 public class ANxRadialCustomForceField : ANxRadialForceField
 {
   public float SelfRotationStrength;
-  public FPointer Kernel;
+  public FPointer Kernel = new();
 }
 
 public class ANxTornadoAngularForceField : ANxForceField
@@ -13274,7 +13274,7 @@ public class ANxTornadoAngularForceField : ANxForceField
   public float HeightOffset;
   public bool BSpecialRadialForceMode;
   public float SelfRotationStrength;
-  public FPointer Kernel;
+  public FPointer Kernel = new();
 }
 
 public class ANxTornadoAngularForceFieldCapsule : ANxTornadoAngularForceField
@@ -13294,7 +13294,7 @@ public class ANxTornadoForceField : ANxForceField
   public float ForceHeight;
   public float HeightOffset;
   public bool BSpecialRadialForceMode;
-  public FPointer Kernel;
+  public FPointer Kernel = new();
 }
 
 public class ANxTornadoForceFieldCapsule : ANxTornadoForceField
@@ -13358,7 +13358,7 @@ public class UOnlineGameplayEvents : UObject
   {
     public string ControllerName;
     public string PlayerName;
-    public UOnlineSubsystem.FUniqueNetId UniqueId;
+    public UOnlineSubsystem.FUniqueNetId UniqueId = new();
     public bool bIsBot;
     public int LastPlayerEventIdx;
   }
@@ -13372,7 +13372,7 @@ public class UOnlineGameplayEvents : UObject
   public class FPlayerEvent
   {
     public float EventTime;
-    public UObject.FVector EventLocation;
+    public UObject.FVector EventLocation = new();
     public int PlayerIndexAndYaw;
     public int PlayerPitchAndRoll;
   }
@@ -13384,7 +13384,7 @@ public class UOnlineGameplayEvents : UObject
   public List<FPlayerEvent> PlayerEvents;
   public string GameplaySessionStartTime;
   public bool bGameplaySessionInProgress;
-  public FGuid GameplaySessionID;
+  public FGuid GameplaySessionID = new();
 }
 
 public class UOnlineGameSettings : USettings
@@ -13393,7 +13393,7 @@ public class UOnlineGameSettings : USettings
   public int NumPrivateConnections;
   public int NumOpenPublicConnections;
   public int NumOpenPrivateConnections;
-  public ulong ServerNonce;
+  public ulong ServerNonce = new();
   public bool bShouldAdvertise;
   public bool bIsLanMatch;
   public bool bUsesStats;
@@ -13408,7 +13408,7 @@ public class UOnlineGameSettings : USettings
   public bool bIsDedicated;
   public bool bHasSkillUpdateInProgress;
   public string OwningPlayerName;
-  public UOnlineSubsystem.FUniqueNetId OwningPlayerId;
+  public UOnlineSubsystem.FUniqueNetId OwningPlayerId = new();
   public int PingInMs;
   public float MatchQuality;
   public EOnlineGameState GameState;
@@ -13463,7 +13463,7 @@ public class UOnlinePlayerStorage : UObject
   public class FOnlineProfileSetting
   {
     public EOnlineProfilePropertyOwner Owner;
-    public USettings.FSettingsProperty ProfileSetting;
+    public USettings.FSettingsProperty ProfileSetting = new();
   }
 
   public int VersionNumber;
@@ -13475,8 +13475,8 @@ public class UOnlinePlayerStorage : UObject
 
 public class UUIResourceDataProvider : UUIPropertyDataProvider
 {
-  public FPointer VfTable_IUIListElementProvider;
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public bool bDataBindingPropertiesOnly;
   public bool bSkipDuringEnumeration;
 }
@@ -13541,7 +13541,7 @@ public class UOnlineRecentPlayersList : UObject
 {
   public class FRecentParty
   {
-    public UOnlineSubsystem.FUniqueNetId PartyLeader;
+    public UOnlineSubsystem.FUniqueNetId PartyLeader = new();
     public List<UOnlineSubsystem.FUniqueNetId> PartyMembers;
   }
 
@@ -13549,12 +13549,12 @@ public class UOnlineRecentPlayersList : UObject
   {
     public int TeamNum;
     public int Skill;
-    public UOnlineSubsystem.FUniqueNetId NetId;
+    public UOnlineSubsystem.FUniqueNetId NetId = new();
   }
 
   public List<UOnlineSubsystem.FUniqueNetId> RecentPlayers;
   public List<FRecentParty> RecentParties;
-  public FRecentParty LastParty;
+  public FRecentParty LastParty = new();
   public int MaxRecentPlayers;
   public int MaxRecentParties;
   public int RecentPlayersAddIndex;
@@ -13579,13 +13579,13 @@ public class UOnlineStatsRead : UOnlineStats
   public class FOnlineStatsColumn
   {
     public int ColumnNo;
-    public USettings.FSettingsData StatValue;
+    public USettings.FSettingsData StatValue = new();
   }
 
   public class FOnlineStatsRow
   {
-    public UOnlineSubsystem.FUniqueNetId PlayerID;
-    public USettings.FSettingsData Rank;
+    public UOnlineSubsystem.FUniqueNetId PlayerID = new();
+    public USettings.FSettingsData Rank = new();
     public string NickName;
     public List<UOnlineStatsRead.FOnlineStatsColumn> Columns;
   }
@@ -13657,7 +13657,7 @@ public class UParticleEmitter : UObject
   public int SubUVDataOffset;
   public EEmitterRenderMode EmitterRenderMode;
   public EEmitterGoreMode EmitterGoreMode;
-  public FColor EmitterEditorColor;
+  public FColor EmitterEditorColor = new();
   public List<UParticleLODLevel> LODLevels;
   public bool ConvertedModules;
   public bool bCollapsed;
@@ -13716,7 +13716,7 @@ public class UParticleModule : UObject
   public bool LODDuplicate;
   public bool bIrrelevantFromDS;
   public byte LODValidity;
-  public FColor ModuleEditorColor;
+  public FColor ModuleEditorColor = new();
 }
 
 public class UParticleModuleAccelerationBase : UParticleModule
@@ -13726,13 +13726,13 @@ public class UParticleModuleAccelerationBase : UParticleModule
 
 public class UParticleModuleAcceleration : UParticleModuleAccelerationBase
 {
-  public UDistributionVector.FRawDistributionVector Acceleration;
+  public UDistributionVector.FRawDistributionVector Acceleration = new();
   public bool bApplyOwnerScale;
 }
 
 public class UParticleModuleAccelerationOverLifetime : UParticleModuleAccelerationBase
 {
-  public UDistributionVector.FRawDistributionVector AccelOverLife;
+  public UDistributionVector.FRawDistributionVector AccelOverLife = new();
 }
 
 public class UParticleModuleAttractorBase : UParticleModule
@@ -13741,30 +13741,30 @@ public class UParticleModuleAttractorBase : UParticleModule
 
 public class UParticleModuleAttractorLine : UParticleModuleAttractorBase
 {
-  public FVector EndPoint0;
-  public FVector EndPoint1;
-  public UDistributionFloat.FRawDistributionFloat Range;
-  public UDistributionFloat.FRawDistributionFloat Strength;
+  public FVector EndPoint0 = new();
+  public FVector EndPoint1 = new();
+  public UDistributionFloat.FRawDistributionFloat Range = new();
+  public UDistributionFloat.FRawDistributionFloat Strength = new();
 }
 
 public class UParticleModuleAttractorParticle : UParticleModuleAttractorBase
 {
   public FName EmitterName;
-  public UDistributionFloat.FRawDistributionFloat Range;
+  public UDistributionFloat.FRawDistributionFloat Range = new();
   public bool bStrengthByDistance;
   public bool bAffectBaseVelocity;
   public bool bRenewSource;
   public bool bInheritSourceVel;
-  public UDistributionFloat.FRawDistributionFloat Strength;
+  public UDistributionFloat.FRawDistributionFloat Strength = new();
   public EAttractorParticleSelectionMethod SelectionMethod;
   public int LastSelIndex;
 }
 
 public class UParticleModuleAttractorPoint : UParticleModuleAttractorBase
 {
-  public UDistributionVector.FRawDistributionVector Position;
-  public UDistributionFloat.FRawDistributionFloat Range;
-  public UDistributionFloat.FRawDistributionFloat Strength;
+  public UDistributionVector.FRawDistributionVector Position = new();
+  public UDistributionFloat.FRawDistributionFloat Range = new();
+  public UDistributionFloat.FRawDistributionFloat Strength = new();
   public bool StrengthByDistance;
   public bool bAffectBaseVelocity;
   public bool bOverrideVelocity;
@@ -13785,13 +13785,13 @@ public class UParticleModuleBeamModifier : UParticleModuleBeamBase
   }
 
   public BeamModifierType ModifierType;
-  public FBeamModifierOptions PositionOptions;
-  public UDistributionVector.FRawDistributionVector Position;
-  public FBeamModifierOptions TangentOptions;
-  public UDistributionVector.FRawDistributionVector Tangent;
+  public FBeamModifierOptions PositionOptions = new();
+  public UDistributionVector.FRawDistributionVector Position = new();
+  public FBeamModifierOptions TangentOptions = new();
+  public UDistributionVector.FRawDistributionVector Tangent = new();
   public bool bAbsoluteTangent;
-  public FBeamModifierOptions StrengthOptions;
-  public UDistributionFloat.FRawDistributionFloat Strength;
+  public FBeamModifierOptions StrengthOptions = new();
+  public UDistributionFloat.FRawDistributionFloat Strength = new();
 }
 
 public class UParticleModuleBeamNoise : UParticleModuleBeamBase
@@ -13806,16 +13806,16 @@ public class UParticleModuleBeamNoise : UParticleModuleBeamBase
   public bool bApplyNoiseScale;
   public int Frequency;
   public int Frequency_LowRange;
-  public UDistributionVector.FRawDistributionVector NoiseRange;
-  public UDistributionFloat.FRawDistributionFloat NoiseRangeScale;
-  public UDistributionVector.FRawDistributionVector NoiseSpeed;
+  public UDistributionVector.FRawDistributionVector NoiseRange = new();
+  public UDistributionFloat.FRawDistributionFloat NoiseRangeScale = new();
+  public UDistributionVector.FRawDistributionVector NoiseSpeed = new();
   public float NoiseLockRadius;
   public float NoiseLockTime;
   public float NoiseTension;
-  public UDistributionFloat.FRawDistributionFloat NoiseTangentStrength;
+  public UDistributionFloat.FRawDistributionFloat NoiseTangentStrength = new();
   public int NoiseTessellation;
   public float FrequencyDistance;
-  public UDistributionFloat.FRawDistributionFloat NoiseScale;
+  public UDistributionFloat.FRawDistributionFloat NoiseScale = new();
 }
 
 public class UParticleModuleBeamSource : UParticleModuleBeamBase
@@ -13827,9 +13827,9 @@ public class UParticleModuleBeamSource : UParticleModuleBeamBase
   public bool bLockSource;
   public bool bLockSourceTangent;
   public bool bLockSourceStength;
-  public UDistributionVector.FRawDistributionVector Source;
-  public UDistributionVector.FRawDistributionVector SourceTangent;
-  public UDistributionFloat.FRawDistributionFloat SourceStrength;
+  public UDistributionVector.FRawDistributionVector Source = new();
+  public UDistributionVector.FRawDistributionVector SourceTangent = new();
+  public UDistributionFloat.FRawDistributionFloat SourceStrength = new();
 }
 
 public class UParticleModuleBeamTarget : UParticleModuleBeamBase
@@ -13837,13 +13837,13 @@ public class UParticleModuleBeamTarget : UParticleModuleBeamBase
   public Beam2SourceTargetMethod TargetMethod;
   public Beam2SourceTargetTangentMethod TargetTangentMethod;
   public FName TargetName;
-  public UDistributionVector.FRawDistributionVector Target;
+  public UDistributionVector.FRawDistributionVector Target = new();
   public bool bTargetAbsolute;
   public bool bLockTarget;
   public bool bLockTargetTangent;
   public bool bLockTargetStength;
-  public UDistributionVector.FRawDistributionVector TargetTangent;
-  public UDistributionFloat.FRawDistributionFloat TargetStrength;
+  public UDistributionVector.FRawDistributionVector TargetTangent = new();
+  public UDistributionFloat.FRawDistributionFloat TargetStrength = new();
   public float LockRadius;
 }
 
@@ -13853,18 +13853,18 @@ public class UParticleModuleCollisionBase : UParticleModule
 
 public class UParticleModuleCollision : UParticleModuleCollisionBase
 {
-  public UDistributionVector.FRawDistributionVector DampingFactor;
-  public UDistributionVector.FRawDistributionVector DampingFactorRotation;
-  public UDistributionFloat.FRawDistributionFloat MaxCollisions;
+  public UDistributionVector.FRawDistributionVector DampingFactor = new();
+  public UDistributionVector.FRawDistributionVector DampingFactorRotation = new();
+  public UDistributionFloat.FRawDistributionFloat MaxCollisions = new();
   public EParticleCollisionComplete CollisionCompletionOption;
   public bool bApplyPhysics;
   public bool bPawnsDoNotDecrementCount;
   public bool bOnlyVerticalNormalsDecrementCount;
   public bool bDropDetail;
-  public UDistributionFloat.FRawDistributionFloat ParticleMass;
+  public UDistributionFloat.FRawDistributionFloat ParticleMass = new();
   public float DirScalar;
   public float VerticalFudgeFactor;
-  public UDistributionFloat.FRawDistributionFloat DelayAmount;
+  public UDistributionFloat.FRawDistributionFloat DelayAmount = new();
 }
 
 public class UParticleModuleColorBase : UParticleModule
@@ -13873,28 +13873,28 @@ public class UParticleModuleColorBase : UParticleModule
 
 public class UParticleModuleColor : UParticleModuleColorBase
 {
-  public UDistributionVector.FRawDistributionVector StartColor;
-  public UDistributionFloat.FRawDistributionFloat StartAlpha;
+  public UDistributionVector.FRawDistributionVector StartColor = new();
+  public UDistributionFloat.FRawDistributionFloat StartAlpha = new();
   public bool bClampAlpha;
 }
 
 public class UParticleModuleColorByParameter : UParticleModuleColorBase
 {
   public FName ColorParam;
-  public FColor DefaultColor;
+  public FColor DefaultColor = new();
 }
 
 public class UParticleModuleColorOverLife : UParticleModuleColorBase
 {
-  public UDistributionVector.FRawDistributionVector ColorOverLife;
-  public UDistributionFloat.FRawDistributionFloat AlphaOverLife;
+  public UDistributionVector.FRawDistributionVector ColorOverLife = new();
+  public UDistributionFloat.FRawDistributionFloat AlphaOverLife = new();
   public bool bClampAlpha;
 }
 
 public class UParticleModuleColorScaleOverLife : UParticleModuleColorBase
 {
-  public UDistributionVector.FRawDistributionVector ColorScaleOverLife;
-  public UDistributionFloat.FRawDistributionFloat AlphaScaleOverLife;
+  public UDistributionVector.FRawDistributionVector ColorScaleOverLife = new();
+  public UDistributionFloat.FRawDistributionFloat AlphaScaleOverLife = new();
   public bool bEmitterTime;
 }
 
@@ -13935,11 +13935,11 @@ public class UParticleModuleEventReceiverSpawn : UParticleModuleEventReceiverBas
 {
   public EParticleEventType EventGeneratorType;
   public FName EventName;
-  public UDistributionFloat.FRawDistributionFloat SpawnCount;
+  public UDistributionFloat.FRawDistributionFloat SpawnCount = new();
   public bool bUseParticleTime;
   public bool bUsePSysLocation;
   public bool bInheritVelocity;
-  public UDistributionVector.FRawDistributionVector InheritVelocityScale;
+  public UDistributionVector.FRawDistributionVector InheritVelocityScale = new();
 }
 
 public class UParticleModuleEventSendToGame : UObject
@@ -13952,15 +13952,15 @@ public class UParticleModuleKillBase : UParticleModule
 
 public class UParticleModuleKillBox : UParticleModuleKillBase
 {
-  public UDistributionVector.FRawDistributionVector LowerLeftCorner;
-  public UDistributionVector.FRawDistributionVector UpperRightCorner;
+  public UDistributionVector.FRawDistributionVector LowerLeftCorner = new();
+  public UDistributionVector.FRawDistributionVector UpperRightCorner = new();
   public bool bAbsolute;
   public bool bKillInside;
 }
 
 public class UParticleModuleKillHeight : UParticleModuleKillBase
 {
-  public UDistributionFloat.FRawDistributionFloat Height;
+  public UDistributionFloat.FRawDistributionFloat Height = new();
   public bool bAbsolute;
   public bool bFloor;
 }
@@ -13971,7 +13971,7 @@ public class UParticleModuleLifetimeBase : UParticleModule
 
 public class UParticleModuleLifetime : UParticleModuleLifetimeBase
 {
-  public UDistributionFloat.FRawDistributionFloat Lifetime;
+  public UDistributionFloat.FRawDistributionFloat Lifetime = new();
 }
 
 public class UParticleModuleLocationBase : UParticleModule
@@ -13980,15 +13980,15 @@ public class UParticleModuleLocationBase : UParticleModule
 
 public class UParticleModuleLocation : UParticleModuleLocationBase
 {
-  public UDistributionVector.FRawDistributionVector StartLocation;
+  public UDistributionVector.FRawDistributionVector StartLocation = new();
 }
 
 public class UParticleModuleLocationDirect : UParticleModuleLocationBase
 {
-  public UDistributionVector.FRawDistributionVector Location;
-  public UDistributionVector.FRawDistributionVector LocationOffset;
-  public UDistributionVector.FRawDistributionVector ScaleFactor;
-  public UDistributionVector.FRawDistributionVector Direction;
+  public UDistributionVector.FRawDistributionVector Location = new();
+  public UDistributionVector.FRawDistributionVector LocationOffset = new();
+  public UDistributionVector.FRawDistributionVector ScaleFactor = new();
+  public UDistributionVector.FRawDistributionVector Direction = new();
 }
 
 public class UParticleModuleLocationEmitter : UParticleModuleLocationBase
@@ -14016,21 +14016,21 @@ public class UParticleModuleLocationPrimitiveBase : UParticleModuleLocationBase
   public bool Negative_Z;
   public bool SurfaceOnly;
   public bool Velocity;
-  public UDistributionFloat.FRawDistributionFloat VelocityScale;
-  public UDistributionVector.FRawDistributionVector StartLocation;
+  public UDistributionFloat.FRawDistributionFloat VelocityScale = new();
+  public UDistributionVector.FRawDistributionVector StartLocation = new();
 }
 
 public class UParticleModuleLocationPrimitiveCylinder : UParticleModuleLocationPrimitiveBase
 {
   public bool RadialVelocity;
-  public UDistributionFloat.FRawDistributionFloat StartRadius;
-  public UDistributionFloat.FRawDistributionFloat StartHeight;
+  public UDistributionFloat.FRawDistributionFloat StartRadius = new();
+  public UDistributionFloat.FRawDistributionFloat StartHeight = new();
   public CylinderHeightAxis HeightAxis;
 }
 
 public class UParticleModuleLocationPrimitiveSphere : UParticleModuleLocationPrimitiveBase
 {
-  public UDistributionFloat.FRawDistributionFloat StartRadius;
+  public UDistributionFloat.FRawDistributionFloat StartRadius = new();
 }
 
 public class UParticleModuleMaterialBase : UParticleModule
@@ -14054,7 +14054,7 @@ public class UParticleModuleRotationBase : UParticleModule
 
 public class UParticleModuleMeshRotation : UParticleModuleRotationBase
 {
-  public UDistributionVector.FRawDistributionVector StartRotation;
+  public UDistributionVector.FRawDistributionVector StartRotation = new();
   public bool bInheritParent;
 }
 
@@ -14064,17 +14064,17 @@ public class UParticleModuleRotationRateBase : UParticleModule
 
 public class UParticleModuleMeshRotationRate : UParticleModuleRotationRateBase
 {
-  public UDistributionVector.FRawDistributionVector StartRotationRate;
+  public UDistributionVector.FRawDistributionVector StartRotationRate = new();
 }
 
 public class UParticleModuleMeshRotationRateMultiplyLife : UParticleModuleRotationRateBase
 {
-  public UDistributionVector.FRawDistributionVector LifeMultiplier;
+  public UDistributionVector.FRawDistributionVector LifeMultiplier = new();
 }
 
 public class UParticleModuleMeshRotationRateOverLife : UParticleModuleRotationRateBase
 {
-  public UDistributionVector.FRawDistributionVector RotRate;
+  public UDistributionVector.FRawDistributionVector RotRate = new();
   public bool bScaleRotRate;
 }
 
@@ -14093,12 +14093,12 @@ public class UParticleModuleOrbit : UParticleModuleOrbitBase
   }
 
   public EOrbitChainMode ChainMode;
-  public UDistributionVector.FRawDistributionVector OffsetAmount;
-  public FOrbitOptions OffsetOptions;
-  public UDistributionVector.FRawDistributionVector RotationAmount;
-  public FOrbitOptions RotationOptions;
-  public UDistributionVector.FRawDistributionVector RotationRateAmount;
-  public FOrbitOptions RotationRateOptions;
+  public UDistributionVector.FRawDistributionVector OffsetAmount = new();
+  public FOrbitOptions OffsetOptions = new();
+  public UDistributionVector.FRawDistributionVector RotationAmount = new();
+  public FOrbitOptions RotationOptions = new();
+  public UDistributionVector.FRawDistributionVector RotationRateAmount = new();
+  public FOrbitOptions RotationRateOptions = new();
 }
 
 public class UParticleModuleOrientationBase : UParticleModule
@@ -14123,7 +14123,7 @@ public class UParticleModuleParameterDynamic : UParticleModuleParameterBase
     public bool bSpawnTimeOnly;
     public EEmitterDynamicParameterValue ValueMethod;
     public bool bScaleVelocityByParamValue;
-    public UDistributionFloat.FRawDistributionFloat ParamValue;
+    public UDistributionFloat.FRawDistributionFloat ParamValue = new();
   }
 
   public List<FEmitterDynamicParameter> DynamicParams;
@@ -14156,7 +14156,7 @@ public class UParticleModuleRequired : UParticleModule
   public float EmitterDuration;
   public float EmitterDurationLow;
   public int EmitterLoops;
-  public UDistributionFloat.FRawDistributionFloat SpawnRate;
+  public UDistributionFloat.FRawDistributionFloat SpawnRate = new();
   public List<UParticleEmitter.FParticleBurst> BurstList;
   public float EmitterDelay;
   public float EmitterDelayLow;
@@ -14166,29 +14166,29 @@ public class UParticleModuleRequired : UParticleModule
   public int RandomImageChanges;
   public int MaxDrawCount;
   public float DownsampleThresholdScreenFraction;
-  public FVector NormalsSphereCenter;
-  public FVector NormalsCylinderDirection;
+  public FVector NormalsSphereCenter = new();
+  public FVector NormalsCylinderDirection = new();
 }
 
 public class UParticleModuleRotation : UParticleModuleRotationBase
 {
-  public UDistributionFloat.FRawDistributionFloat StartRotation;
+  public UDistributionFloat.FRawDistributionFloat StartRotation = new();
 }
 
 public class UParticleModuleRotationOverLifetime : UParticleModuleRotationBase
 {
-  public UDistributionFloat.FRawDistributionFloat RotationOverLife;
+  public UDistributionFloat.FRawDistributionFloat RotationOverLife = new();
   public bool Scale;
 }
 
 public class UParticleModuleRotationRate : UParticleModuleRotationRateBase
 {
-  public UDistributionFloat.FRawDistributionFloat StartRotationRate;
+  public UDistributionFloat.FRawDistributionFloat StartRotationRate = new();
 }
 
 public class UParticleModuleRotationRateMultiplyLife : UParticleModuleRotationRateBase
 {
-  public UDistributionFloat.FRawDistributionFloat LifeMultiplier;
+  public UDistributionFloat.FRawDistributionFloat LifeMultiplier = new();
 }
 
 public class UParticleModuleSizeBase : UParticleModule
@@ -14197,12 +14197,12 @@ public class UParticleModuleSizeBase : UParticleModule
 
 public class UParticleModuleSize : UParticleModuleSizeBase
 {
-  public UDistributionVector.FRawDistributionVector StartSize;
+  public UDistributionVector.FRawDistributionVector StartSize = new();
 }
 
 public class UParticleModuleSizeMultiplyLife : UParticleModuleSizeBase
 {
-  public UDistributionVector.FRawDistributionVector LifeMultiplier;
+  public UDistributionVector.FRawDistributionVector LifeMultiplier = new();
   public bool MultiplyX;
   public bool MultiplyY;
   public bool MultiplyZ;
@@ -14210,7 +14210,7 @@ public class UParticleModuleSizeMultiplyLife : UParticleModuleSizeBase
 
 public class UParticleModuleSizeMultiplyVelocity : UParticleModuleSizeBase
 {
-  public UDistributionVector.FRawDistributionVector VelocityMultiplier;
+  public UDistributionVector.FRawDistributionVector VelocityMultiplier = new();
   public bool MultiplyX;
   public bool MultiplyY;
   public bool MultiplyZ;
@@ -14218,7 +14218,7 @@ public class UParticleModuleSizeMultiplyVelocity : UParticleModuleSizeBase
 
 public class UParticleModuleSizeScale : UParticleModuleSizeBase
 {
-  public UDistributionVector.FRawDistributionVector SizeScale;
+  public UDistributionVector.FRawDistributionVector SizeScale = new();
   public bool EnableX;
   public bool EnableY;
   public bool EnableZ;
@@ -14226,7 +14226,7 @@ public class UParticleModuleSizeScale : UParticleModuleSizeBase
 
 public class UParticleModuleSizeScaleByTime : UParticleModuleSizeBase
 {
-  public UDistributionVector.FRawDistributionVector SizeScaleByTime;
+  public UDistributionVector.FRawDistributionVector SizeScaleByTime = new();
   public bool bEnableX;
   public bool bEnableY;
   public bool bEnableZ;
@@ -14234,7 +14234,7 @@ public class UParticleModuleSizeScaleByTime : UParticleModuleSizeBase
 
 public class UParticleModuleSourceMovement : UParticleModuleLocationBase
 {
-  public UDistributionVector.FRawDistributionVector SourceMovementScale;
+  public UDistributionVector.FRawDistributionVector SourceMovementScale = new();
 }
 
 public class UParticleModuleSpawnBase : UParticleModule
@@ -14245,8 +14245,8 @@ public class UParticleModuleSpawnBase : UParticleModule
 
 public class UParticleModuleSpawn : UParticleModuleSpawnBase
 {
-  public UDistributionFloat.FRawDistributionFloat Rate;
-  public UDistributionFloat.FRawDistributionFloat RateScale;
+  public UDistributionFloat.FRawDistributionFloat Rate = new();
+  public UDistributionFloat.FRawDistributionFloat RateScale = new();
   public EParticleBurstMethod ParticleBurstMethod;
   public List<UParticleEmitter.FParticleBurst> BurstList;
 }
@@ -14254,7 +14254,7 @@ public class UParticleModuleSpawn : UParticleModuleSpawnBase
 public class UParticleModuleSpawnPerUnit : UParticleModuleSpawnBase
 {
   public float UnitScalar;
-  public UDistributionFloat.FRawDistributionFloat SpawnPerUnit;
+  public UDistributionFloat.FRawDistributionFloat SpawnPerUnit = new();
   public bool bIgnoreSpawnRateWhenMoving;
   public float MovementTolerance;
 }
@@ -14273,25 +14273,25 @@ public class UParticleModuleSubUVBase : UParticleModule
 
 public class UParticleModuleSubUV : UParticleModuleSubUVBase
 {
-  public UDistributionFloat.FRawDistributionFloat SubImageIndex;
+  public UDistributionFloat.FRawDistributionFloat SubImageIndex = new();
 }
 
 public class UParticleModuleSubUVDirect : UParticleModuleSubUVBase
 {
-  public UDistributionVector.FRawDistributionVector SubUVPosition;
-  public UDistributionVector.FRawDistributionVector SubUVSize;
+  public UDistributionVector.FRawDistributionVector SubUVPosition = new();
+  public UDistributionVector.FRawDistributionVector SubUVSize = new();
 }
 
 public class UParticleModuleSubUVMovie : UParticleModuleSubUV
 {
   public bool bUseEmitterTime;
-  public UDistributionFloat.FRawDistributionFloat FrameRate;
+  public UDistributionFloat.FRawDistributionFloat FrameRate = new();
   public int StartingFrame;
 }
 
 public class UParticleModuleSubUVSelect : UParticleModuleSubUVBase
 {
-  public UDistributionVector.FRawDistributionVector SubImageSelect;
+  public UDistributionVector.FRawDistributionVector SubImageSelect = new();
 }
 
 public class UParticleModuleTrailBase : UParticleModule
@@ -14303,7 +14303,7 @@ public class UParticleModuleTrailSource : UParticleModuleTrailBase
   public ETrail2SourceMethod SourceMethod;
   public EParticleSourceSelectionMethod SelectionMethod;
   public FName SourceName;
-  public UDistributionFloat.FRawDistributionFloat SourceStrength;
+  public UDistributionFloat.FRawDistributionFloat SourceStrength = new();
   public bool bLockSourceStength;
   public bool bInheritRotation;
   public int SourceOffsetCount;
@@ -14319,7 +14319,7 @@ public class UParticleModuleTrailSpawn : UParticleModuleTrailBase
 public class UParticleModuleTrailTaper : UParticleModuleTrailBase
 {
   public ETrailTaperMethod TaperMethod;
-  public UDistributionFloat.FRawDistributionFloat TaperFactor;
+  public UDistributionFloat.FRawDistributionFloat TaperFactor = new();
 }
 
 public class UParticleModuleTypeDataBase : UParticleModule
@@ -14347,12 +14347,12 @@ public class UParticleModuleTypeDataBeam : UParticleModuleTypeDataBase
 {
   public EBeamMethod BeamMethod;
   public EBeamEndPointMethod EndPointMethod;
-  public UDistributionFloat.FRawDistributionFloat Distance;
-  public UDistributionVector.FRawDistributionVector EndPoint;
+  public UDistributionFloat.FRawDistributionFloat Distance = new();
+  public UDistributionVector.FRawDistributionVector EndPoint = new();
   public int TessellationFactor;
-  public UDistributionFloat.FRawDistributionFloat EmitterStrength;
-  public UDistributionFloat.FRawDistributionFloat TargetStrength;
-  public UDistributionVector.FRawDistributionVector EndPointDirection;
+  public UDistributionFloat.FRawDistributionFloat EmitterStrength = new();
+  public UDistributionFloat.FRawDistributionFloat TargetStrength = new();
+  public UDistributionVector.FRawDistributionVector EndPointDirection = new();
   public int TextureTile;
   public bool RenderGeometry;
   public bool RenderDirectLine;
@@ -14383,9 +14383,9 @@ public class UParticleModuleTypeDataBeam2 : UParticleModuleTypeDataBase
   public bool RenderTessellation;
   public int UpVectorStepSize;
   public FName BranchParentName;
-  public UDistributionFloat.FRawDistributionFloat Distance;
-  public UDistributionFloat.FRawDistributionFloat TaperFactor;
-  public UDistributionFloat.FRawDistributionFloat TaperScale;
+  public UDistributionFloat.FRawDistributionFloat Distance = new();
+  public UDistributionFloat.FRawDistributionFloat TaperFactor = new();
+  public UDistributionFloat.FRawDistributionFloat TaperScale = new();
 }
 
 public class UParticleModuleTypeDataMesh : UParticleModuleTypeDataBase
@@ -14411,8 +14411,8 @@ public class UParticleModuleTypeDataMeshPhysX : UParticleModuleTypeDataMesh
   public UPhysXParticleSystem PhysXParSys;
   public EPhysXMeshRotationMethod PhysXRotationMethod;
   public float FluidRotationCoefficient;
-  public FPointer RenderInstance;
-  public UParticleModuleTypeDataPhysX.FPhysXEmitterVerticalLodProperties VerticalLod;
+  public FPointer RenderInstance = new();
+  public UParticleModuleTypeDataPhysX.FPhysXEmitterVerticalLodProperties VerticalLod = new();
 }
 
 public class UParticleModuleTypeDataPhysX : UParticleModuleTypeDataBase
@@ -14426,7 +14426,7 @@ public class UParticleModuleTypeDataPhysX : UParticleModuleTypeDataBase
   }
 
   public UPhysXParticleSystem PhysXParSys;
-  public FPhysXEmitterVerticalLodProperties VerticalLod;
+  public FPhysXEmitterVerticalLodProperties VerticalLod = new();
 }
 
 public class UParticleModuleTypeDataRibbon : UParticleModuleTypeDataBase
@@ -14458,8 +14458,8 @@ public class UParticleModuleTypeDataTrail : UParticleModuleTypeDataBase
   public bool Tapered;
   public bool SpawnByDistance;
   public int TessellationFactor;
-  public UDistributionFloat.FRawDistributionFloat Tension;
-  public FVector SpawnDistance;
+  public UDistributionFloat.FRawDistributionFloat Tension = new();
+  public FVector SpawnDistance = new();
 }
 
 public class UParticleModuleTypeDataTrail2 : UParticleModuleTypeDataBase
@@ -14485,53 +14485,53 @@ public class UParticleModuleUberBase : UParticleModule
 
 public class UParticleModuleUberLTISIVCL : UParticleModuleUberBase
 {
-  public UDistributionFloat.FRawDistributionFloat Lifetime;
-  public UDistributionVector.FRawDistributionVector StartSize;
-  public UDistributionVector.FRawDistributionVector StartVelocity;
-  public UDistributionFloat.FRawDistributionFloat StartVelocityRadial;
-  public UDistributionVector.FRawDistributionVector ColorOverLife;
-  public UDistributionFloat.FRawDistributionFloat AlphaOverLife;
+  public UDistributionFloat.FRawDistributionFloat Lifetime = new();
+  public UDistributionVector.FRawDistributionVector StartSize = new();
+  public UDistributionVector.FRawDistributionVector StartVelocity = new();
+  public UDistributionFloat.FRawDistributionFloat StartVelocityRadial = new();
+  public UDistributionVector.FRawDistributionVector ColorOverLife = new();
+  public UDistributionFloat.FRawDistributionFloat AlphaOverLife = new();
 }
 
 public class UParticleModuleUberLTISIVCLIL : UParticleModuleUberBase
 {
-  public UDistributionFloat.FRawDistributionFloat Lifetime;
-  public UDistributionVector.FRawDistributionVector StartSize;
-  public UDistributionVector.FRawDistributionVector StartVelocity;
-  public UDistributionFloat.FRawDistributionFloat StartVelocityRadial;
-  public UDistributionVector.FRawDistributionVector ColorOverLife;
-  public UDistributionFloat.FRawDistributionFloat AlphaOverLife;
-  public UDistributionVector.FRawDistributionVector StartLocation;
+  public UDistributionFloat.FRawDistributionFloat Lifetime = new();
+  public UDistributionVector.FRawDistributionVector StartSize = new();
+  public UDistributionVector.FRawDistributionVector StartVelocity = new();
+  public UDistributionFloat.FRawDistributionFloat StartVelocityRadial = new();
+  public UDistributionVector.FRawDistributionVector ColorOverLife = new();
+  public UDistributionFloat.FRawDistributionFloat AlphaOverLife = new();
+  public UDistributionVector.FRawDistributionVector StartLocation = new();
 }
 
 public class UParticleModuleUberLTISIVCLILIRSSBLIRR : UParticleModuleUberBase
 {
-  public UDistributionFloat.FRawDistributionFloat Lifetime;
-  public UDistributionVector.FRawDistributionVector StartSize;
-  public UDistributionVector.FRawDistributionVector StartVelocity;
-  public UDistributionFloat.FRawDistributionFloat StartVelocityRadial;
-  public UDistributionVector.FRawDistributionVector ColorOverLife;
-  public UDistributionFloat.FRawDistributionFloat AlphaOverLife;
-  public UDistributionVector.FRawDistributionVector StartLocation;
-  public UDistributionFloat.FRawDistributionFloat StartRotation;
-  public UDistributionVector.FRawDistributionVector SizeLifeMultiplier;
+  public UDistributionFloat.FRawDistributionFloat Lifetime = new();
+  public UDistributionVector.FRawDistributionVector StartSize = new();
+  public UDistributionVector.FRawDistributionVector StartVelocity = new();
+  public UDistributionFloat.FRawDistributionFloat StartVelocityRadial = new();
+  public UDistributionVector.FRawDistributionVector ColorOverLife = new();
+  public UDistributionFloat.FRawDistributionFloat AlphaOverLife = new();
+  public UDistributionVector.FRawDistributionVector StartLocation = new();
+  public UDistributionFloat.FRawDistributionFloat StartRotation = new();
+  public UDistributionVector.FRawDistributionVector SizeLifeMultiplier = new();
   public bool SizeMultiplyX;
   public bool SizeMultiplyY;
   public bool SizeMultiplyZ;
-  public UDistributionFloat.FRawDistributionFloat StartRotationRate;
+  public UDistributionFloat.FRawDistributionFloat StartRotationRate = new();
 }
 
 public class UParticleModuleUberRainDrops : UParticleModuleUberBase
 {
   public float LifetimeMin;
   public float LifetimeMax;
-  public FVector StartSizeMin;
-  public FVector StartSizeMax;
-  public FVector StartVelocityMin;
-  public FVector StartVelocityMax;
+  public FVector StartSizeMin = new();
+  public FVector StartSizeMax = new();
+  public FVector StartVelocityMin = new();
+  public FVector StartVelocityMax = new();
   public float StartVelocityRadialMin;
   public float StartVelocityRadialMax;
-  public FVector ColorOverLife;
+  public FVector ColorOverLife = new();
   public float AlphaOverLife;
   public bool bIsUsingCylinder;
   public bool bPositive_X;
@@ -14544,19 +14544,19 @@ public class UParticleModuleUberRainDrops : UParticleModuleUberBase
   public bool bVelocity;
   public bool bRadialVelocity;
   public float PC_VelocityScale;
-  public FVector PC_StartLocation;
+  public FVector PC_StartLocation = new();
   public float PC_StartRadius;
   public float PC_StartHeight;
   public CylinderHeightAxis PC_HeightAxis;
-  public FVector StartLocationMin;
-  public FVector StartLocationMax;
+  public FVector StartLocationMin = new();
+  public FVector StartLocationMax = new();
 }
 
 public class UParticleModuleUberRainImpacts : UParticleModuleUberBase
 {
-  public UDistributionFloat.FRawDistributionFloat Lifetime;
-  public UDistributionVector.FRawDistributionVector StartSize;
-  public UDistributionVector.FRawDistributionVector StartRotation;
+  public UDistributionFloat.FRawDistributionFloat Lifetime = new();
+  public UDistributionVector.FRawDistributionVector StartSize = new();
+  public UDistributionVector.FRawDistributionVector StartRotation = new();
   public bool bInheritParent;
   public bool MultiplyX;
   public bool MultiplyY;
@@ -14571,41 +14571,41 @@ public class UParticleModuleUberRainImpacts : UParticleModuleUberBase
   public bool bSurfaceOnly;
   public bool bVelocity;
   public bool bRadialVelocity;
-  public UDistributionVector.FRawDistributionVector LifeMultiplier;
-  public UDistributionFloat.FRawDistributionFloat PC_VelocityScale;
-  public UDistributionVector.FRawDistributionVector PC_StartLocation;
-  public UDistributionFloat.FRawDistributionFloat PC_StartRadius;
-  public UDistributionFloat.FRawDistributionFloat PC_StartHeight;
+  public UDistributionVector.FRawDistributionVector LifeMultiplier = new();
+  public UDistributionFloat.FRawDistributionFloat PC_VelocityScale = new();
+  public UDistributionVector.FRawDistributionVector PC_StartLocation = new();
+  public UDistributionFloat.FRawDistributionFloat PC_StartRadius = new();
+  public UDistributionFloat.FRawDistributionFloat PC_StartHeight = new();
   public CylinderHeightAxis PC_HeightAxis;
-  public UDistributionVector.FRawDistributionVector ColorOverLife;
-  public UDistributionFloat.FRawDistributionFloat AlphaOverLife;
+  public UDistributionVector.FRawDistributionVector ColorOverLife = new();
+  public UDistributionFloat.FRawDistributionFloat AlphaOverLife = new();
 }
 
 public class UParticleModuleUberRainSplashA : UParticleModuleUberBase
 {
-  public UDistributionFloat.FRawDistributionFloat Lifetime;
-  public UDistributionVector.FRawDistributionVector StartSize;
-  public UDistributionVector.FRawDistributionVector StartRotation;
+  public UDistributionFloat.FRawDistributionFloat Lifetime = new();
+  public UDistributionVector.FRawDistributionVector StartSize = new();
+  public UDistributionVector.FRawDistributionVector StartRotation = new();
   public bool bInheritParent;
   public bool MultiplyX;
   public bool MultiplyY;
   public bool MultiplyZ;
-  public UDistributionVector.FRawDistributionVector LifeMultiplier;
-  public UDistributionVector.FRawDistributionVector ColorOverLife;
-  public UDistributionFloat.FRawDistributionFloat AlphaOverLife;
+  public UDistributionVector.FRawDistributionVector LifeMultiplier = new();
+  public UDistributionVector.FRawDistributionVector ColorOverLife = new();
+  public UDistributionFloat.FRawDistributionFloat AlphaOverLife = new();
 }
 
 public class UParticleModuleUberRainSplashB : UParticleModuleUberBase
 {
-  public UDistributionFloat.FRawDistributionFloat Lifetime;
-  public UDistributionVector.FRawDistributionVector StartSize;
-  public UDistributionVector.FRawDistributionVector ColorOverLife;
-  public UDistributionFloat.FRawDistributionFloat AlphaOverLife;
-  public UDistributionVector.FRawDistributionVector LifeMultiplier;
+  public UDistributionFloat.FRawDistributionFloat Lifetime = new();
+  public UDistributionVector.FRawDistributionVector StartSize = new();
+  public UDistributionVector.FRawDistributionVector ColorOverLife = new();
+  public UDistributionFloat.FRawDistributionFloat AlphaOverLife = new();
+  public UDistributionVector.FRawDistributionVector LifeMultiplier = new();
   public bool MultiplyX;
   public bool MultiplyY;
   public bool MultiplyZ;
-  public UDistributionFloat.FRawDistributionFloat StartRotationRate;
+  public UDistributionFloat.FRawDistributionFloat StartRotationRate = new();
 }
 
 public class UParticleModuleVelocityBase : UParticleModule
@@ -14616,18 +14616,18 @@ public class UParticleModuleVelocityBase : UParticleModule
 
 public class UParticleModuleVelocity : UParticleModuleVelocityBase
 {
-  public UDistributionVector.FRawDistributionVector StartVelocity;
-  public UDistributionFloat.FRawDistributionFloat StartVelocityRadial;
+  public UDistributionVector.FRawDistributionVector StartVelocity = new();
+  public UDistributionFloat.FRawDistributionFloat StartVelocityRadial = new();
 }
 
 public class UParticleModuleVelocityInheritParent : UParticleModuleVelocityBase
 {
-  public UDistributionVector.FRawDistributionVector Scale;
+  public UDistributionVector.FRawDistributionVector Scale = new();
 }
 
 public class UParticleModuleVelocityOverLifetime : UParticleModuleVelocityBase
 {
-  public UDistributionVector.FRawDistributionVector VelOverLife;
+  public UDistributionVector.FRawDistributionVector VelOverLife = new();
   public bool Absolute;
 }
 
@@ -14652,7 +14652,7 @@ public class UParticleSystem : UObject
   public float WarmupTime;
   public List<UParticleEmitter> Emitters;
   public UParticleSystemComponent PreviewComponent;
-  public FRotator ThumbnailAngle;
+  public FRotator ThumbnailAngle = new();
   public float ThumbnailDistance;
   public float ThumbnailWarmup;
   public bool bLit;
@@ -14671,20 +14671,20 @@ public class UParticleSystem : UObject
   public List<float> LODDistances;
   public int EditorLODSetting;
   public List<FParticleSystemLOD> LODSettings;
-  public FBox FixedRelativeBoundingBox;
+  public FBox FixedRelativeBoundingBox = new();
   public float SecondsBeforeInactive;
   public string FloorMesh;
-  public FVector FloorPosition;
-  public FRotator FloorRotation;
+  public FVector FloorPosition = new();
+  public FRotator FloorRotation = new();
   public float FloorScale;
-  public FVector FloorScale3D;
-  public FColor BackgroundColor;
+  public FVector FloorScale3D = new();
+  public FColor BackgroundColor = new();
   public UTexture2D ThumbnailImage;
   public float Delay;
   public float DelayLow;
-  public FVector MacroUVPosition;
+  public FVector MacroUVPosition = new();
   public float MacroUVRadius;
-  public FBox CustomOcclusionBounds;
+  public FBox CustomOcclusionBounds = new();
   public List<FLODSoloTrack> SoloTracking;
 }
 
@@ -14694,7 +14694,7 @@ public class UParticleSystemReplay : UObject
   {
     public int EmitterType;
     public int OriginalEmitterIndex;
-    public UObject.FPointer FrameState;
+    public UObject.FPointer FrameState = new();
   }
 
   public class FParticleSystemReplayFrame
@@ -14714,7 +14714,7 @@ public class UPathConstraint : UObject
 
 public class UPath_AlongLine : UPathConstraint
 {
-  public FVector Direction;
+  public FVector Direction = new();
 }
 
 public class UPath_AvoidInEscapableNodes : UPathConstraint
@@ -14728,7 +14728,7 @@ public class UPath_AvoidInEscapableNodes : UPathConstraint
 public class UPath_MinDistBetweenSpecsOfType : UPathConstraint
 {
   public float MinDistBetweenSpecTypes;
-  public FVector InitLocation;
+  public FVector InitLocation = new();
   public UClass ReachSpecClass;
 }
 
@@ -14739,7 +14739,7 @@ public class UPath_TowardGoal : UPathConstraint
 
 public class UPath_TowardPoint : UPathConstraint
 {
-  public FVector GoalPoint;
+  public FVector GoalPoint = new();
 }
 
 public class UPath_WithinDistanceEnvelope : UPathConstraint
@@ -14749,7 +14749,7 @@ public class UPath_WithinDistanceEnvelope : UPathConstraint
   public bool bSoft;
   public bool bOnlyThrowOutNodesThatLeaveEnvelope;
   public float SoftStartPenalty;
-  public FVector EnvelopeTestPoint;
+  public FVector EnvelopeTestPoint = new();
 }
 
 public class UPath_WithinTraversalDist : UPathConstraint
@@ -14838,7 +14838,7 @@ public class AProcBuilding : AVolume
 {
   public class FPBScope2D
   {
-    public UObject.FMatrix ScopeFrame;
+    public UObject.FMatrix ScopeFrame = new();
     public float DimX;
     public float DimZ;
   }
@@ -14854,14 +14854,14 @@ public class AProcBuilding : AVolume
 
   public class FPBFaceUVInfo
   {
-    public UObject.FVector2D Offset;
-    public UObject.FVector2D Size;
+    public UObject.FVector2D Offset = new();
+    public UObject.FVector2D Size = new();
   }
 
   public class FPBEdgeInfo
   {
-    public UObject.FVector EdgeEnd;
-    public UObject.FVector EdgeStart;
+    public UObject.FVector EdgeEnd = new();
+    public UObject.FVector EdgeStart = new();
     public int ScopeAIndex;
     public EScopeEdge ScopeAEdge;
     public int ScopeBIndex;
@@ -14884,7 +14884,7 @@ public class AProcBuilding : AVolume
   public class FPBMaterialParam
   {
     public FName ParamName;
-    public UObject.FLinearColor Color;
+    public UObject.FLinearColor Color = new();
   }
 
   public class FPBMemUsageInfo
@@ -14953,9 +14953,9 @@ public class UPBRuleNodeComment : UPBRuleNodeBase
   public int SizeX;
   public int SizeY;
   public int BorderWidth;
-  public FColor BorderColor;
+  public FColor BorderColor = new();
   public bool bFilled;
-  public FColor FillColor;
+  public FColor FillColor = new();
 }
 
 public class UPBRuleNodeCorner : UPBRuleNodeBase
@@ -15038,7 +15038,7 @@ public class UPBRuleNodeMesh : UPBRuleNodeBase
   }
 
   public List<FBuildingMeshInfo> BuildingMeshes;
-  public FBuildingMeshInfo PartialOccludedBuildingMesh;
+  public FBuildingMeshInfo PartialOccludedBuildingMesh = new();
   public bool bDoOcclusionTest;
   public bool bBlockAll;
 }
@@ -15128,7 +15128,7 @@ public class UPhysicalMaterial : UObject
   public float Restitution;
   public bool bForceConeFriction;
   public bool bEnableAnisotropicFriction;
-  public FVector AnisoFrictionDir;
+  public FVector AnisoFrictionDir = new();
   public float FrictionV;
   public float Density;
   public float AngularDamping;
@@ -15157,7 +15157,7 @@ public class UPhysicsAsset : UObject
 {
   public USkeletalMesh DefaultSkelMesh;
   public List<URB_BodySetup> BodySetup;
-  public FMap_Mirror BodySetupIndexMap;
+  public FMap_Mirror BodySetupIndexMap = new();
   public List<int> BoundsBodies;
   public List<URB_ConstraintSetup> ConstraintSetup;
   public UPhysicsAssetInstance DefaultInstance;
@@ -15211,7 +15211,7 @@ public class UPhysXDestructible : UObject
 
   public UFracturedStaticMesh FracturedStaticMesh;
   public List<UPhysXDestructibleAsset> DestructibleAssets;
-  public FPhysXDestructibleParameters DestructibleParameters;
+  public FPhysXDestructibleParameters DestructibleParameters = new();
   public List<FVector> CookingScales;
 }
 
@@ -15219,8 +15219,8 @@ public class APhysXDestructibleActor : AFracturedStaticMeshActor
 {
   public class FSpawnBasis
   {
-    public UObject.FVector Location;
-    public UObject.FRotator Rotation;
+    public UObject.FVector Location = new();
+    public UObject.FRotator Rotation = new();
     public float Scale;
   }
 
@@ -15231,13 +15231,13 @@ public class APhysXDestructibleActor : AFracturedStaticMeshActor
   public List<int> PartFirstChunkIndices;
   public List<APhysXDestructiblePart> Parts;
   public List<int> Neighbors;
-  public UPhysXDestructible.FPhysXDestructibleParameters DestructibleParameters;
+  public UPhysXDestructible.FPhysXDestructibleParameters DestructibleParameters = new();
   public float LinearSize;
   public bool bPlayFractureSound;
   public bool bSupportChunksTouchWorld;
   public bool bSupportChunksInSupportFragment;
   public List<FSpawnBasis> EffectBases;
-  public FPointer VolumeFill;
+  public FPointer VolumeFill = new();
   public int PerFrameProcessBudget;
   public int SupportDepth;
   public byte NumPartsRemaining;
@@ -15306,10 +15306,10 @@ public class UPhysXDestructibleStructure : UObject
     public int BoneIndex;
     public FName BoneName;
     public int BodyIndex;
-    public UObject.FVector RelativeCentroid;
-    public UObject.FVector WorldCentroid;
-    public UObject.FMatrix RelativeMatrix;
-    public UObject.FMatrix WorldMatrix;
+    public UObject.FVector RelativeCentroid = new();
+    public UObject.FVector WorldCentroid = new();
+    public UObject.FMatrix RelativeMatrix = new();
+    public UObject.FMatrix WorldMatrix = new();
     public float Radius;
     public int ParentIndex;
     public int FirstChildIndex;
@@ -15319,7 +15319,7 @@ public class UPhysXDestructibleStructure : UObject
     public float Damage;
     public float Size;
     public EPhysXDestructibleChunkState CurrentState;
-    public UObject.FPointer Structure;
+    public UObject.FPointer Structure = new();
     public int FIFOIndex;
     public int FirstOverlapIndex;
     public int NumOverlaps;
@@ -15335,7 +15335,7 @@ public class UPhysXDestructibleStructure : UObject
     public int Adjacent;
   }
 
-  public FPointer Manager;
+  public FPointer Manager = new();
   public List<APhysXDestructibleActor> Actors;
   public List<APhysXDestructibleActor> ActorKillList;
   public List<FPhysXDestructibleChunk> Chunks;
@@ -15358,9 +15358,9 @@ public class APhysXEmitterSpawnable : AEmitter
 {
   public class FIndexedRBState
   {
-    public UObject.FVector CenterOfMass;
-    public UObject.FVector LinearVelocity;
-    public UObject.FVector AngularVelocity;
+    public UObject.FVector CenterOfMass = new();
+    public UObject.FVector LinearVelocity = new();
+    public UObject.FVector AngularVelocity = new();
     public int Index;
   }
 
@@ -15370,7 +15370,7 @@ public class APhysXEmitterSpawnable : AEmitter
     public List<UObject.FVector> Positions;
   }
 
-  public FPointer VolumeFill;
+  public FPointer VolumeFill = new();
   public UParticleSystem ParticleTemplate;
 }
 
@@ -15381,7 +15381,7 @@ public class UPhysXParticleSystem : UObject
   public ERBCollisionChannel RBChannel;
   public ESimulationMethod SimulationMethod;
   public EPacketSizeMultiplier PacketSizeMultiplier;
-  public UPrimitiveComponent.FRBCollisionChannelContainer RBCollideWithChannels;
+  public UPrimitiveComponent.FRBCollisionChannelContainer RBCollideWithChannels = new();
   public float CollisionDistance;
   public float RestitutionWithStaticShapes;
   public float RestitutionWithDynamicShapes;
@@ -15396,15 +15396,15 @@ public class UPhysXParticleSystem : UObject
   public bool bIsInGame;
   public float MaxMotionDistance;
   public float Damping;
-  public FVector ExternalAcceleration;
+  public FVector ExternalAcceleration = new();
   public float RestParticleDistance;
   public float RestDensity;
   public float KernelRadiusMultiplier;
   public float Stiffness;
   public float Viscosity;
   public float CollisionResponseCoefficient;
-  public FPointer CascadeScene;
-  public FPointer PSys;
+  public FPointer CascadeScene = new();
+  public FPointer PSys = new();
 }
 
 public class UPickupDataProvider : UUIDynamicDataProvider
@@ -15449,7 +15449,7 @@ public class UPlayerOwnerDataStore : UUIDataStore_GameState
     public UClass PowerupDataProviderClass;
   }
 
-  public FPlayerDataProviderTypes ProviderTypes;
+  public FPlayerDataProviderTypes ProviderTypes = new();
   public UPlayerOwnerDataProvider PlayerData;
   public UCurrentWeaponDataProvider CurrentWeapon;
   public List<UWeaponDataProvider> WeaponList;
@@ -15494,9 +15494,9 @@ public class APlayerReplicationInfo : AReplicationInfo
   public UClass GameMessageClass;
   public float ExactPing;
   public string SavedNetworkAddress;
-  public UOnlineSubsystem.FUniqueNetId UniqueId;
+  public UOnlineSubsystem.FUniqueNetId UniqueId = new();
   public FName SessionName;
-  public FAutomatedTestingDatum AutomatedTestingData;
+  public FAutomatedTestingDatum AutomatedTestingData = new();
   public int StatConnectionCounts;
   public int StatPingTotals;
   public int StatPingMin;
@@ -15552,7 +15552,7 @@ public class USceneCaptureComponent : UActorComponent
   public bool bSkipRenderingDepthPrepass;
   public bool bIsOneFrameCapture;
   public bool bNeedsSceneUpdate;
-  public FColor ClearColor;
+  public FColor ClearColor = new();
   public ESceneCaptureViewMode ViewMode;
   public int SceneLOD;
   public float FrameRate;
@@ -15560,8 +15560,8 @@ public class USceneCaptureComponent : UActorComponent
   public float MaxUpdateDist;
   public float MaxViewDistanceOverride;
   public float MaxStreamingUpdateDist;
-  public FPointer CaptureInfo;
-  public FPointer ViewState;
+  public FPointer CaptureInfo = new();
+  public FPointer ViewState = new();
   public List<FPointer> PostProcessProxies;
 }
 
@@ -15664,11 +15664,11 @@ public class APostProcessVolume : AVolume
     public float DOF_BlurBloomKernelSize;
     public float DOF_MaxNearBlurAmount;
     public float DOF_MaxFarBlurAmount;
-    public UObject.FColor DOF_ModulateBlurColor;
+    public UObject.FColor DOF_ModulateBlurColor = new();
     public EFocusType DOF_FocusType;
     public float DOF_FocusInnerRadius;
     public float DOF_FocusDistance;
-    public UObject.FVector DOF_FocusPosition;
+    public UObject.FVector DOF_FocusPosition = new();
     public float DOF_InterpolationDuration;
     public float MotionBlur_MaxVelocity;
     public float MotionBlur_Amount;
@@ -15677,20 +15677,20 @@ public class APostProcessVolume : AVolume
     public float MotionBlur_CameraTranslationThreshold;
     public float MotionBlur_InterpolationDuration;
     public float Scene_Desaturation;
-    public UObject.FVector Scene_HighLights;
-    public UObject.FVector Scene_MidTones;
-    public UObject.FVector Scene_Shadows;
+    public UObject.FVector Scene_HighLights = new();
+    public UObject.FVector Scene_MidTones = new();
+    public UObject.FVector Scene_Shadows = new();
     public float Scene_InterpolationDuration;
     public float IndirectLightingIntense;
     public FName CubeMapActorName;
-    public UObject.FLinearColor RimShader_Color;
+    public UObject.FLinearColor RimShader_Color = new();
     public float RimShader_InterpolationDuration;
     public UTexture ColorGrading_LookupTable;
-    public APostProcessVolume.FLUTBlender ColorGradingLUT;
+    public APostProcessVolume.FLUTBlender ColorGradingLUT = new();
   }
 
   public float Priority;
-  public FPostProcessSettings Settings;
+  public FPostProcessSettings Settings = new();
   public APostProcessVolume NextLowerPriorityVolume;
   public bool bEnabled;
 }
@@ -15746,7 +15746,7 @@ public class USequence : USequenceOp
     public bool bPushTop;
   }
 
-  public FPointer LogFile;
+  public FPointer LogFile = new();
   public List<USequenceObject> SequenceObjects;
   public List<USequenceOp> ActiveSequenceOps;
   public List<USequence> NestedSequences;
@@ -15802,7 +15802,7 @@ public class UProscribedReachSpec : UReachSpec
 
 public class APylonSeed : AActor
 {
-  public FPointer VfTable_IInterface_NavMeshPathObject;
+  public FPointer VfTable_IInterface_NavMeshPathObject = new();
 }
 
 public class URadialBlurComponent : UActorComponent
@@ -15816,7 +15816,7 @@ public class URadialBlurComponent : UActorComponent
   public float DistanceFalloffExponent;
   public bool bRenderAsVelocity;
   public bool bEnabled;
-  public FMatrix LocalToWorld;
+  public FMatrix LocalToWorld = new();
 }
 
 public class ARadialBlurActor : AActor
@@ -15831,12 +15831,12 @@ public class URB_BodyInstance : UObject
 {
   public UPrimitiveComponent OwnerComponent;
   public int BodyIndex;
-  public FVector Velocity;
-  public FVector PreviousVelocity;
+  public FVector Velocity = new();
+  public FVector PreviousVelocity = new();
   public int SceneIndex;
-  public FPointer BodyData;
-  public FPointer BoneSpring;
-  public FPointer BoneSpringKinActor;
+  public FPointer BodyData = new();
+  public FPointer BoneSpring = new();
+  public FPointer BoneSpringKinActor = new();
   public bool bEnableBoneSpringLinear;
   public bool bEnableBoneSpringAngular;
   public bool bDisableOnOverextension;
@@ -15925,18 +15925,18 @@ public class URB_ConstraintInstance : UObject
   public bool bTwistVelocityDrive;
   public bool bAngularSlerpDrive;
   public bool bTerminated;
-  public FPointer ConstraintData;
-  public FVector LinearPositionTarget;
-  public FVector LinearVelocityTarget;
+  public FPointer ConstraintData = new();
+  public FVector LinearPositionTarget = new();
+  public FVector LinearVelocityTarget = new();
   public float LinearDriveSpring;
   public float LinearDriveDamping;
   public float LinearDriveForceLimit;
-  public FQuat AngularPositionTarget;
-  public FVector AngularVelocityTarget;
+  public FQuat AngularPositionTarget = new();
+  public FVector AngularVelocityTarget = new();
   public float AngularDriveSpring;
   public float AngularDriveDamping;
   public float AngularDriveForceLimit;
-  public FPointer DummyKinActor;
+  public FPointer DummyKinActor = new();
 }
 
 public class ARB_ConstraintActor : ARigidBodyBase
@@ -15963,14 +15963,14 @@ public class URB_ConstraintSetup : UObject
   public FName JointName;
   public FName ConstraintBone1;
   public FName ConstraintBone2;
-  public FVector Pos1;
-  public FVector PriAxis1;
-  public FVector SecAxis1;
-  public FVector Pos2;
-  public FVector PriAxis2;
-  public FVector SecAxis2;
-  public FVector PulleyPivot1;
-  public FVector PulleyPivot2;
+  public FVector Pos1 = new();
+  public FVector PriAxis1 = new();
+  public FVector SecAxis1 = new();
+  public FVector Pos2 = new();
+  public FVector PriAxis2 = new();
+  public FVector SecAxis2 = new();
+  public FVector PulleyPivot1 = new();
+  public FVector PulleyPivot2 = new();
   public bool bEnableProjection;
   public bool bLinearLimitSoft;
   public bool bLinearBreakable;
@@ -15981,9 +15981,9 @@ public class URB_ConstraintSetup : UObject
   public bool bAngularBreakable;
   public bool bIsPulley;
   public bool bMaintainMinDistance;
-  public FLinearDOFSetup LinearXSetup;
-  public FLinearDOFSetup LinearYSetup;
-  public FLinearDOFSetup LinearZSetup;
+  public FLinearDOFSetup LinearXSetup = new();
+  public FLinearDOFSetup LinearYSetup = new();
+  public FLinearDOFSetup LinearZSetup = new();
   public float LinearLimitStiffness;
   public float LinearLimitDamping;
   public float LinearBreakThreshold;
@@ -16027,7 +16027,7 @@ public class ARB_CylindricalForceActor : ARigidBodyBase
   public bool bForceApplyToFluid;
   public bool bForceApplyToRigidBodies;
   public bool bForceApplyToProjectiles;
-  public UPrimitiveComponent.FRBCollisionChannelContainer CollideWithChannels;
+  public UPrimitiveComponent.FRBCollisionChannelContainer CollideWithChannels = new();
 }
 
 public class URB_DistanceJointSetup : URB_ConstraintSetup
@@ -16047,17 +16047,17 @@ public class URB_Handle : UActorComponent
   public bool bInHardware;
   public bool bRotationConstrained;
   public bool bInterpolating;
-  public FPointer HandleData;
-  public FPointer KinActorData;
+  public FPointer HandleData = new();
+  public FPointer KinActorData = new();
   public float LinearDamping;
   public float LinearStiffness;
-  public FVector LinearStiffnessScale3D;
-  public FVector LinearDampingScale3D;
+  public FVector LinearStiffnessScale3D = new();
+  public FVector LinearDampingScale3D = new();
   public float AngularDamping;
   public float AngularStiffness;
-  public FVector Destination;
-  public FVector StepSize;
-  public FVector Location;
+  public FVector Destination = new();
+  public FVector StepSize = new();
+  public FVector Location = new();
 }
 
 public class URB_HingeSetup : URB_ConstraintSetup
@@ -16109,7 +16109,7 @@ public class ARB_RadialForceActor : ARigidBodyBase
   public bool bForceApplyToFluid;
   public bool bForceApplyToRigidBodies;
   public bool bForceApplyToProjectiles;
-  public UPrimitiveComponent.FRBCollisionChannelContainer CollideWithChannels;
+  public UPrimitiveComponent.FRBCollisionChannelContainer CollideWithChannels = new();
 }
 
 public class URB_RadialImpulseComponent : UPrimitiveComponent
@@ -16142,13 +16142,13 @@ public class URB_Spring : UActorComponent
   public int SceneIndex;
   public bool bInHardware;
   public bool bEnableForceMassRatio;
-  public FPointer SpringData;
+  public FPointer SpringData = new();
   public float TimeSinceActivation;
   public float MinBodyMass;
   public float SpringSaturateDist;
   public float SpringMaxForce;
   public float MaxForceMassRatio;
-  public FInterpCurveFloat SpringMaxForceTimeScale;
+  public FInterpCurveFloat SpringMaxForceTimeScale = new();
   public float DampSaturateVel;
   public float DampMaxForce;
 }
@@ -16165,7 +16165,7 @@ public class ARB_Thruster : ARigidBodyBase
 
 public class ARoute : AInfo
 {
-  public FPointer VfTable_IEditorLinkSelectionInterface;
+  public FPointer VfTable_IEditorLinkSelectionInterface = new();
   public ERouteType RouteType;
   public List<FActorReference> RouteList;
   public float FudgeFactor;
@@ -16192,22 +16192,22 @@ public class USavedMove : UObject
   public EDoubleClickDir DoubleClickMove;
   public EPhysics SavedPhysics;
   public ERootMotionMode RootMotionMode;
-  public FVector StartLocation;
-  public FVector StartRelativeLocation;
-  public FVector StartVelocity;
-  public FVector StartFloor;
-  public FVector SavedLocation;
-  public FVector SavedVelocity;
-  public FVector SavedRelativeLocation;
-  public FVector RMVelocity;
-  public FVector Acceleration;
-  public FRotator Rotation;
+  public FVector StartLocation = new();
+  public FVector StartRelativeLocation = new();
+  public FVector StartVelocity = new();
+  public FVector StartFloor = new();
+  public FVector SavedLocation = new();
+  public FVector SavedVelocity = new();
+  public FVector SavedRelativeLocation = new();
+  public FVector RMVelocity = new();
+  public FVector Acceleration = new();
+  public FRotator Rotation = new();
   public AActor StartBase;
   public AActor EndBase;
   public float CustomTimeDilation;
   public float AccelDotThreshold;
   public float RootMotionInterpCurrentTime;
-  public FVector RootMotionInterpCurveLastValue;
+  public FVector RootMotionInterpCurveLastValue = new();
 }
 
 public class USaveGameSummary : UObject
@@ -16224,8 +16224,8 @@ public class USceneCapture2DComponent : USceneCaptureComponent
   public float FarPlane;
   public bool bUpdateMatrices;
   public bool bIsRelevantToMainScene;
-  public FMatrix ViewMatrix;
-  public FMatrix ProjMatrix;
+  public FMatrix ViewMatrix = new();
+  public FMatrix ProjMatrix = new();
 }
 
 public class ASceneCapture2DActor : ASceneCaptureActor
@@ -16250,7 +16250,7 @@ public class USceneCaptureCubeMapComponent : USceneCaptureComponent
   public UTextureRenderTargetCube TextureTarget;
   public float NearPlane;
   public float FarPlane;
-  public FVector WorldLocation;
+  public FVector WorldLocation = new();
 }
 
 public class ASceneCaptureCubeMapActor : ASceneCaptureActor
@@ -16261,8 +16261,8 @@ public class ASceneCaptureCubeMapActor : ASceneCaptureActor
 
 public class USceneDataStore : UUIDataStore
 {
-  public FPointer VfTable_IUIListElementProvider;
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public UUIScene OwnerScene;
   public UUIDynamicFieldProvider SceneDataProvider;
 }
@@ -16354,7 +16354,7 @@ public class UTextureRenderTarget2D : UTextureRenderTarget
   public EPixelFormat Format;
   public TextureAddress AddressX;
   public TextureAddress AddressY;
-  public FLinearColor ClearColor;
+  public FLinearColor ClearColor = new();
   public bool bForceLinearGamma;
 }
 
@@ -16420,8 +16420,8 @@ public class USeqAct_AddFloat : USeqAct_SetSequenceVariable
 
 public class USeqAct_AddImpulse : USequenceAction
 {
-  public FVector Impulse;
-  public FVector Position;
+  public FVector Impulse = new();
+  public FVector Position = new();
   public FName BoneName;
   public bool bVelChange;
 }
@@ -16439,7 +16439,7 @@ public class USeqAct_AddRadialImpulse : USequenceAction
   public float Impulse;
   public float ImpulseRadius;
   public ERadialImpulseFalloff Falloff;
-  public FVector Position;
+  public FVector Position = new();
   public AActor SpawnPoint;
   public bool bVelChange;
 }
@@ -16488,8 +16488,8 @@ public class USeqAct_AttachToActor : USequenceAction
   public bool bUseRelativeOffset;
   public bool bUseRelativeRotation;
   public FName BoneName;
-  public FVector RelativeOffset;
-  public FRotator RelativeRotation;
+  public FVector RelativeOffset = new();
+  public FRotator RelativeRotation = new();
 }
 
 public class USeqAct_AttachToEvent : USequenceAction
@@ -16499,8 +16499,8 @@ public class USeqAct_AttachToEvent : USequenceAction
 
 public class USeqAct_CameraFade : USequenceAction
 {
-  public FColor FadeColor;
-  public FVector2D FadeAlpha;
+  public FColor FadeColor = new();
+  public FVector2D FadeAlpha = new();
   public float FadeOpacity;
   public float FadeTime;
   public bool bPersistFade;
@@ -16522,8 +16522,8 @@ public class USeqAct_CameraLookAt : USequenceAction
   public bool bDisableInput;
   public bool bUsedTimer;
   public bool bCheckLineOfSight;
-  public FVector2D InterpSpeedRange;
-  public FVector2D InFocusFOV;
+  public FVector2D InterpSpeedRange = new();
+  public FVector2D InFocusFOV = new();
   public FName FocusBoneName;
   public string TextDisplay;
   public float TotalTime;
@@ -16628,7 +16628,7 @@ public class USeqAct_DrawText : USequenceAction
 {
   public float DisplayTimeSeconds;
   public bool bDisplayOnObject;
-  public AHUD.FKismetDrawTextInfo DrawTextInfo;
+  public AHUD.FKismetDrawTextInfo DrawTextInfo = new();
 }
 
 public class USeqAct_FinishSequence : USequenceAction
@@ -16664,8 +16664,8 @@ public class USeqAct_GetDistance : USequenceAction
 
 public class USeqAct_GetLocationAndRotation : USequenceAction
 {
-  public FVector Location;
-  public FVector RotationVector;
+  public FVector Location = new();
+  public FVector RotationVector = new();
   public FName SocketOrBoneName;
 }
 
@@ -16676,7 +16676,7 @@ public class USeqAct_GetProperty : USequenceAction
 
 public class USeqAct_GetVectorComponents : USequenceAction
 {
-  public FVector InVector;
+  public FVector InVector = new();
   public float X;
   public float Y;
   public float Z;
@@ -16685,7 +16685,7 @@ public class USeqAct_GetVectorComponents : USequenceAction
 public class USeqAct_GetVelocity : USequenceAction
 {
   public float VelocityMag;
-  public FVector VelocityVect;
+  public FVector VelocityVect = new();
 }
 
 public class USeqAct_GiveInventory : USequenceAction
@@ -16704,13 +16704,13 @@ public partial class USeqAct_Interp : USeqAct_Latent
 {
   public partial class FSavedTransform : ISerialisable
   {
-    public UObject.FVector Location;
-    public UObject.FRotator Rotation;
+    public UObject.FVector Location = new();
+    public UObject.FRotator Rotation = new();
   }
 
   public class FCameraCutInfo
   {
-    public UObject.FVector Location;
+    public UObject.FVector Location = new();
     public float TimeStamp;
   }
 
@@ -16776,7 +16776,7 @@ public class USeqAct_Log : USequenceAction
   public bool bOutputToScreen;
   public bool bIncludeObjComment;
   public float TargetDuration;
-  public FVector TargetOffset;
+  public FVector TargetOffset = new();
 }
 
 public class USeqAct_ModifyCover : USequenceAction
@@ -16839,10 +16839,10 @@ public class USeqAct_ParticleEventGenerator : USequenceAction
   public AActor Instigator;
   public List<string> EventNames;
   public float EventTime;
-  public FVector EventLocation;
-  public FVector EventDirection;
-  public FVector EventVelocity;
-  public FVector EventNormal;
+  public FVector EventLocation = new();
+  public FVector EventDirection = new();
+  public FVector EventVelocity = new();
+  public FVector EventNormal = new();
 }
 
 public class USeqAct_PlayCameraAnim : USequenceAction
@@ -16868,7 +16868,7 @@ public class USeqAct_PlayFaceFXAnim : USequenceAction
 
 public class USeqAct_PlayMusicTrack : USequenceAction
 {
-  public UMusicTrackDataStructures.FMusicTrackStruct MusicTrack;
+  public UMusicTrackDataStructures.FMusicTrackStruct MusicTrack = new();
 }
 
 public class USeqAct_PlaySound : USeqAct_Latent
@@ -16939,7 +16939,7 @@ public class USeqAct_SetBool : USeqAct_SetSequenceVariable
 public class USeqAct_SetCameraTarget : USequenceAction
 {
   public AActor CameraTarget;
-  public ACamera.FViewTargetTransitionParams TransitionParams;
+  public ACamera.FViewTargetTransitionParams TransitionParams = new();
 }
 
 public class USeqAct_SetDamageInstigator : USequenceAction
@@ -16953,20 +16953,20 @@ public class USeqAct_SetDOFParams : USeqAct_Latent
   public float BlurKernelSize;
   public float MaxNearBlurAmount;
   public float MaxFarBlurAmount;
-  public FColor ModulateBlurColor;
+  public FColor ModulateBlurColor = new();
   public float FocusInnerRadius;
   public float FocusDistance;
-  public FVector FocusPosition;
+  public FVector FocusPosition = new();
   public float InterpolateSeconds;
   public float InterpolateElapsed;
   public float OldFalloffExponent;
   public float OldBlurKernelSize;
   public float OldMaxNearBlurAmount;
   public float OldMaxFarBlurAmount;
-  public FColor OldModulateBlurColor;
+  public FColor OldModulateBlurColor = new();
   public float OldFocusInnerRadius;
   public float OldFocusDistance;
-  public FVector OldFocusPosition;
+  public FVector OldFocusPosition = new();
 }
 
 public class USeqAct_SetFloat : USeqAct_SetSequenceVariable
@@ -16985,8 +16985,8 @@ public class USeqAct_SetLocation : USeqAct_SetSequenceVariable
 {
   public bool bSetLocation;
   public bool bSetRotation;
-  public FVector LocationValue;
-  public FRotator RotationValue;
+  public FVector LocationValue = new();
+  public FRotator RotationValue = new();
   public UObject Target;
 }
 
@@ -17025,7 +17025,7 @@ public class USeqAct_SetMatInstVectorParam : USequenceAction
 {
   public UMaterialInstanceConstant MatInst;
   public FName ParamName;
-  public FLinearColor VectorValue;
+  public FLinearColor VectorValue = new();
 }
 
 public class USeqAct_SetMesh : USequenceAction
@@ -17095,12 +17095,12 @@ public class USeqAct_SetString : USeqAct_SetSequenceVariable
 
 public class USeqAct_SetVector : USeqAct_SetSequenceVariable
 {
-  public FVector DefaultValue;
+  public FVector DefaultValue = new();
 }
 
 public class USeqAct_SetVectorComponents : USequenceAction
 {
-  public FVector OutVector;
+  public FVector OutVector = new();
   public float X;
   public float Y;
   public float Z;
@@ -17108,7 +17108,7 @@ public class USeqAct_SetVectorComponents : USequenceAction
 
 public class USeqAct_SetVelocity : USequenceAction
 {
-  public FVector VelocityDir;
+  public FVector VelocityDir = new();
   public float VelocityMag;
   public bool bVelocityRelativeToActorRotation;
 }
@@ -17121,7 +17121,7 @@ public class USeqAct_StreamInTextures : USeqAct_Latent
   public float StopTimestamp;
   public List<UObject> LocationActors;
   public List<UMaterialInterface> ForceMaterials;
-  public UTexture.FTextureGroupContainer CinematicTextureGroups;
+  public UTexture.FTextureGroupContainer CinematicTextureGroups = new();
   public int SelectedCinematicTextureGroups;
 }
 
@@ -17210,12 +17210,12 @@ public class USeqAct_Trace : USequenceAction
 {
   public bool bTraceActors;
   public bool bTraceWorld;
-  public FVector TraceExtent;
-  public FVector StartOffset;
-  public FVector EndOffset;
+  public FVector TraceExtent = new();
+  public FVector StartOffset = new();
+  public FVector EndOffset = new();
   public UObject HitObject;
   public float Distance;
-  public FVector HitLocation;
+  public FVector HitLocation = new();
 }
 
 public class USeqAct_UpdatePhysBonesFromAnim : USequenceAction
@@ -17390,11 +17390,11 @@ public class USeqEvent_Mover : USequenceEvent
 public class USeqEvent_ParticleEvent : USequenceEvent
 {
   public EParticleEventOutputType EventType;
-  public FVector EventPosition;
+  public FVector EventPosition = new();
   public float EventEmitterTime;
-  public FVector EventVelocity;
+  public FVector EventVelocity = new();
   public float EventParticleTime;
-  public FVector EventNormal;
+  public FVector EventNormal = new();
   public bool UseRelfectedImpactVector;
 }
 
@@ -17472,8 +17472,8 @@ public class USequenceFrame : USequenceObject
   public bool bDrawBox;
   public bool bFilled;
   public bool bTileFill;
-  public FColor BorderColor;
-  public FColor FillColor;
+  public FColor BorderColor = new();
+  public FColor FillColor = new();
   public UTexture2D FillTexture;
   public UMaterial FillMaterial;
 }
@@ -17505,7 +17505,7 @@ public class ASeqValueForHostMigration : AActor
   public class FHMSeqVectorValue
   {
     public FName SeqVarName;
-    public UObject.FVector SeqValue;
+    public UObject.FVector SeqValue = new();
   }
 
   public FHMSeqIntValue[] arrBoolValue = new FHMSeqIntValue[16];
@@ -17527,7 +17527,7 @@ public class USeqVar_Byte : USequenceVariable
 public class USeqVar_Object : USequenceVariable
 {
   public UObject ObjValue;
-  public FVector ActorLocation;
+  public FVector ActorLocation = new();
   public List<UClass> SupportedClasses;
 }
 
@@ -17621,7 +17621,7 @@ public class USeqVar_UniqueNetId : USequenceVariable
 
 public class USeqVar_Vector : USequenceVariable
 {
-  public FVector VectValue;
+  public FVector VectValue = new();
 }
 
 public class UUISettingsProvider : UUIPropertyDataProvider
@@ -17662,9 +17662,9 @@ public class USFSoundNodeSpatialized : USoundNode
 public class UShadowMap2D : UObject
 {
   public UShadowMapTexture2D Texture;
-  public FVector2D CoordinateScale;
-  public FVector2D CoordinateBias;
-  public FGuid LightGuid;
+  public FVector2D CoordinateScale = new();
+  public FVector2D CoordinateBias = new();
+  public FGuid LightGuid = new();
   public bool bIsShadowFactorTexture;
   public UInstancedStaticMeshComponent Component;
   public int InstanceIndex;
@@ -17706,10 +17706,10 @@ public class USkelControlBase : UAnimObject
 
 public class USkelControl_CCD_IK : USkelControlBase
 {
-  public FVector EffectorLocation;
+  public FVector EffectorLocation = new();
   public EBoneControlSpace EffectorLocationSpace;
   public FName EffectorSpaceBoneName;
-  public FVector EffectorTranslationFromBone;
+  public FVector EffectorTranslationFromBone = new();
   public int NumBones;
   public int MaxPerBoneIterations;
   public int IterationsCount;
@@ -17728,20 +17728,20 @@ public class USkelControl_TwistBone : USkelControlBase
 
 public class USkelControlLimb : USkelControlBase
 {
-  public FVector EffectorLocation;
+  public FVector EffectorLocation = new();
   public EBoneControlSpace EffectorLocationSpace;
   public EBoneControlSpace JointTargetLocationSpace;
   public EAxis BoneAxis;
   public EAxis JointAxis;
   public FName EffectorSpaceBoneName;
-  public FVector JointTargetLocation;
+  public FVector JointTargetLocation = new();
   public FName JointTargetSpaceBoneName;
   public bool bInvertBoneAxis;
   public bool bInvertJointAxis;
   public bool bMaintainEffectorRelRot;
   public bool bTakeRotationFromEffectorSpace;
   public bool bAllowStretching;
-  public FVector2D StretchLimits;
+  public FVector2D StretchLimits = new();
   public FName StretchRollBoneName;
 }
 
@@ -17749,7 +17749,7 @@ public class USkelControlFootPlacement : USkelControlLimb
 {
   public float FootOffset;
   public EAxis FootUpAxis;
-  public FRotator FootRotOffset;
+  public FRotator FootRotOffset = new();
   public bool bInvertFootUpAxis;
   public bool bOrientFootToGround;
   public bool bOnlyEnableForUpAdjustment;
@@ -17765,11 +17765,11 @@ public class USkelControlSingleBone : USkelControlBase
   public bool bAddTranslation;
   public bool bAddRotation;
   public bool bRemoveMeshRotation;
-  public FVector BoneTranslation;
+  public FVector BoneTranslation = new();
   public EBoneControlSpace BoneTranslationSpace;
   public EBoneControlSpace BoneRotationSpace;
   public FName TranslationSpaceBoneName;
-  public FRotator BoneRotation;
+  public FRotator BoneRotation = new();
   public FName RotationSpaceBoneName;
 }
 
@@ -17784,7 +17784,7 @@ public class USkelControlHandlebars : USkelControlSingleBone
 
 public class USkelControlLookAt : USkelControlBase
 {
-  public FVector TargetLocation;
+  public FVector TargetLocation = new();
   public EBoneControlSpace TargetLocationSpace;
   public EAxis LookAtAxis;
   public EAxis UpAxis;
@@ -17803,7 +17803,7 @@ public class USkelControlLookAt : USkelControlBase
   public bool bAllowRotationZ;
   public bool bEnableInterpolateToTarget;
   public float TargetLocationInterpSpeed;
-  public FVector DesiredTargetLocation;
+  public FVector DesiredTargetLocation = new();
   public float MaxAngle;
   public float OuterMaxAngle;
   public float DeadZoneAngle;
@@ -17811,9 +17811,9 @@ public class USkelControlLookAt : USkelControlBase
   public float LookAtAlpha;
   public float LookAtAlphaTarget;
   public float LookAtAlphaBlendTimeToGo;
-  public FVector LimitLookDir;
-  public FVector BaseLookDir;
-  public FVector BaseBonePos;
+  public FVector LimitLookDir = new();
+  public FVector BaseLookDir = new();
+  public FVector BaseBonePos = new();
   public float LastCalcTime;
 }
 
@@ -17837,10 +17837,10 @@ public class USkelControlTrail : USkelControlBase
   public bool bHadValidStrength;
   public float TrailRelaxation;
   public float StretchLimit;
-  public FVector FakeVelocity;
+  public FVector FakeVelocity = new();
   public float ThisTimstep;
   public List<FVector> TrailBoneLocations;
-  public FMatrix OldLocalToWorld;
+  public FMatrix OldLocalToWorld = new();
 }
 
 public class USkelControlWheel : USkelControlSingleBone
@@ -17896,19 +17896,19 @@ public partial class USkeletalMesh : UObject
   public class FSoftBodyTetraLink
   {
     public int Index;
-    public UObject.FVector Bary;
+    public UObject.FVector Bary = new();
   }
 
   public class FVJointPos
   {
-    public UObject.FQuat Orientation;
-    public UObject.FVector Position;
+    public UObject.FQuat Orientation = new();
+    public UObject.FVector Position = new();
   }
 
   public partial class FMeshBone : ISerialisable
   {
-    public UObject.FColor BoneColor;
-    public USkeletalMesh.FVJointPos BonePos;
+    public UObject.FColor BoneColor = new();
+    public USkeletalMesh.FVJointPos BonePos = new();
     public int Depth;
     public uint Flags;
     public FName Name;
@@ -17929,23 +17929,23 @@ public partial class USkeletalMesh : UObject
   public class FRigidSkinVertex
   {
     public byte Bone;
-    public UObject.FColor Color;
-    public UObject.FVector Position;
-    public UObject.FPackedNormal TangentX;
-    public UObject.FPackedNormal TangentY;
-    public UObject.FPackedNormal TangentZ;
+    public UObject.FColor Color = new();
+    public UObject.FVector Position = new();
+    public UObject.FPackedNormal TangentX = new();
+    public UObject.FPackedNormal TangentY = new();
+    public UObject.FPackedNormal TangentZ = new();
     public UObject.FVector2D[] UVs = new UObject.FVector2D[4];
   }
 
   public class FSoftSkinVertex
   {
-    public UObject.FColor Color;
+    public UObject.FColor Color = new();
     public byte[] InfluenceBones = new byte[4];
     public byte[] InfluenceWeights = new byte[4];
-    public UObject.FVector Position;
-    public UObject.FPackedNormal TangentX;
-    public UObject.FPackedNormal TangentY;
-    public UObject.FPackedNormal TangentZ;
+    public UObject.FVector Position = new();
+    public UObject.FPackedNormal TangentX = new();
+    public UObject.FPackedNormal TangentY = new();
+    public UObject.FPackedNormal TangentZ = new();
     public UObject.FVector2D[] UVs = new UObject.FVector2D[4];
   }
 
@@ -17964,8 +17964,8 @@ public partial class USkeletalMesh : UObject
   {
     public bool bUseFullPrecisionUVs;
     public bool bUsePackedPosition;
-    public UObject.FVector MeshExtension;
-    public UObject.FVector MeshOrigin;
+    public UObject.FVector MeshExtension = new();
+    public UObject.FVector MeshOrigin = new();
     public uint NumTexCoords;
     public List<byte> UntypedData;
   }
@@ -18003,19 +18003,19 @@ public partial class USkeletalMesh : UObject
     public List<ushort> DynamicIndexBuffer;
     public uint NumTexCoords;
     public uint NumVertices;
-    public UObject.FWordBulkData RawPointIndices;
+    public UObject.FWordBulkData RawPointIndices = new();
     public List<byte> RequiredBones;
     public List<USkeletalMesh.FSkelMeshSection> Sections;
     public uint Size;
-    public USkeletalMesh.FSkeletalMeshVertexBuffer VertexBufferGPUSkin;
+    public USkeletalMesh.FSkeletalMeshVertexBuffer VertexBufferGPUSkin = new();
     public List<USkeletalMesh.FSkeletalMeshVertexInfluences> VertexInfluences;
   }
 
-  public FBoxSphereBounds Bounds;
+  public FBoxSphereBounds Bounds = new();
   public List<UMaterialInterface> Materials;
   public List<UApexClothingAsset> ClothingAssets;
-  public FVector Origin;
-  public FRotator RotOrigin;
+  public FVector Origin = new();
+  public FRotator RotOrigin = new();
   public List<FMeshBone> RefSkeleton;
   public int SkeletalDepth;
   public Dictionary<FName, int> NameIndexMap;
@@ -18095,9 +18095,9 @@ public partial class USkeletalMesh : UObject
   public float ClothTearFactor;
   public int ClothTearReserve;
   public bool bEnableValidBounds;
-  public FVector ValidBoundsMin;
-  public FVector ValidBoundsMax;
-  public FMap_Mirror ClothTornTriMap;
+  public FVector ValidBoundsMin = new();
+  public FVector ValidBoundsMax = new();
+  public FMap_Mirror ClothTornTriMap = new();
   public List<int> SoftBodySurfaceToGraphicsVertMap;
   public List<int> SoftBodySurfaceIndices;
   public List<FVector> SoftBodyTetraVertsUnscaled;
@@ -18131,9 +18131,9 @@ public partial class USkeletalMesh : UObject
   public bool bHasVertexColors;
   public List<bool> GraphicsIndexIsCloth;
   public int ReleaseResourcesFence;
-  public ulong SkelMeshRUID;
-  public FVector2D UVOffset;
-  public FVector2D UVScale;
+  public ulong SkelMeshRUID = new();
+  public FVector2D UVOffset = new();
+  public FVector2D UVScale = new();
   public byte unknown108;
   public FName unknown10C;
 }
@@ -18145,8 +18145,8 @@ public class ASkeletalMeshActor : AActor
     public bool bReplicated;
     public bool bHidden;
     public bool bSavedPosition;
-    public UObject.FVector Location;
-    public UObject.FRotator Rotation;
+    public UObject.FVector Location = new();
+    public UObject.FRotator Rotation = new();
   }
 
   public class FSkelMeshActorControlTarget
@@ -18206,9 +18206,9 @@ public class USkeletalMeshSocket : UObject
 {
   public FName SocketName;
   public FName BoneName;
-  public FVector RelativeLocation;
-  public FRotator RelativeRotation;
-  public FVector RelativeScale;
+  public FVector RelativeLocation = new();
+  public FRotator RelativeRotation = new();
+  public FVector RelativeScale = new();
   public USkeletalMesh PreviewSkelMesh;
   public USkeletalMeshComponent PreviewSkelComp;
   public UStaticMesh PreviewStaticMesh;
@@ -18217,7 +18217,7 @@ public class USkeletalMeshSocket : UObject
 public class USkyLightComponent : ULightComponent
 {
   public float LowerBrightness;
-  public FColor LowerColor;
+  public FColor LowerColor = new();
 }
 
 public class ASkyLight : ALight
@@ -18256,7 +18256,7 @@ public partial class USoundClass : UObject
     public bool bReverb;
   }
 
-  public FSoundClassProperties Properties;
+  public FSoundClassProperties Properties = new();
   public List<FName> ChildClassNames;
   public bool bIsChild;
   public int MenuID;
@@ -18267,7 +18267,7 @@ public class USoundMode : UObject
 {
   public class FAudioEQEffect
   {
-    public double RootTime;
+    public double RootTime = new();
     public float HFFrequency;
     public float HFGain;
     public float MFCutoffFrequency;
@@ -18288,7 +18288,7 @@ public class USoundMode : UObject
 
   public int Priority;
   public bool bApplyEQ;
-  public FAudioEQEffect EQSettings;
+  public FAudioEQEffect EQSettings = new();
   public List<FSoundClassAdjuster> SoundClassEffects;
   public float InitialDelay;
   public float FadeInTime;
@@ -18305,7 +18305,7 @@ public class USoundNodeDelay : USoundNode
 {
   public float DelayMin;
   public float DelayMax;
-  public UDistributionFloat.FRawDistributionFloat DelayDuration;
+  public UDistributionFloat.FRawDistributionFloat DelayDuration = new();
 }
 
 public class USoundNodeDistanceCrossFade : USoundNode
@@ -18317,8 +18317,8 @@ public class USoundNodeDistanceCrossFade : USoundNode
     public float FadeOutDistanceStart;
     public float FadeOutDistanceEnd;
     public float Volume;
-    public UDistributionFloat.FRawDistributionFloat FadeInDistance;
-    public UDistributionFloat.FRawDistributionFloat FadeOutDistance;
+    public UDistributionFloat.FRawDistributionFloat FadeInDistance = new();
+    public UDistributionFloat.FRawDistributionFloat FadeOutDistance = new();
   }
 
   public List<FDistanceDatum> CrossFadeInput;
@@ -18329,7 +18329,7 @@ public class USoundNodeLooping : USoundNode
   public bool bLoopIndefinitely;
   public float LoopCountMin;
   public float LoopCountMax;
-  public UDistributionFloat.FRawDistributionFloat LoopCount;
+  public UDistributionFloat.FRawDistributionFloat LoopCount = new();
 }
 
 public class USoundNodeMature : USoundNode
@@ -18347,14 +18347,14 @@ public class USoundNodeModulator : USoundNode
   public float PitchMax;
   public float VolumeMin;
   public float VolumeMax;
-  public UDistributionFloat.FRawDistributionFloat PitchModulation;
-  public UDistributionFloat.FRawDistributionFloat VolumeModulation;
+  public UDistributionFloat.FRawDistributionFloat PitchModulation = new();
+  public UDistributionFloat.FRawDistributionFloat VolumeModulation = new();
 }
 
 public class USoundNodeModulatorContinuous : USoundNode
 {
-  public UDistributionFloat.FRawDistributionFloat PitchModulation;
-  public UDistributionFloat.FRawDistributionFloat VolumeModulation;
+  public UDistributionFloat.FRawDistributionFloat PitchModulation = new();
+  public UDistributionFloat.FRawDistributionFloat VolumeModulation = new();
 }
 
 public class USoundNodeOscillator : USoundNode
@@ -18369,10 +18369,10 @@ public class USoundNodeOscillator : USoundNode
   public float OffsetMax;
   public float CenterMin;
   public float CenterMax;
-  public UDistributionFloat.FRawDistributionFloat Amplitude;
-  public UDistributionFloat.FRawDistributionFloat Frequency;
-  public UDistributionFloat.FRawDistributionFloat Offset;
-  public UDistributionFloat.FRawDistributionFloat Center;
+  public UDistributionFloat.FRawDistributionFloat Amplitude = new();
+  public UDistributionFloat.FRawDistributionFloat Frequency = new();
+  public UDistributionFloat.FRawDistributionFloat Offset = new();
+  public UDistributionFloat.FRawDistributionFloat Center = new();
 }
 
 public class USoundNodeRandom : USoundNode
@@ -18403,16 +18403,16 @@ public partial class USoundNodeWave : USoundNode
   public int SampleRate;
   public List<int> ChannelOffsets;
   public List<int> ChannelSizes;
-  public FUntypedBulkData_Mirror RawData;
-  public FPointer VorbisDecompressor;
-  public FPointer RawPCMData;
+  public FUntypedBulkData_Mirror RawData = new();
+  public FPointer VorbisDecompressor = new();
+  public FPointer RawPCMData = new();
   public int RawPCMDataSize;
-  public FUntypedBulkData_Mirror CompressedPCData;
-  public FUntypedBulkData_Mirror CompressedXbox360Data;
-  public FUntypedBulkData_Mirror CompressedPS3Data;
+  public FUntypedBulkData_Mirror CompressedPCData = new();
+  public FUntypedBulkData_Mirror CompressedXbox360Data = new();
+  public FUntypedBulkData_Mirror CompressedPS3Data = new();
   public int ResourceID;
   public int ResourceSize;
-  public FPointer ResourceData;
+  public FPointer ResourceData = new();
   public List<UEngineTypes.FSubtitleCue> Subtitles;
   public string Comment;
   public List<UEngineTypes.FLocalizedSubtitle> LocalizedSubtitles;
@@ -18464,13 +18464,13 @@ public class USpeechRecognition : UObject
   public FRecogUserData[] InstanceData = new FRecogUserData[4];
   public bool bDirty;
   public bool bInitialised;
-  public FPointer FnxVoiceData;
+  public FPointer FnxVoiceData = new();
 }
 
 public class USpeedTree : UObject
 {
   public bool bLegacySpeedTree;
-  public FPointer SRH;
+  public FPointer SRH = new();
   public float LeafStaticShadowOpacity;
   public UMaterialInterface Branch1Material;
   public UMaterialInterface Branch2Material;
@@ -18479,15 +18479,15 @@ public class USpeedTree : UObject
   public UMaterialInterface LeafMeshMaterial;
   public UMaterialInterface BillboardMaterial;
   public float WindStrength;
-  public FVector WindDirection;
-  public FGuid LightingGuid;
+  public FVector WindDirection = new();
+  public FGuid LightingGuid = new();
 }
 
 public partial class USpeedTreeComponent : UPrimitiveComponent
 {
   public class FSpeedTreeStaticLight
   {
-    public UObject.FGuid Guid;
+    public UObject.FGuid Guid = new();
     public UShadowMap1D BranchShadowMap;
     public UShadowMap1D FrondShadowMap;
     public UShadowMap1D LeafMeshShadowMap;
@@ -18497,7 +18497,7 @@ public partial class USpeedTreeComponent : UPrimitiveComponent
 
   public class FLightMapRef
   {
-    public UObject.FPointer Reference;
+    public UObject.FPointer Reference = new();
   }
 
   public USpeedTree SpeedTree;
@@ -18519,13 +18519,13 @@ public partial class USpeedTreeComponent : UPrimitiveComponent
   public UMaterialInterface BillboardMaterial;
   public UTexture2D SpeedTreeIcon;
   public List<FSpeedTreeStaticLight> StaticLights;
-  public UEngineTypes.FLightMap BranchLightMap;
-  public UEngineTypes.FLightMap FrondLightMap;
-  public UEngineTypes.FLightMap LeafMeshLightMap;
-  public UEngineTypes.FLightMap LeafCardLightMap;
-  public UEngineTypes.FLightMap BillboardLightMap;
-  public FMatrix RotationOnlyMatrix;
-  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
+  public UEngineTypes.FLightMap BranchLightMap = new();
+  public UEngineTypes.FLightMap FrondLightMap = new();
+  public UEngineTypes.FLightMap LeafMeshLightMap = new();
+  public UEngineTypes.FLightMap LeafCardLightMap = new();
+  public UEngineTypes.FLightMap BillboardLightMap = new();
+  public FMatrix RotationOnlyMatrix = new();
+  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings = new();
 }
 
 public class ASpeedTreeActor : AActor
@@ -18545,7 +18545,7 @@ public class USpeedTreeComponentFactory : UPrimitiveComponentFactory
 
 public class USphericalHarmonicLightComponent : ULightComponent
 {
-  public FSHVectorRGB WorldSpaceIncidentLighting;
+  public FSHVectorRGB WorldSpaceIncidentLighting = new();
   public bool bRenderBeforeModShadows;
 }
 
@@ -18558,8 +18558,8 @@ public class ASplineActor : AActor
   }
 
   public List<FSplineConnection> Connections;
-  public FVector SplineActorTangent;
-  public FColor SplineColor;
+  public FVector SplineActorTangent = new();
+  public FColor SplineColor = new();
   public bool bDisableDestination;
   public bool bAlreadyVisited;
   public List<ASplineActor> LinksFrom;
@@ -18568,18 +18568,18 @@ public class ASplineActor : AActor
   public ASplineActor previousPath;
   public int bestPathWeight;
   public int visitedWeight;
-  public FInterpCurveFloat SplineVelocityOverTime;
+  public FInterpCurveFloat SplineVelocityOverTime = new();
 }
 
 public class USplineComponent : UPrimitiveComponent
 {
-  public FInterpCurveVector SplineInfo;
+  public FInterpCurveVector SplineInfo = new();
   public float SplineCurviness;
-  public FColor SplineColor;
+  public FColor SplineColor = new();
   public float SplineDrawRes;
   public float SplineArrowSize;
   public bool bSplineDisabled;
-  public FInterpCurveFloat SplineReparamTable;
+  public FInterpCurveFloat SplineReparamTable = new();
 }
 
 public class ASplineLoftActor : ASplineActor
@@ -18590,8 +18590,8 @@ public class ASplineLoftActor : ASplineActor
   public UStaticMesh DeformMesh;
   public List<UMaterialInterface> DeformMeshMaterials;
   public float Roll;
-  public FVector WorldXDir;
-  public FVector2D Offset;
+  public FVector WorldXDir = new();
+  public FVector2D Offset = new();
   public bool bSmoothInterpRollAndScale;
   public bool bAcceptsLights;
   public UDynamicLightEnvironmentComponent MeshLightEnvironment;
@@ -18605,20 +18605,20 @@ public class USplineMeshComponent : UStaticMeshComponent
 {
   public class FSplineMeshParams
   {
-    public UObject.FVector StartPos;
-    public UObject.FVector StartTangent;
-    public UObject.FVector2D StartScale;
+    public UObject.FVector StartPos = new();
+    public UObject.FVector StartTangent = new();
+    public UObject.FVector2D StartScale = new();
     public float StartRoll;
-    public UObject.FVector2D StartOffset;
-    public UObject.FVector EndPos;
-    public UObject.FVector EndTangent;
-    public UObject.FVector2D EndScale;
+    public UObject.FVector2D StartOffset = new();
+    public UObject.FVector EndPos = new();
+    public UObject.FVector EndTangent = new();
+    public UObject.FVector2D EndScale = new();
     public float EndRoll;
-    public UObject.FVector2D EndOffset;
+    public UObject.FVector2D EndOffset = new();
   }
 
-  public FSplineMeshParams SplineParams;
-  public FVector SplineXDir;
+  public FSplineMeshParams SplineParams = new();
+  public FVector SplineXDir = new();
   public bool bSmoothInterpRollScale;
 }
 
@@ -18704,11 +18704,11 @@ public class AVehicle : APawn
   public bool bDoExtraNetRelevancyTraces;
   public List<FVector> ExitPositions;
   public float ExitRadius;
-  public FVector ExitOffset;
+  public FVector ExitOffset = new();
   public float Steering;
   public float Throttle;
   public float Rise;
-  public FVector TargetLocationAdjustment;
+  public FVector TargetLocationAdjustment = new();
   public float DriverDamageMult;
   public float MomentumMult;
   public UClass CrushedDamageType;
@@ -18729,7 +18729,7 @@ public class ASVehicle : AVehicle
 {
   public class FVehicleState
   {
-    public AActor.FRigidBodyState RBState;
+    public AActor.FRigidBodyState RBState = new();
     public byte ServerBrake;
     public byte ServerGas;
     public byte ServerSteering;
@@ -18740,8 +18740,8 @@ public class ASVehicle : AVehicle
 
   public USVehicleSimBase SimObj;
   public List<USVehicleWheel> Wheels;
-  public FVector COMOffset;
-  public FVector InertiaTensorMultiplier;
+  public FVector COMOffset = new();
+  public FVector InertiaTensorMultiplier = new();
   public bool bStayUpright;
   public bool bUseSuspensionAxis;
   public bool bUpdateWheelShapes;
@@ -18787,11 +18787,11 @@ public class ASVehicle : AVehicle
   public float OutputRise;
   public float ForwardVel;
   public int NumPoweredWheels;
-  public FVector BaseOffset;
+  public FVector BaseOffset = new();
   public float CamDist;
   public int DriverViewPitch;
   public int DriverViewYaw;
-  public FVehicleState VState;
+  public FVehicleState VState = new();
   public float AngErrorAccumulator;
   public float RadialImpulseScaling;
 }
@@ -18819,7 +18819,7 @@ public class USVehicleSimBase : UActorComponent
 public class USVehicleSimCar : USVehicleSimBase
 {
   public float ChassisTorqueScale;
-  public FInterpCurveFloat MaxSteerAngleCurve;
+  public FInterpCurveFloat MaxSteerAngleCurve = new();
   public float SteerSpeed;
   public float ReverseThrottle;
   public float EngineBrakeFactor;
@@ -18862,7 +18862,7 @@ public class USVehicleWheel : UComponent
   public FName SkelControlName;
   public USkelControlWheel WheelControl;
   public FName BoneName;
-  public FVector BoneOffset;
+  public FVector BoneOffset = new();
   public float WheelRadius;
   public float SuspensionTravel;
   public float SuspensionSpeed;
@@ -18873,20 +18873,20 @@ public class USVehicleWheel : UComponent
   public float HandbrakeLongSlipFactor;
   public float HandbrakeLatSlipFactor;
   public float ParkedSlipFactor;
-  public FVector WheelPosition;
+  public FVector WheelPosition = new();
   public float SpinVel;
   public float LongSlipRatio;
   public float LatSlipAngle;
-  public FVector ContactNormal;
-  public FVector LongDirection;
-  public FVector LatDirection;
+  public FVector ContactNormal = new();
+  public FVector LongDirection = new();
+  public FVector LatDirection = new();
   public float ContactForce;
   public float LongImpulse;
   public float LatImpulse;
   public float DesiredSuspensionPosition;
   public float SuspensionPosition;
   public float CurrentRotation;
-  public FPointer WheelShape;
+  public FPointer WheelShape = new();
   public int WheelMaterialIndex;
   public UClass WheelPSCClass;
   public UParticleSystemComponent WheelParticleComp;
@@ -18906,7 +18906,7 @@ public class ATargetPoint : AKeypoint
 
 public class UTeamDataProvider : UUIDynamicDataProvider
 {
-  public FPointer VfTable_IUIListElementProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
   public FName PlayerListFieldName;
   public List<UPlayerDataProvider> Players;
 }
@@ -18917,7 +18917,7 @@ public class ATeamInfo : AReplicationInfo
   public int Size;
   public float Score;
   public int TeamIndex;
-  public FColor TeamColor;
+  public FColor TeamColor = new();
 }
 
 public class ATeleporter : ANavigationPoint
@@ -18931,7 +18931,7 @@ public class ATeleporter : ANavigationPoint
   public bool bReversesZ;
   public bool bEnabled;
   public bool bCanTeleportVehicles;
-  public FVector TargetVelocity;
+  public FVector TargetVelocity = new();
   public float LastFired;
 }
 
@@ -18963,8 +18963,8 @@ public partial class ATerrain : AInfo
     public bool Highlighted;
     public bool WireframeHighlighted;
     public bool Hidden;
-    public UObject.FColor HighlightColor;
-    public UObject.FColor WireframeColor;
+    public UObject.FColor HighlightColor = new();
+    public UObject.FColor WireframeColor = new();
     public int MinX;
     public int MinY;
     public int MaxX;
@@ -19005,8 +19005,8 @@ public partial class ATerrain : AInfo
 
   public partial class FTerrainMaterialResource : FMaterial
   {
-    public UObject.FGuid LightingGuid;
-    public ATerrain.FTerrainMaterialMask Mask;
+    public UObject.FGuid LightingGuid = new();
+    public ATerrain.FTerrainMaterialMask Mask = new();
     public List<UObject.FGuid> MaterialIds;
     public ATerrain Terrain;
   }
@@ -19025,7 +19025,7 @@ public partial class ATerrain : AInfo
 
   public partial class FTerrainMaterialMask : ISerialisable
   {
-    public ulong BitMask;
+    public ulong BitMask = new();
     public int NumBits;
   }
 
@@ -19072,13 +19072,13 @@ public partial class ATerrain : AInfo
   public bool bUseWorldOriginTextureUVs;
   public bool bShowWireframe;
   public UPhysicalMaterial TerrainPhysMaterialOverride;
-  public ULightComponent.FLightingChannelContainer LightingChannels;
-  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
-  public FPointer ReleaseResourcesFence;
+  public ULightComponent.FLightingChannelContainer LightingChannels = new();
+  public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings = new();
+  public FPointer ReleaseResourcesFence = new();
   public int EditorTessellationLevel;
   public List<FSelectedTerrainVertex> SelectedVertices;
-  public FColor WireframeColor;
-  public FGuid LightingGuid;
+  public FColor WireframeColor = new();
+  public FGuid LightingGuid = new();
 }
 
 public partial class UTerrainComponent : UPrimitiveComponent
@@ -19105,8 +19105,8 @@ public partial class UTerrainComponent : UPrimitiveComponent
   public class FTerrainBVNode
   {
     public bool bIsLeaf;
-    public UObject.FBox BoundingVolume;
-    public UTerrainComponent.FTerrainSubRegion Region;
+    public UObject.FBox BoundingVolume = new();
+    public UTerrainComponent.FTerrainSubRegion Region = new();
   }
 
   public class FTerrainPatchBounds
@@ -19118,26 +19118,26 @@ public partial class UTerrainComponent : UPrimitiveComponent
 
   public List<UShadowMap2D> ShadowMaps;
   public List<FGuid> IrrelevantLights;
-  public FPointer TerrainObject;
+  public FPointer TerrainObject = new();
   public int SectionBaseX;
   public int SectionBaseY;
   public int SectionSizeX;
   public int SectionSizeY;
   public int TrueSectionSizeX;
   public int TrueSectionSizeY;
-  public UEngineTypes.FLightMap LightMap;
+  public UEngineTypes.FLightMap LightMap = new();
   public List<FTerrainPatchBounds> PatchBounds;
   public List<int> PatchBatches;
   public List<int> BatchMaterials;
   public int FullBatch;
-  public FPointer PatchBatchOffsets;
-  public FPointer WorkingOffsets;
-  public FPointer PatchBatchTriangles;
-  public FPointer PatchCachedTessellationValues;
-  public FPointer TesselationLevels;
-  public FTerrainBVTree BVTree;
+  public FPointer PatchBatchOffsets = new();
+  public FPointer WorkingOffsets = new();
+  public FPointer PatchBatchTriangles = new();
+  public FPointer PatchCachedTessellationValues = new();
+  public FPointer TesselationLevels = new();
+  public FTerrainBVTree BVTree = new();
   public List<FVector> CollisionVertices;
-  public FPointer RBHeightfield;
+  public FPointer RBHeightfield = new();
   public bool bDisplayCollisionLevel;
 }
 
@@ -19156,10 +19156,10 @@ public class UTerrainLayerSetup : UObject
     public bool UseNoise;
     public float NoiseScale;
     public float NoisePercent;
-    public UTerrainLayerSetup.FFilterLimit MinHeight;
-    public UTerrainLayerSetup.FFilterLimit MaxHeight;
-    public UTerrainLayerSetup.FFilterLimit MinSlope;
-    public UTerrainLayerSetup.FFilterLimit MaxSlope;
+    public UTerrainLayerSetup.FFilterLimit MinHeight = new();
+    public UTerrainLayerSetup.FFilterLimit MaxHeight = new();
+    public UTerrainLayerSetup.FFilterLimit MinSlope = new();
+    public UTerrainLayerSetup.FFilterLimit MaxSlope = new();
     public float Alpha;
     public UTerrainMaterial Material;
   }
@@ -19187,7 +19187,7 @@ public class UTerrainMaterial : UObject
     public float SlopeRotationBlend;
   }
 
-  public FMatrix LocalToMapping;
+  public FMatrix LocalToMapping = new();
   public ETerrainMappingType MappingType;
   public float MappingScale;
   public float MappingRotation;
@@ -19211,7 +19211,7 @@ public class UTerrainWeightMapTexture : UTexture2D
 
 public class ATestSplittingVolume : AVolume
 {
-  public FPointer VfTable_IInterface_NavMeshPathObject;
+  public FPointer VfTable_IInterface_NavMeshPathObject = new();
 }
 
 public class UTexture2DComposite : UTexture
@@ -19242,7 +19242,7 @@ public class UTexture2DDynamic : UTexture
 
 public class UTextureFlipBook : UTexture2D
 {
-  public FPointer VfTable_FTickableObject;
+  public FPointer VfTable_FTickableObject = new();
   public float TimeIntoMovie;
   public float TimeSinceLastFrame;
   public float HorizontalScale;
@@ -19260,7 +19260,7 @@ public class UTextureFlipBook : UTexture2D
   public int CurrentColumn;
   public float RenderOffsetU;
   public float RenderOffsetV;
-  public FPointer ReleaseResourcesFence;
+  public FPointer ReleaseResourcesFence = new();
 }
 
 public class UTextureMovie : UTexture
@@ -19277,8 +19277,8 @@ public class UTextureMovie : UTexture
   public bool Stopped;
   public bool Looping;
   public bool AutoPlay;
-  public FUntypedBulkData_Mirror Data;
-  public FPointer ReleaseCodecFence;
+  public FUntypedBulkData_Mirror Data = new();
+  public FPointer ReleaseCodecFence = new();
 }
 
 public class UTextureRenderTargetCube : UTextureRenderTarget
@@ -19334,9 +19334,9 @@ public class ATriggerStreamingLevel : ATrigger
 
 public class UUberPostProcessEffect : UDOFBloomMotionBlurEffect
 {
-  public FVector SceneShadows;
-  public FVector SceneHighLights;
-  public FVector SceneMidTones;
+  public FVector SceneShadows = new();
+  public FVector SceneHighLights = new();
+  public FVector SceneMidTones = new();
   public float SceneDesaturation;
   public bool bEnableHDRTonemapper;
   public float EdgeDetectionThreshold;
@@ -19393,8 +19393,8 @@ public class UUIEvent_OnClick : UUIEvent
 
 public class UUILabelButton : UUIButton
 {
-  public FPointer VfTable_IUIDataStorePublisher;
-  public FUIDataStoreBinding CaptionDataSource;
+  public FPointer VfTable_IUIDataStorePublisher = new();
+  public FUIDataStoreBinding CaptionDataSource = new();
   public UUIComp_DrawString StringRenderComponent;
 }
 
@@ -19432,17 +19432,17 @@ public class UUICharacterSummary : UUIResourceDataProvider
 
 public class UUICheckbox : UUIButton
 {
-  public FPointer VfTable_IUIDataStorePublisher;
+  public FPointer VfTable_IUIDataStorePublisher = new();
   public FName CheckedCue;
   public FName UncheckedCue;
-  public FUIDataStoreBinding ValueDataSource;
+  public FUIDataStoreBinding ValueDataSource = new();
   public UUIComp_DrawImage CheckedImageComponent;
   public bool bIsChecked;
 }
 
 public class UUIComboBox : UUIObject
 {
-  public FPointer VfTable_IUIDataStorePublisher;
+  public FPointer VfTable_IUIDataStorePublisher = new();
   public UClass ComboEditboxClass;
   public UClass ComboButtonClass;
   public UClass ComboListClass;
@@ -19451,7 +19451,7 @@ public class UUIComboBox : UUIObject
   public UUIList ComboList;
   public UUIComp_DrawCaption CaptionRenderComponent;
   public UUIComp_DrawImage BackgroundRenderComponent;
-  public FUIDataStoreBinding CaptionDataSource;
+  public FUIDataStoreBinding CaptionDataSource = new();
   public FName OpenList;
   public FName DecrementCue;
   public bool bDockListToButton;
@@ -19484,7 +19484,7 @@ public class UUIComp_ListPresenterBase : UUIComp_ListComponentBase
 
 public class UUITexture : UUIRoot
 {
-  public FUICombinedStyleData ImageStyleData;
+  public FUICombinedStyleData ImageStyleData = new();
   public USurface ImageTexture;
 }
 
@@ -19502,13 +19502,13 @@ public class UUIComp_ListPresenter : UUIComp_ListPresenterBase
   {
     public FName CellDataField;
     public string ColumnHeaderText;
-    public UUIRoot.FUIScreenValue_Extent CellSize;
+    public UUIRoot.FUIScreenValue_Extent CellSize = new();
     public float CellPosition;
   }
 
   public class FUIListItem
   {
-    public UUIComp_ListPresenterBase.FUIListItemDataBinding DataSource;
+    public UUIComp_ListPresenterBase.FUIListItemDataBinding DataSource = new();
     public List<UUIComp_ListPresenter.FUIListElementCell> Cells;
     public EUIListElementState ElementState;
     public UUIObject ElementWidget;
@@ -19519,9 +19519,9 @@ public class UUIComp_ListPresenter : UUIComp_ListPresenterBase
     public List<UUIComp_ListPresenter.FUIListElementCellTemplate> Cells;
   }
 
-  public FPointer VfTable_ICustomPropertyItemHandler;
-  public FUIElementCellSchema ElementSchema;
-  public UUIRoot.FUIScreenValue_Extent SelectionHintPadding;
+  public FPointer VfTable_ICustomPropertyItemHandler = new();
+  public FUIElementCellSchema ElementSchema = new();
+  public UUIRoot.FUIScreenValue_Extent SelectionHintPadding = new();
   public List<FUIListItem> ListItems;
   public UUITexture[] ColumnHeaderBackground = new UUITexture[3];
   public UUITexture[] ListItemOverlay = new UUITexture[4];
@@ -19609,21 +19609,21 @@ public class UUIScrollbar : UUIObject
   public UUIScrollbarButton IncrementButton;
   public UUIScrollbarButton DecrementButton;
   public UUIScrollbarMarkerButton MarkerButton;
-  public FUIStyleReference IncrementStyle;
-  public FUIStyleReference DecrementStyle;
-  public FUIStyleReference MarkerStyle;
+  public FUIStyleReference IncrementStyle = new();
+  public FUIStyleReference DecrementStyle = new();
+  public FUIStyleReference MarkerStyle = new();
   public float NudgeValue;
   public float NudgeMultiplier;
   public float NudgePercent;
   public float MarkerPosPercent;
   public float MarkerSizePercent;
-  public FUIScreenValue_Extent BarWidth;
-  public FUIScreenValue_Extent MinimumMarkerSize;
-  public FUIScreenValue_Extent ButtonsExtent;
+  public FUIScreenValue_Extent BarWidth = new();
+  public FUIScreenValue_Extent MinimumMarkerSize = new();
+  public FUIScreenValue_Extent ButtonsExtent = new();
   public EUIOrientation ScrollbarOrientation;
   public bool bAddCornerPadding;
   public bool bInitializeMarker;
-  public FUIScreenValue_Position MousePosition;
+  public FUIScreenValue_Position MousePosition = new();
   public float MousePositionDelta;
   public FScriptDelegate __OnScrollActivity__Delegate;
   public FScriptDelegate __OnClickedScrollZone__Delegate;
@@ -19639,14 +19639,14 @@ public class UUIList : UUIObject
     public int ResizeRow;
   }
 
-  public FPointer VfTable_IUIDataStorePublisher;
-  public FUIScreenValue_Extent RowHeight;
-  public FUIScreenValue_Extent MinColumnSize;
-  public FUIScreenValue_Extent ColumnWidth;
-  public FUIScreenValue_Extent HeaderCellPadding;
-  public FUIScreenValue_Extent HeaderElementSpacing;
-  public FUIScreenValue_Extent CellSpacing;
-  public FUIScreenValue_Extent CellPadding;
+  public FPointer VfTable_IUIDataStorePublisher = new();
+  public FUIScreenValue_Extent RowHeight = new();
+  public FUIScreenValue_Extent MinColumnSize = new();
+  public FUIScreenValue_Extent ColumnWidth = new();
+  public FUIScreenValue_Extent HeaderCellPadding = new();
+  public FUIScreenValue_Extent HeaderElementSpacing = new();
+  public FUIScreenValue_Extent CellSpacing = new();
+  public FUIScreenValue_Extent CellPadding = new();
   public int Index;
   public int TopIndex;
   public int MaxVisibleItems;
@@ -19669,13 +19669,13 @@ public class UUIList : UUIObject
   public bool bSortingList;
   public UUIScrollbar VerticalScrollbar;
   public FUIStyleReference[] GlobalCellStyle = new FUIStyleReference[4];
-  public FUIStyleReference ColumnHeaderStyle;
+  public FUIStyleReference ColumnHeaderStyle = new();
   public FUIStyleReference[] ColumnHeaderBackgroundStyle = new FUIStyleReference[3];
   public FUIStyleReference[] ItemOverlayStyle = new FUIStyleReference[4];
   public int ResizeColumn;
   public int SetIndexMutex;
   public int ValueChangeNotificationMutex;
-  public FUIDataStoreBinding DataSource;
+  public FUIDataStoreBinding DataSource = new();
   public FScriptInterface DataProvider;
   public List<int> Items;
   public List<int> SelectedItems;
@@ -19699,7 +19699,7 @@ public class UUIContextMenu : UUIList
   public class FContextMenuItem
   {
     public UUIContextMenu OwnerMenu;
-    public UObject.FPointer ParentItem;
+    public UObject.FPointer ParentItem = new();
     public EContextMenuItemType ItemType;
     public string ItemText;
     public int ItemId;
@@ -19760,7 +19760,7 @@ public class UUIDataProvider_MenuItem : UUIResourceDataProvider
   public bool bRemoveOnPC;
   public bool bRemoveOnPS3;
   public int EditBoxMaxLength;
-  public FUIRangeData RangeData;
+  public FUIRangeData RangeData = new();
   public List<FName> SchemaCellFields;
   public string IniName;
 }
@@ -19772,7 +19772,7 @@ public class UUIDataProvider_OnlinePlayerDataBase : UUIDataProvider
 
 public class UUIDataProvider_OnlineFriendMessages : UUIDataProvider_OnlinePlayerDataBase
 {
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public List<UOnlineSubsystem.FOnlineFriendMessage> Messages;
   public string SendingPlayerNameCol;
   public string bIsFriendInviteCol;
@@ -19784,7 +19784,7 @@ public class UUIDataProvider_OnlineFriendMessages : UUIDataProvider_OnlinePlayer
 
 public class UUIDataProvider_OnlineFriends : UUIDataProvider_OnlinePlayerDataBase
 {
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public List<UOnlineSubsystem.FOnlineFriend> FriendsList;
   public string NickNameCol;
   public string PresenceInfoCol;
@@ -19804,7 +19804,7 @@ public class UUIDataProvider_OnlineFriends : UUIDataProvider_OnlinePlayerDataBas
 
 public class UUIDataProvider_OnlinePartyChatList : UUIDataProvider_OnlinePlayerDataBase
 {
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public List<UOnlineSubsystem.FOnlinePartyMember> PartyMembersList;
   public List<string> NatTypes;
   public string NickNameCol;
@@ -19833,8 +19833,8 @@ public class UUIDataProvider_OnlinePlayerStorage : UUIDataProvider_OnlinePlayerD
 
 public class UUIDataProvider_OnlinePlayerStorageArray : UUIDataProvider
 {
-  public FPointer VfTable_IUIListElementProvider;
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public UOnlinePlayerStorage PlayerStorage;
   public int PlayerStorageId;
   public FName PlayerStorageName;
@@ -19848,7 +19848,7 @@ public class UUIDataProvider_OnlineProfileSettings : UUIDataProvider_OnlinePlaye
 
 public class UUIDataProvider_PlayerAchievements : UUIDataProvider_OnlinePlayerDataBase
 {
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public List<UOnlineSubsystem.FAchievementDetails> Achievements;
 }
 
@@ -19868,8 +19868,8 @@ public class UUIDataProvider_Settings : UUIDynamicDataProvider
 
 public class UUIDataProvider_SettingsArray : UUIDataProvider
 {
-  public FPointer VfTable_IUIListElementProvider;
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public USettings Settings;
   public int SettingsId;
   public FName SettingsName;
@@ -19890,11 +19890,11 @@ public class UUIDataStore_DynamicResource : UUIDataStore
     public UClass ProviderClass;
   }
 
-  public FPointer VfTable_IUIListElementProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
   public UUIDataProvider_OnlineProfileSettings ProfileProvider;
   public UUIDataStore_GameResource GameResourceDataStore;
   public List<FDynamicResourceProviderDefinition> ResourceProviderDefinitions;
-  public FMultiMap_Mirror ResourceProviders;
+  public FMultiMap_Mirror ResourceProviders = new();
 }
 
 public class UUIDataStore_Fonts : UUIDataStore
@@ -19911,9 +19911,9 @@ public class UUIDataStore_GameResource : UUIDataStore
     public UClass ProviderClass;
   }
 
-  public FPointer VfTable_IUIListElementProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
   public List<FGameResourceDataProvider> ElementProviderTypes;
-  public FMultiMap_Mirror ListElementProviders;
+  public FMultiMap_Mirror ListElementProviders = new();
 }
 
 public class UUIDataStore_Gamma : UUIDataStore
@@ -19932,7 +19932,7 @@ public class UUIDataStore_InputAlias : UUIDataStore_StringBase
 {
   public class FUIInputKeyData
   {
-    public UUIRoot.FRawInputKeyEventData InputKeyData;
+    public UUIRoot.FRawInputKeyEventData InputKeyData = new();
     public string ButtonFontMarkupString;
   }
 
@@ -19949,7 +19949,7 @@ public class UUIDataStore_InputAlias : UUIDataStore_StringBase
 public class UUIDataStore_MenuItems : UUIDataStore_GameResource
 {
   public FName CurrentGameSettingsTag;
-  public FMultiMap_Mirror OptionProviders;
+  public FMultiMap_Mirror OptionProviders = new();
   public List<UUIDataProvider_MenuItem> DynamicProviders;
 }
 
@@ -19970,8 +19970,8 @@ public class UUIDataStore_OnlineGameSearch : UUIDataStore_Remote
     public FName SearchName;
   }
 
-  public FPointer VfTable_IUIListElementProvider;
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public FName SearchResultsName;
   public UOnlineSubsystem OnlineSub;
   public FScriptInterface GameInterface;
@@ -20001,7 +20001,7 @@ public class UUIDataStore_OnlineGameSettings : UUIDataStore_Settings
 
 public class UUIDataStore_OnlinePlayerData : UUIDataStore_Remote
 {
-  public FPointer VfTable_IUIListElementProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
   public UUIDataProvider_OnlineFriends FriendsProvider;
   public int PlayerControllerId;
   public string PlayerNick;
@@ -20028,7 +20028,7 @@ public class UUIDataStore_OnlinePlayerData : UUIDataStore_Remote
 
 public class UUIDataStore_OnlinePlaylists : UUIDataStore
 {
-  public FPointer VfTable_IUIListElementProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
   public string ProviderClassName;
   public UClass ProviderClass;
   public List<UUIResourceDataProvider> RankedDataProviders;
@@ -20049,12 +20049,12 @@ public class UUIDataStore_OnlineStats : UUIDataStore_Remote
     public string RankColumnName;
   }
 
-  public FPointer VfTable_IUIListElementProvider;
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public List<UClass> StatsReadClasses;
   public FName StatsReadName;
-  public FPlayerNickMetaData PlayerNickData;
-  public FRankMetaData RankNameMetaData;
+  public FPlayerNickMetaData PlayerNickData = new();
+  public FRankMetaData RankNameMetaData = new();
   public FName TotalRowsName;
   public List<UOnlineStatsRead> StatsReadObjects;
   public UOnlineStatsRead StatsRead;
@@ -20085,7 +20085,7 @@ public class UUIDataStore_StringAliasMap : UUIDataStore_StringBase
   }
 
   public List<FUIMenuInputMap> MenuInputMapArray;
-  public FMap_Mirror MenuInputSets;
+  public FMap_Mirror MenuInputSets = new();
   public int PlayerIndex;
 }
 
@@ -20107,14 +20107,14 @@ public partial class UUIDynamicFieldProvider : UUIDataProvider
   public List<FUIProviderScriptFieldValue> PersistentDataFields;
   public List<FUIProviderScriptFieldValue> RuntimeDataFields;
   public Dictionary<FName, Dictionary<FName, List<string>>> PersistentCollectionData;
-  public FMap_Mirror RuntimeCollectionData;
+  public FMap_Mirror RuntimeCollectionData = new();
 }
 
 public class UUIString : UUIRoot
 {
   public List<FPointer> Nodes;
-  public FUICombinedStyleData StringStyleData;
-  public FVector2D StringExtent;
+  public FUICombinedStyleData StringStyleData = new();
+  public FVector2D StringExtent = new();
 }
 
 public class UUIEditboxString : UUIString
@@ -20128,7 +20128,7 @@ public class UUIEvent_CalloutButtonInputProxy : UUIEvent
 
 public class UUIEvent_MetaObject : UUIEvent
 {
-  public FPointer VfTable_FCallbackEventDevice;
+  public FPointer VfTable_FCallbackEventDevice = new();
 }
 
 public class UUIEvent_OnDoubleClick : UUIEvent
@@ -20149,7 +20149,7 @@ public class UUIEvent_OnLeaveState : UUIEvent_State
 
 public class UUIEvent_ProcessInput : UUIEvent
 {
-  public FMultiMap_Mirror ActionMap;
+  public FMultiMap_Mirror ActionMap = new();
 }
 
 public class UUIEvent_Scene : UUIEvent
@@ -20192,7 +20192,7 @@ public class UUIFrameBox : UUIContainer
   }
 
   public UUIComp_DrawImage[] BackgroundImageComponent = new UUIComp_DrawImage[9];
-  public FCornerSizes BackgroundCornerSizes;
+  public FCornerSizes BackgroundCornerSizes = new();
 }
 
 public class UUIGameInfoSummary : UUIResourceDataProvider
@@ -20218,7 +20218,7 @@ public class UUIInteraction : UInteraction
   public class FUIKeyRepeatData
   {
     public FName CurrentRepeatKey;
-    public double NextRepeatTime;
+    public double NextRepeatTime = new();
   }
 
   public class FUIAxisEmulationData : FUIKeyRepeatData
@@ -20226,9 +20226,9 @@ public class UUIInteraction : UInteraction
     public bool bEnabled;
   }
 
-  public FPointer VfTable_FExec;
-  public FPointer VfTable_FGlobalDataStoreClientManager;
-  public FPointer VfTable_FCallbackEventDevice;
+  public FPointer VfTable_FExec = new();
+  public FPointer VfTable_FGlobalDataStoreClientManager = new();
+  public FPointer VfTable_FCallbackEventDevice = new();
   public UClass SceneClientClass;
   public UGameUISceneClient SceneClient;
   public string UISkinName;
@@ -20250,11 +20250,11 @@ public class UUIInteraction : UInteraction
   public int DoubleClickPixelTolerance;
   public float ToolTipInitialDelaySeconds;
   public float ToolTipExpirationSeconds;
-  public FUIKeyRepeatData MouseButtonRepeatInfo;
+  public FUIKeyRepeatData MouseButtonRepeatInfo = new();
   public List<FUIAxisEmulationDefinition> ConfiguredAxisEmulationDefinitions;
   public Dictionary<byte, byte> AxisEmulationDefinitions;
   public FUIAxisEmulationData[] AxisInputEmulation = new FUIAxisEmulationData[4];
-  public FPointer CanvasScene;
+  public FPointer CanvasScene = new();
 }
 
 public class UUILayerBase : UUIRoot
@@ -20341,9 +20341,9 @@ public class UUIScene : UUIScreenObject
   public EUIPostProcessGroup ScenePostProcessGroup;
   public UPostProcessChain UIPostProcessForeground;
   public UPostProcessChain UIPostProcessBackground;
-  public APostProcessVolume.FPostProcessSettings CurrentBackgroundSettings;
-  public APostProcessVolume.FPostProcessSettings CurrentForegroundSettings;
-  public FVector2D CurrentViewportSize;
+  public APostProcessVolume.FPostProcessSettings CurrentBackgroundSettings = new();
+  public APostProcessVolume.FPostProcessSettings CurrentForegroundSettings = new();
+  public FVector2D CurrentViewportSize = new();
   public FName SceneAnimation_Open;
   public FName SceneAnimation_Close;
   public FName SceneAnimation_LoseFocus;
@@ -20391,14 +20391,14 @@ public class UUINavigationList : UUIList
 
 public class UUINumericEditBox : UUIEditBox
 {
-  public FUIStyleReference IncrementStyle;
-  public FUIStyleReference DecrementStyle;
+  public FUIStyleReference IncrementStyle = new();
+  public FUIStyleReference DecrementStyle = new();
   public UUINumericEditBoxButton IncrementButton;
   public UUINumericEditBoxButton DecrementButton;
-  public FUIRangeData NumericValue;
+  public FUIRangeData NumericValue = new();
   public int DecimalPlaces;
-  public FUIScreenValue_Bounds IncButton_Position;
-  public FUIScreenValue_Bounds DecButton_Position;
+  public FUIScreenValue_Bounds IncButton_Position = new();
+  public FUIScreenValue_Bounds DecButton_Position = new();
 }
 
 public class UUINumericEditBoxButton : UUIButton
@@ -20411,26 +20411,26 @@ public class UUIOptionListButton : UUIButton
 
 public class UUIOptionListBase : UUIObject
 {
-  public FPointer VfTable_IUIDataStorePublisher;
-  public FUIStyleReference DecrementStyle;
-  public FUIStyleReference IncrementStyle;
+  public FPointer VfTable_IUIDataStorePublisher = new();
+  public FUIStyleReference DecrementStyle = new();
+  public FUIStyleReference IncrementStyle = new();
   public UUIOptionListButton DecrementButton;
   public UUIOptionListButton IncrementButton;
   public UClass OptionListButtonClass;
-  public FUIScreenValue_Extent ButtonSpacing;
+  public FUIScreenValue_Extent ButtonSpacing = new();
   public UUIComp_DrawImage BackgroundImageComponent;
   public UUIComp_DrawString StringRenderComponent;
   public FName IncrementCue;
   public FName DecrementCue;
   public bool bWrapOptions;
-  public FUIDataStoreBinding DataSource;
+  public FUIDataStoreBinding DataSource = new();
   public FScriptDelegate __CreateCustomDecrementButton__Delegate;
   public FScriptDelegate __CreateCustomIncrementButton__Delegate;
 }
 
 public class UUINumericOptionList : UUIOptionListBase
 {
-  public FUIRangeData RangeValue;
+  public FUIRangeData RangeValue = new();
 }
 
 public class UUIObjectList : UUIList
@@ -20458,8 +20458,8 @@ public class UUIPrefab : UUIObject
   public int InternalPrefabVersion;
   public UTexture2D PrefabPreview;
   public int ModificationCounter;
-  public FUIScreenValue_Extent OriginalWidth;
-  public FUIScreenValue_Extent OriginalHeight;
+  public FUIScreenValue_Extent OriginalWidth = new();
+  public FUIScreenValue_Extent OriginalHeight = new();
 }
 
 public class UUIPrefabInstance : UUIObject
@@ -20479,25 +20479,25 @@ public class UUIPrefabInstance : UUIObject
 
 public class UUIPrefabScene : UUIScene
 {
-  public FPointer VfTable_FCallbackEventDevice;
+  public FPointer VfTable_FCallbackEventDevice = new();
 }
 
 public class UUIProgressBar : UUIObject
 {
-  public FPointer VfTable_IUIDataStorePublisher;
+  public FPointer VfTable_IUIDataStorePublisher = new();
   public UUIComp_DrawImage BackgroundImageComponent;
   public UUIComp_DrawImage FillImageComponent;
   public UUIComp_DrawImage OverlayImageComponent;
   public bool bDrawOverlay;
-  public FUIDataStoreBinding DataSource;
-  public FUIRangeData ProgressBarValue;
+  public FUIDataStoreBinding DataSource = new();
+  public FUIRangeData ProgressBarValue = new();
   public EUIOrientation ProgressBarOrientation;
 }
 
 public class UUIResourceCombinationProvider : UUIDataProvider
 {
-  public FPointer VfTable_IUIListElementProvider;
-  public FPointer VfTable_IUIListElementCellProvider;
+  public FPointer VfTable_IUIListElementProvider = new();
+  public FPointer VfTable_IUIListElementCellProvider = new();
   public UUIResourceDataProvider StaticDataProvider;
   public UUIDataProvider_OnlineProfileSettings ProfileProvider;
 }
@@ -20532,9 +20532,9 @@ public class UUIScrollFrame : UUIContainer
   public UUIComp_DrawImage StaticBackgroundImage;
   public UUIScrollbar ScrollbarHorizontal;
   public UUIScrollbar ScrollbarVertical;
-  public FUIScreenValue_Extent HorizontalClientRegion;
-  public FUIScreenValue_Extent VerticalClientRegion;
-  public FVector2D ClientRegionPosition;
+  public FUIScreenValue_Extent HorizontalClientRegion = new();
+  public FUIScreenValue_Extent VerticalClientRegion = new();
+  public FVector2D ClientRegionPosition = new();
   public float[] FrameBounds = new float[4];
   public bool bRefreshScrollbars;
   public bool bRecalculateClientRegion;
@@ -20542,7 +20542,7 @@ public class UUIScrollFrame : UUIContainer
 
 public class UUISequence : USequence
 {
-  public FPointer VfTable_IUIEventContainer;
+  public FPointer VfTable_IUIEventContainer = new();
   public List<UUIEvent> UIEvents;
 }
 
@@ -20552,18 +20552,18 @@ public class UUISettingsClient : UInterface
 
 public class UUISlider : UUIObject
 {
-  public FPointer VfTable_IUIDataStorePublisher;
+  public FPointer VfTable_IUIDataStorePublisher = new();
   public UUIComp_DrawImage BackgroundImageComponent;
   public UUIComp_DrawImage SliderBarImageComponent;
   public UUIComp_DrawImage MarkerImageComponent;
-  public FUIDataStoreBinding DataSource;
+  public FUIDataStoreBinding DataSource = new();
   public UUIComp_DrawStringSlider CaptionRenderComponent;
-  public FUIRangeData SliderValue;
+  public FUIRangeData SliderValue = new();
   public bool bRenderCaption;
   public EUIOrientation SliderOrientation;
-  public FUIScreenValue_Extent BarSize;
-  public FUIScreenValue_Extent MarkerHeight;
-  public FUIScreenValue_Extent MarkerWidth;
+  public FUIScreenValue_Extent BarSize = new();
+  public FUIScreenValue_Extent MarkerHeight = new();
+  public FUIScreenValue_Extent MarkerWidth = new();
   public FName IncrementCue;
   public FName DecrementCue;
 }
@@ -20581,7 +20581,7 @@ public class UUISoundTheme : UObject
 
 public class UUIState : UUIRoot
 {
-  public FPointer VfTable_IUIEventContainer;
+  public FPointer VfTable_IUIEventContainer = new();
   public UUIStateSequence StateSequence;
   public List<FInputKeyAction> StateInputActions;
   public List<FInputKeyAction> DisabledInputActions;
@@ -20624,7 +20624,7 @@ public class UUIStringRenderer : UInterface
 
 public partial class UUIStyle : UUIRoot
 {
-  public FSTYLE_ID StyleID;
+  public FSTYLE_ID StyleID = new();
   public FName StyleTag;
   public string StyleName;
   public string StyleGroupName;
@@ -20635,7 +20635,7 @@ public partial class UUIStyle : UUIRoot
 public class UUIStyle_Data : UUIRoot
 {
   public string UIEditorControlClass;
-  public FLinearColor StyleColor;
+  public FLinearColor StyleColor = new();
   public float[] StylePadding = new float[2];
   public bool bEnabled;
   public bool bDirty;
@@ -20647,33 +20647,33 @@ public class UUIStyle_Combo : UUIStyle_Data
   public class FStyleDataReference
   {
     public UUIStyle OwnerStyle;
-    public UUIRoot.FSTYLE_ID SourceStyleID;
+    public UUIRoot.FSTYLE_ID SourceStyleID = new();
     public UUIStyle SourceStyle;
     public UUIState SourceState;
     public UUIStyle_Data CustomStyleData;
   }
 
-  public FStyleDataReference ImageStyle;
-  public FStyleDataReference TextStyle;
+  public FStyleDataReference ImageStyle = new();
+  public FStyleDataReference TextStyle = new();
 }
 
 public class UUIStyle_Image : UUIStyle_Data
 {
   public USurface DefaultImage;
-  public FTextureCoordinates Coordinates;
+  public FTextureCoordinates Coordinates = new();
   public FUIImageAdjustmentData[] AdjustmentType = new FUIImageAdjustmentData[2];
 }
 
 public class UUIStyle_Text : UUIStyle_Data
 {
   public UFont StyleFont;
-  public FUITextAttributes Attributes;
+  public FUITextAttributes Attributes = new();
   public EUIAlignment[] Alignment = new EUIAlignment[2];
   public ETextClipMode ClipMode;
   public EUIAlignment ClipAlignment;
-  public FTextAutoScaleValue AutoScaling;
-  public FVector2D Scale;
-  public FVector2D SpacingAdjust;
+  public FTextAutoScaleValue AutoScaling = new();
+  public FVector2D Scale = new();
+  public FVector2D SpacingAdjust = new();
 }
 
 public class UUIStyleResolver : UInterface
@@ -20693,10 +20693,10 @@ public class UUITabControl : UUIObject
   public UUITabPage PendingPage;
   public EUIWidgetFace TabDockFace;
   public EUITabAutosizeType TabSizeMode;
-  public FUIScreenValue_Extent TabButtonSize;
+  public FUIScreenValue_Extent TabButtonSize = new();
   public FUIScreenValue_Extent[] TabButtonPadding = new FUIScreenValue_Extent[2];
-  public FUIStyleReference TabButtonBackgroundStyle;
-  public FUIStyleReference TabButtonCaptionStyle;
+  public FUIStyleReference TabButtonBackgroundStyle = new();
+  public FUIStyleReference TabButtonCaptionStyle = new();
   public bool bAllowPagePreviews;
   public bool bUpdateLayout;
   public FName ActivateTabCue;
@@ -20707,12 +20707,12 @@ public class UUITabControl : UUIObject
 
 public class UUITabPage : UUIContainer
 {
-  public FPointer VfTable_IUIDataStoreSubscriber;
+  public FPointer VfTable_IUIDataStoreSubscriber = new();
   public UClass ButtonClass;
   public UUITabButton TabButton;
-  public FUIDataStoreBinding ButtonCaption;
-  public FUIDataStoreBinding ButtonToolTip;
-  public FUIDataStoreBinding PageDescription;
+  public FUIDataStoreBinding ButtonCaption = new();
+  public FUIDataStoreBinding ButtonToolTip = new();
+  public FUIDataStoreBinding PageDescription = new();
 }
 
 public class UUITickableObject : UInterface
@@ -20721,13 +20721,13 @@ public class UUITickableObject : UInterface
 
 public class UUITickableObjectProxy : UUIRoot
 {
-  public FPointer VfTable_IUITickableObject;
+  public FPointer VfTable_IUITickableObject = new();
   public FScriptDelegate __OnScriptTick__Delegate;
 }
 
 public class UUIToggleButton : UUILabelButton
 {
-  public FUIDataStoreBinding ValueDataSource;
+  public FUIDataStoreBinding ValueDataSource = new();
   public bool bIsChecked;
   public UUIComp_DrawString CheckedStringRenderComponent;
   public UUIComp_DrawImage CheckedBackgroundImageComponent;
@@ -20782,7 +20782,7 @@ public class AWeapon : AInventory
   public List<UClass> InstantHitDamageTypes;
   public float EquipTime;
   public float PutDownTime;
-  public FVector FireOffset;
+  public FVector FireOffset = new();
   public bool bWeaponPutDown;
   public bool bCanThrow;
   public bool bWasOptionalSet;
@@ -20801,7 +20801,7 @@ public class AWeapon : AInventory
 
 public class UWindDirectionalSourceComponent : UActorComponent
 {
-  public FPointer SceneProxy;
+  public FPointer SceneProxy = new();
   public float Strength;
   public float Phase;
   public float Frequency;
@@ -20827,7 +20827,7 @@ public class AWindPointSource : AInfo
 public class UZoneMeshComponent : UPrimitiveComponent
 {
   public UObject Model;
-  public FMap_Mirror ModelZoneElement;
+  public FMap_Mirror ModelZoneElement = new();
 }
 
 public class UClient : UObject
@@ -20852,15 +20852,15 @@ public partial class UModel : UObject
     public byte[] iZone = new byte[2];
     public byte NodeFlags;
     public byte NumVertices;
-    public UObject.FPlane Plane;
+    public UObject.FPlane Plane = new();
   }
 
   public class FVert
   {
-    public UObject.FVector2D BackfaceShadowTexCoord;
+    public UObject.FVector2D BackfaceShadowTexCoord = new();
     public int iSide;
     public int pVertex;
-    public UObject.FVector2D ShadowTexCoord;
+    public UObject.FVector2D ShadowTexCoord = new();
   }
 
   public class FBspSurf
@@ -20870,10 +20870,10 @@ public partial class UModel : UObject
     public bool bHiddenEdTemporary;
     public int iBrushPoly;
     public int iLightmassIndex;
-    public ULightComponent.FLightingChannelContainer LightingChannels;
+    public ULightComponent.FLightingChannelContainer LightingChannels = new();
     public UMaterialInterface Material;
     public int pBase;
-    public UObject.FPlane Plane;
+    public UObject.FPlane Plane = new();
     public uint PolyFlags;
     public float ShadowMapScale;
     public int vNormal;
@@ -20888,18 +20888,18 @@ public partial class UModel : UObject
 
   public class FModelVertex
   {
-    public UObject.FVector Position;
-    public UObject.FVector2D ShadowTexCoord;
-    public UObject.FPackedNormal TangentX;
-    public UObject.FPackedNormal TangentZ;
-    public UObject.FVector2D TexCoord;
+    public UObject.FVector Position = new();
+    public UObject.FVector2D ShadowTexCoord = new();
+    public UObject.FPackedNormal TangentX = new();
+    public UObject.FPackedNormal TangentZ = new();
+    public UObject.FVector2D TexCoord = new();
   }
 
   public class FZoneProperties
   {
-    public ulong Connectivity;
+    public ulong Connectivity = new();
     public float LastRenderTime;
-    public ulong Visibility;
+    public ulong Visibility = new();
     public AZoneInfo ZoneActor;
   }
 
@@ -20911,14 +20911,14 @@ public partial class UModel : UObject
 
   public class FBoxAndThenSome
   {
-    public UObject.FBox Box;
+    public UObject.FBox Box = new();
     public int[] Values = new int[10];
   }
 
-  public FBoxSphereBounds Bounds;
+  public FBoxSphereBounds Bounds = new();
   public List<int> LeafHulls;
   public List<FLeaf> Leaves;
-  public FGuid LightingGuid;
+  public FGuid LightingGuid = new();
   public List<UEngineTypes.FLightmassPrimitiveSettings> LightmassSettings;
   public bool Linked;
   public List<FBspNode> Nodes;
@@ -20955,20 +20955,20 @@ public partial class UPolys : UObject
   public class FPoly
   {
     public ABrush Actor;
-    public UObject.FVector Base;
+    public UObject.FVector Base = new();
     public int iBrushPoly;
     public int iLink;
     public FName ItemName;
     public uint LightingChannels;
-    public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings;
+    public UEngineTypes.FLightmassPrimitiveSettings LightmassSettings = new();
     public UMaterialInterface Material;
-    public UObject.FVector Normal;
+    public UObject.FVector Normal = new();
     public uint PolyFlags;
     public FName RulesetVariation;
     public float ShadowMapScale;
     public uint SmoothingMask;
-    public UObject.FVector TextureU;
-    public UObject.FVector TextureV;
+    public UObject.FVector TextureU = new();
+    public UObject.FVector TextureV = new();
     public List<UObject.FVector> Vertices;
   }
 
@@ -20977,7 +20977,7 @@ public partial class UPolys : UObject
 
 public partial class UShadowMap1D : UObject
 {
-  public FGuid LightGuid;
+  public FGuid LightGuid = new();
   public List<float> Samples;
 }
 
@@ -20985,27 +20985,27 @@ public partial class ULevelBase : UObject
 {
   public List<AActor> Actors;
   public UObject ActorsOwner;
-  public FURL URL;
+  public FURL URL = new();
 }
 
 public partial class ULevel : ULevelBase
 {
   public class FStreamableTextureInstance
   {
-    public UObject.FSphere BoundingSphere;
+    public UObject.FSphere BoundingSphere = new();
     public float TexelFactor;
   }
 
   public class FCachedPhysSMData
   {
     public int CachedDataIndex;
-    public UObject.FVector Scale3D;
+    public UObject.FVector Scale3D = new();
   }
 
   public class FCachedPerTriPhysSMData
   {
     public int CachedDataIndex;
-    public UObject.FVector Scale3D;
+    public UObject.FVector Scale3D = new();
   }
 
   public partial class FCoverIndexPair : ISerialisable
@@ -21016,22 +21016,22 @@ public partial class ULevel : ULevelBase
 
   public class FVolumeLightingSample
   {
-    public UObject.FColor AmbientRadiance;
+    public UObject.FColor AmbientRadiance = new();
     public byte bShadowedFromDominantLights;
     public byte EnvironmentDirectionPhi;
     public byte EnvironmentDirectionTheta;
-    public UObject.FColor EnvironmentRadiance;
+    public UObject.FColor EnvironmentRadiance = new();
     public byte IndirectDirectionPhi;
     public byte IndirectDirectionTheta;
-    public UObject.FColor IndirectRadiance;
-    public UObject.FVector Position;
+    public UObject.FColor IndirectRadiance = new();
+    public UObject.FVector Position = new();
     public float Radius;
   }
 
   public class FPrecomputedLightVolume
   {
     public bool bInitialized;
-    public UObject.FBox Bounds;
+    public UObject.FBox Bounds = new();
     public int NumSamples;
     public List<ULevel.FVolumeLightingSample> Samples;
   }
@@ -21039,7 +21039,7 @@ public partial class ULevel : ULevelBase
   public List<byte> ApexSDKCachedData;
   public List<byte> CachedPhysBSPData;
   public int CachedPhysBSPDataVersion;
-  public URB_BodySetup.FKCachedConvexData CachedPhysConvexBSPData;
+  public URB_BodySetup.FKCachedConvexData CachedPhysConvexBSPData = new();
   public int CachedPhysConvexBSPVersion;
   public Dictionary<UStaticMesh, FCachedPerTriPhysSMData> CachedPhysPerTriSMDataMap;
   public List<URB_BodySetup.FKCachedPerTriData> CachedPhysPerTriSMDataStore;
@@ -21060,7 +21060,7 @@ public partial class ULevel : ULevelBase
   public List<UModelComponent> ModelComponents;
   public ANavigationPoint NavListEnd;
   public ANavigationPoint NavListStart;
-  public FPrecomputedLightVolume PrecomputedLightVolume;
+  public FPrecomputedLightVolume PrecomputedLightVolume = new();
   public APylon PylonListEnd;
   public APylon PylonListStart;
   public float ShadowmapTotalSize;
@@ -21076,8 +21076,8 @@ public partial class UWorld : UObject
   public class FLevelViewportInfo
   {
     public float CamOrthoZoom;
-    public UObject.FVector CamPosition;
-    public UObject.FRotator CamRotation;
+    public UObject.FVector CamPosition = new();
+    public UObject.FRotator CamRotation = new();
   }
 
   public FLevelViewportInfo[] EditorViews = new FLevelViewportInfo[4];
@@ -21148,7 +21148,7 @@ public partial class UShaderCache : UObject
   public class FUniformShaderParameter
   {
     public int Index;
-    public UShaderCache.FShaderParameter ShaderParameter;
+    public UShaderCache.FShaderParameter ShaderParameter = new();
     public byte Type;
   }
 
@@ -21162,56 +21162,56 @@ public partial class UShaderCache : UObject
   public class FUniformShaderResourceParameter
   {
     public int Index;
-    public UShaderCache.FShaderResourceParameter ShaderParameter;
+    public UShaderCache.FShaderResourceParameter ShaderParameter = new();
     public byte Type;
   }
 
   public class FDOFShaderParameters
   {
-    public UShaderCache.FShaderParameter PackedParameters0;
-    public UShaderCache.FShaderParameter PackedParameters1;
+    public UShaderCache.FShaderParameter PackedParameters0 = new();
+    public UShaderCache.FShaderParameter PackedParameters1 = new();
   }
 
   public class FSceneTextureShaderParameters
   {
-    public UShaderCache.FShaderResourceParameter NvStereoFixTextureParameter;
-    public UShaderCache.FShaderResourceParameter SceneColorTextureParameter;
-    public UShaderCache.FShaderParameter SceneDepthCalcParameter;
-    public UShaderCache.FShaderResourceParameter SceneDepthTextureParameter;
-    public UShaderCache.FShaderParameter ScreenPositionScaleBiasParameter;
+    public UShaderCache.FShaderResourceParameter NvStereoFixTextureParameter = new();
+    public UShaderCache.FShaderResourceParameter SceneColorTextureParameter = new();
+    public UShaderCache.FShaderParameter SceneDepthCalcParameter = new();
+    public UShaderCache.FShaderResourceParameter SceneDepthTextureParameter = new();
+    public UShaderCache.FShaderParameter ScreenPositionScaleBiasParameter = new();
   }
 
   public class FMaterialShaderParameters
   {
-    public UShaderCache.FShaderParameter CameraWorldPosParameter;
-    public UShaderCache.FShaderParameter FoliageImpParameter;
-    public UShaderCache.FShaderParameter FoliageNormalizedRotationAxisAndAngleParameter;
-    public UShaderCache.FShaderParameter InvViewProjectionParameter;
-    public UShaderCache.FShaderParameter LocalToWorldParameter;
-    public UShaderCache.FShaderParameter ObjectOrientationParameter;
-    public UShaderCache.FShaderParameter ObjectWorldPositionAndRadiusParameter;
-    public UShaderCache.FShaderParameter OcclusionPercentageParameter;
-    public UShaderCache.FShaderParameter ViewProjectionParameter;
-    public UShaderCache.FShaderParameter ViewToWorldParameter;
-    public UShaderCache.FShaderParameter WindDirectionAndSpeedParameter;
-    public UShaderCache.FShaderParameter WorldToLocalParameter;
-    public UShaderCache.FShaderParameter WorldToViewParameter;
+    public UShaderCache.FShaderParameter CameraWorldPosParameter = new();
+    public UShaderCache.FShaderParameter FoliageImpParameter = new();
+    public UShaderCache.FShaderParameter FoliageNormalizedRotationAxisAndAngleParameter = new();
+    public UShaderCache.FShaderParameter InvViewProjectionParameter = new();
+    public UShaderCache.FShaderParameter LocalToWorldParameter = new();
+    public UShaderCache.FShaderParameter ObjectOrientationParameter = new();
+    public UShaderCache.FShaderParameter ObjectWorldPositionAndRadiusParameter = new();
+    public UShaderCache.FShaderParameter OcclusionPercentageParameter = new();
+    public UShaderCache.FShaderParameter ViewProjectionParameter = new();
+    public UShaderCache.FShaderParameter ViewToWorldParameter = new();
+    public UShaderCache.FShaderParameter WindDirectionAndSpeedParameter = new();
+    public UShaderCache.FShaderParameter WorldToLocalParameter = new();
+    public UShaderCache.FShaderParameter WorldToViewParameter = new();
   }
 
   public class FMaterialPixelShaderParameters : FMaterialShaderParameters
   {
-    public UShaderCache.FShaderResourceParameter BeckmannTextureParameter;
-    public UShaderCache.FShaderParameter bEnableScreenDoorFadeParameter;
-    public UShaderCache.FShaderParameter DecalFarPlaneDistanceParameter;
-    public UShaderCache.FShaderParameter MatInverseGammaParameter;
-    public UShaderCache.FShaderParameter ObjectMacroUVScalesParameter;
-    public UShaderCache.FShaderParameter ObjectNDCPositionParameter;
-    public UShaderCache.FShaderParameter ObjectPostProjectionPositionParameter;
-    public UShaderCache.FSceneTextureShaderParameters SceneTextureParameters;
-    public UShaderCache.FShaderParameter ScreenDoorFadeSettings2Parameter;
-    public UShaderCache.FShaderParameter ScreenDoorFadeSettingsParameter;
-    public UShaderCache.FShaderResourceParameter ScreenDoorNoiseTextureParameter;
-    public UShaderCache.FShaderParameter TwoSidedSignParameter;
+    public UShaderCache.FShaderResourceParameter BeckmannTextureParameter = new();
+    public UShaderCache.FShaderParameter bEnableScreenDoorFadeParameter = new();
+    public UShaderCache.FShaderParameter DecalFarPlaneDistanceParameter = new();
+    public UShaderCache.FShaderParameter MatInverseGammaParameter = new();
+    public UShaderCache.FShaderParameter ObjectMacroUVScalesParameter = new();
+    public UShaderCache.FShaderParameter ObjectNDCPositionParameter = new();
+    public UShaderCache.FShaderParameter ObjectPostProjectionPositionParameter = new();
+    public UShaderCache.FSceneTextureShaderParameters SceneTextureParameters = new();
+    public UShaderCache.FShaderParameter ScreenDoorFadeSettings2Parameter = new();
+    public UShaderCache.FShaderParameter ScreenDoorFadeSettingsParameter = new();
+    public UShaderCache.FShaderResourceParameter ScreenDoorNoiseTextureParameter = new();
+    public UShaderCache.FShaderParameter TwoSidedSignParameter = new();
     public List<UShaderCache.FUniformShaderResourceParameter> Uniform2DShaderResourceParameters;
     public List<UShaderCache.FUniformShaderParameter> UniformPixelScalarParameters;
   }
@@ -21231,24 +21231,24 @@ public partial class UShaderCache : UObject
 
   public class FShader
   {
-    public UShaderCache.FDOFShaderParameters DOFParameters;
-    public UObject.FGuid Id;
-    public UShaderCache.FShaderKey Key;
-    public UShaderCache.FMaterialPixelShaderParameters MaterialPixelParameters;
-    public UShaderCache.FMaterialVertexShaderParameters MaterialVertexParameters;
+    public UShaderCache.FDOFShaderParameters DOFParameters = new();
+    public UObject.FGuid Id = new();
+    public UShaderCache.FShaderKey Key = new();
+    public UShaderCache.FMaterialPixelShaderParameters MaterialPixelParameters = new();
+    public UShaderCache.FMaterialVertexShaderParameters MaterialVertexParameters = new();
     public uint NumInstructions;
     public List<FName> ParameterOrder;
-    public UShaderCache.FSceneTextureShaderParameters SceneTextureParameters;
+    public UShaderCache.FSceneTextureShaderParameters SceneTextureParameters = new();
     public Dictionary<FName, UShaderCache.FShaderParameter> ShaderParameters;
     public Dictionary<FName, UShaderCache.FShaderResourceParameter> ShaderResourceParameters;
-    public UShaderCache.FShaderTarget Target;
+    public UShaderCache.FShaderTarget Target = new();
     public FName Type;
-    public UShaderCache.FVertexFactoryParameters VertexFactoryParameters;
+    public UShaderCache.FVertexFactoryParameters VertexFactoryParameters = new();
   }
 
   public class FShaderRef
   {
-    public UObject.FGuid Id;
+    public UObject.FGuid Id = new();
     public FName Type;
   }
 
@@ -21265,14 +21265,14 @@ public partial class UShaderCache : UObject
   public class FMaterialShaderMap : FShaderMap
   {
     public string FriendlyName;
-    public UObject.FGuid MaterialId;
+    public UObject.FGuid MaterialId = new();
     public List<UShaderCache.FMeshMaterialShaderMap> MeshShaderMaps;
     public int Platform;
-    public UMaterialInterface.FStaticParameterSet StaticParameters;
-    public UMaterialInterface.FUniformExpressionSet UniformExpressionSet;
+    public UMaterialInterface.FStaticParameterSet StaticParameters = new();
+    public UMaterialInterface.FUniformExpressionSet UniformExpressionSet = new();
   }
 
-  public FCompressedShaderCodeCache CompressedCache;
+  public FCompressedShaderCodeCache CompressedCache = new();
   public Dictionary<UMaterialInterface.FStaticParameterSet, FMaterialShaderMap> MaterialShaderMap;
   public byte Platform;
   public Dictionary<FGuid, FShader> Shaders;
@@ -21284,12 +21284,12 @@ public partial class UStaticMesh : UObject
 {
   public class FStaticMeshVertex
   {
-    public UObject.FColor Color;
+    public UObject.FColor Color = new();
     public ushort FragmentIndex;
-    public UObject.FVector Position;
-    public UObject.FPackedNormal TangentX;
-    public UObject.FPackedNormal TangentY;
-    public UObject.FPackedNormal TangentZ;
+    public UObject.FVector Position = new();
+    public UObject.FPackedNormal TangentX = new();
+    public UObject.FPackedNormal TangentY = new();
+    public UObject.FPackedNormal TangentZ = new();
     public UObject.FVector2D[] UVs = new UObject.FVector2D[4];
   }
 
@@ -21343,13 +21343,13 @@ public partial class UStaticMesh : UObject
 
   public class FStaticMeshRenderData
   {
-    public UStaticMesh.FColorVertexBuffer ColorVertexBuffer;
+    public UStaticMesh.FColorVertexBuffer ColorVertexBuffer = new();
     public List<UStaticMesh.FStaticMeshElement> Elements;
     public List<ushort> IndexBuffer;
     public uint NumVertices;
-    public UStaticMesh.FPositionVertexBuffer PositionVertexBuffer;
-    public UStaticMesh.FStaticMeshTriangleBulkData RawTriangles;
-    public UStaticMesh.FStaticMeshVertexBuffer VertexBuffer;
+    public UStaticMesh.FPositionVertexBuffer PositionVertexBuffer = new();
+    public UStaticMesh.FStaticMeshTriangleBulkData RawTriangles = new();
+    public UStaticMesh.FStaticMeshVertexBuffer VertexBuffer = new();
     public List<ushort> WireframeIndexBuffer;
   }
 
@@ -21362,7 +21362,7 @@ public partial class UStaticMesh : UObject
   public class FkDOPNode
   {
     public bool bIsLeaf;
-    public UStaticMesh.FkDOP BoundingVolume;
+    public UStaticMesh.FkDOP BoundingVolume = new();
     public ushort LeftNodeOrNumTriangles;
     public ushort RightNodeOrStartIndex;
   }
@@ -21383,15 +21383,15 @@ public partial class UStaticMesh : UObject
 
   public bool bCanBecomeDynamic;
   public URB_BodySetup BodySetup;
-  public FBoxSphereBounds Bounds;
+  public FBoxSphereBounds Bounds = new();
   public bool bPartitionForEdgeGeometry;
   public bool bUsedForInstancing;
   public bool bUseMaximumStreamingTexelRatio;
   public uint HighResSourceMeshCRC;
   public string HighResSourceMeshName;
   public int InternalVersion;
-  public FkDOPTree kDOPTree;
-  public FGuid LightingGuid;
+  public FkDOPTree kDOPTree = new();
+  public FGuid LightingGuid = new();
   public int LightMapCoordinateIndex;
   public int LightMapResolution;
   public float LODDistanceRatio;
@@ -21402,7 +21402,7 @@ public partial class UStaticMesh : UObject
   public string SourceFilePath;
   public string SourceFileTimestamp;
   public float StreamingDistanceMultiplier;
-  public FRotator ThumbnailAngle;
+  public FRotator ThumbnailAngle = new();
   public float ThumbnailDistance;
   public bool UseFullPrecisionUVs;
   public bool UseSimpleBoxCollision;
@@ -21460,8 +21460,8 @@ public partial class UPersistentCookerData : UObject
 
   public class FCookedTextureFileCacheInfo
   {
-    public double LastSaved;
-    public UObject.FGuid TextureFileCacheGuid;
+    public double LastSaved = new();
+    public UObject.FGuid TextureFileCacheGuid = new();
     public FName TextureFileCacheName;
   }
 
@@ -21482,37 +21482,37 @@ public partial class UPersistentCookerData : UObject
   public Dictionary<string, FCookedTextureFileCacheInfo> CookedTextureFileCacheInfoMap;
   public Dictionary<string, int> FilenameToCookedVersion;
   public Dictionary<string, double> FilenameToTimeMap;
-  public ulong TextureFileCacheWaste;
+  public ulong TextureFileCacheWaste = new();
   public Dictionary<string, FCookedTextureUsageInfo> TextureUsageInfos;
-  public ulong Unknown;
+  public ulong Unknown = new();
 }
 
 public partial class UNavigationMeshBase : UObject
 {
   public class FPolyReference
   {
-    public AActor.FActorReference OwningPylon;
+    public AActor.FActorReference OwningPylon = new();
     public int PolyId;
   }
 
   public class FNavMeshEdgeBase
   {
     public float DropHeight;
-    public UObject.FVector EdgeCenter;
-    public UObject.FVector EdgeExtent;
+    public UObject.FVector EdgeCenter = new();
+    public UObject.FVector EdgeExtent = new();
     public byte EdgeGroupID;
     public byte EdgeType;
     public float EffectiveEdgeLength;
-    public UEngineTypes.FBasedPosition MoveDest;
+    public UEngineTypes.FBasedPosition MoveDest = new();
     public int MoveDir;
     public ushort ObstaclePolyID;
     public ushort OtherPylonVert0;
     public ushort OtherPylonVert1;
     public ushort Poly0;
-    public UNavigationMeshBase.FPolyReference Poly0Ref;
+    public UNavigationMeshBase.FPolyReference Poly0Ref = new();
     public ushort Poly1;
-    public UNavigationMeshBase.FPolyReference Poly1Ref;
-    public AActor.FActorReference RelActor;
+    public UNavigationMeshBase.FPolyReference Poly1Ref = new();
+    public AActor.FActorReference RelActor = new();
     public int RelItem;
     public ushort Vert0;
     public ushort Vert1;
@@ -21532,13 +21532,13 @@ public partial class UNavigationMeshBase : UObject
 
   public class FNavMeshPolyBase
   {
-    public UObject.FBox BoxBounds;
+    public UObject.FBox BoxBounds = new();
     public ushort Item;
-    public UObject.FVector PolyCenter;
+    public UObject.FVector PolyCenter = new();
     public List<ACoverLink.FCoverReference> PolyCover;
     public List<ushort> PolyEdges;
     public float PolyHeight;
-    public UObject.FVector PolyNormal;
+    public UObject.FVector PolyNormal = new();
     public List<ushort> PolyVerts;
   }
 
@@ -21550,14 +21550,14 @@ public partial class UNavigationMeshBase : UObject
   }
 
   public List<FBorderEdgeInfo> BorderEdgeSegments;
-  public FBox BoxBounds;
+  public FBox BoxBounds = new();
   public List<FNavMeshEdgeBase> Edges;
   public List<FEdgeStorageDatum> EdgeStorageData;
-  public FMatrix LocalToWorld;
+  public FMatrix LocalToWorld = new();
   public uint NavMeshVersionNum;
   public List<FNavMeshPolyBase> Polys;
   public uint VersionAtGenerationTime;
   public List<FMeshVertex> Verts;
-  public FMatrix WorldToLocal;
+  public FMatrix WorldToLocal = new();
 }
 

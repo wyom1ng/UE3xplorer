@@ -35,13 +35,13 @@ public class PackageCorruptException : Exception
 
 public interface ISerialisable
 {
-  public void Serialise(FArchive archive);
+  public void Serialise(FArchive Archive);
 }
 
 public class FArchive
 {
   public EFileVersion Version;
-  
+
   private int offset;
   private readonly byte[] underlying;
   private string[] names;
@@ -118,7 +118,6 @@ public class FArchive
     offset += sizeof(short);
   }
 
-
   public void Serialise(ref uint value)
   {
     if (offset + sizeof(uint) > underlying.Length) throw new OutOfBoundsException();
@@ -149,6 +148,22 @@ public class FArchive
 
     value = BitConverter.ToInt64(underlying, offset);
     offset += sizeof(long);
+  }
+
+  public void Serialise(ref float value)
+  {
+    if (offset + sizeof(float) > underlying.Length) throw new OutOfBoundsException();
+
+    value = BitConverter.ToSingle(underlying, offset);
+    offset += sizeof(float);
+  }
+
+  public void Serialise(ref double value)
+  {
+    if (offset + sizeof(double) > underlying.Length) throw new OutOfBoundsException();
+
+    value = BitConverter.ToDouble(underlying, offset);
+    offset += sizeof(double);
   }
 
   public void Serialise(ref string value)
@@ -236,5 +251,13 @@ public class FArchive
       Serialise(ref value);
       values.Add(value);
     }
+  }
+
+  public void SerialiseRaw(ref byte[] To)
+  {
+    if (offset + To.Length > underlying.Length) throw new OutOfBoundsException();
+
+    Array.Copy(underlying, offset, To, 0, To.Length);
+    offset += To.Length;
   }
 }

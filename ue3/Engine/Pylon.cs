@@ -4,7 +4,7 @@ public partial class APylon
 {
   public partial class FPolyReference
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
       throw new NotImplementedException();
     }

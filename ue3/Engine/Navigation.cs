@@ -4,7 +4,7 @@ public partial class ACoverLink
 {
   public partial class FCoverSlot
   {
-    public void Serialise(FArchive archive)
+    public void Serialise(FArchive Archive)
     {
       throw new NotImplementedException();
     }

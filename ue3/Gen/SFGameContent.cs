@@ -36100,8 +36100,8 @@ public class USFCPawnFX_Tyrant : USFPawnFX_Aliens
   public USoundCue RollingAttackSound;
   public USFParticleSystemComponent RollingAttackPSC;
   public UParticleSystem RollingAttackPSCTemplate;
-  public FsCameraShake CameraShakeWalk;
-  public FsCameraShake CameraShakeRush;
+  public FsCameraShake CameraShakeWalk = new();
+  public FsCameraShake CameraShakeRush = new();
 }
 
 public class USFCPawnFX_HeroTyrant : USFCPawnFX_Tyrant
@@ -36207,7 +36207,7 @@ public class USFCPawnFX_Human_RocketJump : USFPawnFX_Human
   public FName JepPackBoneName;
   public List<UParticleSystemComponent> RocketEffectPSC;
   public List<UParticleSystemComponent> BoostEffectPSC;
-  public FVector RocketJumpEffectColor;
+  public FVector RocketJumpEffectColor = new();
   public UPointLightComponent PointLightComponent;
   public USpotLightComponent SpotLightComponent;
   public UClass BackPackClass;
@@ -36354,7 +36354,7 @@ public class ASFCProjectile_ArtilleryFire : ASFCProjectile_Flare
   public float ArtilleryExplosionDelay;
   public float ArtilleryDelay;
   public float ArtilleryRandomDistance;
-  public FVector ArtilleryRandomLocation;
+  public FVector ArtilleryRandomLocation = new();
 }
 
 public class ASFCProjectile_CannonadeGuidance : ASFCProjectile_Flare
@@ -36555,8 +36555,8 @@ public class ASFCProjectileGuideRocket : ASFProj_GrenadeLauncher
   public ASFDecalActorSpawnable TargetDecal;
   public UParticleSystemComponent GuidePSC;
   public bool bExploded;
-  public FVector TargetedLocation;
-  public FVector TargetedNormal;
+  public FVector TargetedLocation = new();
+  public FVector TargetedNormal = new();
 }
 
 public class ASFCProjectileHeroGuideRocket : ASFCProjectileGuideRocket
@@ -36654,7 +36654,7 @@ public class ASFCProjectileM18NewYear : ASFCProjectileM18
 public class ASFCProjectileM203SHELL : ASFProj_GrenadeLauncher
 {
   public float ExplosionLifeTime;
-  public FVector ExplosionHitNormal;
+  public FVector ExplosionHitNormal = new();
 }
 
 public class ASFCProjectileM67_BBQ_Sauce : ASFCProjectileM67
@@ -37090,7 +37090,7 @@ public class USFCTPCM_Libertine : USFTPCM_Libertine
 
 public class USFCTPCM_Tyrant : USFThirdPersonCameraModeBase
 {
-  public FVector EvadePawnRelativeOffset;
+  public FVector EvadePawnRelativeOffset = new();
   public float WorstLocAimingZOffset;
   public bool bTemporaryOriginRotInterp;
   public float TemporaryOriginRotInterpSpeed;
@@ -37100,7 +37100,7 @@ public class ASFCTurret_Auto : ASFTurret_AutoBase
 {
   public float IdleRotateSpeed;
   public float IdleRotateSpeedNow;
-  public FRotator AimInactive;
+  public FRotator AimInactive = new();
 }
 
 public class ASFCTurret_Auto_RocketJump : ASFCTurret_Auto
@@ -38076,7 +38076,7 @@ public class ASFCWeaponCannonade : ASFCWeaponGrenadeBase
   public float MinHeight;
   public float MaxHeight;
   public float SpawnRadius;
-  public FVector TargetLocation;
+  public FVector TargetLocation = new();
   public int CannonadeCount;
   public UDecalMaterial TargetDecalMaterial;
   public ADecalActorMovable TargetDecal;
@@ -39829,7 +39829,7 @@ public class USFCWeaponRIS_MagazineMG4 : USFCWeaponRIS_MagazineSPW
 public class USFCWeaponRIS_MagazineP90 : USFWeaponRISBase
 {
   public FName MagazineSkelControlNodeName;
-  public FVector MagazineTransformSize;
+  public FVector MagazineTransformSize = new();
   public USkelControlSingleBone MagazineSkelControl;
 }
 

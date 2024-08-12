@@ -495,6 +495,7 @@ public class USurface : Core.UObject
 [Native, StructLayout(LayoutKind.Sequential)]
 public class UTexture : USurface
 {
+  public FByteBulkData SourceArt;
 }
 
 [Native, StructLayout(LayoutKind.Sequential)]
@@ -504,9 +505,10 @@ public class UTexture2D : UTexture
 
   public List<FTexture2DMipMap> Mips;
 
-  [StructLayout(LayoutKind.Sequential)]
+  [Native, StructLayout(LayoutKind.Sequential)]
   public class FTexture2DMipMap
   {
+    public FByteBulkData Data;
   }
 }
 
