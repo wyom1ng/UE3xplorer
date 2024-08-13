@@ -83,8 +83,13 @@ public partial class PackageList : Window
   {
     if (filterInput.Text.Length > 0)
     {
-      string query = filterInput.Text.ToLower();
-      packagesSourceList.View.Filter = item => ((PackageView)item).Name.ToLower().Contains(query);
+      string query = filterInput.Text;
+      packagesSourceList.View.Filter = item =>
+      {
+        PackageView packageView = (PackageView)item;
+        if (packageView.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) return true;
+        return false;
+      };
     }
     else
     {

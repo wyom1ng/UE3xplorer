@@ -100,12 +100,12 @@ public partial class PackageContents : Window
   {
     if (filterInput.Text.Length > 0)
     {
-      string query = filterInput.Text.ToLower();
+      string query = filterInput.Text;
       entriesSourceList.View.Filter = item =>
       {
         EntryView entryView = (EntryView)item;
-        if (entryView.Name.ToLower().Contains(query)) return true;
-        if (entryView.Class.ToLower().Contains(query)) return true;
+        if (entryView.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) return true;
+        if (entryView.Class.Contains(query, StringComparison.OrdinalIgnoreCase)) return true;
         return false;
       };
     }

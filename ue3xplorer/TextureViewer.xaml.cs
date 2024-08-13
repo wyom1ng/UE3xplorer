@@ -32,8 +32,8 @@ public partial class TextureViewer : Window
     if (underlying.Mips.Count > 0)
     {
       Title = "UE3xplorer - " + underlying.Name.Resolved;
-      ImageHost.Width = underlying.Mips[0].SizeX;
-      ImageHost.Height = underlying.Mips[0].SizeY;
+      ImageGrid.Width = underlying.Mips[0].SizeX;
+      ImageGrid.Height = underlying.Mips[0].SizeY;
     }
 
     InitializeDevice();
@@ -272,28 +272,4 @@ public partial class TextureViewer : Window
   new PixelFormat {    BlockSizeX = 1, BlockSizeY=  1,BlockSizeZ = 1,    BlockBytes =  1,    ComponentCount=     1,    D3D11Format=        Format.R1_UNorm,              /* PF_A1                   */  },
     // @formatter:on
   ];
-
-  private UTexture2D LoadTexture()
-  {
-    ULinkerLoad.InitFileCache("E:\\ksf2_decompressed", "KOR");
-    foreach (ULinkerLoad.FPackageFileSummary Summary in ULinkerLoad.LoadSummaries())
-    {
-    }
-
-    ULinkerLoad Loader = UObject.GObjLoaders["13F"];
-    Loader.LoadImportExports();
-
-    foreach (ULinker.FObjectExport Export in Loader.Exports)
-    {
-      if (Export.ObjectName == "T_wood_01")
-      {
-        UObject WoodTexture = Loader.LoadExport(Export);
-        Loader.FullyLoadObject(WoodTexture);
-
-        return (UTexture2D)WoodTexture;
-      }
-    }
-
-    return null;
-  }
 }

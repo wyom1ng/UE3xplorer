@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:ue3explorer"
         xmlns:directX="clr-namespace:Microsoft.Wpf.Interop.DirectX;assembly=Microsoft.Wpf.Interop.DirectX"
         mc:Ignorable="d"
-        Title="UE3xplorer- Texture" Height="450" Width="800">
+        Title="UE3xplorer - Texture" Height="450" Width="800">
     <Grid x:Name="ImageGrid">
-        <Image x:Name="ImageHost">
+        <Image x:Name="ImageHost" Stretch="Uniform">
             <Image.Source>
                 <directX:D3D11Image x:Name="InteropImage"/>
             </Image.Source>
