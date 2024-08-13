@@ -5,16 +5,14 @@ foreach (ULinkerLoad.FPackageFileSummary Summary in ULinkerLoad.LoadSummaries())
 {
 }
 
-ULinkerLoad Loader = UObject.GObjLoaders["13F"];
-Loader.LoadImportExports();
-
-foreach (ULinker.FObjectExport Export in Loader.Exports)
+foreach (var pair in UObject.GObjLoaders)
 {
-  if (Export.ObjectName == "T_wood_01")
-  {
-    UObject WoodTexture = Loader.LoadExport(Export);
-    Loader.FullyLoadObject(WoodTexture);
+  ULinkerLoad Loader = pair.Value;
+  Loader.LoadImportExports();
 
-    break;
+  foreach (ULinker.FObjectExport Export in Loader.Exports)
+  {
+    UObject Obj = Loader.LoadExport(Export);
+    Loader.FullyLoadObject(Obj);
   }
 }
